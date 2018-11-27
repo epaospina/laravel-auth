@@ -4,10 +4,18 @@ namespace Tests\Unit;
 
 use App\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+//use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LoginTest extends TestCase
 {
+
+//    public function testBasicTest()
+//    {
+//        $this->assertTrue(true);
+//    }
+
+
+
     public function test_user_can_view_a_login_form()
     {
         $response = $this->get('/login');
@@ -24,13 +32,16 @@ class LoginTest extends TestCase
 
     public function test_user_can_login_with_correct_credentials()
     {
+
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'password' => bcrypt($password = 'secret'),
         ]);
         $response = $this->post('/login', [
             'email' => $user->email,
             'password' => $password,
         ]);
+
+
         $response->assertRedirect('/home');
         $this->assertAuthenticatedAs($user);
     }
