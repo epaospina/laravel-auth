@@ -16,8 +16,7 @@ class CreateDataDownloadTable extends Migration
         Schema::create('data_download', function (Blueprint $table) {
             $table->increments('id');
             $table->string('contact_person');
-            $table->integer('client_car')->unsigned();
-            $table->dateTime('date_upload');
+            $table->integer('load_order_id')->unsigned();
             $table->integer('driver_data')->unsigned();
             $table->string('cmr');
             $table->string('observations');

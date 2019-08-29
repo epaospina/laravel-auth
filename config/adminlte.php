@@ -105,7 +105,6 @@ return [
     | Awesome. A string instead of an array represents a header in sidebar
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
     */
-
     'menu' => [
         [
             'text'    => 'client',
@@ -113,7 +112,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'add_customer',
-                    'url'  => 'clients/create',
+                    'url'  => 'load-orders/create',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'list_order',
+                    'url'  => 'load-orders',
                     'icon' => 'fas fa-user-plus'
                 ],
             ],

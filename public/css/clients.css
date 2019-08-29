@@ -62,3 +62,22 @@ input.invalid {
 .step.finish {
     background-color: #4CAF50;
 }
+.subtitle-car{
+    margin: 1% 0;
+    font-weight: bold;
+    text-align: center;
+}
+td,tr{
+    border: 1px solid black;
+    padding: 0 1%;
+}
+.table-load-order{
+    margin-top: 2%;
+    border-style: double;
+}
+.container-order{
+    padding: 2% 3%;
+    background-color: white;
+    margin: 0 10%;
+    border: 1px solid #dbc6bf;
+}
