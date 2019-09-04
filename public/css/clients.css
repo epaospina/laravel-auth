@@ -13,7 +13,19 @@ input {
     width: 100%;
     font-size: 17px;
     font-family: Raleway;
-    border: 1px solid #aaaaaa;
+    /*border: 1px solid #aaaaaa;*/
+}
+.edit-load input, textarea{
+    padding: 0;
+    width: 100%;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid transparent;
+}
+.edit-load textarea{
+    margin: 2px;
+    width: 140px;
+    height: 100px;
 }
 
 .input-client{
@@ -66,6 +78,13 @@ input.invalid {
     margin: 1% 0;
     font-weight: bold;
     text-align: center;
+}
+.subtitle{
+    font-weight: bold;
+}
+.itv-input{
+    display: inline-flex;
+    width: 40%;
 }
 td,tr{
     border: 1px solid black;

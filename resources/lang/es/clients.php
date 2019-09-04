@@ -10,9 +10,9 @@ return [
     'color_car'         => 'Color',
     'bill_to'           => 'Facturar transporte a',
     'import_company'    => 'empresa importadora',
-    'chassis'           => 'Bastidor',
+    'vin'           => 'Bastidor',
     'itv'               => 'Pasar ITV al vehiculo',
-    'documents_car'     => 'Documentacion del vehiculo',
+    'documents'     => 'Documentacion del vehiculo',
 
     'signing'           => 'Firma',
     'addresses'         => 'Direccion',
@@ -22,7 +22,7 @@ return [
     'phone'             => 'Telefono fijo',
     'mobile'            => 'Telefono celular',
     'fax'               => 'Fax',
-    'person_contact'    => 'Persona de contacto',
+    'contact_person'    => 'Persona de contacto',
 
     'data_driver'       => 'Datos del conductor',
     'observations'      => 'Observaciones',

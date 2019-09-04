@@ -20,7 +20,7 @@ class CreateClient extends Migration
             $table->string('city');
             $table->string('cod_postal');
             $table->string('phone');
-            $table->string('mobile');
+            $table->string('mobile_load');
             $table->string('fax');
             $table->timestamps();
         });

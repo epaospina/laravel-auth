@@ -9,7 +9,7 @@
         <!-- One "tab" for each step in the form: -->
         <div class="tab">
 
-            <h3 class="title-client">{{ __('load_orders') }}</h3>
+            <h3 class="title-client">{{ __('clients.load_order') }}</h3>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
@@ -29,7 +29,7 @@
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('load_orders') }}</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.model_car') }}</span>
                 </div>
                 <input name="model_car" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
@@ -43,23 +43,26 @@
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.chassis') }}</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.vin') }}</span>
                 </div>
-                <input name="chassis" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="vin" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.itv') }}</span>
                 </div>
-                <input name="itv" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <div class="itv-input">
+                    SI<input type="radio" name="itv" value="true">
+                    NO<input type="radio" name="itv" value="false">
+                </div>
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.documents_car') }}</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.documents') }}</span>
                 </div>
-                <input name="documents_car" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="documents" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
         </div>
 
@@ -118,9 +121,9 @@
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.person_contact') }}</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.contact_person') }}</span>
                 </div>
-                <input name="person_contact" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="contact_person" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
         </div>
 
@@ -130,16 +133,30 @@
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.info_download') }}</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
                 </div>
-                <input name="info_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="addresses_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.person_contact') }}</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
                 </div>
-                <input name="person_contact_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="city_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
+                </div>
+                <input name="postal_cod_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.contact_person') }}</span>
+                </div>
+                <input name="contact_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
@@ -148,19 +165,21 @@
                 <input name="mobile_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.data_driver') }}</span>
+            @if(auth()->id())
+                <div class="input-group-sm mb-3 input-client">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.data_driver') }}</span>
+                    </div>
+                    <input value="_" name="data_driver" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
-                <input name="data_driver" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
 
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.cmr') }}</span>
+                <div class="input-group-sm mb-3 input-client">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.cmr') }}</span>
+                    </div>
+                    <input value="_" name="cmr" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
-                <input name="cmr" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
+            @endif
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">

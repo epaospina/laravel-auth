@@ -14,5 +14,6 @@ return [
     'search'                        => 'Buscador',
     'client'                        => 'Cliente',
     'add_customer'                  => 'Agregar',
-    'documents'                     => 'DOCUMENTOS'
+    'documents'                     => 'DOCUMENTOS',
+    'list_order'                    => 'Listar carga de ordenes'
 ];

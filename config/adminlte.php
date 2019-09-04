@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'MC vehiculos',
 
     'title_prefix' => '',
 
@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'home',
+    'dashboard_url' => '',
 
     'logout_url' => 'logout',
 
@@ -116,8 +116,29 @@ return [
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
+                    'text' => 'listar clientes',
+                    'url'  => 'clients/',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
                     'text' => 'list_order',
                     'url'  => 'load-orders',
+                    'icon' => 'fas fa-user-plus'
+                ],
+            ],
+        ],
+        [
+            'text'    => 'users',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'add_user',
+                    'url'  => 'users/create',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'list_users',
+                    'url'  => 'users',
                     'icon' => 'fas fa-user-plus'
                 ],
             ],

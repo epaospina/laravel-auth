@@ -70,3 +70,50 @@ function fixStepIndicator(n) {
     //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
+
+function editInputs() {
+    $('input').prop("disabled", false);
+    $('textarea').prop("disabled", false);
+    $('#editLoadOrder').hide();
+    $('#saveLoadOrder').show();
+}
+
+function updatePost(id) {
+    let modelColor = $('#modelColor').val().split('//');
+    let address_load = $('#addresses_load').val().split('//');
+    let address_download = $('#info_download').val().split('//');
+
+    let data = {
+        'load_id'                   : id,
+        'model_car'                 : modelColor[0],
+        'color_car'                 : modelColor[1],
+        'vin'                       : $('#vin').val(),
+        'signing'                   : $('#signing').val(),
+        'addresses_load'            : address_load[0],
+        'city_load'                 : address_load[1],
+        'postal_cod_load'           : address_load[2],
+        'phone_load'                : $('#phone_load').val(),
+        'mobile_load'               : $('#mobile_load').val(),
+        'fax'                       : $('#fax').val(),
+        'contact_person'            : $('#contact_person').val(),
+        'documents'                 : $('#documents').val(),
+        'bill_to'                   : $('#bill_to').val(),
+        'import_company'            : $('#import_company').val(),
+        'addresses_download'        : address_download[0],
+        'city_download'             : address_download[1],
+        'postal_cod_download'       : address_download[2],
+        'contact_download'          : $('#contact_download').val(),
+        'driver_data'               : $('#driver_data').val(),
+        'cmr'                       : $('#cmr').val(),
+        'observations'              : $('#observations').val(),
+        'mobile_download'           : $('#mobile_download').val(),
+    };
+    $.ajax({
+        url: "/load-orders/"+id,
+        type: 'PUT',
+        data: data,
+        success: function(response) {
+            //...
+        }
+    });
+}

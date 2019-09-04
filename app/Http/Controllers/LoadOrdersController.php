@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Client;
-use App\ClientCar;
-use App\DataDownload;
-use App\InformationCar;
+use App\Clients;
 use App\LoadOrders;
-use Carbon\Carbon;
+use Faker\Provider\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class LoadOrdersController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->only('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,89 +45,32 @@ class LoadOrdersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
     {
-        $information_car = new InformationCar();
-        $information_car->model_car = $request->get('model_car');
-        $information_car->color = $request->get('color_car');
-        $information_car->vin = $request->get('chassis');
-        $information_car->documents = $request->get('documents_car');
-        $information_car->save();
-
-        $client = new Client();
-        $client->name = $request->get('signing');
-        $client->address = $request->get('addresses_load');
-        $client->city = $request->get('city_load');
-        $client->cod_postal = $request->get('postal_cod_load');
-        $client->phone = $request->get('phone_load');
-        $client->mobile = $request->get('mobile_load');
-        $client->fax = $request->get('fax');
-        $client->save();
-
-        if ($information_car && $client){
-            $client_car = new ClientCar();
-            $client_car->client_id = $client->id;
-            $client_car->information_car_id = $information_car->id;
-            $client_car->save();
-        }
-
-        $carbon = new Carbon();
-        $load_order = new LoadOrders();
-        $load_order->client_car_id = $client_car->id;
-        $load_order->contact_person = $request->get('person_contact');
-        $load_order->date_upload = $carbon->now();
-        $load_order->buyer = $request->get('bill_to');
-        $load_order->importing_company = $request->get('import_company');
-        $load_order->save();
-
-        $data_download = new DataDownload();
-        $data_download->info_download = $request->get('info_download');
-        $data_download->contact_person = $request->get('person_contact_download');
-        $data_download->mobil = $request->get('mobile_download');
-        $data_download->load_orders_id = $load_order->id;
-        $data_download->driver_data_id = 2;
-        $data_download->cmr = $request->get('cmr');
-        $data_download->observations = $request->get('observations');
-        $data_download->save();
+        $load_order = LoadOrders::createAllLoadOrder($request->all(), '');
 
         return redirect()->action(
             'LoadOrdersController@show', $load_order);
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource.informationCar
      *
      * @param  LoadOrders  $loadOrder
      * @return Response
      */
-    public function show(LoadOrders $loadOrder)
+    public function show($loadOrder)
     {
-        $infoCar = $loadOrder->clientCar->informationCar;
-        $infoClient = $loadOrder->clientCar->client;
-        $infoDownload = $loadOrder->dataDownload;
-
-        $infoArray = [
-            'modelColor'        => $infoCar->model_car.' / '. $infoCar->color,
-            'vin'               => $infoCar->vin,
-            'name'              => $infoClient->name,
-            'address'           => $infoClient->address.','.$infoClient->city.','.$infoClient->cod_postal,
-            'phone'             => $infoClient->phone,
-            'mobile'            => $infoClient->mobile,
-            'fax'               => $infoClient->fax,
-            'contact_person'    => $loadOrder->contact_person,
-            'documents'         => $infoCar->documents,
-            'buyer'             => $loadOrder->buyer,
-            'importing_company' => $loadOrder->importing_company,
-            'info_download'     => $infoDownload->info_download,
-            'contact_download'  => $infoDownload->contact_person,
-            'driver_data'       => $infoDownload->driver_data,
-            'cmr'               => $infoDownload->cmr,
-            'observations'      => $infoDownload->observations,
-            'mobile_download'   => $infoDownload->mobil,
-        ];
+        $loadOrder = LoadOrders::all()->find(decrypt($loadOrder));
+        $infoArray = LoadOrders::arrayInfo([
+            'information_car' => $loadOrder->clientCar->informationCar->toArray(),
+            'client' => $loadOrder->clientCar->client->toArray(),
+            'load_order' => $loadOrder->toArray(),
+            'data_download' => $loadOrder->dataDownload->toArray(),
+        ]);
 
         return view('load-orders.show', compact('infoArray'));
     }
@@ -128,33 +78,43 @@ class LoadOrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Client  $client
+     * @param  LoadOrders $loadOrder
      * @return Response
      */
-    public function edit(Client $client)
+    public function edit($loadOrder)
     {
-        //
+        $loadOrder = LoadOrders::all()->find(decrypt($loadOrder));
+        $infoArray = LoadOrders::arrayInfo([
+            'information_car' => $loadOrder->clientCar->informationCar->toArray(),
+            'client' => $loadOrder->clientCar->client->toArray(),
+            'load_order' => $loadOrder->toArray(),
+            'data_download' => $loadOrder->dataDownload->toArray(),
+        ]);
+
+
+        return view('load-orders.edit', compact('infoArray'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Client  $client
+     * @param  LoadOrders $loadOrder
      * @return Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, LoadOrders $loadOrder)
     {
-        //
+        LoadOrders::createAllLoadOrder($request->all(), $loadOrder);
+        return \response('ok', 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Client  $client
+     * @param  \App\Clients  $client
      * @return Response
      */
-    public function destroy(Client $client)
+    public function destroy(Clients $client)
     {
         //
     }

@@ -18,8 +18,8 @@ class CreateLoadOrdersTable extends Migration
             $table->string('contact_person');
             $table->integer('client_car_id')->unsigned();
             $table->dateTime('date_upload');
-            $table->string('buyer');
-            $table->string('importing_company');
+            $table->string('bill_to');
+            $table->string('import_company');
             $table->timestamps();
         });
     }
