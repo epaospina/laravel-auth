@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Clients;
+use App\Customer;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -89,10 +89,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Clients  $client
+     * @param  \App\Customer  $client
      * @return Response
      */
-    public function destroy(Clients $client)
+    public function destroy(Customer $client)
     {
         //
     }

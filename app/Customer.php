@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Clients extends Model
+class Customer extends Model
 {
-    protected $table = 'clients';
+    protected $table = 'customer';
 
     /**
      * The attributes that are mass assignable.
@@ -18,13 +18,15 @@ class Clients extends Model
         'phone_load', 'mobile_load', 'fax'
     ];
 
-    public function clientCar()
+    public function infoCars()
     {
-        return $this->hasMany('App\ClientCar');
+        return $this
+            ->belongsToMany('App\InformationCar')
+            ->withTimestamps();
     }
 
     public function loadOrders()
     {
-        return $this->belongsTo('App\ClientCar');
+        return $this->hasMany('App\LoadOrders');
     }
 }

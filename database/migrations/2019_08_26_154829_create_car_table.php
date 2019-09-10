@@ -16,7 +16,7 @@ class CreateCarTable extends Migration
         Schema::create('information_car', function (Blueprint $table) {
             $table->increments('id');
             $table->string('model_car');
-            $table->string('color');
+            $table->string('color_car');
             $table->string('vin');
             $table->string('documents');
             $table->timestamps();

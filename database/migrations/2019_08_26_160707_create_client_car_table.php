@@ -13,9 +13,9 @@ class CreateClientCarTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_car', function (Blueprint $table) {
+        Schema::create('customer_information_car', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('client_id')->unsigned();
+            $table->integer('customer_id')->unsigned();
             $table->integer('information_car_id')->unsigned();
             $table->timestamps();
         });

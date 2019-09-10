@@ -15,8 +15,9 @@ class CreateLoadOrdersTable extends Migration
     {
         Schema::create('load_orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('hash');
             $table->string('contact_person');
-            $table->integer('client_car_id')->unsigned();
+            $table->integer('customer_id')->unsigned();
             $table->dateTime('date_upload');
             $table->string('bill_to');
             $table->string('import_company');
@@ -31,6 +32,6 @@ class CreateLoadOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('upload_download');
+        Schema::dropIfExists('load_orders');
     }
 }

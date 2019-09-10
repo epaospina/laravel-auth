@@ -14,16 +14,16 @@
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $load_order->contact_person }}</td>
-                <td>{{ $load_order->client_car_id }}</td>
+                <td>{{ $load_order->client_id }}</td>
                 <td>{{ $load_order->date_upload }}</td>
                 <td>{{ $load_order->bill_to }}</td>
                 <td>{{ $load_order->import_company }}</td>
                 <td>
-                    <form action="{{ route('load-orders.destroy', encrypt($load_order->id)) }}" method="POST">
+                    <form action="{{ route('load-orders.destroy', md5($load_order->id)) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('load-orders.show',encrypt($load_order->id)) }}">Show</a>
+                        <a class="btn btn-info" href="{{ route('load-orders.show',md5($load_order->id)) }}">Show</a>
 
-                        <a class="btn btn-primary" href="{{ route('load-orders.edit',encrypt($load_order->id)) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('load-orders.edit',md5($load_order->id)) }}">Edit</a>
 
                         @csrf
                         @method('DELETE')

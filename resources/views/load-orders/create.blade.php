@@ -24,46 +24,13 @@
                 </div>
                 <input name="import_company" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
-
-            <h5 class="subtitle-client">{{ __('clients.data_car') }}</h5>
-
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.model_car') }}</span>
-                </div>
-                <input name="model_car" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.color_car') }}</span>
-                </div>
-                <input name="color_car" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.vin') }}</span>
-                </div>
-                <input name="vin" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.itv') }}</span>
-                </div>
-                <div class="itv-input">
-                    SI<input type="radio" name="itv" value="true">
-                    NO<input type="radio" name="itv" value="false">
+            <div id="create_car">
+                <div id="car__0">
+                    @include('load-orders.create_car')
                 </div>
             </div>
-
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.documents') }}</span>
-                </div>
-                <input name="documents" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
+            <br>
+            <div id="btnAddCar" class="btn btn-bitbucket" data-car="0" onclick="addCarForm()">Agregar coche</div>
         </div>
 
         <div class="tab">
@@ -198,8 +165,8 @@
 
         <div style="overflow:auto;">
             <div style="float:right;">
-                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Anterior</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
             </div>
         </div>
 

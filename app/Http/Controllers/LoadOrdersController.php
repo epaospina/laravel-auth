@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Clients;
+use App\Bills;
+use App\Customer;
 use App\LoadOrders;
 use Faker\Provider\Uuid;
 use Illuminate\Http\Request;
@@ -50,24 +51,29 @@ class LoadOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        $load_order = LoadOrders::createAllLoadOrder($request->all(), '');
+        $loadOrder = LoadOrders::createAllLoadOrder($request->all(), '');
+
+        if (!empty($loadOrder)){
+            Bills::createBill($loadOrder);
+        }
 
         return redirect()->action(
-            'LoadOrdersController@show', $load_order);
+            'LoadOrdersController@show', $loadOrder->hash);
     }
 
     /**
      * Display the specified resource.informationCar
      *
-     * @param  LoadOrders  $loadOrder
+     * @param  $loadOrder
      * @return Response
      */
-    public function show($loadOrder)
+    public function show($hash)
     {
-        $loadOrder = LoadOrders::all()->find(decrypt($loadOrder));
+        $loadOrder = LoadOrders::assignHash($hash);
+
         $infoArray = LoadOrders::arrayInfo([
-            'information_car' => $loadOrder->clientCar->informationCar->toArray(),
-            'client' => $loadOrder->clientCar->client->toArray(),
+            'infoCars' => $loadOrder->customer->infoCars,
+            'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
             'data_download' => $loadOrder->dataDownload->toArray(),
         ]);
@@ -81,16 +87,16 @@ class LoadOrdersController extends Controller
      * @param  LoadOrders $loadOrder
      * @return Response
      */
-    public function edit($loadOrder)
+    public function edit($hash)
     {
-        $loadOrder = LoadOrders::all()->find(decrypt($loadOrder));
+        $loadOrder = LoadOrders::assignHash($hash);
+
         $infoArray = LoadOrders::arrayInfo([
-            'information_car' => $loadOrder->clientCar->informationCar->toArray(),
-            'client' => $loadOrder->clientCar->client->toArray(),
+            'infoCars' => $loadOrder->customer->infoCars,
+            'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
             'data_download' => $loadOrder->dataDownload->toArray(),
         ]);
-
 
         return view('load-orders.edit', compact('infoArray'));
     }
@@ -98,23 +104,37 @@ class LoadOrdersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  LoadOrders $loadOrder
+     * @param  Request  $request
+     * @param  $loadOrder
      * @return Response
      */
-    public function update(Request $request, LoadOrders $loadOrder)
+    public function update(Request $request, $loadOrder)
     {
-        LoadOrders::createAllLoadOrder($request->all(), $loadOrder);
+        //LoadOrders::createAllLoadOrder($request->all(), $loadOrder);
+
+        Bills::createBill(LoadOrders::createAllLoadOrder($request->all(), $loadOrder));
+
         return \response('ok', 200);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  LoadOrders $loadOrders
+     * @return Response
+     */
+    public function cmr(LoadOrders $loadOrders)
+    {
+        return view('load-orders.show-cmr', compact('loadOrders'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Clients  $client
+     * @param  \App\Customer  $client
      * @return Response
      */
-    public function destroy(Clients $client)
+    public function destroy(Customer $client)
     {
         //
     }

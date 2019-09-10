@@ -1,0 +1,57 @@
+
+.header-bill{
+    display: flex;
+    justify-content: space-around;
+}
+.header-bill table{
+    width: 30%;
+}
+.header-bill td{
+    border-bottom: 1px solid #0000004f;
+    padding: 1%;
+}
+b{
+    font-size: 10px;
+    font-weight: bold;
+}
+label{
+    font-size: 15px;
+    font-weight: bold;
+}
+.body-bill{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.table-body{
+    width: 85%;
+    margin: 2%;
+    align-content: center;
+    border: 2px solid black;
+}
+.table-body td{
+    padding: 1%;
+    border-right: 1px solid black;
+    text-align: center;
+}
+.td-title{
+    border: 1px solid black;
+}
+.td-left{
+    text-align: left !important;
+}
+.td-right{
+    text-align: right !important;
+}
+.footer-bill{
+
+}
+.table-footer{
+    width: 95%;
+    margin: 2%;
+    align-content: center;
+}
+.table-footer td{
+    padding: 2%;
+    border-bottom: 2px solid black;
+}

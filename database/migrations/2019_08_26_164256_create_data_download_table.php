@@ -13,13 +13,17 @@ class CreateDataDownloadTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_download', function (Blueprint $table) {
+        Schema::create('data_downloads', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('contact_person');
-            $table->integer('load_order_id')->unsigned();
-            $table->integer('driver_data')->unsigned();
+            $table->string('contact_download');
+            $table->integer('load_orders_id')->unsigned();
+            $table->integer('driver_data_id')->unsigned();
             $table->string('cmr');
             $table->string('observations');
+            $table->string('addresses_download');
+            $table->string('city_download');
+            $table->string('postal_cod_download');
+            $table->string('mobile_download');
             $table->timestamps();
         });
     }

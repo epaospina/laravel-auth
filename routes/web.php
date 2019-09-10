@@ -21,8 +21,12 @@ Route::get('load-orders/create','LoadOrdersController@create')->name('load-order
 Route::post('load-orders/store','LoadOrdersController@store')->name('load-orders.store');
 Route::get('load-orders/{parameter}','LoadOrdersController@show')->name('load-orders.show');
 Route::get('load-orders/{parameter}/edit','LoadOrdersController@edit')->name('load-orders.edit');
-Route::put('load-orders/','LoadOrdersController@update')->name('load-orders.update');
+Route::put('load-orders/{parameter}','LoadOrdersController@update')->name('load-orders.update');
 Route::post('load-orders/','LoadOrdersController@destroy')->name('load-orders.destroy');
 Route::resource('users','UserController');
 Route::resource('clients','ClientsController');
-Route::get('clients/{client}/cmr','ClientsController@cmr')->name('clients.cmr');
+Route::resource('services','ServicesController');
+Route::get('load-orders/{loadOrders}/cmr','LoadOrdersController@cmr')->name('load-orders.cmr');
+Route::get('bills/','ServicesController@index')->name('clients.index');
+Route::get('bills/load-order/{loadOrder}','BillsController@showBillLoadOrder')->name('bills.show-bill-load-order');
+Route::get('bills/{client}','BillsController@show')->name('bills.show');

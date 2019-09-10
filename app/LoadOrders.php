@@ -9,38 +9,33 @@ class LoadOrders extends Model
 {
     protected $table = 'load_orders';
 
-    public function clientCar()
+    public function customer()
     {
-        return $this->belongsTo('App\ClientCar');
+        return $this->belongsTo('App\Customer');
     }
 
     public function dataDownload()
     {
-        return $this->hasOne('App\DataDownload');
+        return $this->hasOne('App\DataDownloads');
     }
 
-    static function createAllLoadOrder($infoArray, $loadOrder){
-        $information_car = new InformationCar();
-        $client = new Clients();
-        $client_car = new ClientCar();
-        $data_download = new DataDownload();
+    static function assignHash($hash){
+        $loadOrder = LoadOrders::all()->where('hash', $hash)->first();
 
-        if (isset($loadOrder) && isset($loadOrder->clientCar)){
-            if (isset($loadOrder->clientCar->informationCar)){
-                $information_car = $loadOrder->clientCar->informationCar;
-            }
+        return $loadOrder;
+    }
+    static function createAllLoadOrder($infoArray, $loadOrder){
+        if (!empty($loadOrder)){
+            $loadOrder = self::assignHash($loadOrder->hash);
+        }else{
+            $loadOrder = new LoadOrders();
         }
 
-        $information_car->model_car = $infoArray['model_car'];
-        $information_car->color_car = $infoArray['color_car'];
-        $information_car->vin = $infoArray['vin'];
-        $information_car->documents = $infoArray['documents'];
-        $information_car->save();
+        $client = new Customer();
+        $data_download = new DataDownloads();
 
-        if (isset($loadOrder) && isset($loadOrder->clientCar)){
-            if (isset($loadOrder->clientCar->informationCar)){
-                $client = $loadOrder->clientCar->client;
-            }
+        if (!empty($loadOrder) && !empty($loadOrder->client)){
+            $client = $loadOrder->client;
         }
 
         $client->signing = $infoArray['signing'];
@@ -52,25 +47,16 @@ class LoadOrders extends Model
         $client->fax = $infoArray['fax'];
         $client->save();
 
-        if ($information_car && $client){
-            if (isset($loadOrder) && isset($loadOrder->clientCar)){
-                $client_car = $loadOrder->clientCar;
-            }
+        InformationCar::findOrCreateInformationCar($client, $infoArray["car"]);
 
-            $client_car->client_id = $client->id;
-            $client_car->information_car_id = $information_car->id;
-            $client_car->save();
-        }
-
-        if (empty($loadOrder)){
-            $loadOrder = new LoadOrders();
-        }
-
-        $loadOrder->client_car_id = $client_car->id;
+        $loadOrder->customer_id = $client->id;
         $loadOrder->contact_person = $infoArray['contact_person'];
         $loadOrder->date_upload = Carbon::now();
         $loadOrder->bill_to = $infoArray['bill_to'];
         $loadOrder->import_company = $infoArray['import_company'];
+        $loadOrder->save();
+
+        $loadOrder->hash = md5($loadOrder->id);
         $loadOrder->save();
 
         if (!empty($loadOrder) && !empty($loadOrder->dataDownload)){
@@ -83,7 +69,7 @@ class LoadOrders extends Model
         $data_download->contact_download = $infoArray['contact_download'];
         $data_download->mobile_download = $infoArray['mobile_download'];
         $data_download->load_orders_id = $loadOrder->id;
-        $data_download->driver_data_id = isset($infoArray['data_driver']) ? $infoArray['data_driver'] : 2;
+        $data_download->driver_data_id = 2;//isset($infoArray['data_driver']) ? $infoArray['data_driver'] : 2;
         $data_download->cmr = isset($infoArray['cmr']) ? $infoArray['cmr'] : "";
         $data_download->observations = $infoArray['observations'];
         $data_download->save();
@@ -93,13 +79,16 @@ class LoadOrders extends Model
 
     static function arrayInfo($validateInfo){
         $infoArray = [];
+        $infoArray['information_car'] = [];
 
-        $infoArray['information_car'] = [
-            'model_car'                 => isset($validateInfo['information_car']['model_car']) ? $validateInfo['information_car']['model_car'] : '',
-            'color_car'                 => isset($validateInfo['information_car']['color_car']) ? $validateInfo['information_car']['color_car'] : '',
-            'vin'                       => isset($validateInfo['information_car']['vin']) ? $validateInfo['information_car']['vin'] : '',
-            'documents'                 => isset($validateInfo['information_car']['documents']) ? $validateInfo['information_car']['documents'] : '',
-        ];
+        foreach ($validateInfo['infoCars'] as $key => $clientCar){
+            $infoArray['information_car'][$key] = [
+                'model_car'                 => isset($clientCar->model_car) ? $clientCar->model_car : '',
+                'color_car'                 => isset($clientCar->color_car) ? $clientCar->color_car : '',
+                'vin'                       => isset($clientCar->vin) ? $clientCar->vin : '',
+                'documents'                 => isset($clientCar->documents) ? $clientCar->documents : '',
+            ];
+        }
 
         $infoArray['client'] = [
             'signing'                   => isset($validateInfo['client']['signing']) ? $validateInfo['client']['signing'] : '',

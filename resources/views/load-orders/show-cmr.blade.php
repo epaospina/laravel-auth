@@ -9,9 +9,9 @@
             <tr>
                 <td colspan="4">
                     <p>1. Remitente (nombre, domicilio, pais)</p>
-                    <label class="info-text">{{$client->signing}}</label><br>
-                    <label class="info-text">{{$client->addresses_load}}</label><br>
-                    <label class="info-text">{{$client->city_load}} // {{$client->postal_cod_load}}</label>
+                    <label class="info-text">{{$loadOrders->customer->signing}}</label><br>
+                    <label class="info-text">{{$loadOrders->customer->addresses_load}}</label><br>
+                    <label class="info-text">{{$loadOrders->customer->city_load}} // {{$loadOrders->customer->postal_cod_load}}</label>
                 </td>
                 <td colspan="7">
                     <div class="content-info">
@@ -28,9 +28,9 @@
             <tr>
                 <td colspan="4">
                     <p>2. Consignatario (nombre, domicilio, pais)</p>
-                    <label class="info-text">{{$client->clientCar[0]->loadOrder->dataDownload->contact_download}}</label><br>
-                    <label class="info-text">{{$client->clientCar[0]->loadOrder->dataDownload->addresses_download}}</label><br>
-                    <label class="info-text">{{$client->clientCar[0]->loadOrder->dataDownload->city_download}} {{$client->clientCar[0]->loadOrder->dataDownload->postal_cod_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->dataDownload->contact_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->dataDownload->addresses_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->dataDownload->city_download}} {{$loadOrders->dataDownload->postal_cod_download}}</label><br>
                 </td>
                 <td class="td-logo-start" colspan="7" rowspan="2">
                     <img src="{{asset('images/logo-mc.jpg')}}" alt="Mc Vehiculos">
@@ -45,17 +45,17 @@
             <tr>
                 <td colspan="4">
                     <p>3. Lugar de entrega de la mercancia (lugar, pais)</p>
-                    <label class="info-text">{{$client->clientCar[0]->loadOrder->dataDownload->contact_download}}</label><br>
-                    <label class="info-text">{{$client->clientCar[0]->loadOrder->dataDownload->addresses_download}}</label><br>
-                    <label class="info-text">{{$client->clientCar[0]->loadOrder->dataDownload->city_download}} {{$client->clientCar[0]->loadOrder->dataDownload->postal_cod_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->dataDownload->contact_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->dataDownload->addresses_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->dataDownload->city_download}} {{$loadOrders->dataDownload->postal_cod_download}}</label><br>
                 </td>
             </tr>
             <tr>
                 <td colspan="4">
                     <p>4. Lugar y fecha de carga de la mercancia (lugar, pais, fecha)</p>
-                    <label class="info-text">{{$client->addresses_load}}</label><br>
-                    <label class="info-text">{{$client->city_load}} // {{$client->postal_cod_load}}</label><br>
-                    <label class="info-text">{{$client->clientCar[0]->loadOrder->date_upload}}</label>
+                    <label class="info-text">{{$loadOrders->customer->addresses_load}}</label><br>
+                    <label class="info-text">{{$loadOrders->customer->city_load}} // {{$loadOrders->customer->postal_cod_load}}</label><br>
+                    <label class="info-text">{{$loadOrders->date_upload}}</label>
                 </td>
                 <td colspan="7" rowspan="2">
                     <div>
@@ -63,7 +63,7 @@
                         <br>
                         <br>
                         <br>
-                        <label class="info-text">{{$client->clientCar[0]->loadOrder->dataDownload->observations}}</label>
+                        <label class="info-text">{{$loadOrders->dataDownload->observations}}</label>
                     </div>
                 </td>
             </tr>
@@ -78,10 +78,10 @@
                 <td class="td-l4" colspan="2"><p>11. Peso bruto</p></td>
                 <td class="td-l4" colspan="2"><p>12. Volumen</p></td>
             </tr>
-            @foreach($client->clientCar AS $key => $infoCar)
+            @foreach($loadOrders->customer->infoCars AS $key => $infoCar)
                 <tr>
-                    <td class="{{$client->clientCar->count() === ($key+1) ? 'td-l1-end' : 'td-l1'}}" colspan="2"><label class="info-text">{{$infoCar->informationCar->model_car}}</label></td>
-                    <td class="td-l2" ><label class="info-text">{{$infoCar->informationCar->vin}}</label></td>
+                    <td class="{{$loadOrders->customer->infoCars->count() === ($key+1) ? 'td-l1-end' : 'td-l1'}}" colspan="2"><label class="info-text">{{$infoCar->model_car}}</label></td>
+                    <td class="td-l2" ><label class="info-text">{{$infoCar->vin}}</label></td>
                     <td class="td-l2" ><label class="info-text"></label></td>
                     <td class="td-l3" ><label class="info-text"></label></td>
                     <td class="td-l4" colspan="2">&nbsp;</td>

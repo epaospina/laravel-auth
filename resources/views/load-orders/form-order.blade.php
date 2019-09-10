@@ -11,11 +11,11 @@
         </tr>
         <tr>
             <td  class="subtitle">{{ __('clients.model_car') }} / {{ __('clients.color_car') }}</td>
-            <td><input id="modelColor" value="{{$infoArray['information_car']['model_car']}} // {{$infoArray['information_car']['color_car']}}" disabled></td>
+            <td><input id="modelColor{{$key}}" value="{{$infoCar['model_car']}} // {{$infoCar['color_car']}}" disabled></td>
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.vin') }}</td>
-            <td><input id="vin" value="{{$infoArray['information_car']['vin']}}" disabled></td>
+            <td><input id="vin{{$key}}" value="{{$infoCar['vin']}}" disabled></td>
         </tr>
         </tbody>
     </table>
@@ -61,7 +61,7 @@
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.documents') }}</td>
-            <td><input id="documents" value="{{$infoArray['information_car']['documents']}}" disabled></td>
+            <td><input id="documents{{$key}}" value="{{$infoCar['documents']}}" disabled></td>
         </tr>
         </tbody>
     </table>

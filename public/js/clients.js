@@ -1,73 +1,55 @@
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
+let currentTab = 0;
+showTab(currentTab);
 
 function showTab(n) {
-    // This function will display the specified tab of the form ...
-    var x = document.getElementsByClassName("tab");
-    x[n].style.display = "block";
-    // ... and fix the Previous/Next buttons:
-    if (n == 0) {
-        document.getElementById("prevBtn").style.display = "none";
+    const tab_content = $('.tab');
+    tab_content.eq(n).css('display', 'block');
+    if (n === 0) {
+        $('#prevBtn').css('display', 'none');
     } else {
-        document.getElementById("prevBtn").style.display = "inline";
+        $('#prevBtn').css('display', 'inline');
     }
-    if (n == (x.length - 1)) {
-        document.getElementById("nextBtn").innerHTML = "Submit";
+    if (n === (tab_content.length - 1)) {
+        $('#nextBtn').text('Guardar');
     } else {
-        document.getElementById("nextBtn").innerHTML = "Next";
+        $('#nextBtn').text('Siguiente');
     }
-    // ... and run a function that displays the correct step indicator:
     fixStepIndicator(n)
 }
 
 function nextPrev(n) {
-    // This function will figure out which tab to display
-    var x = document.getElementsByClassName("tab");
-    // Exit the function if any field in the current tab is invalid:
-    if (n == 1 && !validateForm()) return false;
-    // Hide the current tab:
-    x[currentTab].style.display = "none";
-    // Increase or decrease the current tab by 1:
+    const tab_content = $('.tab');
+    if (n === 1 && !validateForm()) return false;
+    tab_content.eq(currentTab).css('display', 'none');
     currentTab = currentTab + n;
-    // if you have reached the end of the form... :
-    if (currentTab >= x.length) {
-        //...the form gets submitted:
-        document.getElementById("regForm").submit();
+    if (currentTab >= tab_content.length) {
+        $('#regForm').submit();
         return false;
     }
-    // Otherwise, display the correct tab:
     showTab(currentTab);
 }
 
 function validateForm() {
-    // This function deals with validation of the form fields
-    var x, y, i, valid = true;
+    let x, y, i, valid = true;
     x = document.getElementsByClassName("tab");
     y = x[currentTab].getElementsByTagName("input");
-    // A loop that checks every input field in the current tab:
     for (i = 0; i < y.length; i++) {
-        // If a field is empty...
-        if (y[i].value == "") {
-            // add an "invalid" class to the field:
+        if (y[i].value === "") {
             y[i].className += " invalid";
-            // and set the current valid status to false:
             valid = false;
         }
     }
-    // If the valid status is true, mark the step as finished and valid:
     if (valid) {
-        document.getElementsByClassName("step")[currentTab].className += " finish";
+        $('.step')[currentTab].className += " finish";
     }
-    return valid; // return the valid status
+    return valid;
 }
 
 function fixStepIndicator(n) {
-    // This function removes the "active" class of all steps...
-    var i, x = document.getElementsByClassName("step");
+    let i, x = $('.step');
     for (i = 0; i < x.length; i++) {
         x[i].className = x[i].className.replace(" active", "");
     }
-    //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
 
@@ -82,6 +64,10 @@ function updatePost(id) {
     let modelColor = $('#modelColor').val().split('//');
     let address_load = $('#addresses_load').val().split('//');
     let address_download = $('#info_download').val().split('//');
+    $("input[id^='modelColor']").each(function( index, element ) {
+        console.log(element.value);
+    });
+
 
     let data = {
         'load_id'                   : id,
@@ -116,4 +102,51 @@ function updatePost(id) {
             //...
         }
     });
+}
+
+function changeId(element, num) {
+    element.prop('id', 'car__'+num);
+    element.find("input").eq(0).attr('name', "car["+num+"][model_car]");
+    element.find("input").eq(1).attr('name', "car["+num+"][color_car]");
+    element.find("input").eq(2).attr('name', "car["+num+"][vin]");
+    element.find("input").eq(5).attr('name', "car["+num+"][documents]");
+    element.find("input").eq(5).attr('name', "car["+num+"][documents]");
+    element.find("[class*=delete-car]").attr('class', 'btn btn-danger close delete-car'+num);
+}
+
+function addCarForm() {
+    let btnAddCar = $('#btnAddCar');
+    let num = btnAddCar.attr('data-car');
+    num++;
+    if (num < 9){
+        $( "#car__0" ).clone()
+            .prop('id', 'car__'+num)
+            .appendTo( "#create_car" );
+        let new_car = $("#car__"+num);
+        changeId(new_car, num);
+        $('.delete-car0').show();
+        btnAddCar.attr('data-car', num);
+        $('.delete-car'+num).attr('data-car', num);
+    }
+    return false;
+}
+
+function removeCarForm(num) {
+    let deleteBlock = $('.delete-car'+num);
+    let parentDelete = deleteBlock.parent().parent();
+    let btnAddCar = $('#btnAddCar');
+    if (parentDelete.attr('id') === "car__0"){
+        parentDelete.find('input').each(function( index, element ) {
+            element.value = "";
+        });
+    }else{
+        parentDelete.remove();
+        let idsCar = $('[id*=car__]');
+        let countCar = idsCar.length;
+        idsCar.each(function( index){
+            changeId($(this), index);
+        });
+        btnAddCar.attr('data-car', countCar-1);
+        deleteBlock.attr('data-car', countCar-1);
+    }
 }

@@ -1,4 +1,4 @@
 @extends('adminlte::page')
 @section('content')
-    @include('load-orders.form-order')
+    @include('load-orders.information-content')
 @endsection
