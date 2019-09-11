@@ -28,9 +28,9 @@
             <tr>
                 <td colspan="4">
                     <p>2. Consignatario (nombre, domicilio, pais)</p>
-                    <label class="info-text">{{$loadOrders->dataDownload->contact_download}}</label><br>
-                    <label class="info-text">{{$loadOrders->dataDownload->addresses_download}}</label><br>
-                    <label class="info-text">{{$loadOrders->dataDownload->city_download}} {{$loadOrders->dataDownload->postal_cod_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->data_download->contact_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->data_download->addresses_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->data_download->city_download}} {{$loadOrders->data_download->postal_cod_download}}</label><br>
                 </td>
                 <td class="td-logo-start" colspan="7" rowspan="2">
                     <img src="{{asset('images/logo-mc.jpg')}}" alt="Mc Vehiculos">
@@ -45,9 +45,9 @@
             <tr>
                 <td colspan="4">
                     <p>3. Lugar de entrega de la mercancia (lugar, pais)</p>
-                    <label class="info-text">{{$loadOrders->dataDownload->contact_download}}</label><br>
-                    <label class="info-text">{{$loadOrders->dataDownload->addresses_download}}</label><br>
-                    <label class="info-text">{{$loadOrders->dataDownload->city_download}} {{$loadOrders->dataDownload->postal_cod_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->data_download->contact_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->data_download->addresses_download}}</label><br>
+                    <label class="info-text">{{$loadOrders->data_download->city_download}} {{$loadOrders->data_download->postal_cod_download}}</label><br>
                 </td>
             </tr>
             <tr>
@@ -63,7 +63,7 @@
                         <br>
                         <br>
                         <br>
-                        <label class="info-text">{{$loadOrders->dataDownload->observations}}</label>
+                        <label class="info-text">{{$loadOrders->data_download->observations}}</label>
                     </div>
                 </td>
             </tr>

@@ -13,7 +13,7 @@ class CreateDataDownloadTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_downloads', function (Blueprint $table) {
+        Schema::create('data_download', function (Blueprint $table) {
             $table->increments('id');
             $table->string('contact_download');
             $table->integer('load_orders_id')->unsigned();
@@ -25,6 +25,9 @@ class CreateDataDownloadTable extends Migration
             $table->string('postal_cod_download');
             $table->string('mobile_download');
             $table->timestamps();
+
+            $table->foreign('load_orders_id')->references('id')->on('load_orders');
+            $table->foreign('driver_data_id')->references('id')->on('driver_data');
         });
     }
 

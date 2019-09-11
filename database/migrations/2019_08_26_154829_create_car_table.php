@@ -17,7 +17,7 @@ class CreateCarTable extends Migration
             $table->increments('id');
             $table->string('model_car');
             $table->string('color_car');
-            $table->string('vin');
+            $table->string('vin')->unique();
             $table->string('documents');
             $table->timestamps();
         });

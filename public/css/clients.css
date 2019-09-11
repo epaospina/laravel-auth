@@ -36,6 +36,8 @@ input {
     text-align: center;
     font-weight: bold;
     text-decoration: underline;
+    display: flex;
+    justify-content: space-between;
 }
 .subtitle-client{
     margin: 3% 0;
@@ -110,3 +112,10 @@ td,tr{
 .delete-car0{
     display: none;
 }
+.btn-bitbucket {
+     color: #fff;
+     background-color: #205081;
+     border-color: rgba(0,0,0,0.2);
+     height: 100%;
+     border-radius: 5px;
+ }

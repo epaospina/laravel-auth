@@ -22,14 +22,18 @@ class InformationCar extends Model
     static function findOrCreateInformationCar($client, $infoCars)
     {
         foreach ($infoCars as $infoCar) {
-            $informationCar = self::findBy($infoCar['vin']);
-            if (!isset($car)) {
+            $informationCar = self::findBy($infoCar['vin_original']);
+            $new_car = false;
+            if (empty($informationCar)) {
                 $informationCar = new InformationCar();
+                $new_car = true;
             }
 
             $informationCar = self::infoArray($informationCar, $infoCar);
 
-            CustomerInformationCar::createClientCar($informationCar->id, $client->id);
+            if ($new_car){
+                CustomerInformationCar::createClientCar($informationCar->id, $client->id);
+            }
         }
     }
 

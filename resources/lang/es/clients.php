@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'load_order'        => 'ORDEN DE CARGA PARA '.env('TITLE_HOME'),
+    'load_order'        => 'ORDEN DE CARGA PARA '.env('TITLE_HOME', 'MC Vehiculos'),
     'data_car'          => 'DATOS DEL VEHICULO',
     'load_place'        => 'LUGAR DE CARGA',
     'download_place'    => 'LUGAR DE DESCARGUE',
@@ -10,9 +10,9 @@ return [
     'color_car'         => 'Color',
     'bill_to'           => 'Facturar transporte a',
     'import_company'    => 'empresa importadora',
-    'vin'           => 'Bastidor',
+    'vin'               => 'Bastidor',
     'itv'               => 'Pasar ITV al vehiculo',
-    'documents'     => 'Documentacion del vehiculo',
+    'documents'         => 'Documentacion del vehiculo',
 
     'signing'           => 'Firma',
     'addresses'         => 'Direccion',

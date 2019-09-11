@@ -18,7 +18,7 @@ class LoadOrdersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->only('index');
+        $this->middleware('auth')->only('index', 'cmr');
     }
 
     /**
@@ -51,7 +51,7 @@ class LoadOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        $loadOrder = LoadOrders::createAllLoadOrder($request->all(), '');
+        $loadOrder = LoadOrders::createAllLoadOrder($request->all());
 
         if (!empty($loadOrder)){
             Bills::createBill($loadOrder);
@@ -75,7 +75,7 @@ class LoadOrdersController extends Controller
             'infoCars' => $loadOrder->customer->infoCars,
             'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
-            'data_download' => $loadOrder->dataDownload->toArray(),
+            'data_download' => $loadOrder->data_download->toArray(),
         ]);
 
         return view('load-orders.show', compact('infoArray'));
@@ -95,7 +95,7 @@ class LoadOrdersController extends Controller
             'infoCars' => $loadOrder->customer->infoCars,
             'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
-            'data_download' => $loadOrder->dataDownload->toArray(),
+            'data_download' => $loadOrder->data_download->toArray(),
         ]);
 
         return view('load-orders.edit', compact('infoArray'));
@@ -110,9 +110,8 @@ class LoadOrdersController extends Controller
      */
     public function update(Request $request, $loadOrder)
     {
-        //LoadOrders::createAllLoadOrder($request->all(), $loadOrder);
-
-        Bills::createBill(LoadOrders::createAllLoadOrder($request->all(), $loadOrder));
+        LoadOrders::createAllLoadOrder($request->all(), $loadOrder);
+        //Bills::createBill(LoadOrders::createAllLoadOrder($request->all(), $loadOrder));
 
         return \response('ok', 200);
     }

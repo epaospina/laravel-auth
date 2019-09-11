@@ -15,10 +15,12 @@ class CreateDriverDataTable extends Migration
     {
         Schema::create('driver_data', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('user_id')->unsigned();
             $table->string('cap');
             $table->date('date_cap');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -5,11 +5,22 @@ namespace App\Http\Controllers;
 use App\Bills;
 use App\Customer;
 use App\LoadOrders;
+use App\Services;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class BillsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -31,6 +42,8 @@ class BillsController extends Controller
     public function showBillLoadOrder(LoadOrders $loadOrder)
     {
         $bill = $loadOrder->bill;
-        return view('bills.show-bill-load-order', compact('bill', 'loadOrder'));
+        $service = Services::all()->find(1);
+        return view('bills.show', compact('bill', 'loadOrder', 'service'))
+            ->with('date', Carbon::now()->format('d/m/Y'));
     }
 }

@@ -15,13 +15,16 @@ class CreateLoadOrdersTable extends Migration
     {
         Schema::create('load_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('hash');
+            $table->string('hash')->nullable();
             $table->string('contact_person');
-            $table->integer('customer_id')->unsigned();
+            $table->unsignedInteger('customer_id');
             $table->dateTime('date_upload');
             $table->string('bill_to');
             $table->string('import_company');
             $table->timestamps();
+
+
+            $table->foreign('customer_id')->references('id')->on('customer');
         });
     }
 

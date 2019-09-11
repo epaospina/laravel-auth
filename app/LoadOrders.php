@@ -14,9 +14,14 @@ class LoadOrders extends Model
         return $this->belongsTo('App\Customer');
     }
 
-    public function dataDownload()
+    public function data_download()
     {
-        return $this->hasOne('App\DataDownloads');
+        return $this->hasOne('App\DataDownload');
+    }
+
+    public function bill()
+    {
+        return $this->hasOne('App\Bills');
     }
 
     static function assignHash($hash){
@@ -24,18 +29,17 @@ class LoadOrders extends Model
 
         return $loadOrder;
     }
-    static function createAllLoadOrder($infoArray, $loadOrder){
-        if (!empty($loadOrder)){
-            $loadOrder = self::assignHash($loadOrder->hash);
-        }else{
+    static function createAllLoadOrder($infoArray, $hash = null){
+        $loadOrder = self::assignHash($hash);
+        if (empty($loadOrder)){
             $loadOrder = new LoadOrders();
         }
 
         $client = new Customer();
-        $data_download = new DataDownloads();
+        $data_download = new DataDownload();
 
-        if (!empty($loadOrder) && !empty($loadOrder->client)){
-            $client = $loadOrder->client;
+        if (!empty($loadOrder) && !empty($loadOrder->customer)){
+            $client = $loadOrder->customer;
         }
 
         $client->signing = $infoArray['signing'];
@@ -60,7 +64,7 @@ class LoadOrders extends Model
         $loadOrder->save();
 
         if (!empty($loadOrder) && !empty($loadOrder->dataDownload)){
-            $data_download = $loadOrder->dataDownload;
+            $data_download = $loadOrder->data_download;
         }
 
         $data_download->addresses_download = $infoArray['addresses_download'];
@@ -101,7 +105,7 @@ class LoadOrders extends Model
         ];
 
         $infoArray['load_order'] = [
-            'id'                        => isset($validateInfo['load_order']['id']) ? $validateInfo['load_order']['id'] : '',
+            'id'                        => isset($validateInfo['load_order']['hash']) ? $validateInfo['load_order']['hash'] : '',
             'contact_person'            => isset($validateInfo['load_order']['contact_person']) ? $validateInfo['load_order']['contact_person'] : '',
             'bill_to'                   => isset($validateInfo['load_order']['bill_to']) ? $validateInfo['load_order']['bill_to'] : '',
             'import_company'            => isset($validateInfo['load_order']['import_company']) ? $validateInfo['load_order']['import_company'] : '',

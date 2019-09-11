@@ -27,6 +27,5 @@ Route::resource('users','UserController');
 Route::resource('clients','ClientsController');
 Route::resource('services','ServicesController');
 Route::get('load-orders/{loadOrders}/cmr','LoadOrdersController@cmr')->name('load-orders.cmr');
-Route::get('bills/','ServicesController@index')->name('clients.index');
 Route::get('bills/load-order/{loadOrder}','BillsController@showBillLoadOrder')->name('bills.show-bill-load-order');
-Route::get('bills/{client}','BillsController@show')->name('bills.show');
+Route::resource('bills','BillsController');

@@ -2,8 +2,18 @@
     <link rel="stylesheet" href="{{ asset('css/clients.css')}} ">
 @endpush
 <div class="container-order edit-load">
-    <h3 class="title-client">{{ __('clients.load_order') }}</h3>
-
+    <div class="title-client">
+        <h3 class="title-client">{{ __('clients.load_order') }}</h3>
+        @if(isset($edit))
+            <button class="btn btn-bitbucket" id="editLoadOrder" onclick="editInputs('collapse{{$key}}')">
+                <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-bitbucket" id="saveLoadOrder"
+                    onclick="updatePost('{{$infoArray['load_order']['id']}}', 'collapse{{$key}}')" style="display: none">
+                <i class="far fa-save"></i>
+            </button>
+        @endif
+    </div>
     <table class="table-load-order" style="width: 100%;">
         <tbody>
         <tr class="subtitle-car">
@@ -11,11 +21,11 @@
         </tr>
         <tr>
             <td  class="subtitle">{{ __('clients.model_car') }} / {{ __('clients.color_car') }}</td>
-            <td><input id="modelColor{{$key}}" value="{{$infoCar['model_car']}} // {{$infoCar['color_car']}}" disabled></td>
+            <td><input id="modelColor" value="{{$infoCar['model_car']}} // {{$infoCar['color_car']}}" disabled></td>
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.vin') }}</td>
-            <td><input id="vin{{$key}}" value="{{$infoCar['vin']}}" disabled></td>
+            <td><input id="vin" value="{{$infoCar['vin']}}" disabled><input type="hidden" id="vin_original" value="{{$infoCar['vin']}}" disabled></td>
         </tr>
         </tbody>
     </table>
@@ -61,7 +71,7 @@
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.documents') }}</td>
-            <td><input id="documents{{$key}}" value="{{$infoCar['documents']}}" disabled></td>
+            <td><input id="documents" value="{{$infoCar['documents']}}" disabled></td>
         </tr>
         </tbody>
     </table>
@@ -114,7 +124,7 @@
     <br>
     <br>
     <ul>
-        <li>Es imprecindible que envien una autorizacion al proveedor autorizando a la empresa {{env('TITLE_HOME')}} a poder retirar el vehiculo.</li>
+        <li>Es imprecindible que envien una autorizacion al proveedor autorizando a la empresa {{env('TITLE_HOME', 'MC Vehiculos')}} a poder retirar el vehiculo.</li>
         <li>En el casi de necesitar la identidad del conductor y matricula del camion, rogamos nos la pidan previamente.</li>
     </ul>
 </div>
