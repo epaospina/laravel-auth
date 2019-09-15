@@ -29,7 +29,7 @@ class Bills extends Model
         $bill->num_bill = rand(100,1000);
         $bill->name_client = $client->signing;
         $bill->address_client = $client->addresses_load;
-        $bill->department = $client->city_load;
+        $bill->department_client = $client->city_load;
         $bill->city_client = $client->city_load;
         $bill->postal_cod_client = $client->postal_cod_load;
         $bill->load_orders_id = $loadOrder->id;

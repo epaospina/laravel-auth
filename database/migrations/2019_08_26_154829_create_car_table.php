@@ -19,7 +19,10 @@ class CreateCarTable extends Migration
             $table->string('color_car');
             $table->string('vin')->unique();
             $table->string('documents');
+            $table->unsignedInteger('customer_id');
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')->on('customer');
         });
     }
 

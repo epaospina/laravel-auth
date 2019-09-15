@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bills;
 use App\Customer;
+use App\InformationCar;
 use App\LoadOrders;
 use Faker\Provider\Uuid;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class LoadOrdersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->only('index', 'cmr');
+        $this->middleware('auth')->only('index', 'cmr', 'pending');
     }
 
     /**
@@ -52,10 +53,6 @@ class LoadOrdersController extends Controller
     public function store(Request $request)
     {
         $loadOrder = LoadOrders::createAllLoadOrder($request->all());
-
-        if (!empty($loadOrder)){
-            Bills::createBill($loadOrder);
-        }
 
         return redirect()->action(
             'LoadOrdersController@show', $loadOrder->hash);
@@ -130,11 +127,31 @@ class LoadOrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Customer  $client
      * @return Response
      */
-    public function destroy(Customer $client)
+    public function pending()
     {
-        //
+        return view('load-orders.pending');
+    }
+
+    public function pendingApiCars()
+    {
+        $loadOrders = LoadOrders::all();
+        $cars = [];
+        foreach ($loadOrders as $loadOrder){
+            foreach ($loadOrder->customer->infoCars as $key => $infoCar) {
+                $cars[$key]['client']             = $loadOrder->customer->signing;
+                $cars[$key]['buyer']              = $loadOrder->bill_to;
+                $cars[$key]['action_do']          = 'DESCARGAR';
+                $cars[$key]['car']                = $infoCar->model_car;
+                $cars[$key]['addresses_load']     = $loadOrder->customer->addresses_load;
+                $cars[$key]['scheduler']          = '';
+                $cars[$key]['addresses_download'] = $loadOrder->data_download->addresses_download;
+                $cars[$key]['contact']            = $loadOrder->data_download->contact_download;
+                $cars[$key]['observation']        = $loadOrder->bill->price;
+            }
+        }
+
+        return $cars;
     }
 }

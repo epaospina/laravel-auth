@@ -1,5 +1,6 @@
 @extends('adminlte::page')
 @section('content')
+    <a class="btn btn-bitbucket" href="{{ route('load-orders.pending-cars') }}">Pendientes</a>
     <table class="table table-bordered">
         <tr>
             <th>#</th>

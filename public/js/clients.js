@@ -19,6 +19,7 @@ function showTab(n) {
 
 function nextPrev(n) {
     const tab_content = $('.tab');
+    console.log(!validateForm());
     if (n === 1 && !validateForm()) return false;
     tab_content.eq(currentTab).css('display', 'none');
     currentTab = currentTab + n;
@@ -33,8 +34,9 @@ function validateForm() {
     let x, y, i, valid = true;
     x = document.getElementsByClassName("tab");
     y = x[currentTab].getElementsByTagName("input");
+    console.log(y);
     for (i = 0; i < y.length; i++) {
-        if (y[i].value === "") {
+        if (y[i].value === "" && y[i].type !== "radio") {
             y[i].className += " invalid";
             valid = false;
         }
@@ -110,7 +112,8 @@ function changeId(element, num) {
     element.find("input").eq(0).attr('name', "car["+num+"][model_car]");
     element.find("input").eq(1).attr('name', "car["+num+"][color_car]");
     element.find("input").eq(2).attr('name', "car["+num+"][vin]");
-    element.find("input").eq(5).attr('name', "car["+num+"][documents]");
+    element.find("input").eq(3).attr('name', "car["+num+"][itv]");
+    element.find("input").eq(4).attr('name', "car["+num+"][itv]");
     element.find("input").eq(5).attr('name', "car["+num+"][documents]");
     element.find("[class*=delete-car]").attr('class', 'btn btn-danger close delete-car'+num);
 }
@@ -125,6 +128,9 @@ function addCarForm() {
             .appendTo( "#create_car" );
         let new_car = $("#car__"+num);
         changeId(new_car, num);
+        new_car.find('input').each(function( index, element ) {
+            element.value = "";
+        });
         $('.delete-car0').show();
         btnAddCar.attr('data-car', num);
         $('.delete-car'+num).attr('data-car', num);

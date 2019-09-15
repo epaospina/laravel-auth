@@ -1,0 +1,43 @@
+@media print{
+    @page{
+        size: landscape;
+    }
+    td{
+        border: 1px solid black;
+        padding: 0 1%;
+    }
+    .pending-order{
+        justify-content: start;
+        display: flex;
+        flex-flow: column;
+    }
+    table{
+        width: 95%;
+    }
+}
+.btn-bitbucket {
+    color: #fff;
+    background-color: #205081;
+    border-color: rgba(0,0,0,0.2);
+    height: 100%;
+    border-radius: 5px;
+}
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+td{
+    border: 1px solid black;
+    padding: 0 1%;
+    font-size: 10px;
+}
+table{
+    width: 100%;
+}
+.pending-order{
+    padding-bottom: 2%;
+}
+.content-title{
+    padding: 2%;
+}

@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.vin') }}</td>
-            <td><input id="vin" value="{{$infoCar['vin']}}" disabled><input type="hidden" id="vin_original" value="{{$infoCar['vin']}}" disabled></td>
+            <td><input id="vin" value="{{$infoCar['vin']}}" disabled></td>
         </tr>
         </tbody>
     </table>

@@ -5,6 +5,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import Vue from 'vue';
+import VueHtmlToPaper from 'vue-html-to-paper';
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -14,16 +16,17 @@ window.Vue = require('vue');
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
  *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ * Eg. ./components/TableBillComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('header-bill-component', require('./components/HeaderBillComponent.vue'));
+Vue.component('table-bill-component', require('./components/TableBillComponent.vue'));
+Vue.component('table-car-component', require('./components/TableCarComponent.vue'));
+Vue.component('pending-order-component', require('./components/PendingOrderComponent.vue'));
+Vue.component('pending-order-car-component', require('./components/PendingOrderCarComponent.vue'));
 
-// const files = require.context('./', true, /\.vue$/i)
 
-// files.keys().map(key => {
-//     return Vue.component(_.last(key.split('/')).split('.')[0], files(key))
-// })
+Vue.use(VueHtmlToPaper);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

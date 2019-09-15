@@ -78,6 +78,10 @@ class LoadOrders extends Model
         $data_download->observations = $infoArray['observations'];
         $data_download->save();
 
+        if (!empty($loadOrder) && !empty($client) && !empty($data_download)){
+            Bills::createBill($loadOrder, $client, $data_download);
+        }
+
         return $loadOrder;
     }
 

@@ -30,8 +30,12 @@
         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.itv') }}</span>
     </div>
     <div class="itv-input">
-        SI<input type="radio" name="itv" value="true">
-        NO<input type="radio" name="itv" value="false">
+        <label>SI
+            <input type="radio" name="car[0][itv]" value="1">
+        </label>
+        <label>NO
+            <input type="radio" name="car[0][itv]" value="0">
+        </label>
     </div>
 </div>
 

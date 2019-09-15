@@ -1,6 +1,12 @@
 {
     "private": true,
+    "name": "vehiculos",
+    "version": "1.0.0",
+    "description": "node vehiculos",
+    "author": "Johan David Ospina <johan.ospina05@gmail.com>",
+    "main": "server.js",
     "scripts": {
+        "start": "node server.js",
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "npm run development -- --watch",
@@ -10,6 +16,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "express": "^4.16.1",
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
@@ -18,5 +25,8 @@
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
         "vue": "^2.5.17"
+    },
+    "dependencies": {
+        "vue-html-to-paper": "^1.1.1"
     }
 }

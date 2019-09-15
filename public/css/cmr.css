@@ -90,3 +90,24 @@ label{
 .double-border{
     border: 2px solid black;
 }
+.content-title{
+    line-height: 0;
+    padding: 8px;
+    display: flex;
+    align-items: start;
+}
+.content-title p{
+    padding: 0;
+    line-height: 0;
+}
+.content-title span {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 3px 2%;
+}
+.info-one{
+    padding: 0 5%;
+}
+.info-one label{
+    width: 100%;
+}

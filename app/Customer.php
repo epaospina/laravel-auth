@@ -21,8 +21,7 @@ class Customer extends Model
     public function infoCars()
     {
         return $this
-            ->belongsToMany('App\InformationCar')
-            ->withTimestamps();
+            ->hasMany('App\InformationCar');
     }
 
     public function loadOrders()

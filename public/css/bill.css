@@ -19,6 +19,27 @@ textarea{
     border-radius: 5px;
     padding: 0 1%;
 }
+.header-start{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 7% 2% 7%;
+    border-bottom: 1px dotted;
+    margin-bottom: 2%;
+}
+.header-logo{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+.header-logo img{
+    width: 40%;
+    height: 60%;
+}
+.header-number{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
 .header-bill{
     display: flex;
     justify-content: space-around;
@@ -37,6 +58,7 @@ textarea{
 }
 .table-body{
     width: 100%;
+    margin: 2%;
     margin-top: 5%;
     align-content: center;
     border: 2px solid black;
@@ -79,6 +101,12 @@ textarea{
 .price-td{
     width: 70px;
 }
+.td-xs{
+    width: 10px;
+}
+.td-xs input{
+    width: 80px;
+}
 textarea{
     width: 100%;
     height: 100%;
@@ -88,9 +116,35 @@ textarea{
     flex-flow: row-reverse;
     padding: 0 4%;
 }
+.bill-btn .btn-bitbucket{
+    margin: 0 2%;
+}
 .input-td-cp{
     width: 70px;
 }
 .input-td-city{
     width: 170px;
+}
+@media only screen and (max-width: 700px) {
+    .header-bill {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .header-bill table {
+        width: 100%;
+        margin-bottom: 5%;
+    }
+}
+@media print {
+    .header-bill{
+        display: flex;
+        justify-content: space-around;
+    }
+    .header-bill table{
+        width: 30%;
+    }
+    .bill-btn{
+        display: none;
+    }
 }

@@ -8,11 +8,9 @@ class InformationCar extends Model
 {
     protected $table = 'information_car';
 
-    public function infoCustomer()
+    public function customer()
     {
-        return $this
-            ->belongsToMany('App\InformationCar','customers','customer_id','customer_id')
-            ->withTimestamps();
+        return $this->belongsTo('App\Customer');
     }
 
     static function findBy($parameter){
@@ -22,26 +20,21 @@ class InformationCar extends Model
     static function findOrCreateInformationCar($client, $infoCars)
     {
         foreach ($infoCars as $infoCar) {
-            $informationCar = self::findBy($infoCar['vin_original']);
-            $new_car = false;
-            if (empty($informationCar)) {
-                $informationCar = new InformationCar();
-                $new_car = true;
+            $informationCar = new InformationCar();
+            if (isset($infoCar['vin_original'])){
+                $informationCar = self::findBy($infoCar['vin_original']);
             }
 
-            $informationCar = self::infoArray($informationCar, $infoCar);
-
-            if ($new_car){
-                CustomerInformationCar::createClientCar($informationCar->id, $client->id);
-            }
+            self::infoArray($informationCar, $infoCar, $client);
         }
     }
 
-    static function infoArray($informationCar, $infoCar){
+    static function infoArray($informationCar, $infoCar, $client){
         $informationCar->model_car = $infoCar['model_car'];
         $informationCar->color_car = $infoCar['color_car'];
         $informationCar->vin = $infoCar['vin'];
         $informationCar->documents = $infoCar['documents'];
+        $informationCar->customer_id = $client->id;
         $informationCar->save();
 
         return $informationCar;

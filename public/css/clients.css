@@ -119,3 +119,8 @@ td,tr{
      height: 100%;
      border-radius: 5px;
  }
+@media print {
+    .btn-not-print{
+        display: none;
+    }
+}

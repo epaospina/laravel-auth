@@ -10,7 +10,7 @@
         "jeroennoten/laravel-adminlte": "^1.26",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "twbs/bootstrap": "^4.3",
+        "twbs/bootstrap": "^4.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
