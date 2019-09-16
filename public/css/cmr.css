@@ -5,7 +5,6 @@ table{
 tr, td{
     border: 1px solid black;
     font-size: 10px;
-    padding-bottom: 1%;
 }
 p{
     padding: 0.8%;
@@ -13,8 +12,13 @@ p{
 }
 label{
     padding: 0 2%;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 14px;
+    width: 100%;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 0;
+    font-weight: 400;
 }
 .container-cmr{
     padding: 4%;
@@ -27,6 +31,7 @@ label{
 }
 .td-l1-end{
     border-right: 1px solid transparent;
+    padding-bottom: 1%;
 }
 .td-l2{
     border: 1px solid transparent;
@@ -37,13 +42,21 @@ label{
 .td-l4{
     border-bottom: 1px solid transparent;
 }
-.info-text{
-}
 .content-info{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 1%;
+}
+.content-inter-header{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+.content-info p{
+    padding: 0;
+    line-height: 0;
+    font-size: 8px;
 }
 .td-logo-start{
     width: 50%;
@@ -71,6 +84,7 @@ label{
     justify-content: space-between;
     padding: 0 5%;
     margin-right: 15%;
+    height: 20px;
 }
 .td-logo-end{
     text-align: center;
@@ -84,30 +98,100 @@ label{
     width: 170px;
     padding: 2%;
 }
+.observation{
+    padding: 5% 15% 5% 5%;
+    display: flex;
+    flex-flow: column;
+    line-height: 10px;
+}
 .double-border td{
     border: 2px solid black;
 }
 .double-border{
     border: 2px solid black;
 }
+.double-border p{
+    padding: 0;
+    line-height: 0;
+}
+.span-double-border{
+    font-weight: bold;
+    font-size: 15px;
+}
+.div-double-border {
+    display: flex;
+    width: 100%;
+    padding: 1% 0 0 8%;
+}
+.div-double-border p {
+    padding: 5px;
+}
 .content-title{
     line-height: 0;
-    padding: 8px;
+    padding: 5px 0;
     display: flex;
     align-items: start;
 }
 .content-title p{
     padding: 0;
     line-height: 0;
+    font-size: 8px;
 }
 .content-title span {
     font-weight: bold;
     font-size: 15px;
     padding: 3px 2%;
 }
-.info-one{
-    padding: 0 5%;
+.content-title-13{
+    line-height: 0;
+    padding: 8px;
+    display: flex;
+    align-items: start;
+    margin-top: -45px;
 }
-.info-one label{
-    width: 100%;
+.content-title-13 p{
+    padding: 0;
+    line-height: 0;
+    font-size: 8px;
+}
+.content-title-13 span {
+    font-weight: bold;
+    font-size: 15px;
+    padding: 3px 2%;
+}
+.info-one{
+    padding: 1% 5%;
+}
+.info-two{
+    padding: 0 6%;
+}
+.text-xs-p{
+    font-size: 6px !important;
+}
+.frame-check{
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    margin-right: 1%;
+}
+.content-check{
+    display: flex;
+    flex-flow: column;
+    padding-left: 16px;
+    padding-bottom: 2%;
+}
+.content-check div{
+    display: flex;
+    flex-flow: row;
+}
+.content-footer{
+    display: grid;
+    grid-template-rows: auto auto;
+}
+.footer-20{
+    padding-top: 20%;
+    padding-left: 2%;
+    display: flex;
+    flex-flow: column;
+    line-height: 10px;
 }

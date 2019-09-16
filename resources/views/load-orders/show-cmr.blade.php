@@ -24,12 +24,32 @@
                 </td>
                 <td colspan="7">
                     <div class="content-info">
-                        <div>CARTA DE PORTE INTERNACIONAL</div>
-                        <div>
-                            <p>Este transporte queda sometido, no obstante</p>
-                            <p>toda clausula contraria, al Convenio sobre el</p>
-                            <p>contrato de transporte internacional de</p>
-                            <p>mercancias por carretera</p>
+                        <div class="content-inter-header">
+                            <div>
+                                <p>CARTA DE PORTE INTERNACIONAL</p>
+                                <p>LETTRE DE VOITURE INTERNATIONALE</p>
+                                <p>INTERNATIONAL CONSIGNMENT NOTE</p>
+                            </div>
+                            <div style="padding-top: 10%;">
+                                <p>Ce transport est soumis, nonostant toute</p>
+                                <p>clause contraire, a la Convention relative au</p>
+                                <p>contrat de transport international de</p>
+                                <p>marchandises par route (CMR)</p>
+                            </div>
+                        </div>
+                        <div class="content-inter-header">
+                            <div>
+                                <p>Este transporte queda sometido, no obstante</p>
+                                <p>toda clausula contraria, al Convenio sobre el</p>
+                                <p>Contrato de Transporte Internacional de</p>
+                                <p>Mercancias por Cretera (CMR)</p>
+                            </div>
+                            <div style="padding-top: 10%;">
+                                <p>This carriage is subject, notwithstanding any</p>
+                                <p>clause to the contrary, to the Convention</p>
+                                <p>on the Contract for the International Carriage</p>
+                                <p>of goods bu road (CMR)</p>
+                            </div>
                         </div>
                     </div>
                 </td>
@@ -94,12 +114,18 @@
                     </div>
                 </td>
                 <td colspan="7" rowspan="2">
-                    <div>
-                        <p>16. Reservas y observaciones del porteador</p>
-                        <br>
-                        <br>
-                        <br>
-                        <label class="info-text">{{$loadOrders->data_download->observations}}</label>
+                    <div class="content-footer">
+                        <div class="content-title">
+                            <span>16</span>
+                            <div>
+                                <p>Reservas y observaciones del porteador</p>
+                                <p>Reserves et observations du transporteur</p>
+                                <p>Carrier's reservations and obervations</p>
+                            </div>
+                        </div>
+                        <div class="observation">
+                            <label class="info-text">{{$loadOrders->data_download->observations}}</label>
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -114,7 +140,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="td-l1" colspan="2" style="width: 22%;">
+                <td class="td-l1" colspan="2" style="width: 20%;">
                     <div class="content-title">
                         <span>6</span>
                         <div>
@@ -144,7 +170,7 @@
                         </div>
                     </div>
                 </td>
-                <td class="td-l3" style="width: 16%;">
+                <td class="td-l3" style="width: 17%;">
                     <div class="content-title">
                         <span>9</span>
                         <div>
@@ -153,13 +179,14 @@
                             <p>Nature of the goods</p>
                         </div>
                     </div>
-                </td><td class="td-l4" colspan="2">
+                </td>
+                <td class="td-l4" colspan="2">
                     <div class="content-title">
                         <span>10</span>
                         <div>
-                            <p>No Estadistico</p>
-                            <p>No stadistiue</p>
-                            <p>Statistical Number</p>
+                            <p class="text-xs-p">No Estadistico</p>
+                            <p class="text-xs-p">No stadistiue</p>
+                            <p class="text-xs-p">Statistical Number</p>
                         </div>
                     </div>
                 </td>
@@ -167,9 +194,9 @@
                     <div class="content-title">
                         <span>11</span>
                         <div>
-                            <p>Peso bruto, Kg.</p>
-                            <p>Poids brut, Kg.</p>
-                            <p>Gross weight in Kg.</p>
+                            <p class="text-xs-p">Peso bruto, Kg.</p>
+                            <p class="text-xs-p">Poids brut, Kg.</p>
+                            <p class="text-xs-p">Gross weight in Kg.</p>
                         </div>
                     </div>
                 </td>
@@ -177,17 +204,25 @@
                     <div class="content-title">
                         <span>12</span>
                         <div>
-                            <p>Volumen m3</p>
-                            <p>Cubage m3</p>
-                            <p>Volume in m3</p>
+                            <p class="text-xs-p">Volumen m3</p>
+                            <p class="text-xs-p">Cubage m3</p>
+                            <p class="text-xs-p">Volume in m3</p>
                         </div>
                     </div>
                 </td>
             </tr>
             @foreach($loadOrders->customer->infoCars AS $key => $infoCar)
                 <tr>
-                    <td class="{{$loadOrders->customer->infoCars->count() === ($key+1) ? 'td-l1-end' : 'td-l1'}}" colspan="2"><label class="info-text">{{$infoCar->model_car}}</label></td>
-                    <td class="td-l2" ><label class="info-text">{{$infoCar->vin}}</label></td>
+                    <td class="{{$loadOrders->customer->infoCars->count() === ($key+1) ? 'td-l1-end' : 'td-l1'}}" colspan="2">
+                        <div class="info-two">
+                            <label>{{$infoCar->model_car}}</label>
+                        </div>
+                    </td>
+                    <td class="td-l2" >
+                        <div class="info-two">
+                            <label class="info-text">{{$infoCar->vin}}</label>
+                        </div>
+                    </td>
                     <td class="td-l2" ><label class="info-text"></label></td>
                     <td class="td-l3" ><label class="info-text"></label></td>
                     <td class="td-l4" colspan="2">&nbsp;</td>
@@ -198,9 +233,9 @@
             <tr class="tr-xs">
                 <td colspan="5">
                     <div>
-                        <p>Classe</p>
-                        <p>Chiffre</p>
-                        <p>Lettre</p>
+                        <p>Classe<br><br><br>Class</p>
+                        <p>Chiffre<br><br><br>Number</p>
+                        <p>Lettre<br><br><br>Letter</p>
                         <p>(ADR*)</p>
                     </div>
                 </td>
@@ -208,24 +243,42 @@
                 <td class="td-l4" colspan="2">&nbsp;</td>
                 <td class="td-l4" colspan="2">&nbsp;</td>
             </tr>
-            <tr class="tr-xs">
+            <tr>
                 <td colspan="4" rowspan="4">
-                    <p>&nbsp; &nbsp; 13. instrucciones del remitente</p>
-                    <p>&nbsp;</p>
+                    <div class="content-title-13" >
+                        <span>13</span>
+                        <div>
+                            <p>instrucciones del remitente / Instructions de l'espediteur / Sender's instructions</p>
+                        </div>
+                    </div>
                 </td>
-                <td colspan="7">17. estipulacion particulares</td>
+                <td colspan="7">
+                    <div class="content-title" >
+                        <span>17</span>
+                        <div>
+                            <p>estipulaciones particulares / Conventions particulieres / Special agreements</p>
+                        </div>
+                    </div>
+                </td>
             </tr>
-            <tr class="tr-xs double-border">
-                <td>&nbsp;18. A pagar por</td>
-                <td colspan="2">Remitente</td>
-                <td colspan="2">Moneda</td>
+            <tr class="">
                 <td colspan="2">
-                    <p>consignatario</p>
+                    <div class="div-double-border">
+                        <span class="span-double-border">18</span>
+                        <p> A pagar por:<br><br><br>to be paid by:</p>
+                    </div>
                 </td>
+                <td colspan="2">Remitente <br>Senders</td>
+                <td colspan="2">Moneda <br>Currency</td>
+                <td colspan="2">Consignatario <br>Consignee</td>
             </tr>
             <tr class="tr-xs double-border">
                 <td style="">
-                    <p>&nbsp;precio:</p>
+                    <p></p>
+                    <p>Precio:</p>
+                    <p>Carriage Charges:</p>
+                    <p>Descuentos:</p>
+                    <p>Deductions:</p>
                 </td>
                 <td style="width: 7%;">&nbsp;</td>
                 <td style="width: 4%;">&nbsp;</td>
@@ -238,7 +291,9 @@
                 <td rowspan="3">
                     <p>Liquido/ Balance</p>
                     <p>suplementario</p>
-                    <p>Gastos accesorios:&nbsp;</p>
+                    <p>Supplem. charges:</p>
+                    <p>Gastos accesorios:</p>
+                    <p>Other charges:   +</p>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -247,11 +302,26 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
-            <tr class="tr-xs">
+            <tr class="">
                 <td colspan="4" rowspan="3">
-                    <p>14. Formas de pago&nbsp;</p>
-                    <label class="info-text"><input type="checkbox">Porte pagado</label><br>
-                    <label class="info-text"><input type="checkbox">Porte debido</label><br>
+                    <div class="content-title" >
+                        <span>14</span>
+                        <div>
+                            <p>Formas de pago</p>
+                            <p>Prescription d'affranchissement</p>
+                            <p>Instructions  as to payment for carriage</p>
+                        </div>
+                    </div>
+                    <div class="content-check">
+                        <div>
+                            <div class="frame-check"></div>
+                            <span >Porte pagado / Franco / Carriage Paid</span>
+                        </div>
+                        <div>
+                            <div class="frame-check"></div>
+                            <span>Porte debido / Non franco / Carriage forward</span>
+                        </div>
+                    </div>
                 </td>
                 <td>&nbsp;</td>
                 <td class="double-border">&nbsp;</td>
@@ -277,12 +347,41 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
-            <tr class="tr-xs">
-                <td colspan="4">&nbsp;&nbsp;</td>
-                <td colspan="7">&nbsp;</td>
+            <tr class="">
+                <td colspan="4">
+                    <div class="content-title" >
+                        <span>19</span>
+                        <div>
+                            <p>Formalizado en</p>
+                            <p>Etablie a</p>
+                            <p>Established in</p>
+                        </div>
+                    </div>
+                </td>
+                <td colspan="7">
+                    <div class="content-title" >
+                        <span>15</span>
+                        <div>
+                            <p>Reembolso / Remboursement / Cash on delivery</p>
+                        </div>
+                    </div>
+                </td>
             </tr>
-            <tr  class="tr-xs">
-                <td colspan="3">20</td>
+            <tr  class="">
+                <td colspan="3">
+                    <div class="content-footer">
+                        <div class="content-title" >
+                            <span>20</span>
+                            <div>
+                            </div>
+                        </div>
+                        <div class="footer-20">
+                            <span>Firma y sello del remitente</span>
+                            <span>Signature et timbre de l'expediteur</span>
+                            <span>Signature and stamp of the sender</span>
+                        </div>
+                    </div>
+                </td>
                 <td class="td-logo-end" colspan="3">
                     <img src="{{asset('images/logo-mc.jpg')}}" alt="Mc Vehiculos">
                     <p>C/. Altagracia, 8 - 13003 CIUDAD REAL</p>
@@ -291,9 +390,20 @@
                     <p>TRANSCALYGUZ, S.L. / C.I.F.: B-I3523345</p>
                 </td>
                 <td colspan="5">
-                    <p>21. Recibo de la mercancia /</p>
-                    <p>lugar</p>
-                    <p>Firma / sello</p>
+                    <div class="content-footer">
+                        <div class="content-title" >
+                            <span>21</span>
+                            <div>
+                                <p>Recibo de la mercancia / Marchandise recues / </p><br>
+                                <p>Special agreements</p>
+                            </div>
+                        </div>
+                        <div class="footer-20">
+                            <span>Firma y sello del consignatario</span>
+                            <span>Signature et timbre du destinataire</span>
+                            <span>Signature and stamp of the consignee</span>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>
