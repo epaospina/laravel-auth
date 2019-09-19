@@ -127,7 +127,7 @@ return [
                 ],
             ],
         ],
-        [
+        /*[
             'text'    => 'users',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -142,7 +142,7 @@ return [
                     'icon' => 'fas fa-user-plus'
                 ],
             ],
-        ],
+        ],*/
     ],
 
     /*

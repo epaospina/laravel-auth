@@ -377,33 +377,6 @@ module.exports = {
 /* 1 */
 /***/ (function(module, exports) {
 
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
 /* globals __VUE_SSR_CONTEXT__ */
 
 // IMPORTANT: Do NOT use ES2015 features in this file.
@@ -507,6 +480,33 @@ module.exports = function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -3425,7 +3425,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
 /* 7 */
@@ -14287,7 +14287,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(57);
+module.exports = __webpack_require__(60);
 
 
 /***/ }),
@@ -14325,7 +14325,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('header-bill-component', _
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('table-bill-component', __webpack_require__(45));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('table-car-component', __webpack_require__(48));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pending-order-component', __webpack_require__(51));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pending-order-car-component', __webpack_require__(54));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pending-order-table-component', __webpack_require__(54));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pending-order-car-component', __webpack_require__(57));
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_html_to_paper___default.a);
 
@@ -26283,7 +26284,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(16).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(16).setImmediate))
 
 /***/ }),
 /* 16 */
@@ -26353,7 +26354,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
 /* 17 */
@@ -26546,7 +26547,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(5)))
 
 /***/ }),
 /* 18 */
@@ -43740,7 +43741,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(22)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(22)(module)))
 
 /***/ }),
 /* 22 */
@@ -49051,7 +49052,7 @@ module.exports = function spread(callback) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(43)
 /* template */
@@ -49210,7 +49211,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(46)
 /* template */
@@ -49471,7 +49472,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             name_client: 'name_client',
             address_client: 'address_client',
             city_client: 'city_client',
-            department: 'department',
+            department_client: 'department_client',
             postal_cod_client: 'postal_cod_client',
             quantity_car: 0,
             name_service: 'cif',
@@ -49481,6 +49482,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             iva_bill: 0,
             total_bill: 0,
             observations_bill: 'name_client',
+            payment_type: 'Transferencia Bancaria',
             cars: [],
             allEdit: true
         };
@@ -49499,7 +49501,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.name_client = response.data.bill.name_client;
                 _this.address_client = response.data.bill.address_client;
                 _this.city_client = response.data.bill.city_client;
-                _this.department = response.data.bill.department;
+                _this.department_client = response.data.bill.department_client;
                 _this.postal_cod_client = response.data.bill.postal_cod_client;
                 _this.quantity_car = response.data.cars.length;
                 _this.name_service = response.data.services.nombre;
@@ -49507,33 +49509,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.price = parseFloat(_this.unit_price * response.data.cars.length).toFixed(2);
                 _this.description_bill = response.data.bill.description;
                 _this.iva_bill = parseFloat(response.data.bill.iva).toFixed(2);
-                _this.total_bill = (parseInt(_this.iva_bill) + parseInt(_this.price)).toFixed(2);
-                _this.observations_bill = response.data.bill.observations;
+                _this.total_bill = (parseFloat(_this.iva_bill) + parseFloat(_this.price)).toFixed(2);
+                _this.observations_bill = 'Numero de cuenta ES34 3190 2073 1644 0287 5522   ' + response.data.bill.observations;
+                _this.payment_type = 'Transferencia Bancaria';
                 _this.cars = response.data.cars;
             });
         },
         maxLength: function maxLength(event, max, id) {
-            if (id.length <= max) {
-                console.log(max);
-                console.log(id);
-                console.log(id.length);
-                id = id + event.key;
+            if (id.length <= 12) {
+                id += event.key;
             }
-
-            event.stopPropagation();
         },
         esCif: function esCif(cif) {
             var cif_iva = false;
             if (cif != null) {
-                if (cif.length > 2) {
-                    var letter = cif.substring(0, 2);
-                    if (letter === 'B-' || letter === 'B' || letter === 'b' || letter === 'b-') {
+                if (cif.length > 1) {
+                    var letter = cif.substring(0, 1);
+
+                    var regex = /^[0-9\s]*$/;
+                    var isValid = regex.test(letter);
+
+                    if (isValid || letter === 'B-' || letter === 'B' || letter === 'b' || letter === 'A' || letter === 'a') {
                         this.iva_bill = parseFloat(0.21 * this.price).toFixed(2);
                         cif_iva = true;
                     } else {
                         this.iva_bill = 0;
                     }
-                    this.total_bill = (parseInt(this.iva_bill) + parseInt(this.price)).toFixed(2);
+                    this.total_bill = (parseFloat(this.iva_bill) + parseFloat(this.price)).toFixed(2);
                 }
             }
 
@@ -49558,7 +49560,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'name_client': this.name_client,
                 'address_client': this.address_client,
                 'city_client': this.city_client,
-                'department': this.department,
+                'department': this.department_client,
                 'postal_cod_client': this.postal_cod_client,
                 'quantity_car': this.quantity_car,
                 'name_service': this.name_service,
@@ -49584,6 +49586,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             document.body.innerHTML = printContents;
             window.print();
             document.body.innerHTML = originalContents;
+            location.reload();
         }
     },
     created: function created() {
@@ -49600,17 +49603,18 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "content-bill" }, [
-    _vm._v("\n\n\n    " + _vm._s(_vm.$data) + "\n    "),
     _c("div", { attrs: { id: "contentBill" } }, [
       _c("div", { staticClass: "header-start" }, [
         _c("div", { staticClass: "header-logo" }, [
           _c("img", { attrs: { src: _vm.urlImg, alt: "Mc Vehiculos" } }),
-          _vm._v("\n                Factura\n            ")
+          _vm._v(" "),
+          _c("label", [_vm._v("Factura")])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "header-number" }, [
           _c("div", [
-            _vm._v("\n                    N de factura\n                    "),
+            _c("label", [_vm._v("N de factura")]),
+            _vm._v(" "),
             _vm.allEdit
               ? _c("input", {
                   directives: [
@@ -49755,7 +49759,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("table", [
+        _c("table", { staticStyle: { width: "50%" } }, [
           _c("tbody", [
             _vm._m(3),
             _vm._v(" "),
@@ -49844,83 +49848,94 @@ var render = function() {
             _c("tr", [
               _vm._m(7),
               _vm._v(" "),
-              _c("td", { attrs: { colspan: "3" } }, [
-                _vm.allEdit
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.city_client,
-                          expression: "city_client"
-                        }
-                      ],
-                      staticClass: "input-td-city",
-                      domProps: { value: _vm.city_client },
-                      on: {
-                        keypress: function($event) {
-                          return _vm.maxLength($event, 20, _vm.city_client)
-                        },
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+              _c(
+                "td",
+                { staticStyle: { width: "100%" }, attrs: { colspan: "3" } },
+                [
+                  _vm.allEdit
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.city_client,
+                            expression: "city_client"
                           }
-                          _vm.city_client = $event.target.value
-                        }
-                      }
-                    })
-                  : _c(
-                      "span",
-                      {
-                        model: {
-                          value: _vm.city_client,
-                          callback: function($$v) {
-                            _vm.city_client = $$v
+                        ],
+                        staticClass: "input-td-city",
+                        domProps: { value: _vm.city_client },
+                        on: {
+                          keypress: function($event) {
+                            return _vm.maxLength($event, 20, _vm.city_client)
                           },
-                          expression: "city_client"
-                        }
-                      },
-                      [_vm._v(" " + _vm._s(_vm.city_client) + " ")]
-                    ),
-                _vm._v(" "),
-                _vm.allEdit
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.department,
-                          expression: "department"
-                        }
-                      ],
-                      staticClass: "input-td-city",
-                      domProps: { value: _vm.department },
-                      on: {
-                        keypress: function($event) {
-                          return _vm.maxLength($event, 20, _vm.department)
-                        },
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.city_client = $event.target.value
                           }
-                          _vm.department = $event.target.value
                         }
-                      }
-                    })
-                  : _c(
-                      "span",
-                      {
-                        model: {
-                          value: _vm.department,
-                          callback: function($$v) {
-                            _vm.department = $$v
+                      })
+                    : _c(
+                        "span",
+                        {
+                          model: {
+                            value: _vm.city_client,
+                            callback: function($$v) {
+                              _vm.city_client = $$v
+                            },
+                            expression: "city_client"
+                          }
+                        },
+                        [_vm._v(" " + _vm._s(_vm.city_client) + " ")]
+                      ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _vm.allEdit
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.department_client,
+                            expression: "department_client"
+                          }
+                        ],
+                        staticClass: "input-td-city",
+                        domProps: { value: _vm.department_client },
+                        on: {
+                          keypress: function($event) {
+                            return _vm.maxLength(
+                              $event,
+                              20,
+                              _vm.department_client
+                            )
                           },
-                          expression: "department"
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.department_client = $event.target.value
+                          }
                         }
-                      },
-                      [_vm._v(" " + _vm._s(_vm.department) + " ")]
-                    )
-              ]),
+                      })
+                    : _c(
+                        "span",
+                        {
+                          staticStyle: { width: "100%" },
+                          model: {
+                            value: _vm.department_client,
+                            callback: function($$v) {
+                              _vm.department_client = $$v
+                            },
+                            expression: "department_client"
+                          }
+                        },
+                        [_vm._v(" " + _vm._s(_vm.department_client) + " ")]
+                      )
+                ]
+              ),
               _vm._v(" "),
               _vm._m(8),
               _vm._v(" "),
@@ -50204,7 +50219,25 @@ var render = function() {
         _c("div", { staticClass: "footer-bill" }, [
           _c("table", { staticClass: "table-footer" }, [
             _c("tbody", [
-              _vm._m(15),
+              _c("tr", [
+                _c("td", [_vm._v("MEDIO DE PAGO:")]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "span",
+                    {
+                      model: {
+                        value: _vm.payment_type,
+                        callback: function($$v) {
+                          _vm.payment_type = $$v
+                        },
+                        expression: "payment_type"
+                      }
+                    },
+                    [_vm._v(" " + _vm._s(_vm.payment_type))]
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("tr", [
                 _c("td", [_vm._v("COMENTARIOS:")]),
@@ -50232,7 +50265,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v(_vm._s(_vm.observations_bill))]
+                        [_vm._v(" " + _vm._s(_vm.observations_bill))]
                       )
                     : _c(
                         "span",
@@ -50252,6 +50285,8 @@ var render = function() {
             ])
           ])
         ]),
+        _vm._v(" "),
+        _vm._m(15),
         _vm._v(" "),
         _c("div", { staticClass: "bill-btn" }, [
           _vm.allEdit
@@ -50451,10 +50486,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("MEDIO DE PAGO:")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("OTRO")])
+    return _c("div", { staticClass: "footer-end" }, [
+      _c("p", [
+        _vm._v(
+          "TRANSCALYGUZ, S.L. C/ ALTAGRACIA N° , 13003 CIUDAD REAL. TELF.: 926228453/FAX:926222588. CIF: B13523345"
+        )
+      ])
     ])
   },
   function() {
@@ -50490,7 +50527,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(49)
 /* template */
@@ -50608,7 +50645,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(52)
 /* template */
@@ -50698,33 +50735,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            cars: [],
-            cars_data: [{
-                action_do: "DESCARGAR",
-                addresses_download: "CARRETERA DE CARRION 12, NAVES B Y C",
-                addresses_load: "AV. GREGORIO ARCOS, 41",
-                buyer: "JESUS LA CHICA",
-                car_data: "BMW S7",
-                client: "ALBAMOCION, S.L.",
-                contact: "RAUL",
-                observation: "",
-                schedule: ""
-            }],
+            trs: [],
             titleCar: 'ANDALUCIA',
             title: true
         };
@@ -50736,15 +50751,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/load-orders/pending-api/cars').then(function (response) {
-                _this.cars = response.data;
-                _this.cars_data.client = response.data[0].client;
-                _this.cars_data.buyer = response.data[0].buyer;
-                _this.cars_data.action_do = response.data[0].action_do;
-                _this.cars_data.addresses_load = response.data[0].addresses_load;
-                _this.cars_data.schedule = response.data[0].schedule;
-                _this.cars_data.addresses_download = response.data[0].addresses_download;
-                _this.cars_data.contact = response.data[0].contact;
-                _this.cars_data.observation = response.data[0].observation;
+                console.log(response.data);
+                _this.trs = response.data;
             });
         },
         printTable: function printTable(divName) {
@@ -50769,6 +50777,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm._v("\n    " + _vm._s(_vm.trs.length) + "\n    "),
     _c("div", { staticClass: "pending-order", attrs: { id: "contentTable" } }, [
       _vm.title
         ? _c("div", [
@@ -50808,54 +50817,20 @@ var render = function() {
           ]),
       _vm._v(" "),
       _c("table", [
-        _c("tbody", [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", { attrs: { rowspan: _vm.cars.length } }, [
-              _vm._v(_vm._s(_vm.cars_data.client))
-            ]),
+        _c(
+          "tbody",
+          [
+            _vm._m(0),
             _vm._v(" "),
-            _c("td", { attrs: { rowspan: _vm.cars.length } }, [
-              _vm._v(_vm._s(_vm.cars_data.buyer))
-            ]),
-            _vm._v(" "),
-            _c("td", { attrs: { rowspan: _vm.cars.length } }, [
-              _vm._v(_vm._s(_vm.cars_data.action_do))
-            ]),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(_vm.cars, function(car) {
-                return _c("pending-order-car-component", {
-                  key: car.id,
-                  attrs: { car: car }
-                })
-              }),
-              1
-            ),
-            _vm._v(" "),
-            _c("td", { attrs: { rowspan: _vm.cars.length } }, [
-              _vm._v(_vm._s(_vm.cars_data.addresses_load))
-            ]),
-            _vm._v(" "),
-            _c("td", { attrs: { rowspan: _vm.cars.length } }, [
-              _vm._v(_vm._s(_vm.cars_data.schedule))
-            ]),
-            _vm._v(" "),
-            _c("td", { attrs: { rowspan: _vm.cars.length } }, [
-              _vm._v(_vm._s(_vm.cars_data.addresses_download))
-            ]),
-            _vm._v(" "),
-            _c("td", { attrs: { rowspan: _vm.cars.length } }, [
-              _vm._v(_vm._s(_vm.cars_data.contact))
-            ]),
-            _vm._v(" "),
-            _c("td", { attrs: { rowspan: _vm.cars.length } }, [
-              _vm._v(_vm._s(_vm.cars_data.observation))
-            ])
-          ])
-        ])
+            _vm._l(_vm.trs, function(tr) {
+              return _c("pending-order-table-component", {
+                key: tr.id,
+                attrs: { tr: tr }
+              })
+            })
+          ],
+          2
+        )
       ])
     ]),
     _vm._v(" "),
@@ -50915,11 +50890,148 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(55)
 /* template */
 var __vue_template__ = __webpack_require__(56)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/PendingOrderTableComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-34315f5e", Component.options)
+  } else {
+    hotAPI.reload("data-v-34315f5e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['tr', 'trs'],
+    data: function data() {
+        return {
+            action_do: "DESCARGAR",
+            addresses_download: "CARRETERA DE CARRION 12, NAVES B Y C",
+            addresses_load: "AV. GREGORIO ARCOS, 41",
+            buyer: "JESUS LA CHICA",
+            car_data: "BMW S7",
+            client: "ALBAMOCION, S.L.",
+            contact: "RAUL",
+            observation: "",
+            schedule: ""
+        };
+    }
+});
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("tr", [
+    _c("td", [_vm._v(_vm._s(_vm.tr.client))]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.tr.buyer))]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.tr.action_do))]),
+    _vm._v(" "),
+    _c(
+      "td",
+      _vm._l(_vm.tr.car, function(car) {
+        return _c("pending-order-car-component", {
+          key: car.id,
+          attrs: { car: car }
+        })
+      }),
+      1
+    ),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.tr.addresses_load))]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.tr.schedule))]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.tr.addresses_download))]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.tr.contact))]),
+    _vm._v(" "),
+    _c("td", [_vm._v(_vm._s(_vm.tr.observation))])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-34315f5e", module.exports)
+  }
+}
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(58)
+/* template */
+var __vue_template__ = __webpack_require__(59)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50958,7 +51070,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50992,14 +51104,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("\n    " + _vm._s(_vm.car.car) + "\n")])
+  return _c("p", [_vm._v("\n    " + _vm._s(_vm.car) + "\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -51012,7 +51124,7 @@ if (false) {
 }
 
 /***/ }),
-/* 57 */
+/* 60 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

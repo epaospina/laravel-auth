@@ -24,6 +24,18 @@
                 </div>
                 <input name="import_company" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Forma de pago</span>
+                </div>
+                <select name="payment_type">
+                    {{--<option value="0"><b>Seleccione una opcion</b></option>--}}
+                    <option value="transferBank"><b>Transferencia Bancaria</b></option>
+                    <option value="bankReceipt"><b>Recibo de banco</b></option>
+                </select>
+            </div>
+
             <div id="create_car">
                 <div id="car__0">
                     @include('load-orders.create_car')
@@ -165,8 +177,8 @@
 
         <div style="overflow:auto;">
             <div style="float:right;">
-                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Anterior</button>
-                <button type="button" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
+                <button class="btn" type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fas fa-arrow-left"></i></button>
+                <button class="btn" type="button" id="nextBtn" onclick="nextPrev(1)"><i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
 

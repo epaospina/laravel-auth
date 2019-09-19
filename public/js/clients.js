@@ -11,8 +11,6 @@ function showTab(n) {
     }
     if (n === (tab_content.length - 1)) {
         $('#nextBtn').text('Guardar');
-    } else {
-        $('#nextBtn').text('Siguiente');
     }
     fixStepIndicator(n)
 }
@@ -34,11 +32,12 @@ function validateForm() {
     let x, y, i, valid = true;
     x = document.getElementsByClassName("tab");
     y = x[currentTab].getElementsByTagName("input");
-    console.log(y);
     for (i = 0; i < y.length; i++) {
-        if (y[i].value === "" && y[i].type !== "radio") {
-            y[i].className += " invalid";
-            valid = false;
+        if (y[i].name !== "data_driver" && y[i].name !== "cmr"){
+            if (y[i].value === "" && y[i].type !== "radio") {
+                y[i].className += " invalid";
+                valid = false;
+            }
         }
     }
     if (valid) {
@@ -156,4 +155,12 @@ function removeCarForm(num) {
         btnAddCar.attr('data-car', countCar-1);
         deleteBlock.attr('data-car', countCar-1);
     }
+}
+function printTable(divName) {
+    let printContents = document.getElementById(divName).innerHTML;
+    let originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+    location.reload();
 }

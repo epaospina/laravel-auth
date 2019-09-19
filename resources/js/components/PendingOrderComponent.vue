@@ -1,5 +1,6 @@
 <template>
     <div>
+        {{trs.length}}
         <div id="contentTable" class="pending-order">
             <div v-if="title" >
                 <h3>COCHES PENDIENTES
@@ -27,23 +28,11 @@
                         <td><label>CONTACTO</label></td>
                         <td><label>OBSERVACIONES</label></td>
                     </tr>
-                    <tr>
-                        <td :rowspan="cars.length">{{cars_data.client}}</td>
-                        <td :rowspan="cars.length">{{cars_data.buyer}}</td>
-                        <td :rowspan="cars.length">{{cars_data.action_do}}</td>
-                        <td>
-                            <pending-order-car-component
-                                v-for="car in cars"
-                                :key="car.id"
-                                :car = "car"
-                            ></pending-order-car-component>
-                        </td>
-                        <td :rowspan="cars.length">{{cars_data.addresses_load}}</td>
-                        <td :rowspan="cars.length">{{cars_data.schedule}}</td>
-                        <td :rowspan="cars.length">{{cars_data.addresses_download}}</td>
-                        <td :rowspan="cars.length">{{cars_data.contact}}</td>
-                        <td :rowspan="cars.length">{{cars_data.observation}}</td>
-                    </tr>
+                    <pending-order-table-component
+                        v-for="tr in trs"
+                        :key="tr.id"
+                        :tr = "tr"
+                    ></pending-order-table-component>
                 </tbody>
             </table>
         </div>
@@ -55,18 +44,7 @@
     export default {
         data(){
             return {
-                cars: [],
-                cars_data: [{
-                    action_do: "DESCARGAR",
-                    addresses_download: "CARRETERA DE CARRION 12, NAVES B Y C",
-                    addresses_load: "AV. GREGORIO ARCOS, 41",
-                    buyer: "JESUS LA CHICA",
-                    car_data: "BMW S7",
-                    client: "ALBAMOCION, S.L.",
-                    contact: "RAUL",
-                    observation: "",
-                    schedule: "",
-                }],
+                trs: [],
                 titleCar: 'ANDALUCIA',
                 title: true
             }
@@ -75,15 +53,8 @@
         methods:{
             list(){
                 axios.get('/load-orders/pending-api/cars').then(response => {
-                    this.cars = response.data;
-                    this.cars_data.client = response.data[0].client;
-                    this.cars_data.buyer = response.data[0].buyer;
-                    this.cars_data.action_do = response.data[0].action_do;
-                    this.cars_data.addresses_load = response.data[0].addresses_load;
-                    this.cars_data.schedule = response.data[0].schedule;
-                    this.cars_data.addresses_download = response.data[0].addresses_download;
-                    this.cars_data.contact = response.data[0].contact;
-                    this.cars_data.observation = response.data[0].observation;
+                    console.log(response.data);
+                    this.trs = response.data;
                 })
             },
             printTable(divName) {

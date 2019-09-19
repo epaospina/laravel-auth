@@ -57,6 +57,7 @@ class LoadOrders extends Model
         $loadOrder->contact_person = $infoArray['contact_person'];
         $loadOrder->date_upload = Carbon::now();
         $loadOrder->bill_to = $infoArray['bill_to'];
+        $loadOrder->payment_type = $infoArray['payment_type'];
         $loadOrder->import_company = $infoArray['import_company'];
         $loadOrder->save();
 
@@ -112,6 +113,7 @@ class LoadOrders extends Model
             'id'                        => isset($validateInfo['load_order']['hash']) ? $validateInfo['load_order']['hash'] : '',
             'contact_person'            => isset($validateInfo['load_order']['contact_person']) ? $validateInfo['load_order']['contact_person'] : '',
             'bill_to'                   => isset($validateInfo['load_order']['bill_to']) ? $validateInfo['load_order']['bill_to'] : '',
+            'payment_type'              => isset($validateInfo['load_order']['payment_type']) ? $validateInfo['load_order']['payment_type'] : '',
             'import_company'            => isset($validateInfo['load_order']['import_company']) ? $validateInfo['load_order']['import_company'] : '',
         ];
 

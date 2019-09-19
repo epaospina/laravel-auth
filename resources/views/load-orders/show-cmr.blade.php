@@ -412,14 +412,5 @@
     <div class="btn btn-bitbucket" onclick="printTable('contentCmr')">IMPRIMIR</div>
 @endsection
 @push('js')
-    <script>
-        function printTable(divName) {
-            let printContents = document.getElementById(divName).innerHTML;
-            let originalContents = document.body.innerHTML;
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-            location.reload();
-        }
-    </script>
+    <script src="{{asset('js/clients.js')}}"></script>
 @endpush

@@ -72,7 +72,7 @@ class BillsController extends Controller
         $bill->num_bill = $request->numBill;
         $bill->name_client = $request->name_client;
         $bill->address_client = $request->address_client;
-        $bill->department = $request->department;
+        $bill->department_client = $request->department;
         $bill->city_client = $request->city_client;
         $bill->postal_cod_client = $request->postal_cod_client;
         $bill->description = $request->description_bill;

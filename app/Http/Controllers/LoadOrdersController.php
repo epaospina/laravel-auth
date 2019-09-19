@@ -138,17 +138,17 @@ class LoadOrdersController extends Controller
     {
         $loadOrders = LoadOrders::all();
         $cars = [];
-        foreach ($loadOrders as $loadOrder){
+        foreach ($loadOrders as $keyLoad => $loadOrder){
             foreach ($loadOrder->customer->infoCars as $key => $infoCar) {
-                $cars[$key]['client']             = $loadOrder->customer->signing;
-                $cars[$key]['buyer']              = $loadOrder->bill_to;
-                $cars[$key]['action_do']          = 'DESCARGAR';
-                $cars[$key]['car']                = $infoCar->model_car;
-                $cars[$key]['addresses_load']     = $loadOrder->customer->addresses_load;
-                $cars[$key]['scheduler']          = '';
-                $cars[$key]['addresses_download'] = $loadOrder->data_download->addresses_download;
-                $cars[$key]['contact']            = $loadOrder->data_download->contact_download;
-                $cars[$key]['observation']        = $loadOrder->bill->price;
+                $cars[$keyLoad]['client']             = $loadOrder->customer->signing;
+                $cars[$keyLoad]['buyer']              = $loadOrder->bill_to;
+                $cars[$keyLoad]['action_do']          = 'DESCARGAR';
+                $cars[$keyLoad]['car'][$key]          = $infoCar->model_car;
+                $cars[$keyLoad]['addresses_load']     = $loadOrder->customer->addresses_load;
+                $cars[$keyLoad]['scheduler']          = '';
+                $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download;
+                $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download;
+                $cars[$keyLoad]['observation']        = $loadOrder->bill->price;
             }
         }
 

@@ -1,17 +1,14 @@
 <template>
     <div class="content-bill" >
-
-
-        {{$data}}
         <div id="contentBill">
             <div class="header-start">
                 <div class="header-logo">
                     <img :src="urlImg" alt="Mc Vehiculos">
-                    Factura
+                    <label>Factura</label>
                 </div>
                 <div class="header-number">
                     <div>
-                        N de factura
+                        <label>N de factura</label>
                         <input style="width: 70%;" v-model="numBill" v-if="allEdit">
                         <span v-else v-model="numBill"> {{numBill}} </span>
                     </div>
@@ -46,7 +43,7 @@
                     </tbody>
                 </table>
 
-                <table>
+                <table style="width: 50%;">
                     <tbody>
                     <tr>
                         <td colspan="6"><label>CLIENTE</label></td>
@@ -75,12 +72,12 @@
                                 <option value="pais"><b>PAIS</b></option>
                             </select>
                         </td>
-                        <td colspan="3">
+                        <td colspan="3" style="width: 100%;">
                             <input v-if="allEdit" v-model="city_client" v-on:keypress="maxLength($event, 20, city_client)" class="input-td-city">
                             <span v-else v-model="city_client"> {{city_client}} </span>
-
-                            <input v-if="allEdit" v-model="department" v-on:keypress="maxLength($event, 20, department)" class="input-td-city">
-                            <span v-else v-model="department"> {{department}} </span>
+                            <br>
+                            <input v-if="allEdit" v-model="department_client" v-on:keypress="maxLength($event, 20, department_client)" class="input-td-city">
+                            <span style="width: 100%;" v-else v-model="department_client"> {{department_client}} </span>
                         </td>
                         <td class="td-xs"><b>CP</b></td>
                         <td class="td-xs">
@@ -171,17 +168,20 @@
                         <tbody>
                         <tr>
                             <td>MEDIO DE PAGO:</td>
-                            <td>OTRO</td>
+                            <td><span v-model="payment_type"> {{payment_type}}</span></td>
                         </tr>
                         <tr>
                             <td>COMENTARIOS:</td>
                             <td>
-                                <textarea v-if="allEdit" v-model="observations_bill">{{observations_bill}}</textarea>
+                                <textarea v-if="allEdit" v-model="observations_bill"> {{observations_bill}}</textarea>
                                 <span v-else v-model="observations_bill"> {{observations_bill}}</span>
                             </td>
                         </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="footer-end">
+                    <p>TRANSCALYGUZ, S.L. C/ ALTAGRACIA N° , 13003 CIUDAD REAL. TELF.: 926228453/FAX:926222588. CIF: B13523345</p>
                 </div>
 
                 <div class="bill-btn">
@@ -211,7 +211,7 @@
                 name_client: 'name_client',
                 address_client: 'address_client',
                 city_client: 'city_client',
-                department: 'department',
+                department_client: 'department_client',
                 postal_cod_client: 'postal_cod_client',
                 quantity_car : 0,
                 name_service: 'cif',
@@ -221,6 +221,7 @@
                 iva_bill : 0,
                 total_bill: 0,
                 observations_bill: 'name_client',
+                payment_type: 'Transferencia Bancaria',
                 cars: [],
                 allEdit: true
             }
@@ -236,7 +237,7 @@
                     this.name_client = response.data.bill.name_client;
                     this.address_client = response.data.bill.address_client;
                     this.city_client = response.data.bill.city_client;
-                    this.department = response.data.bill.department;
+                    this.department_client = response.data.bill.department_client;
                     this.postal_cod_client = response.data.bill.postal_cod_client;
                     this.quantity_car = response.data.cars.length;
                     this.name_service = response.data.services.nombre;
@@ -244,33 +245,33 @@
                     this.price = (parseFloat(this.unit_price*response.data.cars.length)).toFixed(2);
                     this.description_bill = response.data.bill.description;
                     this.iva_bill = parseFloat(response.data.bill.iva).toFixed(2);
-                    this.total_bill = (parseInt(this.iva_bill) + (parseInt(this.price))).toFixed(2);
-                    this.observations_bill = response.data.bill.observations;
+                    this.total_bill = (parseFloat(this.iva_bill) + (parseFloat(this.price))).toFixed(2);
+                    this.observations_bill = 'Numero de cuenta ES34 3190 2073 1644 0287 5522   ' + response.data.bill.observations;
+                    this.payment_type = 'Transferencia Bancaria';
                     this.cars = response.data.cars
                 })
             },
             maxLength(event, max, id){
-                if(id.length <= max){
-                    console.log(max);
-                    console.log(id);
-                    console.log(id.length);
-                    id = id + event.key
+                if(id.length <= 12){
+                    id += event.key
                 }
-
-                event.stopPropagation();
             },
             esCif(cif){
                 let cif_iva = false;
                 if (cif != null){
-                    if (cif.length > 2) {
-                        let letter = cif.substring(0, 2);
-                        if (letter === 'B-' || letter === 'B' || letter === 'b' || letter === 'b-') {
+                    if (cif.length > 1) {
+                        let letter = cif.substring(0, 1);
+
+                        let regex = /^[0-9\s]*$/;
+                        let isValid = regex.test(letter);
+
+                        if (isValid || letter === 'B-' || letter === 'B' || letter === 'b' || letter === 'A' || letter === 'a') {
                             this.iva_bill = parseFloat(0.21*this.price).toFixed(2);
                             cif_iva = true;
                         } else {
                             this.iva_bill = 0;
                         }
-                        this.total_bill = (parseInt(this.iva_bill) + (parseInt(this.price))).toFixed(2);
+                        this.total_bill = (parseFloat(this.iva_bill) + (parseFloat(this.price))).toFixed(2);
                     }
                 }
 
@@ -295,7 +296,7 @@
                     'name_client'               : this.name_client,
                     'address_client'            : this.address_client,
                     'city_client'               : this.city_client,
-                    'department'                : this.department,
+                    'department'                : this.department_client,
                     'postal_cod_client'         : this.postal_cod_client,
                     'quantity_car'              : this.quantity_car,
                     'name_service'              : this.name_service,
@@ -323,6 +324,7 @@
                 document.body.innerHTML = printContents;
                 window.print();
                 document.body.innerHTML = originalContents;
+                location.reload();
             }
         },
         created(){

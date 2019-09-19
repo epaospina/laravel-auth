@@ -1,7 +1,25 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/clients.css')}} ">
 @endpush
-<div class="container-order edit-load">
+<div id="ContentTable{{$key}}" class="container-order edit-load">
+    <div class="header-logo">
+        <div>
+            <img src="{{asset('images/logo-mc.jpg')}}" alt="Mc Vehiculos">
+            <div class="header-logo-span">
+                <span>C/. Altagracia, 8 - 13003 CIUDAD REAL - ESPAÑA</span>
+                <span>Telf.: 926 228 453 - Fax 926 222 588</span>
+            </div>
+        </div>
+        <div class="transcaliguz">
+            <p>TRANSCALYGUZ, S.L.</p>
+            <p>C/. Altagracia, 8 </p>
+            <p> 13003 CIUDAD REAL</p>
+            <p>Telf.:926 228 453 / 629 423 149</p>
+            <p>Fax: 926 222 588</p>
+            <p>Email:mcvehiculos1935@msn.com</p>
+            <p>C.I.F: B-13523345</p>
+        </div>
+    </div>
     <div class="title-client">
         <h3 class="title-client">{{ __('clients.load_order') }}</h3>
         @if(isset($edit))
@@ -25,7 +43,10 @@
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.vin') }}</td>
-            <td><input id="vin" value="{{$infoCar['vin']}}" disabled></td>
+            <td>
+                <input id="vin" value="{{$infoCar['vin']}}" disabled>
+                <input type="hidden" id="vin_original" value="{{$infoCar['vin']}}" disabled>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -67,7 +88,7 @@
         <tbody>
         <tr>
             <td class="subtitle">{{ __('clients.itv') }}</td>
-            <td>FALTA AGREGAR</td>
+            <td>No</td>
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.documents') }}</td>
@@ -94,17 +115,17 @@
         <tr>
             <td class="subtitle">{{ __('clients.download_place') }}</td>
             <td class="subtitle">{{ __('clients.observations') }}</td>
-            <td class="subtitle">{{__('clients.sign_seal')}}</td>
+            <td class="subtitle-sign">{{__('clients.sign_seal')}}</td>
         </tr>
         <tr>
-            <td><textarea id="info_download" disabled>{{$infoArray['data_download']['addresses_download']}} // {{$infoArray['data_download']['city_download']}} // {{$infoArray['data_download']['postal_cod_download']}}</textarea></td>
-            <td><textarea id="observations" disabled>{{$infoArray['data_download']['observations']}}</textarea></td>
+            <td><textarea class="footer-text-area" id="info_download" disabled>{{$infoArray['data_download']['addresses_download']}} // {{$infoArray['data_download']['city_download']}} // {{$infoArray['data_download']['postal_cod_download']}}</textarea></td>
+            <td><textarea class="footer-text-area" id="observations" disabled>{{$infoArray['data_download']['observations']}}</textarea></td>
             <td></td>
         </tr>
         <tr>
             <td class="subtitle">{{__('clients.mobile')}}</td>
             <td><input id="mobile_download" value="{{$infoArray['data_download']['mobile_download']}}" disabled></td>
-            @if(auth()->id())
+            @if(auth()->id() && !empty($infoArray['data_download']['driver_data']) || isset($edit))
                 <td><b  class="subtitle">{{__('clients.data_driver')}}:</b> <input id="driver_data" value="{{$infoArray['data_download']['driver_data']}}" disabled></td>
             @else
                 <td></td>
@@ -113,7 +134,7 @@
         <tr>
             <td class="subtitle">{{__('clients.contact_person')}}</td>
             <td><input id="contact_download" value="{{$infoArray['data_download']['contact_download']}}" disabled></td>
-            @if(auth()->id())
+            @if(auth()->id() && !empty($infoArray['data_download']['driver_data']) || isset($edit))
                 <td><b  class="subtitle">{{__('clients.cmr')}}:</b> <input id="cmr" value="{{$infoArray['data_download']['cmr']}}" disabled></td>
             @else
                 <td></td>
@@ -128,3 +149,11 @@
         <li>En el casi de necesitar la identidad del conductor y matricula del camion, rogamos nos la pidan previamente.</li>
     </ul>
 </div>
+@if(auth()->id())
+    <div class="action-div">
+        <div class="btn btn-primary {{isset($edit) ? 'hide' : 'show'}} btn-print" onclick="printTable('ContentTable{{$key}}')">IMPRIMIR</div>
+    </div>
+@endif
+@push('js')
+    <script src="{{asset('js/clients.js')}}"></script>
+@endpush

@@ -23,6 +23,7 @@ Vue.component('header-bill-component', require('./components/HeaderBillComponent
 Vue.component('table-bill-component', require('./components/TableBillComponent.vue'));
 Vue.component('table-car-component', require('./components/TableCarComponent.vue'));
 Vue.component('pending-order-component', require('./components/PendingOrderComponent.vue'));
+Vue.component('pending-order-table-component', require('./components/PendingOrderTableComponent.vue'));
 Vue.component('pending-order-car-component', require('./components/PendingOrderCarComponent.vue'));
 
 

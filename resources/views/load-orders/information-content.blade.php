@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header" id="heading{{$key}}">
                 <h2 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{$key}}" aria-expanded="false" aria-controls="collapse{{$key}}">
+                    <button class="btn btn-light collapsed" type="button" data-toggle="collapse" data-target="#collapse{{$key}}" aria-expanded="false" aria-controls="collapse{{$key}}">
                         Orden de carga coche #{{$key + 1}}
                     </button>
                 </h2>

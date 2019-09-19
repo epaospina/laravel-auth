@@ -1,6 +1,6 @@
 <template>
     <p>
-        {{car.car}}
+        {{car}}
     </p>
 </template>
 
