@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleTableSeeder::class);
         // Los usuarios necesitarán los roles previamente generados
         $this->call(UserTableSeeder::class);
+        // configuracion inicial de precio para servicio
+        $this->call(ServiceTableSeeder::class);
     }
 }

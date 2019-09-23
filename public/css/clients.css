@@ -1,0 +1,170 @@
+/* Style the form */
+#regForm {
+    background-color: #ffffff;
+    margin: 1% auto;
+    padding: 2%;
+    width: 90%;
+    min-width: 300px;
+}
+
+/* Style the input fields */
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    /*border: 1px solid #aaaaaa;*/
+}
+.edit-load input, textarea{
+    padding: 0;
+    width: 100%;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid transparent;
+}
+.header-logo{
+    display: flex;
+}
+.header-logo img{
+    width: 50%;
+}
+.header-logo-span {
+    font-size: 7px;
+    width: 38%;
+    padding-left: 30px;
+    margin-top: -10px;
+}
+.transcaliguz {
+    width: 50%;
+    padding: 2% 0;
+}
+.transcaliguz p {
+    line-height: 3px;
+    padding: 0;
+    font-weight: bold;
+}
+.edit-load textarea{
+    padding: 3%;
+    width: 200px;
+    height: 100px;
+}
+
+.input-client{
+    margin-top: 1%;
+}
+.title-client{
+    margin: 2%;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+    display: flex;
+    justify-content: space-between;
+}
+.subtitle-client{
+    margin: 3% 0;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.subtitle-sign {
+    padding: 0 2%;
+    font-weight: 900;
+    text-decoration: underline;
+    text-align: center;
+    color: #969687;
+    font-size: 16px;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+    background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+    display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+    opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+    background-color: #4CAF50;
+}
+.subtitle-car{
+    margin: 1% 0;
+    font-weight: bold;
+    text-align: center;
+}
+.subtitle{
+    font-weight: bold;
+}
+.itv-input{
+    display: inline-flex;
+    width: 40%;
+}
+td,tr{
+    border: 1px solid black;
+    padding: 0 1%;
+}
+.table-load-order{
+    margin-top: 2%;
+    border-style: double;
+}
+.container-order{
+    padding: 2% 3%;
+    background-color: white;
+    margin: 0 10%;
+    border: 1px solid #dbc6bf;
+}
+.header-car{
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-right: 2%;
+}
+.delete-car0{
+    display: none;
+}
+.btn-bitbucket {
+     color: #fff;
+     background-color: #205081;
+     border-color: rgba(0,0,0,0.2);
+     height: 100%;
+     border-radius: 5px;
+ }
+.action-div{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1% 10%;
+}
+.btn-print{
+    margin: 1%;
+}
+@media print {
+    .btn-not-print{
+        display: none;
+    }
+    input {
+        padding: 0;
+        width: 100%;
+        font-size: 17px;
+        border: 0;
+        /*border: 1px solid #aaaaaa;*/
+    }
+}

@@ -1,0 +1,164 @@
+b{
+    font-size: 10px;
+    font-weight: bold;
+}
+label{
+    font-size: 15px;
+    font-weight: bold;
+}
+input{
+    border: 1px solid #0000000f;
+    background-color: #c7bbbb52;
+    border-radius: 9%;
+    padding: 0 3%;
+    text-align: center;
+}
+textarea{
+    border: 1px solid #0000000f;
+    background-color: #ffffff54;
+    border-radius: 5px;
+    padding: 0 1%;
+}
+#contentBill{
+    padding: 2%;
+    background: white;
+    border: 1px solid;
+}
+.header-start{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 7% 2% 7%;
+    border-bottom: 1px dotted;
+    margin-bottom: 2%;
+}
+.header-logo{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+.header-logo img{
+    width: 40%;
+    height: 60%;
+}
+.header-logo label{
+    width: 30%;
+    font-size: 30px;
+    text-align: center;
+}
+.header-number{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+.header-bill{
+    display: flex;
+    justify-content: space-around;
+}
+.header-bill td{
+    border-bottom: 1px solid #0000004f;
+    padding: 1%;
+}
+.body-bill{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.table-body{
+    width: 100%;
+    margin: 2%;
+    margin-top: 5%;
+    align-content: center;
+    border: 2px solid black;
+}
+.table-body td{
+    padding: 1%;
+    border-right: 1px solid black;
+    text-align: center;
+}
+.td-title{
+    border: 1px solid black;
+}
+.td-left{
+    text-align: left !important;
+}
+.td-right{
+    text-align: right !important;
+    width: 10%;
+}
+.footer-bill{
+
+}
+.table-footer{
+    width: 95%;
+    margin: 0 2%;
+    align-content: center;
+}
+.table-footer td{
+    padding: 2%;
+    border-bottom: 2px solid black;
+}
+.unit-td{
+    text-align: center !important;
+    width: 10%;
+}
+.unit-td input{
+    width: 60px;
+    text-align: center;
+}
+.price-td{
+    width: 70px;
+}
+.td-xs{
+    width: 10px;
+}
+.td-xs input{
+    width: 80px;
+}
+textarea{
+    width: 100%;
+    height: 100%;
+}
+.bill-btn{
+    display: flex;
+    flex-flow: row-reverse;
+    padding: 0 4%;
+}
+.bill-btn .btn-bitbucket{
+    margin: 0 2%;
+}
+.input-td-cp{
+    width: 70px;
+}
+.input-td-city{
+    width: 170px;
+}
+.footer-end{
+    display: flex;
+    justify-content: center;
+    border: 1px solid;
+    padding: 1% 3%;
+    margin: 3% 1%;
+}
+@media only screen and (max-width: 700px) {
+    .header-bill {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .header-bill table {
+        width: 100%;
+        margin-bottom: 5%;
+    }
+}
+@media print {
+    .header-bill{
+        display: flex;
+        justify-content: space-around;
+    }
+    .header-bill table{
+        width: 30%;
+    }
+    .bill-btn{
+        display: none;
+    }
+}

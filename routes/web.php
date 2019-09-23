@@ -11,10 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index');
+Route::redirect('/home', '/');
+Route::get('load-orders/','LoadOrdersController@index')->name('load-orders.index');
+Route::get('load-orders/create','LoadOrdersController@create')->name('load-orders.create');
+Route::post('load-orders/store','LoadOrdersController@store')->name('load-orders.store');
+Route::get('load-orders/{parameter}','LoadOrdersController@show')->name('load-orders.show');
+Route::get('load-orders/{parameter}/edit','LoadOrdersController@edit')->name('load-orders.edit');
+Route::get('load-orders/pending/cars','LoadOrdersController@pending')->name('load-orders.pending-cars');
+Route::get('load-orders/pending-api/cars','LoadOrdersController@pendingApiCars')->name('load-orders.pending-api-cars');
+Route::put('load-orders/{parameter}','LoadOrdersController@update')->name('load-orders.update');
+Route::post('load-orders/','LoadOrdersController@destroy')->name('load-orders.destroy');
+Route::resource('users','UserController');
+Route::resource('clients','ClientsController');
+Route::resource('services','ServicesController');
+Route::get('load-orders/{loadOrders}/cmr','LoadOrdersController@cmr')->name('load-orders.cmr');
+Route::get('bills/load-order/{loadOrder}','BillsController@showBillLoadOrder')->name('bills.show-bill-load-order');
+Route::resource('bills','BillsController');
+Route::get('bills/load-order-api/{loadOrder}','BillsController@billLoadOrder');
