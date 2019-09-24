@@ -49482,9 +49482,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             iva_bill: 0,
             total_bill: 0,
             observations_bill: 'name_client',
-            payment_type: 'Transferencia Bancaria',
             cars: [],
-            allEdit: true
+            allEdit: true,
+            payment_type: 'Tranferencia Bancaria'
         };
     },
 
@@ -49510,9 +49510,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.description_bill = response.data.bill.description;
                 _this.iva_bill = parseFloat(response.data.bill.iva).toFixed(2);
                 _this.total_bill = (parseFloat(_this.iva_bill) + parseFloat(_this.price)).toFixed(2);
-                _this.observations_bill = 'Numero de cuenta ES34 3190 2073 1644 0287 5522   ' + response.data.bill.observations;
-                _this.payment_type = 'Transferencia Bancaria';
                 _this.cars = response.data.cars;
+                _this.payment_type = response.data.bill.payment_type;
+                _this.observations_bill = response.data.bill.observations;
             });
         },
         maxLength: function maxLength(event, max, id) {
@@ -49939,41 +49939,45 @@ var render = function() {
               _vm._v(" "),
               _vm._m(8),
               _vm._v(" "),
-              _c("td", { staticClass: "td-xs" }, [
-                _vm.allEdit
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.postal_cod_client,
-                          expression: "postal_cod_client"
-                        }
-                      ],
-                      domProps: { value: _vm.postal_cod_client },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+              _c(
+                "td",
+                { staticClass: "td-xs", staticStyle: { width: "50%" } },
+                [
+                  _vm.allEdit
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.postal_cod_client,
+                            expression: "postal_cod_client"
                           }
-                          _vm.postal_cod_client = $event.target.value
+                        ],
+                        domProps: { value: _vm.postal_cod_client },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.postal_cod_client = $event.target.value
+                          }
                         }
-                      }
-                    })
-                  : _c(
-                      "span",
-                      {
-                        model: {
-                          value: _vm.postal_cod_client,
-                          callback: function($$v) {
-                            _vm.postal_cod_client = $$v
-                          },
-                          expression: "postal_cod_client"
-                        }
-                      },
-                      [_vm._v(" " + _vm._s(_vm.postal_cod_client) + " ")]
-                    )
-              ])
+                      })
+                    : _c(
+                        "span",
+                        {
+                          model: {
+                            value: _vm.postal_cod_client,
+                            callback: function($$v) {
+                              _vm.postal_cod_client = $$v
+                            },
+                            expression: "postal_cod_client"
+                          }
+                        },
+                        [_vm._v(" " + _vm._s(_vm.postal_cod_client) + " ")]
+                      )
+                ]
+              )
             ]),
             _vm._v(" "),
             _vm._m(9)
@@ -50734,9 +50738,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['cars_pending_id'],
     data: function data() {
         return {
             trs: [],
@@ -50750,7 +50754,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         list: function list() {
             var _this = this;
 
-            axios.get('/load-orders/pending-api/cars').then(function (response) {
+            axios.get('/load-orders/pending-api/cars/' + this.cars_pending_id).then(function (response) {
                 console.log(response.data);
                 _this.trs = response.data;
             });
@@ -50761,6 +50765,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             document.body.innerHTML = printContents;
             window.print();
             document.body.innerHTML = originalContents;
+            location.reload();
         }
     },
     created: function created() {
@@ -50777,7 +50782,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\n    " + _vm._s(_vm.trs.length) + "\n    "),
     _c("div", { staticClass: "pending-order", attrs: { id: "contentTable" } }, [
       _vm.title
         ? _c("div", [
@@ -50957,6 +50961,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['tr', 'trs'],
@@ -50970,7 +50984,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             client: "ALBAMOCION, S.L.",
             contact: "RAUL",
             observation: "",
-            schedule: ""
+            schedule: "",
+            title: true
         };
     }
 });
@@ -51009,7 +51024,55 @@ var render = function() {
     _vm._v(" "),
     _c("td", [_vm._v(_vm._s(_vm.tr.contact))]),
     _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.tr.observation))])
+    _c("td", { staticStyle: { width: "10%", padding: "1%" } }, [
+      _vm.title
+        ? _c(
+            "div",
+            {
+              staticStyle: { "text-align": "center", "align-items": "baseline" }
+            },
+            [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.title = false
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.tr.observation))]
+              )
+            ]
+          )
+        : _c(
+            "div",
+            {
+              staticStyle: {
+                display: "flex",
+                "text-align": "center",
+                "align-items": "baseline"
+              }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  staticStyle: { width: "40%" },
+                  domProps: { value: _vm.tr.observation }
+                })
+              ]),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fas fa-check",
+                on: {
+                  click: function($event) {
+                    _vm.title = true
+                  }
+                }
+              })
+            ]
+          )
+    ])
   ])
 }
 var staticRenderFns = []

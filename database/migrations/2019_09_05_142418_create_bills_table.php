@@ -27,6 +27,7 @@ class CreateBillsTable extends Migration
             $table->string('iva');
             $table->string('cif')->default('B-00000000');
             $table->string('observations');
+            $table->string('payment_type')->default('Transferencia Bancaria');
             $table->integer('load_orders_id')->unsigned();
             $table->timestamps();
 

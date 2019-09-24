@@ -22,7 +22,7 @@ class Bills extends Model
     ];
 
 
-    static function createBill(LoadOrders $loadOrder, Customer $client, DataDownload $dataDownload){
+    static function createBill(LoadOrders $loadOrder, Customer $client, DataDownload $dataDownload, $payment_type){
         $date = Carbon::parse($loadOrder->date_upload)->format('d/m/Y');
 
         $bill = new Bills();
@@ -37,7 +37,12 @@ class Bills extends Model
         $bill->unit_price = Services::all()->first()->precio;
         $bill->price = ($bill->unit_price*($client->infoCars->count()));
         $bill->iva = 0.21*$bill->price;
-        $bill->observations = "ninguna";
+        $bill->payment_type = $payment_type;
+        if ($payment_type === 'Transferencia Bancaria'){
+            $bill->observations = 'Numero de cuenta ES34 3190 2073 1644 0287 5522   ';
+        }else{
+            $bill->observations = "ninguna";
+        }
         $bill->save();
     }
 }

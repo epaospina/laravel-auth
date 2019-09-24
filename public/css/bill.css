@@ -19,6 +19,9 @@ textarea{
     border-radius: 5px;
     padding: 0 1%;
 }
+.content-bill{
+    margin: 0 5%;
+}
 #contentBill{
     padding: 2%;
     background: white;

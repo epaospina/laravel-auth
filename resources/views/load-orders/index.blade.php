@@ -1,21 +1,31 @@
 @extends('adminlte::page')
 @section('content')
-    <a class="btn btn-bitbucket" href="{{ route('load-orders.pending-cars') }}">Pendientes</a>
+    <div id="app"></div>
+    <a class="btn btn-bitbucket" id="pending" onclick="selectCars()">Pendientes</a>
     <table class="table table-bordered">
         <tr>
             <th>#</th>
-            <th>contact_person</th>
-            <th>client_car_id</th>
-            <th>date_upload</th>
-            <th>bill_to</th>
-            <th>import_company</th>
+            <th>Persona de contacto</th>
+            <th>Fecha de carga</th>
+            <th>Cliente</th>
+            <th>Compañía</th>
         </tr>
 
         @foreach ($load_orders as $load_order)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $load_order->contact_person }}</td>
-                <td>{{ $load_order->client_id }}</td>
+                <td>
+                    <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapse{{$load_order->id}}" aria-expanded="false" aria-controls="collapse{{$load_order->id}}">
+                        {{ $load_order->contact_person }}
+                    </button>
+                    <div class="collapse" id="collapse{{$load_order->id}}">
+                        <div class="card card-body">
+                            @foreach($load_order->customer->infoCars as $car)
+                                <p class="p-cars-pending"><input type="checkbox" id="car{{$car->id}}" value="{{$car->id}}"> {{$car->model_car}} - {{$car->vin}}</p>
+                            @endforeach
+                        </div>
+                    </div>
+                </td>
                 <td>{{ $load_order->date_upload }}</td>
                 <td>{{ $load_order->bill_to }}</td>
                 <td>{{ $load_order->import_company }}</td>
@@ -37,9 +47,5 @@
     </table>
 @endsection
 @push('js')
-    <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable();
-        } );
-    </script>
+    <script src="{{asset('js/loadOrders.js')}}"></script>
 @endpush

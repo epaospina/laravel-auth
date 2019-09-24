@@ -80,7 +80,7 @@
                             <span style="width: 100%;" v-else v-model="department_client"> {{department_client}} </span>
                         </td>
                         <td class="td-xs"><b>CP</b></td>
-                        <td class="td-xs">
+                        <td class="td-xs" style="width: 50%;">
                             <input v-if="allEdit" v-model="postal_cod_client">
                             <span v-else v-model="postal_cod_client"> {{postal_cod_client}} </span>
                         </td>
@@ -221,9 +221,9 @@
                 iva_bill : 0,
                 total_bill: 0,
                 observations_bill: 'name_client',
-                payment_type: 'Transferencia Bancaria',
                 cars: [],
-                allEdit: true
+                allEdit: true,
+                payment_type: 'Tranferencia Bancaria'
             }
         },
 
@@ -246,9 +246,9 @@
                     this.description_bill = response.data.bill.description;
                     this.iva_bill = parseFloat(response.data.bill.iva).toFixed(2);
                     this.total_bill = (parseFloat(this.iva_bill) + (parseFloat(this.price))).toFixed(2);
-                    this.observations_bill = 'Numero de cuenta ES34 3190 2073 1644 0287 5522   ' + response.data.bill.observations;
-                    this.payment_type = 'Transferencia Bancaria';
-                    this.cars = response.data.cars
+                    this.cars = response.data.cars;
+                    this.payment_type = response.data.bill.payment_type;
+                    this.observations_bill = response.data.bill.observations;
                 })
             },
             maxLength(event, max, id){

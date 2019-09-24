@@ -51,39 +51,41 @@ class LoadOrders extends Model
         $client->fax = $infoArray['fax'];
         $client->save();
 
-        InformationCar::findOrCreateInformationCar($client, $infoArray["car"]);
+        $infoCars = InformationCar::findOrCreateInformationCar($client, $infoArray["car"]);
 
-        $loadOrder->customer_id = $client->id;
-        $loadOrder->contact_person = $infoArray['contact_person'];
-        $loadOrder->date_upload = Carbon::now();
-        $loadOrder->bill_to = $infoArray['bill_to'];
-        $loadOrder->payment_type = $infoArray['payment_type'];
-        $loadOrder->import_company = $infoArray['import_company'];
-        $loadOrder->save();
+        if ($infoCars){
+            $loadOrder->customer_id = $client->id;
+            $loadOrder->contact_person = $infoArray['contact_person'];
+            $loadOrder->date_upload = Carbon::now();
+            $loadOrder->bill_to = $infoArray['bill_to'];
+            $loadOrder->import_company = $infoArray['import_company'];
+            $loadOrder->save();
 
-        $loadOrder->hash = md5($loadOrder->id);
-        $loadOrder->save();
+            $loadOrder->hash = md5($loadOrder->id);
+            $loadOrder->save();
 
-        if (!empty($loadOrder) && !empty($loadOrder->dataDownload)){
-            $data_download = $loadOrder->data_download;
+            if (!empty($loadOrder) && !empty($loadOrder->dataDownload)){
+                $data_download = $loadOrder->data_download;
+            }
+
+            $data_download->addresses_download = $infoArray['addresses_download'];
+            $data_download->city_download = $infoArray['city_download'];
+            $data_download->postal_cod_download = $infoArray['postal_cod_download'];
+            $data_download->contact_download = $infoArray['contact_download'];
+            $data_download->mobile_download = $infoArray['mobile_download'];
+            $data_download->load_orders_id = $loadOrder->id;
+            $data_download->driver_data_id = DriverData::all()->first()->id;//isset($infoArray['data_driver']) ? $infoArray['data_driver'] : 2;
+            $data_download->cmr = isset($infoArray['cmr']) ? $infoArray['cmr'] : " ";
+            $data_download->observations = $infoArray['observations'];
+            $data_download->save();
+
+            if (!empty($loadOrder) && !empty($client) && !empty($data_download)){
+                Bills::createBill($loadOrder, $client, $data_download, $infoArray['payment_type']);
+            }
+            return $loadOrder;
         }
 
-        $data_download->addresses_download = $infoArray['addresses_download'];
-        $data_download->city_download = $infoArray['city_download'];
-        $data_download->postal_cod_download = $infoArray['postal_cod_download'];
-        $data_download->contact_download = $infoArray['contact_download'];
-        $data_download->mobile_download = $infoArray['mobile_download'];
-        $data_download->load_orders_id = $loadOrder->id;
-        $data_download->driver_data_id = 2;//isset($infoArray['data_driver']) ? $infoArray['data_driver'] : 2;
-        $data_download->cmr = isset($infoArray['cmr']) ? $infoArray['cmr'] : "";
-        $data_download->observations = $infoArray['observations'];
-        $data_download->save();
-
-        if (!empty($loadOrder) && !empty($client) && !empty($data_download)){
-            Bills::createBill($loadOrder, $client, $data_download);
-        }
-
-        return $loadOrder;
+        return false;
     }
 
     static function arrayInfo($validateInfo){
