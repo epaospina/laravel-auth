@@ -50616,9 +50616,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("tr", [
-    _c("td", [_vm._v(" ")]),
+    _c("td", { staticClass: "td-xs-car" }, [_vm._v(" ")]),
     _vm._v(" "),
-    _c("td", { staticClass: "td-left" }, [
+    _c("td", { staticClass: "td-left td-xs-car" }, [
       _c(
         "span",
         {
@@ -50634,9 +50634,9 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("td", { staticClass: "td-right" }, [_vm._v(" ")]),
+    _c("td", { staticClass: "td-right td-xs-car" }, [_vm._v(" ")]),
     _vm._v(" "),
-    _c("td", { staticClass: "td-right color-total" }, [_vm._v(" ")])
+    _c("td", { staticClass: "td-right color-total td-xs-car" }, [_vm._v(" ")])
   ])
 }
 var staticRenderFns = []

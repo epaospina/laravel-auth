@@ -99,6 +99,9 @@ textarea{
     text-align: right !important;
     width: 10%;
 }
+.td-xs-car{
+    padding: 0 1% !important;
+}
 .footer-bill{
 
 }
@@ -174,5 +177,8 @@ textarea{
     }
     .bill-btn{
         display: none;
+    }
+    .color-total{
+        background-color: #f3cd9252;
     }
 }
