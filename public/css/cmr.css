@@ -1,9 +1,9 @@
 table{
     width: 100%;
-    /*border: 1px solid black;*/
+    border: 1px solid transparent;
 }
 tr, td{
-    /*border: 1px solid black;*/
+    border: 1px solid transparent;
     font-size: 10px;
 }
 p{
@@ -19,6 +19,9 @@ label{
     max-width: 100%;
     margin-bottom: 0;
     font-weight: 400;
+}
+.td-start{
+    width: 55% !important;
 }
 .container-cmr{
     padding: 4%;
@@ -161,10 +164,11 @@ label{
 }
 .info-one{
     /*padding: 1% 5%;*/
-    padding: 10% 0 10% 5%;
+    padding: 5% 0 10% 5%;
 }
 .info-two{
-    padding: 0 6%;
+    padding: 3% 0 0 5%;
+    width: 20%;
 }
 .text-xs-p{
     font-size: 6px !important;
