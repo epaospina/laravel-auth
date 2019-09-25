@@ -7,7 +7,7 @@
         <table>
             <tbody>
                 <tr>
-                    <td>
+                    <td colspan="6" class="td-start">
                         <div class="info-one">
                             <label>{{$loadOrders->customer->signing}}</label><br>
                             <label>{{$loadOrders->customer->addresses_load}}</label><br>
@@ -17,7 +17,7 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="6">
                         <div class="info-one">
                             <label>{{$loadOrders->data_download->contact_download}}</label><br>
                             <label>{{$loadOrders->data_download->addresses_download}}</label><br>
@@ -27,7 +27,8 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td><div class="info-one">
+                    <td colspan="6">
+                        <div class="info-one">
                             <label class="info-text">{{$loadOrders->data_download->contact_download}}</label><br>
                             <label class="info-text">{{$loadOrders->data_download->addresses_download}}</label><br>
                             <label class="info-text">{{$loadOrders->data_download->city_download}} {{$loadOrders->data_download->postal_cod_download}}</label><br>
@@ -37,7 +38,7 @@
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td colspan="6">
                         <div class="info-one">
                             <label class="info-text">{{$loadOrders->customer->addresses_load}}</label><br>
                             <label class="info-text">{{$loadOrders->customer->city_load}} // {{$loadOrders->customer->postal_cod_load}}</label><br>
@@ -52,12 +53,18 @@
                 </tr>
                 @foreach($loadOrders->customer->infoCars AS $key => $infoCar)
                     <tr>
-                        <td>
-                            <div class="info-one">
+                        <td class="info-two">
+                            <div>
                                 <label>{{$infoCar->model_car}}</label>
-                                <label class="info-text">{{$infoCar->vin}}</label>
                             </div>
                         </td>
+                        <td class="info-two">
+                            <label>{{$infoCar->vin}}</label>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                     </tr>
                 @endforeach
