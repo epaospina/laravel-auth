@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bills;
+use App\CarsPending;
 use App\Customer;
 use App\InformationCar;
 use App\LoadOrders;
@@ -54,8 +55,15 @@ class LoadOrdersController extends Controller
     {
         $loadOrder = LoadOrders::createAllLoadOrder($request->all());
 
-        return redirect()->action(
-            'LoadOrdersController@show', $loadOrder->hash);
+        if ($loadOrder){
+            return redirect()->action(
+                'LoadOrdersController@show', $loadOrder->hash);
+        }
+
+        return redirect()
+            ->back()
+            ->withInput()
+            ->withErrors(['msg', 'Lo sentimos ocurrio un error al caragar los datos, intenta de nuevo']);
     }
 
     /**
@@ -127,28 +135,41 @@ class LoadOrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param CarsPending $carsPending
      * @return Response
      */
-    public function pending()
+    public function pending(CarsPending $carsPending)
     {
-        return view('load-orders.pending');
+        return view('load-orders.pending', compact('carsPending'));
     }
 
-    public function pendingApiCars()
+    public function pendingCars(Request $request)
+    {
+        $carsPending = new CarsPending();
+        $carsPending->array_cars = $request->cars;
+        $carsPending->user_id = auth()->id();
+        $carsPending->save();
+
+        return route('load-orders.pending-cars', $carsPending->id);
+    }
+
+    public function pendingApiCars(CarsPending $carsPending)
     {
         $loadOrders = LoadOrders::all();
         $cars = [];
         foreach ($loadOrders as $keyLoad => $loadOrder){
             foreach ($loadOrder->customer->infoCars as $key => $infoCar) {
-                $cars[$keyLoad]['client']             = $loadOrder->customer->signing;
-                $cars[$keyLoad]['buyer']              = $loadOrder->bill_to;
-                $cars[$keyLoad]['action_do']          = 'DESCARGAR';
-                $cars[$keyLoad]['car'][$key]          = $infoCar->model_car;
-                $cars[$keyLoad]['addresses_load']     = $loadOrder->customer->addresses_load;
-                $cars[$keyLoad]['scheduler']          = '';
-                $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download;
-                $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download;
-                $cars[$keyLoad]['observation']        = $loadOrder->bill->price;
+                if (in_array($infoCar->id, explode(',',$carsPending->array_cars))){
+                    $cars[$keyLoad]['client']             = $loadOrder->customer->signing;
+                    $cars[$keyLoad]['buyer']              = $loadOrder->bill_to;
+                    $cars[$keyLoad]['action_do']          = 'DESCARGAR';
+                    $cars[$keyLoad]['car'][$key]          = $infoCar->model_car;
+                    $cars[$keyLoad]['addresses_load']     = $loadOrder->customer->addresses_load;
+                    $cars[$keyLoad]['scheduler']          = '';
+                    $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download;
+                    $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download;
+                    $cars[$keyLoad]['observation']        = $loadOrder->bill->price;
+                }
             }
         }
 

@@ -49456,15 +49456,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['order_id'],
     data: function data() {
         return {
-            urlImg: '../../images/logo-mc.jpg',
+            urlImg: '../../images/logomcTrans.png',
             numBill: 'T0669/2019',
             email: 'mcvehiculos1935@msn.com',
             date: 'ok',
@@ -49482,9 +49479,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             iva_bill: 0,
             total_bill: 0,
             observations_bill: 'name_client',
-            payment_type: 'Transferencia Bancaria',
             cars: [],
-            allEdit: true
+            allEdit: true,
+            payment_type: 'Tranferencia Bancaria'
         };
     },
 
@@ -49510,9 +49507,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.description_bill = response.data.bill.description;
                 _this.iva_bill = parseFloat(response.data.bill.iva).toFixed(2);
                 _this.total_bill = (parseFloat(_this.iva_bill) + parseFloat(_this.price)).toFixed(2);
-                _this.observations_bill = 'Numero de cuenta ES34 3190 2073 1644 0287 5522   ' + response.data.bill.observations;
-                _this.payment_type = 'Transferencia Bancaria';
                 _this.cars = response.data.cars;
+                _this.payment_type = response.data.bill.payment_type;
+                _this.observations_bill = response.data.bill.observations;
             });
         },
         maxLength: function maxLength(event, max, id) {
@@ -49608,12 +49605,24 @@ var render = function() {
         _c("div", { staticClass: "header-logo" }, [
           _c("img", { attrs: { src: _vm.urlImg, alt: "Mc Vehiculos" } }),
           _vm._v(" "),
-          _c("label", [_vm._v("Factura")])
+          _c(
+            "a",
+            {
+              model: {
+                value: _vm.email,
+                callback: function($$v) {
+                  _vm.email = $$v
+                },
+                expression: "email"
+              }
+            },
+            [_vm._v(" " + _vm._s(_vm.email) + " ")]
+          )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "header-number" }, [
           _c("div", [
-            _c("label", [_vm._v("N de factura")]),
+            _c("label", [_vm._v("N° de factura")]),
             _vm._v(" "),
             _vm.allEdit
               ? _c("input", {
@@ -49625,7 +49634,7 @@ var render = function() {
                       expression: "numBill"
                     }
                   ],
-                  staticStyle: { width: "70%" },
+                  staticClass: "input-n-bill",
                   domProps: { value: _vm.numBill },
                   on: {
                     input: function($event) {
@@ -49637,7 +49646,7 @@ var render = function() {
                   }
                 })
               : _c(
-                  "span",
+                  "a",
                   {
                     model: {
                       value: _vm.numBill,
@@ -49651,31 +49660,17 @@ var render = function() {
                 )
           ]),
           _vm._v(" "),
-          _c("div", [
-            _c(
-              "span",
-              {
-                model: {
-                  value: _vm.email,
-                  callback: function($$v) {
-                    _vm.email = $$v
-                  },
-                  expression: "email"
-                }
-              },
-              [_vm._v(" " + _vm._s(_vm.email) + " ")]
-            )
-          ])
+          _vm._m(0)
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "header-bill" }, [
         _c("table", [
           _c("tbody", [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c("tr", [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("td", [
                 _vm.allEdit
@@ -49715,7 +49710,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("tr", [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c("td", [
                 _vm.allEdit
@@ -49761,10 +49756,10 @@ var render = function() {
         _vm._v(" "),
         _c("table", { staticStyle: { width: "50%" } }, [
           _c("tbody", [
-            _vm._m(3),
+            _vm._m(4),
             _vm._v(" "),
             _c("tr", [
-              _vm._m(4),
+              _vm._m(5),
               _vm._v(" "),
               _c("td", { attrs: { colspan: "3" } }, [
                 _vm.allEdit
@@ -49804,7 +49799,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("tr", [
-              _vm._m(5),
+              _vm._m(6),
               _vm._v(" "),
               _c("td", { attrs: { colspan: "3" } }, [
                 _vm.allEdit
@@ -49843,10 +49838,10 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(6),
+            _vm._m(7),
             _vm._v(" "),
             _c("tr", [
-              _vm._m(7),
+              _vm._m(8),
               _vm._v(" "),
               _c(
                 "td",
@@ -49937,46 +49932,50 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(8),
+              _vm._m(9),
               _vm._v(" "),
-              _c("td", { staticClass: "td-xs" }, [
-                _vm.allEdit
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.postal_cod_client,
-                          expression: "postal_cod_client"
-                        }
-                      ],
-                      domProps: { value: _vm.postal_cod_client },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+              _c(
+                "td",
+                { staticClass: "td-xs", staticStyle: { width: "50%" } },
+                [
+                  _vm.allEdit
+                    ? _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.postal_cod_client,
+                            expression: "postal_cod_client"
                           }
-                          _vm.postal_cod_client = $event.target.value
+                        ],
+                        domProps: { value: _vm.postal_cod_client },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.postal_cod_client = $event.target.value
+                          }
                         }
-                      }
-                    })
-                  : _c(
-                      "span",
-                      {
-                        model: {
-                          value: _vm.postal_cod_client,
-                          callback: function($$v) {
-                            _vm.postal_cod_client = $$v
-                          },
-                          expression: "postal_cod_client"
-                        }
-                      },
-                      [_vm._v(" " + _vm._s(_vm.postal_cod_client) + " ")]
-                    )
-              ])
+                      })
+                    : _c(
+                        "span",
+                        {
+                          model: {
+                            value: _vm.postal_cod_client,
+                            callback: function($$v) {
+                              _vm.postal_cod_client = $$v
+                            },
+                            expression: "postal_cod_client"
+                          }
+                        },
+                        [_vm._v(" " + _vm._s(_vm.postal_cod_client) + " ")]
+                      )
+                ]
+              )
             ]),
             _vm._v(" "),
-            _vm._m(9)
+            _vm._m(10)
           ])
         ])
       ]),
@@ -49986,9 +49985,9 @@ var render = function() {
           _c(
             "tbody",
             [
-              _vm._m(10),
-              _vm._v(" "),
               _vm._m(11),
+              _vm._v(" "),
+              _vm._m(12),
               _vm._v(" "),
               _c("tr", [
                 _c("td", { staticClass: "unit-td" }, [
@@ -50064,7 +50063,7 @@ var render = function() {
                       )
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "td-right" }, [
+                _c("td", { staticClass: "td-right color-total" }, [
                   _c(
                     "span",
                     {
@@ -50126,7 +50125,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", { staticClass: "td-right" }, [_vm._v(" ")]),
                 _vm._v(" "),
-                _c("td", { staticClass: "td-right" }, [_vm._v(" ")])
+                _c("td", { staticClass: "td-right color-total" }, [_vm._v(" ")])
               ]),
               _vm._v(" "),
               _vm._l(_vm.cars, function(car) {
@@ -50141,9 +50140,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(" ")]),
                 _vm._v(" "),
-                _vm._m(12),
+                _vm._m(13),
                 _vm._v(" "),
-                _c("td", { staticClass: "td-right td-title" }, [
+                _c("td", { staticClass: "td-right td-title color-total" }, [
                   _c(
                     "span",
                     {
@@ -50166,9 +50165,9 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(" ")]),
                     _vm._v(" "),
-                    _vm._m(13),
+                    _vm._m(14),
                     _vm._v(" "),
-                    _c("td", { staticClass: "td-right td-title" }, [
+                    _c("td", { staticClass: "td-right td-title color-total" }, [
                       _c(
                         "span",
                         {
@@ -50191,9 +50190,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(" ")]),
                 _vm._v(" "),
-                _vm._m(14),
+                _vm._m(15),
                 _vm._v(" "),
-                _c("td", { staticClass: "td-right td-title" }, [
+                _c("td", { staticClass: "td-right td-title color-total" }, [
                   _c(
                     "span",
                     {
@@ -50286,7 +50285,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(15),
+        _vm._m(16),
         _vm._v(" "),
         _c("div", { staticClass: "bill-btn" }, [
           _vm.allEdit
@@ -50305,7 +50304,7 @@ var render = function() {
                     ]
                   }
                 },
-                [_vm._m(16)]
+                [_vm._m(17)]
               )
             : _c(
                 "button",
@@ -50317,7 +50316,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._m(17)]
+                [_vm._m(18)]
               ),
           _vm._v(" "),
           !_vm.allEdit
@@ -50340,6 +50339,14 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("span", { staticClass: "title-bill" }, [_vm._v("Factura")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -50439,7 +50446,9 @@ var staticRenderFns = [
         _c("label", [_vm._v("PRECIO UNITARIO")])
       ]),
       _vm._v(" "),
-      _c("td", { staticClass: "td-title" }, [_c("label", [_vm._v("TOTAL")])])
+      _c("td", { staticClass: "td-title color-total" }, [
+        _c("label", [_vm._v("TOTAL")])
+      ])
     ])
   },
   function() {
@@ -50455,7 +50464,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("td", [_vm._v(" ")]),
       _vm._v(" "),
-      _c("td", [_vm._v(" ")])
+      _c("td", { staticClass: "color-total" }, [_vm._v(" ")])
     ])
   },
   function() {
@@ -50607,9 +50616,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("tr", [
-    _c("td", [_vm._v(" ")]),
+    _c("td", { staticClass: "td-xs-car" }, [_vm._v(" ")]),
     _vm._v(" "),
-    _c("td", { staticClass: "td-left" }, [
+    _c("td", { staticClass: "td-left td-xs-car" }, [
       _c(
         "span",
         {
@@ -50625,9 +50634,9 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("td", { staticClass: "td-right" }, [_vm._v(" ")]),
+    _c("td", { staticClass: "td-right td-xs-car" }, [_vm._v(" ")]),
     _vm._v(" "),
-    _c("td", { staticClass: "td-right" }, [_vm._v(" ")])
+    _c("td", { staticClass: "td-right color-total td-xs-car" }, [_vm._v(" ")])
   ])
 }
 var staticRenderFns = []
@@ -50734,9 +50743,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['cars_pending_id'],
     data: function data() {
         return {
             trs: [],
@@ -50750,7 +50759,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         list: function list() {
             var _this = this;
 
-            axios.get('/load-orders/pending-api/cars').then(function (response) {
+            axios.get('/load-orders/pending-api/cars/' + this.cars_pending_id).then(function (response) {
                 console.log(response.data);
                 _this.trs = response.data;
             });
@@ -50761,6 +50770,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             document.body.innerHTML = printContents;
             window.print();
             document.body.innerHTML = originalContents;
+            location.reload();
         }
     },
     created: function created() {
@@ -50777,7 +50787,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\n    " + _vm._s(_vm.trs.length) + "\n    "),
     _c("div", { staticClass: "pending-order", attrs: { id: "contentTable" } }, [
       _vm.title
         ? _c("div", [
@@ -50957,6 +50966,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['tr', 'trs'],
@@ -50970,7 +50989,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             client: "ALBAMOCION, S.L.",
             contact: "RAUL",
             observation: "",
-            schedule: ""
+            schedule: "",
+            title: true
         };
     }
 });
@@ -51009,7 +51029,55 @@ var render = function() {
     _vm._v(" "),
     _c("td", [_vm._v(_vm._s(_vm.tr.contact))]),
     _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.tr.observation))])
+    _c("td", { staticStyle: { width: "10%", padding: "1%" } }, [
+      _vm.title
+        ? _c(
+            "div",
+            {
+              staticStyle: { "text-align": "center", "align-items": "baseline" }
+            },
+            [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.title = false
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.tr.observation))]
+              )
+            ]
+          )
+        : _c(
+            "div",
+            {
+              staticStyle: {
+                display: "flex",
+                "text-align": "center",
+                "align-items": "baseline"
+              }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  staticStyle: { width: "40%" },
+                  domProps: { value: _vm.tr.observation }
+                })
+              ]),
+              _vm._v(" "),
+              _c("i", {
+                staticClass: "fas fa-check",
+                on: {
+                  click: function($event) {
+                    _vm.title = true
+                  }
+                }
+              })
+            ]
+          )
+    ])
   ])
 }
 var staticRenderFns = []

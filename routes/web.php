@@ -22,8 +22,9 @@ Route::get('load-orders/create','LoadOrdersController@create')->name('load-order
 Route::post('load-orders/store','LoadOrdersController@store')->name('load-orders.store');
 Route::get('load-orders/{parameter}','LoadOrdersController@show')->name('load-orders.show');
 Route::get('load-orders/{parameter}/edit','LoadOrdersController@edit')->name('load-orders.edit');
-Route::get('load-orders/pending/cars','LoadOrdersController@pending')->name('load-orders.pending-cars');
-Route::get('load-orders/pending-api/cars','LoadOrdersController@pendingApiCars')->name('load-orders.pending-api-cars');
+Route::get('load-orders/pending/cars/{carsPending}','LoadOrdersController@pending')->name('load-orders.pending-cars');
+Route::post('load-orders/pending/select-cars','LoadOrdersController@pendingCars')->name('load-orders.pending-select-cars');
+Route::get('load-orders/pending-api/cars/{carsPending}','LoadOrdersController@pendingApiCars')->name('load-orders.pending-api-cars');
 Route::put('load-orders/{parameter}','LoadOrdersController@update')->name('load-orders.update');
 Route::post('load-orders/','LoadOrdersController@destroy')->name('load-orders.destroy');
 Route::resource('users','UserController');

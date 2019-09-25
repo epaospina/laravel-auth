@@ -3,6 +3,11 @@
     <link rel="stylesheet" href="{{ asset('css/clients.css')}} ">
 @endpush
 @section('content')
+    @if($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <h4>{{$errors->first()}}</h4>
+        </div>
+    @endif
     <form id="regForm" action="{{ route('load-orders.store') }}" method="POST">
         @csrf
 
@@ -15,14 +20,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.bill_to') }}</span>
                 </div>
-                <input name="bill_to" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="bill_to" type="text" value="{{old('bill_to')}}" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.import_company') }}</span>
                 </div>
-                <input name="import_company" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="import_company" value="{{old('import_company')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
@@ -31,8 +36,8 @@
                 </div>
                 <select name="payment_type">
                     {{--<option value="0"><b>Seleccione una opcion</b></option>--}}
-                    <option value="transferBank"><b>Transferencia Bancaria</b></option>
-                    <option value="bankReceipt"><b>Recibo de banco</b></option>
+                    <option value="Transferencia Bancaria"><b>Transferencia Bancaria</b></option>
+                    <option value="Recibo de banco"><b>Recibo de banco</b></option>
                 </select>
             </div>
 
@@ -53,56 +58,56 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.signing') }}</span>
                 </div>
-                <input name="signing" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="signing" value="{{old('signing')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
                 </div>
-                <input name="addresses_load" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="addresses_load" value="{{old('addresses_load')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
                 </div>
-                <input name="city_load" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="city_load" value="{{old('city_load')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
                 </div>
-                <input name="postal_cod_load" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="postal_cod_load" value="{{old('postal_cod_load')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.phone') }}</span>
                 </div>
-                <input name="phone_load" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="phone_load" value="{{old('phone_load')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.mobile') }}</span>
                 </div>
-                <input name="mobile_load" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="mobile_load" value="{{old('mobile_load')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.fax') }}</span>
                 </div>
-                <input name="fax" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="fax" value="{{old('fax')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.contact_person') }}</span>
                 </div>
-                <input name="contact_person" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="contact_person" value="{{old('contact_person')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
         </div>
 
@@ -114,49 +119,49 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
                 </div>
-                <input name="addresses_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="addresses_download" value="{{old('addresses_download')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
                 </div>
-                <input name="city_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="city_download" value="{{old('city_download')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
                 </div>
-                <input name="postal_cod_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="postal_cod_download" value="{{old('postal_cod_download')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.contact_person') }}</span>
                 </div>
-                <input name="contact_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="contact_download" value="{{old('contact_download')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.mobile') }}</span>
                 </div>
-                <input name="mobile_download" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="mobile_download" value="{{old('mobile_download')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
-            @if(auth()->id())
+            @if(auth()->id() && false)
                 <div class="input-group-sm mb-3 input-client">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.data_driver') }}</span>
                     </div>
-                    <input value="_" name="data_driver" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input value="{{empty(old('data_driver')) ? ' ' : old('data_driver')}}" name="data_driver" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
 
                 <div class="input-group-sm mb-3 input-client">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.cmr') }}</span>
                     </div>
-                    <input value="_" name="cmr" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input value="{{empty(old('cmr')) ? ' ' : old('cmr')}}" name="cmr" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
             @endif
 
@@ -164,7 +169,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.observations') }}</span>
                 </div>
-                <input name="observations" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="observations" value="{{old('observations')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
         </div>
 

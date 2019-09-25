@@ -1,6 +1,5 @@
 <template>
     <div>
-        {{trs.length}}
         <div id="contentTable" class="pending-order">
             <div v-if="title" >
                 <h3>COCHES PENDIENTES
@@ -42,6 +41,7 @@
 
 <script>
     export default {
+        props: ['cars_pending_id'],
         data(){
             return {
                 trs: [],
@@ -52,7 +52,7 @@
 
         methods:{
             list(){
-                axios.get('/load-orders/pending-api/cars').then(response => {
+                axios.get('/load-orders/pending-api/cars/'+this.cars_pending_id).then(response => {
                     console.log(response.data);
                     this.trs = response.data;
                 })
@@ -63,6 +63,7 @@
                 document.body.innerHTML = printContents;
                 window.print();
                 document.body.innerHTML = originalContents;
+                location.reload();
             }
         },
         created(){

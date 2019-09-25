@@ -4,19 +4,16 @@
             <div class="header-start">
                 <div class="header-logo">
                     <img :src="urlImg" alt="Mc Vehiculos">
-                    <label>Factura</label>
+                    <a v-model="email"> {{email}} </a>
                 </div>
                 <div class="header-number">
                     <div>
-                        <label>N de factura</label>
-                        <input style="width: 70%;" v-model="numBill" v-if="allEdit">
-                        <span v-else v-model="numBill"> {{numBill}} </span>
+                        <label>N° de factura</label>
+                        <input class="input-n-bill" v-model="numBill" v-if="allEdit">
+                        <a v-else v-model="numBill"> {{numBill}} </a>
                     </div>
                     <div>
-                        <!--<input v-model="email" disabled>
-
-                        <input style="width: 70%;" v-model="numBill" v-if="saveBill()">-->
-                        <span v-model="email"> {{email}} </span>
+                        <span class="title-bill">Factura</span>
                     </div>
                 </div>
             </div>
@@ -80,7 +77,7 @@
                             <span style="width: 100%;" v-else v-model="department_client"> {{department_client}} </span>
                         </td>
                         <td class="td-xs"><b>CP</b></td>
-                        <td class="td-xs">
+                        <td class="td-xs" style="width: 50%;">
                             <input v-if="allEdit" v-model="postal_cod_client">
                             <span v-else v-model="postal_cod_client"> {{postal_cod_client}} </span>
                         </td>
@@ -99,13 +96,13 @@
                         <td class="td-title"><label>CANTIDAD</label></td>
                         <td>&nbsp;</td>
                         <td class="td-title"><label>PRECIO UNITARIO</label></td>
-                        <td class="td-title"><label>TOTAL</label></td>
+                        <td class="td-title color-total"><label>TOTAL</label></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
                         <td class="td-title"><label>DESCRIPCION</label></td>
                         <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="color-total">&nbsp;</td>
                     </tr>
                     <tr>
                         <td class="unit-td">
@@ -117,7 +114,7 @@
                             <input v-if="allEdit" v-model="unit_price" v-on:keypress.prevent="bill_val(unit_price, $event)" class="price-td td-right">
                             <span v-else v-model="unit_price"> {{unit_price}} </span>
                         </td>
-                        <td class="td-right">
+                        <td class="td-right color-total">
                             <!--<input v-model="price" class="price-td td-right" disabled>-->
                             <span v-model="price"> {{price}} </span>
                         </td>
@@ -129,7 +126,7 @@
                             <span v-else v-model="description_bill"> {{description_bill}} </span>
                         </td>
                         <td class="td-right">&nbsp;</td>
-                        <td class="td-right">&nbsp;</td>
+                        <td class="td-right color-total">&nbsp;</td>
                     </tr>
                     <table-car-component
                         v-for="car in cars"
@@ -141,7 +138,7 @@
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td class="td-title"><label>SUBTOTAL</label></td>
-                        <td class="td-right td-title">
+                        <td class="td-right td-title color-total">
                             <!--<input v-model="price" class="price-td td-right" disabled>-->
                             <span v-model="price"> {{price}} </span>
                         </td>
@@ -150,13 +147,13 @@
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td class="td-title"><label>IVA 21%</label></td>
-                        <td class="td-right td-title"><span v-model="iva_bill"> {{iva_bill}}</span></td>
+                        <td class="td-right td-title color-total"><span v-model="iva_bill"> {{iva_bill}}</span></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td class="td-title"><label>TOTAL</label></td>
-                        <td class="td-right td-title"><span v-model="total_bill"> {{total_bill}}</span></td>
+                        <td class="td-right td-title color-total"><span v-model="total_bill"> {{total_bill}}</span></td>
                     </tr>
                     </tbody>
                 </table>
@@ -203,7 +200,7 @@
         props: ['order_id'],
         data(){
             return {
-                urlImg: '../../images/logo-mc.jpg',
+                urlImg: '../../images/logomcTrans.png',
                 numBill: 'T0669/2019',
                 email: 'mcvehiculos1935@msn.com',
                 date : 'ok',
@@ -221,9 +218,9 @@
                 iva_bill : 0,
                 total_bill: 0,
                 observations_bill: 'name_client',
-                payment_type: 'Transferencia Bancaria',
                 cars: [],
-                allEdit: true
+                allEdit: true,
+                payment_type: 'Tranferencia Bancaria'
             }
         },
 
@@ -246,9 +243,9 @@
                     this.description_bill = response.data.bill.description;
                     this.iva_bill = parseFloat(response.data.bill.iva).toFixed(2);
                     this.total_bill = (parseFloat(this.iva_bill) + (parseFloat(this.price))).toFixed(2);
-                    this.observations_bill = 'Numero de cuenta ES34 3190 2073 1644 0287 5522   ' + response.data.bill.observations;
-                    this.payment_type = 'Transferencia Bancaria';
-                    this.cars = response.data.cars
+                    this.cars = response.data.cars;
+                    this.payment_type = response.data.bill.payment_type;
+                    this.observations_bill = response.data.bill.observations;
                 })
             },
             maxLength(event, max, id){

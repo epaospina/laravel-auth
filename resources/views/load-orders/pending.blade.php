@@ -4,6 +4,6 @@
 @endpush
 @section('content')
     <div id="app">
-        <pending-order-component></pending-order-component>
+        <pending-order-component cars_pending_id="{{$carsPending->id}}"></pending-order-component>
     </div>
 @endsection

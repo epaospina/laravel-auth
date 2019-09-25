@@ -19,6 +19,16 @@ textarea{
     border-radius: 5px;
     padding: 0 1%;
 }
+.title-bill{
+    font-size: 35px;
+    font-family: sans-serif;
+}
+.content-bill{
+    margin: 0 5%;
+}
+.input-n-bill{
+    width: 40%;
+}
 #contentBill{
     padding: 2%;
     background: white;
@@ -26,8 +36,8 @@ textarea{
 }
 .header-start{
     display: flex;
-    justify-content: space-around;
-    padding: 0 7% 2% 7%;
+    justify-content: space-between;
+    padding: 0 1% 2% 1%;
     border-bottom: 1px dotted;
     margin-bottom: 2%;
 }
@@ -37,7 +47,7 @@ textarea{
     justify-content: space-between;
 }
 .header-logo img{
-    width: 40%;
+    width: 100%;
     height: 60%;
 }
 .header-logo label{
@@ -49,6 +59,10 @@ textarea{
     display: flex;
     flex-flow: column;
     justify-content: space-between;
+    text-align: end;
+}
+.color-total{
+    background-color: #f3cd9252;
 }
 .header-bill{
     display: flex;
@@ -84,6 +98,9 @@ textarea{
 .td-right{
     text-align: right !important;
     width: 10%;
+}
+.td-xs-car{
+    padding: 0 1% !important;
 }
 .footer-bill{
 
@@ -160,5 +177,8 @@ textarea{
     }
     .bill-btn{
         display: none;
+    }
+    .color-total{
+        background-color: #f3cd9252;
     }
 }
