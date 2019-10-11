@@ -50990,7 +50990,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             contact: "RAUL",
             observation: "",
             schedule: "",
-            title: true
+            title: true,
+            newObservation: 0
         };
     }
 });
@@ -51044,6 +51045,13 @@ var render = function() {
                     click: function($event) {
                       _vm.title = false
                     }
+                  },
+                  model: {
+                    value: _vm.tr.observation,
+                    callback: function($$v) {
+                      _vm.$set(_vm.tr, "observation", $$v)
+                    },
+                    expression: "tr.observation"
                   }
                 },
                 [_vm._v(_vm._s(_vm.tr.observation))]
@@ -51062,8 +51070,24 @@ var render = function() {
             [
               _c("label", [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tr.observation,
+                      expression: "tr.observation"
+                    }
+                  ],
                   staticStyle: { width: "40%" },
-                  domProps: { value: _vm.tr.observation }
+                  domProps: { value: _vm.tr.observation },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.tr, "observation", $event.target.value)
+                    }
+                  }
                 })
               ]),
               _vm._v(" "),

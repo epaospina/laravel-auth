@@ -41,3 +41,14 @@ table{
 .content-title{
     padding: 2%;
 }
+.p-cars-pending{
+    padding: 1% 0;
+    background-color: #e28e2561;
+    margin: 3% 0;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 2px 1px #f39c2f;
+}

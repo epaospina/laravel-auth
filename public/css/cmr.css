@@ -1,3 +1,13 @@
+@media print {
+    @page{
+        size: A4;
+        margin: 0;
+    }
+}
+@page{
+    size: A4;
+    margin: 0;
+}
 table{
     width: 100%;
     border: 1px solid transparent;
@@ -12,20 +22,25 @@ p{
 }
 label{
     padding: 0 2%;
-    font-size: 15px;
+    font-size: 12px;
     line-height: 14px;
     width: 100%;
     display: inline-block;
     max-width: 100%;
     margin-bottom: 0;
-    font-weight: 400;
+    font-family: sans-serif;
+}
+.btn-print{
+    margin: 1%;
 }
 .td-start{
     width: 55% !important;
 }
 .container-cmr{
-    padding: 4%;
-    background-color: white;
+    background-image: url('../images/cmr.jpg');
+    background-size: cover;
+    width: 21cm;
+    height: 29.7cm;
 }
 .td-l1{
     border-left: 1px solid black;
@@ -102,10 +117,8 @@ label{
     padding: 2%;
 }
 .observation{
-    padding: 5% 15% 5% 5%;
-    display: flex;
-    flex-flow: column;
-    line-height: 10px;
+    max-width: 15cm;
+    padding: 0.5cm 0.2cm;
 }
 .double-border td{
     border: 2px solid black;
@@ -163,12 +176,41 @@ label{
     padding: 3px 2%;
 }
 .info-one{
-    /*padding: 1% 5%;*/
-    padding: 5% 0 10% 5%;
+    padding-left: 1.3cm;
+    padding-top: 2cm;
 }
 .info-two{
-    padding: 3% 0 0 5%;
-    width: 20%;
+    display: flex;
+    padding-left: 1.3cm;
+    padding-top: 1.2cm;
+}
+.info-two label{
+    max-width: 13.2cm;
+}
+.info-two input{
+    width: 60%;
+    border: transparent;
+}
+.matricula-camion{
+    margin: -2% 0;
+}
+.info-three{
+    padding-left: 1.3cm;
+    padding-top: 1.2cm;
+}
+.info-four{
+    display: flex;
+    padding-left: 1.3cm;
+    padding-top: 1.15cm;
+    padding-bottom: 1.7cm;
+}
+.info-four label{
+    max-width: 9cm;
+}
+.info-cars{
+    display: flex;
+    width: 35%;
+    padding-left: 1.6cm;
 }
 .text-xs-p{
     font-size: 6px !important;

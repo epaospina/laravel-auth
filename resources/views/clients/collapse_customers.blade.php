@@ -1,9 +1,12 @@
 <div class="card">
     <div class="card-header" id="heading{{ $key }}">
         <h2 class="mb-0">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}">
-                {{ $key }} - Nombre: {{ $client->signing }} - Ciudad: {{ $client->city_load }}
+            <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}">
+                <span class="num-client"> {{ $key }} </span> - Nombre: {{ $client->signing }} - Ciudad: {{ $client->city_load }}
             </button>
+            {{--<button class="btn btn-danger" type="button">
+                ELIMINAR
+            </button>--}}
         </h2>
     </div>
 

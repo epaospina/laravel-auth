@@ -10,7 +10,7 @@ return [
     'color_car'         => 'Color - FARBE',
     'bill_to'           => 'Facturar transporte a / TRANSPORT RECHNUNG AN',
     'import_company'    => 'empresa importadora / IMPORT FIRMA',
-    'vin'               => 'Bastidor',
+    'vin'               => 'BASTIDOR / MATRICULA',
     'itv'               => 'Pasar ITV al vehiculo / TÜV',
     'documents'         => 'Documentacion del vehiculo / FAHRZEUGDOKUMENTE',
 

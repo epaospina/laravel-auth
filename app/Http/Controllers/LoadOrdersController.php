@@ -30,7 +30,7 @@ class LoadOrdersController extends Controller
      */
     public function index()
     {
-        $load_orders = LoadOrders::all();
+        $load_orders = LoadOrders::all()->where('status', true);
         return view('load-orders.index', compact('load_orders'))
             ->with('i', 0);
     }
@@ -174,5 +174,23 @@ class LoadOrdersController extends Controller
         }
 
         return $cars;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($hash)
+    {
+        $loadOrder = LoadOrders::assignHash($hash);
+        $loadOrder->status = 0;
+        $loadOrder->save();
+
+        $load_orders = LoadOrders::all();
+        return redirect()->route('load-orders.index', compact('load_orders'))
+            ->with('i', 0)
+            ->with('success','Registro eliminado satisfactoriamente');
     }
 }

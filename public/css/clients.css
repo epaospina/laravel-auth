@@ -15,6 +15,11 @@ input {
     font-family: Raleway;
     /*border: 1px solid #aaaaaa;*/
 }
+.num-client{
+    color: #3c8dbb;
+    font-size: 15px;
+    font-weight: bold;
+}
 .edit-load input, textarea{
     padding: 0;
     width: 100%;

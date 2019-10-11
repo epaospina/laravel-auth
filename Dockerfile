@@ -38,7 +38,7 @@ RUN php artisan key:generate
 EXPOSE 80
 WORKDIR /
 
-VOLUME /home/johan/proyectos/php/laravel/auth:/var/www/html
+##VOLUME /home/johan/proyectos/php/laravel/auth:/var/www/html
 
 ## configuracion host
 RUN rm etc/apache2/sites-enabled/000-default.conf

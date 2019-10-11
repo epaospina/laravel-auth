@@ -12,6 +12,7 @@ input{
     border-radius: 9%;
     padding: 0 3%;
     text-align: center;
+    width: 100%;
 }
 textarea{
     border: 1px solid #0000000f;
@@ -146,9 +147,9 @@ textarea{
 .input-td-cp{
     width: 70px;
 }
-.input-td-city{
+/*.input-td-city{
     width: 170px;
-}
+}*/
 .footer-end{
     display: flex;
     justify-content: center;
