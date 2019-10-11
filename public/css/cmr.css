@@ -37,7 +37,7 @@ label{
     width: 55% !important;
 }
 .container-cmr{
-    background-image: url('../images/cmr.jpg');
+    /*background-image: url('../images/cmr.jpg');*/
     background-size: cover;
     width: 21cm;
     height: 29.7cm;
