@@ -227,7 +227,6 @@
         methods:{
             listBill(){
                 axios.get('/bills/load-order-api/' + this.order_id).then(response => {
-                    console.log(response);
                     this.date = response.data.date;
                     this.numBill = response.data.bill.num_bill;
                     this.cif = response.data.bill.cif;

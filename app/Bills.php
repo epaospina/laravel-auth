@@ -28,7 +28,7 @@ class Bills extends Model
         $bill = new Bills();
         $bill->num_bill = rand(100,1000);
         $bill->name_client = $loadOrder->bill_to;
-        $bill->address_client = $dataDownload->addresses_download;
+        $bill->address_client = $loadOrder->addresses_load;
         $bill->department_client = $dataDownload->city_download;
         $bill->city_client = $dataDownload->city_download;
         $bill->postal_cod_client = $dataDownload->postal_cod_download;

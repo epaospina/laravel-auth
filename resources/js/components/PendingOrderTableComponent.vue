@@ -16,11 +16,11 @@
         <td>{{tr.contact}}</td>
         <td style="width: 10%; padding: 1%;">
             <div v-if="title" style="text-align: center;align-items: baseline;">
-                <span @click="title = false">{{tr.observation}}</span>
+                <span v-model="tr.observation" @click="title = false">{{tr.observation}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
                 <label>
-                    <input :value=tr.observation style="width: 40%;">
+                    <input v-model="tr.observation" style="width: 40%;">
                 </label>
                 <i class="fas fa-check" @click="title = true"></i>
             </div>
@@ -41,7 +41,8 @@
                 contact: "RAUL",
                 observation: "",
                 schedule: "",
-                title: true
+                title: true,
+                newObservation: 0
             }
         }
     }

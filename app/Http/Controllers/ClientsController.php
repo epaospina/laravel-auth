@@ -26,7 +26,8 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all();
+        $load_orders = LoadOrders::all()->where('status', true);
+        $customers = Customer::all()->whereIn('id', $load_orders->pluck('customer_id'));
         return view('clients.index', compact('customers'))
             ->with('i', 0);
     }
