@@ -18,15 +18,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{$loadOrder->date_upload}}</h5>
-                                <form action="{{ route('clients.destroy', encrypt($loadOrder->id)) }}" method="POST">
-                                    {{--<a class="btn btn-info" href="{{ route('clients.show',encrypt($client->id)) }}">Show</a>--}}
-                                    <a class="btn btn-success" href="{{ route('load-orders.cmr',$loadOrder->id) }}">CMR</a>
-                                    <a class="btn btn-danger" href="{{ route('bills.show-bill-load-order',$loadOrder->id) }}">Facturacion</a>
-                                    {{--<a class="btn btn-primary" href="{{ route('clients.edit',encrypt($client->id)) }}">Edit</a>--}}
-                                    @csrf
-                                    @method('DELETE')
-                                    {{--<button type="submit" class="btn btn-danger">Delete</button>--}}
-                                </form>
+                                <a class="btn btn-success" href="{{ route('load-orders.cmr',$loadOrder->id) }}">CMR</a>
+                                <a class="btn btn-danger" href="{{ route('bills.show-bill-load-order',$loadOrder->id) }}">Facturacion</a>
                             </div>
                         </div>
                     </div>

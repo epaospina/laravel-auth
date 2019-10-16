@@ -102,6 +102,7 @@
         <tr>
             <td class="subtitle">{{ __('clients.bill_to') }}</td>
             <td><input id="bill_to" value="{{$infoArray['load_order']['bill_to']}}" disabled></td>
+            <td><input id="bill_to" type="hidden" value="{{$infoArray['load_order']['payment_type']}}" disabled></td>
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.import_company') }}</td>
@@ -154,6 +155,3 @@
         <div class="btn btn-primary {{isset($edit) ? 'hide' : 'show'}} btn-print" onclick="printTable('ContentTable{{$key}}')">IMPRIMIR</div>
     </div>
 @endif
-@push('js')
-    <script src="{{asset('js/clients.js')}}"></script>
-@endpush

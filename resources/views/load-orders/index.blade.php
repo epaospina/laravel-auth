@@ -33,15 +33,11 @@
                 <td>{{ $load_order->import_company }}</td>
                 <td>
                     <form action="{{ route('load-orders.destroy', md5($load_order->id)) }}" method="POST">
-
                         <a class="btn btn-info" href="{{ route('load-orders.show',md5($load_order->id)) }}">Ver detalle</a>
-
                         <a class="btn btn-primary" href="{{ route('load-orders.edit',md5($load_order->id)) }}">Editar</a>
-
                         @csrf
                         @method('DELETE')
-
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
                 </td>
             </tr>
