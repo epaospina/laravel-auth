@@ -25,7 +25,7 @@
             </label>
 
             <div class="matricula-camion">
-                <span id="span-car"><span>
+                <span id="span-car">Matricula</span>
             </div>
         </div>
 
