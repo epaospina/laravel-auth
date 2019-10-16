@@ -4,6 +4,10 @@
 @endpush
 @section('content')
     <div class="btn btn-bitbucket btn-print" onclick="printTable('contentCmr')">IMPRIMIR  <i class="fas fa-print"></i></div>
+    <label>
+        Ingrese la matricula para el camion
+        <input onkeyup="$('#span-car').text($(this).val())" placeholder="Matricula del camion">
+    </label>
     <div class="container-cmr" id="contentCmr">
         <div class="info-one">
             <label>
@@ -21,9 +25,7 @@
             </label>
 
             <div class="matricula-camion">
-                <label>
-                    <input value="Matricula del camion">
-                </label>
+                <span id="span-car"><span>
             </div>
         </div>
 
