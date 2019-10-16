@@ -27,7 +27,6 @@ Route::get('load-orders/pending/cars/{carsPending}','LoadOrdersController@pendin
 Route::post('load-orders/pending/select-cars','LoadOrdersController@pendingCars')->name('load-orders.pending-select-cars');
 Route::get('load-orders/pending-api/cars/{carsPending}','LoadOrdersController@pendingApiCars')->name('load-orders.pending-api-cars');
 Route::put('load-orders/{parameter}','LoadOrdersController@update')->name('load-orders.update');
-Route::post('load-orders/','LoadOrdersController@destroy')->name('load-orders.destroy');
 Route::resource('users','UserController');
 Route::resource('clients','ClientsController');
 Route::resource('services','ServicesController');
