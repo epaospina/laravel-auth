@@ -15,6 +15,10 @@ input {
     font-family: Raleway;
     /*border: 1px solid #aaaaaa;*/
 }
+.alert-personalized{
+    background-color: #bd141470;
+    color: white;
+}
 .num-client{
     color: #3c8dbb;
     font-size: 15px;
@@ -50,8 +54,7 @@ input {
 }
 .edit-load textarea{
     padding: 3%;
-    width: 200px;
-    height: 100px;
+    margin: 3% 0;
 }
 
 .input-client{

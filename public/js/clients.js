@@ -17,7 +17,6 @@ function showTab(n) {
 
 function nextPrev(n) {
     const tab_content = $('.tab');
-    console.log(!validateForm());
     if (n === 1 && !validateForm()) return false;
     tab_content.eq(currentTab).css('display', 'none');
     currentTab = currentTab + n;
