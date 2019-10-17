@@ -1,7 +1,6 @@
 function selectCars() {
     let arrayCars = '';
     $("input:checked").each(function( index) {
-        console.log( index + ": " + $(this).val() );
         if (index === 0){
             arrayCars = $(this).val()
         }else{

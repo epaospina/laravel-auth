@@ -63,13 +63,13 @@ class LoadOrdersController extends Controller
         return redirect()
             ->back()
             ->withInput()
-            ->withErrors(['msg', 'Lo sentimos ocurrio un error al caragar los datos, intenta de nuevo']);
+            ->withErrors(['Lo sentimos ocurrio un error al caragar los datos, intenta de nuevo']);
     }
 
     /**
      * Display the specified resource.informationCar
      *
-     * @param  $loadOrder
+     * @param $hash
      * @return Response
      */
     public function show($hash)
@@ -89,7 +89,7 @@ class LoadOrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  LoadOrders $loadOrder
+     * @param $hash
      * @return Response
      */
     public function edit($hash)
@@ -116,7 +116,6 @@ class LoadOrdersController extends Controller
     public function update(Request $request, $loadOrder)
     {
         LoadOrders::createAllLoadOrder($request->all(), $loadOrder);
-        //Bills::createBill(LoadOrders::createAllLoadOrder($request->all(), $loadOrder));
 
         return \response('ok', 200);
     }
@@ -186,6 +185,11 @@ class LoadOrdersController extends Controller
     {
         $loadOrder = LoadOrders::assignHash($hash);
         $loadOrder->status = 0;
+        foreach ($loadOrder->customer->infoCars as $infoCars){
+            $infoCars->status = 0;
+            $infoCars->save();
+        }
+
         $loadOrder->save();
 
         $load_orders = LoadOrders::all();

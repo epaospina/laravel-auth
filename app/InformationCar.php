@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class InformationCar extends Model
 {
@@ -28,7 +29,6 @@ class InformationCar extends Model
                 $informationCar = self::findBy($infoCar['vin_original']);
                 $valid = false;
             }
-
             $saveCars = self::infoArray($informationCar, $infoCar, $client, $valid);
         }
 
@@ -39,7 +39,11 @@ class InformationCar extends Model
         $validator = false;
         if ($valid){
             $validator = Validator::make($infoCar, [
-                'vin' => 'required|unique:information_car|max:255',
+                'vin' => [
+                    'required',
+                    'max:255',
+                    Rule::unique('information_car')->where('status', 1),
+                ]
             ]);
         }
 
@@ -47,19 +51,23 @@ class InformationCar extends Model
         $informationCar->color_car = $infoCar['color_car'];
         $informationCar->vin = $infoCar['vin'];
         $informationCar->documents = $infoCar['documents'];
-        $informationCar->customer_id = $client->id;
 
-        if ($validator) {
+        if ($valid) {
             if (!$validator->fails()) {
+                $client = Customer::findOrCreateClient($client);
+                $informationCar->customer_id = $client->id;
                 $informationCar->save();
                 return $informationCar;
-            };
-        }else{
+            }
+        }
+
+        if (!$validator){
+            $client = Customer::findOrCreateClient($client);
+            $informationCar->customer_id = $client->id;
             $informationCar->save();
             return $informationCar;
         }
 
         return false;
-
     }
 }

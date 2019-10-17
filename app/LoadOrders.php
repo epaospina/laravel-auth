@@ -31,30 +31,16 @@ class LoadOrders extends Model
     }
     static function createAllLoadOrder($infoArray, $hash = null){
         $loadOrder = self::assignHash($hash);
+
         if (empty($loadOrder)){
             $loadOrder = new LoadOrders();
         }
 
-        $client = new Customer();
         $data_download = new DataDownload();
-
-        if (!empty($loadOrder) && !empty($loadOrder->customer)){
-            $client = $loadOrder->customer;
-        }
-
-        $client->signing = $infoArray['signing'];
-        $client->addresses_load = $infoArray['addresses_load'];
-        $client->city_load = $infoArray['city_load'];
-        $client->postal_cod_load = $infoArray['postal_cod_load'];
-        $client->phone_load = $infoArray['phone_load'];
-        $client->mobile_load = $infoArray['mobile_load'];
-        $client->fax = $infoArray['fax'];
-        $client->save();
-
-        $infoCars = InformationCar::findOrCreateInformationCar($client, $infoArray["car"]);
+        $infoCars = InformationCar::findOrCreateInformationCar($infoArray, $infoArray["car"]);
 
         if ($infoCars){
-            $loadOrder->customer_id = $client->id;
+            $loadOrder->customer_id = $infoCars->customer->id;
             $loadOrder->contact_person = $infoArray['contact_person'];
             $loadOrder->date_upload = Carbon::now();
             $loadOrder->bill_to = $infoArray['bill_to'];
@@ -64,7 +50,7 @@ class LoadOrders extends Model
             $loadOrder->hash = md5($loadOrder->id);
             $loadOrder->save();
 
-            if (!empty($loadOrder) && !empty($loadOrder->dataDownload)){
+            if (!empty($loadOrder) && !empty($loadOrder->data_download)){
                 $data_download = $loadOrder->data_download;
             }
 

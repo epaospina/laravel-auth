@@ -4,8 +4,11 @@
 @endpush
 @section('content')
     @if($errors->any())
-        <div class="alert alert-danger" role="alert">
-            <h4>{{$errors->first()}}</h4>
+        <div class="alert alert-personalized" role="alert">
+            <strong>{{$errors->first()}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
     <form id="regForm" action="{{ route('load-orders.store') }}" method="POST">
