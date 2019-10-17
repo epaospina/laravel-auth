@@ -77,7 +77,7 @@ class LoadOrdersController extends Controller
         $loadOrder = LoadOrders::assignHash($hash);
 
         $infoArray = LoadOrders::arrayInfo([
-            'infoCars' => $loadOrder->customer->infoCars,
+            'infoCars' => $loadOrder->customer->infoCars->where('status', 1),
             'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
             'data_download' => $loadOrder->data_download->toArray(),
@@ -97,7 +97,7 @@ class LoadOrdersController extends Controller
         $loadOrder = LoadOrders::assignHash($hash);
 
         $infoArray = LoadOrders::arrayInfo([
-            'infoCars' => $loadOrder->customer->infoCars,
+            'infoCars' => $loadOrder->customer->infoCars->where('status', 1),
             'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
             'data_download' => $loadOrder->data_download->toArray(),
@@ -154,10 +154,10 @@ class LoadOrdersController extends Controller
 
     public function pendingApiCars(CarsPending $carsPending)
     {
-        $loadOrders = LoadOrders::all();
+        $loadOrders = LoadOrders::all()->where('status', 1);
         $cars = [];
         foreach ($loadOrders as $keyLoad => $loadOrder){
-            foreach ($loadOrder->customer->infoCars as $key => $infoCar) {
+            foreach ($loadOrder->customer->infoCars->where('status', 1) as $key => $infoCar) {
                 if (in_array($infoCar->id, explode(',',$carsPending->array_cars))){
                     $cars[$keyLoad]['client']             = $loadOrder->customer->signing;
                     $cars[$keyLoad]['buyer']              = $loadOrder->bill_to;

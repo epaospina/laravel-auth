@@ -10,7 +10,7 @@
     <div id="collapse{{ $key }}" class="collapse" aria-labelledby="heading{{ $key }}" data-parent="#accordionExample">
         <div class="card-body">
             <div class="row">
-                @foreach($client->loadOrders as $loadOrder)
+                @foreach($client->loadOrders->where('status', 1) as $loadOrder)
                     @if(isset($loadOrder->bill))
                         <div class="col-sm-6">
                             <div class="card">

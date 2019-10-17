@@ -23,7 +23,7 @@
                     </button>
                     <div class="collapse" id="collapse{{$load_order->id}}">
                         <div class="card card-body">
-                            @foreach($load_order->customer->infoCars as $car)
+                            @foreach($load_order->customer->infoCars->where('status', 1) as $car)
                                 <p class="p-cars-pending"><input type="checkbox" id="car{{$car->id}}" value="{{$car->id}}"> {{$car->model_car}} - {{$car->vin}}</p>
                             @endforeach
                         </div>
