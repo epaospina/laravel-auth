@@ -238,7 +238,7 @@
                     this.quantity_car = response.data.cars.length;
                     this.name_service = response.data.services.nombre;
                     this.unit_price = (parseFloat(response.data.services.precio)).toFixed(2);
-                    this.price = (parseFloat(this.unit_price*response.data.cars.length)).toFixed(2);
+                    this.price = (this.unit_price * Object.keys(response.data.cars).length).toFixed(2);
                     this.description_bill = response.data.bill.description;
                     this.iva_bill = parseFloat(response.data.bill.iva).toFixed(2);
                     this.total_bill = (parseFloat(this.iva_bill) + (parseFloat(this.price))).toFixed(2);

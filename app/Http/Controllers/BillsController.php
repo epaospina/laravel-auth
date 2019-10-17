@@ -52,7 +52,7 @@ class BillsController extends Controller
         $bill = $loadOrder->bill;
         $service = Services::all()->find(1);
         $date = Carbon::now()->format('d/m/Y');
-        $cars = $loadOrder->customer->infoCars->toArray();
+        $cars = $loadOrder->customer->infoCars->where('status', 1);
 
         return ['bill' => $bill, 'services' => $service, 'date' => $date, 'cars' => $cars];
     }

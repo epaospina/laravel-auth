@@ -49502,7 +49502,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.quantity_car = response.data.cars.length;
                 _this.name_service = response.data.services.nombre;
                 _this.unit_price = parseFloat(response.data.services.precio).toFixed(2);
-                _this.price = parseFloat(_this.unit_price * response.data.cars.length).toFixed(2);
+                _this.price = (_this.unit_price * Object.keys(response.data.cars).length).toFixed(2);
                 _this.description_bill = response.data.bill.description;
                 _this.iva_bill = parseFloat(response.data.bill.iva).toFixed(2);
                 _this.total_bill = (parseFloat(_this.iva_bill) + parseFloat(_this.price)).toFixed(2);
