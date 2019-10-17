@@ -146,7 +146,7 @@
                     <tr class="show-iva" v-if="esCif(cif)">
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td class="td-title"><label>IVA 21%</label></td>
+                        <td class="td-title">Impuestos <label>IVA 21%</label></td>
                         <td class="td-right td-title color-total"><span v-model="iva_bill"> {{iva_bill}}</span></td>
                     </tr>
                     <tr>

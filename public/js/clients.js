@@ -103,6 +103,7 @@ function removeCarForm(num) {
         deleteBlock.attr('data-car', countCar-1);
     }
 }
+
 function printTable(divName) {
     let printContents = document.getElementById(divName).innerHTML;
     let originalContents = document.body.innerHTML;

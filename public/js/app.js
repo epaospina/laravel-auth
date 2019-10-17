@@ -49491,7 +49491,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/bills/load-order-api/' + this.order_id).then(function (response) {
-                console.log(response);
                 _this.date = response.data.date;
                 _this.numBill = response.data.bill.num_bill;
                 _this.cif = response.data.bill.cif;
@@ -50480,6 +50479,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", { staticClass: "td-title" }, [
+      _vm._v("Impuestos "),
       _c("label", [_vm._v("IVA 21%")])
     ])
   },
@@ -50760,7 +50760,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/load-orders/pending-api/cars/' + this.cars_pending_id).then(function (response) {
-                console.log(response.data);
                 _this.trs = response.data;
             });
         },
