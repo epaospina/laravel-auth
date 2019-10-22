@@ -62,20 +62,20 @@
             <td><input id="signing" value="{{$infoArray['client']['signing']}}" disabled></td>
         </tr>
         <tr>
-            <td class="subtitle">{{ __('clients.addresses') }} ( {{ __('clients.street') }} {{ __('clients.city') }} y {{ __('clients.postal_cod') }})</td>
-            <td><input id="addresses_load" value="{{$infoArray['client']['addresses_load']}} // {{$infoArray['client']['city_load']}} // {{$infoArray['client']['postal_cod_load']}}" disabled></td>
+            <td class="subtitle">{{ __('clients.addresses') }} ( {{ __('clients.street') }} / {{ __('clients.city') }} / {{ __('clients.postal_cod') }})</td>
+            <td><input id="addresses_load" value="{{$infoArray['data_load']['addresses_load']}} // {{$infoArray['data_load']['city_load']}} // {{$infoArray['data_load']['postal_cod_load']}}" disabled></td>
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.phone') }}</td>
-            <td><input id="phone_load" value="{{$infoArray['client']['phone_load']}}" disabled></td>
+            <td><input id="phone_load" value="{{$infoArray['data_load']['phone_load']}}" disabled></td>
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.mobile') }}</td>
-            <td><input id="mobile_load" value="{{$infoArray['client']['mobile_load']}}" disabled></td>
+            <td><input id="mobile_load" value="{{$infoArray['data_load']['mobile_load']}}" disabled></td>
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.fax') }}</td>
-            <td><input id="fax" value="{{$infoArray['client']['fax']}}" disabled></td>
+            <td><input id="fax" value="{{$infoArray['client']['email']}}" disabled></td>
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.contact_person') }}</td>

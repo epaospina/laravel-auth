@@ -14,8 +14,8 @@ class Customer extends Model
      * @var array
      */
     protected $fillable = [
-        'signing', 'addresses_load', 'city_load', 'postal_cod_load',
-        'phone_load', 'mobile_load', 'fax'
+        'signing', 'addresses', 'city', 'postal_cod', 'phone',
+        'mobile', 'email'
     ];
 
     public function infoCars()
@@ -31,8 +31,8 @@ class Customer extends Model
 
     static public function findOrCreateClient($infoArray){
         $client = Customer::all()->where('signing', $infoArray['signing'])
-            ->where('addresses_load', $infoArray['addresses_load'])
-            ->where('city_load', $infoArray['city_load'])->first();
+            ->where('addresses', $infoArray['addresses_client'])
+            ->where('city', $infoArray['city_client'])->first();
 
         if (!isset($client->id)){
             $client = new Customer();
@@ -45,14 +45,28 @@ class Customer extends Model
 
     static public function infoClient($client, $infoArray){
         $client->signing = $infoArray['signing'];
-        $client->addresses_load = $infoArray['addresses_load'];
-        $client->city_load = $infoArray['city_load'];
-        $client->postal_cod_load = $infoArray['postal_cod_load'];
-        $client->phone_load = $infoArray['phone_load'];
-        $client->mobile_load = $infoArray['mobile_load'];
-        $client->fax = $infoArray['fax'];
+        $client->addresses = $infoArray['addresses_client'];
+        $client->city = $infoArray['city_client'];
+        $client->postal_cod = $infoArray['postal_cod_client'];
+        $client->phone = $infoArray['phone_load'];
+        $client->mobile = $infoArray['mobile_load'];
+        $client->email = $infoArray['fax'];
         $client->save();
 
         return $client;
+    }
+
+    static public function validateClient($info){
+        $customer = [
+            'signing'   => isset($info['client']['signing']) ? $info['client']['signing'] : '',
+            'addresses' => isset($info['client']['addresses']) ? $info['client']['addresses'] : '',
+            'city'      => isset($info['client']['city']) ? $info['client']['city'] : '',
+            'postal_cod'=> isset($info['client']['postal_cod']) ? $info['client']['postal_cod'] : '',
+            'phone'     => isset($info['client']['phone']) ? $info['client']['phone'] : '',
+            'mobile'    => isset($info['client']['mobile']) ? $info['client']['mobile'] : '',
+            'email'     => isset($info['client']['email']) ? $info['client']['email'] : '',
+        ];
+
+        return $customer;
     }
 }

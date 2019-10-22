@@ -81,6 +81,7 @@ class LoadOrdersController extends Controller
             'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
             'data_download' => $loadOrder->data_download->toArray(),
+            'data_load' => $loadOrder->data_load->toArray(),
         ]);
 
         return view('load-orders.show', compact('infoArray'));
