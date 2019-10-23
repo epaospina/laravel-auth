@@ -12,8 +12,8 @@
         <div class="info-one">
             <label>
                 {{$loadOrders->customer->signing}}<br>
-                {{$loadOrders->customer->addresses_load}}<br>
-                {{$loadOrders->customer->city_load}} // {{$loadOrders->customer->postal_cod_load}}
+                {{$loadOrders->data_load->addresses_load}}<br>
+                {{$loadOrders->data_load->city_load}} // {{$loadOrders->data_load->postal_cod_load}}<br>
             </label>
         </div>
 
@@ -31,7 +31,6 @@
 
         <div class="info-three">
             <label>
-                {{$loadOrders->data_download->contact_download}}<br>
                 {{$loadOrders->data_download->addresses_download}}<br>
                 {{$loadOrders->data_download->city_download}} {{$loadOrders->data_download->postal_cod_download}}
             </label>
@@ -39,9 +38,9 @@
 
         <div class="info-four">
             <label>
-                {{$loadOrders->customer->addresses_load}}<br>
-                {{$loadOrders->customer->city_load}} // {{$loadOrders->customer->postal_cod_load}}<br>
                 {{$loadOrders->date_upload}}
+                {{$loadOrders->data_load->addresses_load}}<br>
+                {{$loadOrders->data_load->city_load}} // {{$loadOrders->customer->postal_cod_load}}<br>
             </label>
 
             <div class="observation">

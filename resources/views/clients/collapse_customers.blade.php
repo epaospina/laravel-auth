@@ -2,7 +2,7 @@
     <div class="card-header" id="heading{{ $key }}">
         <h2 class="mb-0">
             <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapse{{ $key }}" aria-expanded="true" aria-controls="collapse{{ $key }}">
-                <span class="num-client"> {{ $i }} </span> - Nombre: {{ $client->signing }} - Ciudad: {{ $client->city_load }}
+                <span class="num-client"> {{ $i }} </span> - Nombre: {{ $client->signing }} - Ciudad: {{ $client->city }}
             </button>
         </h2>
     </div>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use http\Client;
 use Illuminate\Database\Eloquent\Model;
 
 class LoadOrders extends Model
@@ -17,6 +18,11 @@ class LoadOrders extends Model
     public function data_download()
     {
         return $this->hasOne('App\DataDownload');
+    }
+
+    public function data_load()
+    {
+        return $this->hasOne('App\DataLoad');
     }
 
     public function bill()
@@ -36,7 +42,8 @@ class LoadOrders extends Model
             $loadOrder = new LoadOrders();
         }
 
-        $data_download = new DataDownload();
+        $dataDownload = new DataDownload();
+        $dataLoad = new DataLoad();
         $infoCars = InformationCar::findOrCreateInformationCar($infoArray, $infoArray["car"]);
 
         if ($infoCars){
@@ -51,22 +58,34 @@ class LoadOrders extends Model
             $loadOrder->save();
 
             if (!empty($loadOrder) && !empty($loadOrder->data_download)){
-                $data_download = $loadOrder->data_download;
+                $dataLoad = $loadOrder->data_load;
             }
 
-            $data_download->addresses_download = $infoArray['addresses_download'];
-            $data_download->city_download = $infoArray['city_download'];
-            $data_download->postal_cod_download = $infoArray['postal_cod_download'];
-            $data_download->contact_download = $infoArray['contact_download'];
-            $data_download->mobile_download = $infoArray['mobile_download'];
-            $data_download->load_orders_id = $loadOrder->id;
-            $data_download->driver_data_id = DriverData::all()->first()->id;//isset($infoArray['data_driver']) ? $infoArray['data_driver'] : 2;
-            $data_download->cmr = isset($infoArray['cmr']) ? $infoArray['cmr'] : " ";
-            $data_download->observations = $infoArray['observations'];
-            $data_download->save();
+            $dataLoad->addresses_load = $infoArray['addresses_load'];
+            $dataLoad->city_load = $infoArray['city_load'];
+            $dataLoad->postal_cod_load = $infoArray['postal_cod_load'];
+            $dataLoad->phone_load = $infoArray['phone_load'];
+            $dataLoad->mobile_load = $infoArray['mobile_load'];
+            $dataLoad->load_orders_id = $loadOrder->id;
+            $dataLoad->save();
 
-            if (!empty($loadOrder) && !empty($infoCars->customer) && !empty($data_download) && isset($infoArray['payment_type'])){
-                Bills::createBill($loadOrder, $infoCars->customer, $data_download, $infoArray['payment_type']);
+            if (!empty($loadOrder) && !empty($loadOrder->data_download)){
+                $dataDownload = $loadOrder->data_download;
+            }
+
+            $dataDownload->addresses_download = $infoArray['addresses_download'];
+            $dataDownload->city_download = $infoArray['city_download'];
+            $dataDownload->postal_cod_download = $infoArray['postal_cod_download'];
+            $dataDownload->contact_download = $infoArray['contact_download'];
+            $dataDownload->mobile_download = $infoArray['mobile_download'];
+            $dataDownload->load_orders_id = $loadOrder->id;
+            $dataDownload->driver_data_id = DriverData::all()->first()->id;//isset($infoArray['data_driver']) ? $infoArray['data_driver'] : 2;
+            $dataDownload->cmr = isset($infoArray['cmr']) ? $infoArray['cmr'] : " ";
+            $dataDownload->observations = $infoArray['observations'];
+            $dataDownload->save();
+
+            if (!empty($loadOrder) && !empty($infoCars->customer) && !empty($dataDownload) && !empty($dataLoad) && isset($infoArray['payment_type'])){
+                Bills::createBill($loadOrder, $infoCars->customer, $dataDownload, $infoArray['payment_type']);
             }
 
             return $loadOrder;
@@ -88,38 +107,23 @@ class LoadOrders extends Model
             ];
         }
 
-        $infoArray['client'] = [
-            'signing'                   => isset($validateInfo['client']['signing']) ? $validateInfo['client']['signing'] : '',
-            'addresses_load'            => isset($validateInfo['client']['addresses_load']) ? $validateInfo['client']['addresses_load'] : '',
-            'city_load'                 => isset($validateInfo['client']['city_load']) ? $validateInfo['client']['city_load'] : '',
-            'postal_cod_load'           => isset($validateInfo['client']['postal_cod_load']) ? $validateInfo['client']['postal_cod_load'] : '',
-            'phone_load'                => isset($validateInfo['client']['phone_load']) ? $validateInfo['client']['phone_load'] : '',
-            'mobile_load'               => isset($validateInfo['client']['mobile_load']) ? $validateInfo['client']['mobile_load'] : '',
-            'fax'                       => isset($validateInfo['client']['fax']) ? $validateInfo['client']['fax'] : '',
-        ];
-
-        $infoArray['load_order'] = [
-            'id'                        => isset($validateInfo['load_order']['hash']) ? $validateInfo['load_order']['hash'] : '',
-            'contact_person'            => isset($validateInfo['load_order']['contact_person']) ? $validateInfo['load_order']['contact_person'] : '',
-            'bill_to'                   => isset($validateInfo['load_order']['bill_to']) ? $validateInfo['load_order']['bill_to'] : '',
-            'payment_type'              => isset($validateInfo['load_order']['payment_type']) ? $validateInfo['load_order']['payment_type'] : '',
-            'import_company'            => isset($validateInfo['load_order']['import_company']) ? $validateInfo['load_order']['import_company'] : '',
-        ];
-
-        $infoArray['data_download'] = [
-            'contact_download'          => isset($validateInfo['data_download']['contact_download']) ? $validateInfo['data_download']['contact_download'] : '',
-            'addresses_download'        => isset($validateInfo['data_download']['addresses_download']) ? $validateInfo['data_download']['addresses_download'] : '',
-            'city_download'             => isset($validateInfo['data_download']['city_download']) ? $validateInfo['data_download']['city_download'] : '',
-            'postal_cod_download'       => isset($validateInfo['data_download']['postal_cod_download']) ? $validateInfo['data_download']['postal_cod_download'] : '',
-            'observations'              => isset($validateInfo['data_download']['observations']) ? $validateInfo['data_download']['observations'] : '',
-            'mobile_download'           => isset($validateInfo['data_download']['mobile_download']) ? $validateInfo['data_download']['mobile_download'] : '',
-        ];
-
-        if (auth()->id()){
-            $infoArray['data_download']['driver_data'] = isset($validateInfo['data_download']['driver_data']) ? $validateInfo['data_download']['driver_data'] : '';
-            $infoArray['data_download']['cmr'] = isset($validateInfo['data_download']['cmr']) ? $validateInfo['data_download']['cmr'] : '';
-        }
+        $infoArray['client'] = Customer::validateClient($validateInfo);
+        $infoArray['load_order'] = LoadOrders::validateLoadOrder($validateInfo);
+        $infoArray['data_load'] = DataLoad::validateDataLoad($validateInfo);
+        $infoArray['data_download'] = DataDownload::validateDataDownload($validateInfo);
 
         return $infoArray;
+    }
+
+    static public function validateLoadOrder($info){
+        $loadOrder = [
+            'id'                        => isset($info['load_order']['hash']) ? $info['load_order']['hash'] : '',
+            'contact_person'            => isset($info['load_order']['contact_person']) ? $info['load_order']['contact_person'] : '',
+            'bill_to'                   => isset($info['load_order']['bill_to']) ? $info['load_order']['bill_to'] : '',
+            'payment_type'              => isset($info['load_order']['payment_type']) ? $info['load_order']['payment_type'] : '',
+            'import_company'            => isset($info['load_order']['import_company']) ? $info['load_order']['import_company'] : '',
+        ];
+
+        return $loadOrder;
     }
 }

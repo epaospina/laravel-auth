@@ -28,10 +28,10 @@ class Bills extends Model
         $bill = new Bills();
         $bill->num_bill = rand(100,1000);
         $bill->name_client = $loadOrder->bill_to;
-        $bill->address_client = $client->addresses_load;
-        $bill->department_client = $dataDownload->city_download;
-        $bill->city_client = $dataDownload->city_download;
-        $bill->postal_cod_client = $dataDownload->postal_cod_download;
+        $bill->address_client = $client->addresses;
+        $bill->department_client = $client->city;
+        $bill->city_client = $client->city;
+        $bill->postal_cod_client = $client->postal_cod;
         $bill->load_orders_id = $loadOrder->id;
         $bill->description = $date.': '.$client->city_load.'//'.$dataDownload->city_download;
         $bill->unit_price = Services::all()->first()->precio;
@@ -44,6 +44,7 @@ class Bills extends Model
         }else{
             $bill->observations = "ninguna";
         }
+
         $bill->save();
     }
 }

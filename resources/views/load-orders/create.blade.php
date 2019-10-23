@@ -16,7 +16,6 @@
 
         <!-- One "tab" for each step in the form: -->
         <div class="tab">
-
             <h3 class="title-client">{{ __('clients.load_order') }}</h3>
 
             <div class="input-group-sm mb-3 input-client">
@@ -31,6 +30,27 @@
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.import_company') }}</span>
                 </div>
                 <input name="import_company" value="{{old('import_company')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
+                </div>
+                <input name="addresses_client" value="{{old('addresses_client')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
+                </div>
+                <input name="city_client" value="{{old('city_client')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
+                </div>
+                <input name="postal_cod_client" value="{{old('postal_cod_client')}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">

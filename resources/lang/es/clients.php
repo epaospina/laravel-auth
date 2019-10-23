@@ -16,9 +16,9 @@ return [
 
     'signing'           => 'Firma',
     'addresses'         => 'Direccion / ADRESSE',
-    'street'            => 'Calle',
-    'city'              => 'Ciudad',
-    'postal_cod'        => 'Codigo postal',
+    'street'            => 'Calle - Street',
+    'city'              => 'Ciudad - City',
+    'postal_cod'        => 'Codigo postal - Postal Cod',
     'phone'             => 'Telefono fijo / TELEFONO NR',
     'mobile'            => 'Telefono movil / HANDY NR',
     'fax'               => 'Correo Electronico / Email',
