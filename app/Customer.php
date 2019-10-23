@@ -30,15 +30,12 @@ class Customer extends Model
     }
 
     static public function findOrCreateClient($infoArray){
-        $client = Customer::all()->where('signing', $infoArray['signing'])
-            ->where('addresses', $infoArray['addresses_client'])
-            ->where('city', $infoArray['city_client'])->first();
+        $client = Customer::all()->where('signing', $infoArray['signing'])->first();
 
         if (!isset($client->id)){
             $client = new Customer();
+            self::infoClient($client, $infoArray);
         }
-
-        self::infoClient($client, $infoArray);
 
         return $client;
     }

@@ -58,11 +58,11 @@ class LoadOrders extends Model
             $loadOrder->save();
 
             if (!empty($loadOrder) && !empty($loadOrder->data_download)){
-                $data_download = $loadOrder->data_download;
+                $dataLoad = $loadOrder->data_load;
             }
 
             $dataLoad->addresses_load = $infoArray['addresses_load'];
-            $dataLoad->city_load = $infoArray['city_download'];
+            $dataLoad->city_load = $infoArray['city_load'];
             $dataLoad->postal_cod_load = $infoArray['postal_cod_load'];
             $dataLoad->phone_load = $infoArray['phone_load'];
             $dataLoad->mobile_load = $infoArray['mobile_load'];
@@ -70,7 +70,7 @@ class LoadOrders extends Model
             $dataLoad->save();
 
             if (!empty($loadOrder) && !empty($loadOrder->data_download)){
-                $data_download = $loadOrder->data_download;
+                $dataDownload = $loadOrder->data_download;
             }
 
             $dataDownload->addresses_download = $infoArray['addresses_download'];

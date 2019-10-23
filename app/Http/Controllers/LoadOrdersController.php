@@ -75,7 +75,6 @@ class LoadOrdersController extends Controller
     public function show($hash)
     {
         $loadOrder = LoadOrders::assignHash($hash);
-
         $infoArray = LoadOrders::arrayInfo([
             'infoCars' => $loadOrder->customer->infoCars->where('status', 1),
             'client' => $loadOrder->customer->toArray(),
@@ -96,12 +95,12 @@ class LoadOrdersController extends Controller
     public function edit($hash)
     {
         $loadOrder = LoadOrders::assignHash($hash);
-
         $infoArray = LoadOrders::arrayInfo([
             'infoCars' => $loadOrder->customer->infoCars->where('status', 1),
             'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
             'data_download' => $loadOrder->data_download->toArray(),
+            'data_load' => $loadOrder->data_load->toArray(),
         ]);
 
         return view('load-orders.edit', compact('infoArray'));
