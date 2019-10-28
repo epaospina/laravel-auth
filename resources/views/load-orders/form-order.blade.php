@@ -100,7 +100,7 @@
     <table class="table-load-order" style="width: 100%;">
         <tbody>
         <tr>
-            <td class="subtitle">{{ __('clients.bill_to') }}</td>
+            <td class="subtitle">{!! __('clients.bill_to') !!}</td>
             <td><input id="bill_to" value="{{$infoArray['load_order']['bill_to']}}" disabled></td>
             <td><input id="bill_to" type="hidden" value="{{$infoArray['load_order']['payment_type']}}" disabled></td>
         </tr>
