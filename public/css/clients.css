@@ -81,6 +81,9 @@ input {
     color: #969687;
     font-size: 16px;
 }
+.street-title{
+    font-size: 10px;
+}
 
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
@@ -120,6 +123,7 @@ input.invalid {
 }
 .subtitle{
     font-weight: bold;
+    width: 45%;
 }
 .itv-input{
     display: inline-flex;
@@ -160,6 +164,9 @@ td,tr{
     display: flex;
     justify-content: flex-end;
     padding: 1% 10%;
+}
+.observation{
+    width: 25%;
 }
 .btn-print{
     margin: 1%;
