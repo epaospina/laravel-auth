@@ -13,7 +13,7 @@ class ServiceTableSeeder extends Seeder
     public function run()
     {
         $service = new Services();
-        $service->nombre = 'PORTE DE VEHIULOS';
+        $service->nombre = 'PORTE DE VEHICULOS';
         $service->precio = '80';
         $service->save();
     }

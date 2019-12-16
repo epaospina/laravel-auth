@@ -8,8 +8,10 @@ use App\InformationCar;
 use App\LoadOrders;
 use App\Services;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class BillsController extends Controller
 {
@@ -26,7 +28,7 @@ class BillsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -38,7 +40,7 @@ class BillsController extends Controller
      * Display a listing of the resource.
      **
      * @param  LoadOrders $loadOrder
-     * @return Response
+     * @return Factory|View
      */
     public function showBillLoadOrder(LoadOrders $loadOrder)
     {

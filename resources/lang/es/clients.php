@@ -8,7 +8,7 @@ return [
 
     'model_car'         => 'Modelo - MODELL',
     'color_car'         => 'Color - FARBE',
-    'bill_to'           => 'Facturar transporte a / <p> TRANSPORT RECHNUNG AN </p>',
+    'bill_to'           => 'Facturar transporte a / TRANSPORT RECHNUNG AN',
     'import_company'    => 'empresa importadora / IMPORT FIRMA',
     'vin'               => 'BASTIDOR / MATRICULA',
     'itv'               => 'Pasar ITV al vehiculo / TÜV',
@@ -18,6 +18,7 @@ return [
     'addresses'         => 'Direccion / ADRESSE',
     'street'            => 'Calle - Street',
     'city'              => 'Ciudad - City',
+    'province'          => 'Provincia - Pais',
     'postal_cod'        => 'Codigo postal - Postal Cod',
     'phone'             => 'Telefono fijo / TELEFONO NR',
     'mobile'            => 'Telefono movil / HANDY NR',

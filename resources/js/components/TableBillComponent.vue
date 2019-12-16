@@ -107,9 +107,9 @@
                     <tr>
                         <td class="unit-td">
                             <!--<input v-model="quantity_car" disabled>-->
-                            <span v-model="quantity_car"> {{quantity_car}} </span>
+                            <span v-model="quantity_car">{{quantity_car}} </span>
                         </td>
-                        <td class="td-left"><label v-model="name_service">{{name_service}}</label></td>
+                        <td class="td-left"><label v-model="name_service">PORTE DE VEHICULOS<!--{{name_service}}--></label></td>
                         <td class="td-right">
                             <input v-if="allEdit" v-model="unit_price" v-on:keypress.prevent="bill_val(unit_price, $event)" class="price-td td-right">
                             <span v-else v-model="unit_price"> {{unit_price}} </span>
@@ -237,7 +237,7 @@
                     this.postal_cod_client = response.data.bill.postal_cod_client;
                     this.quantity_car = response.data.cars.length;
                     this.name_service = response.data.services.nombre;
-                    this.unit_price = (parseFloat(response.data.services.precio)).toFixed(2);
+                    this.unit_price = (parseFloat(response.data.bill.price)).toFixed(2);
                     this.price = (this.unit_price * Object.keys(response.data.cars).length).toFixed(2);
                     this.description_bill = response.data.bill.description;
                     this.iva_bill = parseFloat(response.data.bill.iva).toFixed(2);

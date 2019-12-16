@@ -51,6 +51,7 @@ class LoadOrders extends Model
             $loadOrder->contact_person = $infoArray['contact_person'];
             $loadOrder->date_upload = Carbon::now();
             $loadOrder->bill_to = $infoArray['bill_to'];
+            $loadOrder->price = $infoArray['price_order'];
             $loadOrder->import_company = $infoArray['import_company'];
             $loadOrder->save();
 
@@ -63,6 +64,7 @@ class LoadOrders extends Model
 
             $dataLoad->addresses_load = $infoArray['addresses_load'];
             $dataLoad->city_load = $infoArray['city_load'];
+            $dataLoad->date_load = $infoArray['date_load'];
             $dataLoad->postal_cod_load = $infoArray['postal_cod_load'];
             $dataLoad->phone_load = $infoArray['phone_load'];
             $dataLoad->mobile_load = $infoArray['mobile_load'];

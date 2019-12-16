@@ -1,5 +1,5 @@
 <template>
-    <p>
+    <p v-html="car">
         {{car}}
     </p>
 </template>

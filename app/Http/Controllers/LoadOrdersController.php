@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Bills;
 use App\CarsPending;
-use App\Customer;
-use App\InformationCar;
 use App\LoadOrders;
-use Faker\Provider\Uuid;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class LoadOrdersController extends Controller
 {
@@ -26,7 +25,7 @@ class LoadOrdersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -38,7 +37,7 @@ class LoadOrdersController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function create()
     {
@@ -49,7 +48,7 @@ class LoadOrdersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     * @return Response
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -63,14 +62,14 @@ class LoadOrdersController extends Controller
         return redirect()
             ->back()
             ->withInput()
-            ->withErrors(['Lo sentimos ocurrio un error al caragar los datos, intenta de nuevo']);
+            ->withErrors(['Lo sentimos ocurrio un error al caragar los datos, porfavor intenta de nuevo']);
     }
 
     /**
      * Display the specified resource.informationCar
      *
      * @param $hash
-     * @return Response
+     * @return Factory|View
      */
     public function show($hash)
     {
@@ -90,7 +89,7 @@ class LoadOrdersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param $hash
-     * @return Response
+     * @return Factory|View
      */
     public function edit($hash)
     {
@@ -124,7 +123,7 @@ class LoadOrdersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  LoadOrders $loadOrders
-     * @return Response
+     * @return Factory|View
      */
     public function cmr(LoadOrders $loadOrders)
     {
@@ -135,7 +134,7 @@ class LoadOrdersController extends Controller
      * Remove the specified resource from storage.
      *
      * @param CarsPending $carsPending
-     * @return Response
+     * @return Factory|View
      */
     public function pending(CarsPending $carsPending)
     {
@@ -162,11 +161,11 @@ class LoadOrdersController extends Controller
                     $cars[$keyLoad]['client']             = $loadOrder->customer->signing;
                     $cars[$keyLoad]['buyer']              = $loadOrder->bill_to;
                     $cars[$keyLoad]['action_do']          = 'DESCARGAR';
-                    $cars[$keyLoad]['car'][$key]          = $infoCar->model_car;
+                    $cars[$keyLoad]['car'][$key]          = $infoCar->model_car ."<br>". $infoCar->vin;
                     $cars[$keyLoad]['addresses_load']     = $loadOrder->customer->addresses_load;
                     $cars[$keyLoad]['scheduler']          = '';
                     $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download;
-                    $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download;
+                    $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download."<br>".$loadOrder->data_download->mobile_download;
                     $cars[$keyLoad]['observation']        = $loadOrder->bill->price;
                 }
             }
@@ -179,7 +178,7 @@ class LoadOrdersController extends Controller
      * Remove the specified resource from storage.
      *
      * @param $hash
-     * @return Response
+     * @return RedirectResponse
      */
     public function destroy($hash)
     {

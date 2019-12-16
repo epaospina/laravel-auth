@@ -48,6 +48,13 @@
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.province') }}</span>
+                </div>
+                <input name="province_client" value="{{old('province_client')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
                 </div>
                 <input name="postal_cod_client" value="{{old('postal_cod_client')}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
@@ -62,6 +69,13 @@
                     <option value="Transferencia Bancaria"><b>Transferencia Bancaria</b></option>
                     <option value="Recibo de banco"><b>Recibo de banco</b></option>
                 </select>
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.price') }}</span>
+                </div>
+                <input name="price_order" value="{{old('price_order')}}" type="number" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div id="create_car">
@@ -82,6 +96,13 @@
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.signing') }}</span>
                 </div>
                 <input name="signing" value="{{old('signing')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.date') }}</span>
+                </div>
+                <input name="date_load" value="{{old('date_load')}}" type="date" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">

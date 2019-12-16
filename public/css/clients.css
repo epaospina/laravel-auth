@@ -61,6 +61,7 @@ input {
     margin-top: 1%;
 }
 .title-client{
+    font-size: 12px;
     margin: 2%;
     text-align: center;
     font-weight: bold;
@@ -181,5 +182,11 @@ td,tr{
         font-size: 12px;
         border: 0;
         /*border: 1px solid #aaaaaa;*/
+    }
+    .subtitle{
+        font-size: 12px;
+    }
+    .subtitle-sign{
+        font-size: 12px;
     }
 }

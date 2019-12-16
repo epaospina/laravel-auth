@@ -44,6 +44,7 @@ class Customer extends Model
         $client->signing = $infoArray['signing'];
         $client->addresses = $infoArray['addresses_client'];
         $client->city = $infoArray['city_client'];
+        $client->province = $infoArray['province_client'];
         $client->postal_cod = $infoArray['postal_cod_client'];
         $client->phone = $infoArray['phone_load'];
         $client->mobile = $infoArray['mobile_load'];

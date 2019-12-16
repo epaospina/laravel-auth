@@ -49501,7 +49501,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.postal_cod_client = response.data.bill.postal_cod_client;
                 _this.quantity_car = response.data.cars.length;
                 _this.name_service = response.data.services.nombre;
-                _this.unit_price = parseFloat(response.data.services.precio).toFixed(2);
+                _this.unit_price = parseFloat(response.data.bill.price).toFixed(2);
                 _this.price = (_this.unit_price * Object.keys(response.data.cars).length).toFixed(2);
                 _this.description_bill = response.data.bill.description;
                 _this.iva_bill = parseFloat(response.data.bill.iva).toFixed(2);
@@ -50001,7 +50001,7 @@ var render = function() {
                         expression: "quantity_car"
                       }
                     },
-                    [_vm._v(" " + _vm._s(_vm.quantity_car) + " ")]
+                    [_vm._v(_vm._s(_vm.quantity_car) + " ")]
                   )
                 ]),
                 _vm._v(" "),
@@ -50017,7 +50017,7 @@ var render = function() {
                         expression: "name_service"
                       }
                     },
-                    [_vm._v(_vm._s(_vm.name_service))]
+                    [_vm._v("PORTE DE VEHICULOS")]
                   )
                 ]),
                 _vm._v(" "),
@@ -50596,15 +50596,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['car'],
-    data: function data() {
-        return {
-            model_car: 'cars'
-        };
-    },
+    data: function data() {},
 
 
     methods: {},
-    created: function created() {}
+    created: function created() {
+        console.log(car);
+    }
 });
 
 /***/ }),
@@ -50630,7 +50628,7 @@ var render = function() {
             expression: "car.model_car"
           }
         },
-        [_vm._v(_vm._s(_vm.car.model_car))]
+        [_vm._v(_vm._s(_vm.car.model_car) + " // " + _vm._s(_vm.car.vin))]
       )
     ]),
     _vm._v(" "),
@@ -50864,7 +50862,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("td", [_c("label", [_vm._v("CLIENTE")])]),
+      _c("td", [_c("label", [_vm._v("PERSONA DE CONTACTO")])]),
       _vm._v(" "),
       _c("td", [_c("label", [_vm._v("COMPRADOR")])]),
       _vm._v(" "),
@@ -51027,7 +51025,9 @@ var render = function() {
     _vm._v(" "),
     _c("td", [_vm._v(_vm._s(_vm.tr.addresses_download))]),
     _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.tr.contact))]),
+    _c("td", { domProps: { innerHTML: _vm._s(_vm.tr.contact) } }, [
+      _vm._v(_vm._s(_vm.tr.contact))
+    ]),
     _vm._v(" "),
     _c("td", { staticStyle: { width: "10%", padding: "1%" } }, [
       _vm.title
@@ -51202,7 +51202,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("\n    " + _vm._s(_vm.car) + "\n")])
+  return _c("p", { domProps: { innerHTML: _vm._s(_vm.car) } }, [
+    _vm._v("\n    " + _vm._s(_vm.car) + "\n")
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

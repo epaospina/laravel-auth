@@ -7,6 +7,18 @@
     <label>
         Ingrese la matricula para el camion
         <input onkeyup="$('#span-car').text($(this).val())" placeholder="Matricula del camion">
+        <div class="control">
+            <label class="radio">
+                <input type="radio" name="type_obsevation"
+                       onclick="$('#observationLabel').text('COCHES USADOS, DA&#241;ADOS Y SUCIEDAD PROPIOS DEL USO')">
+                Coches Internacionales
+            </label>
+            <label class="radio">
+                <input type="radio" name="type_obsevation"
+                       onclick="$('#observationLabel').text('COCHES NUEVOS')">
+                Coches Nacionales
+            </label>
+        </div>
     </label>
     <div class="container-cmr" id="contentCmr">
         <div class="info-one">
@@ -19,7 +31,7 @@
 
         <div class="info-two">
             <label>
-                {{$loadOrders->data_download->contact_download}}<br>
+                {{$loadOrders->bill_to}}<br>
                 {{$loadOrders->data_download->addresses_download}}<br>
                 {{$loadOrders->data_download->city_download}} {{$loadOrders->data_download->postal_cod_download}}
             </label>
@@ -38,13 +50,13 @@
 
         <div class="info-four">
             <label>
-                {{$loadOrders->date_upload}}
+                {{$loadOrders->data_load->date_load}}
                 {{$loadOrders->data_load->addresses_load}}<br>
-                {{$loadOrders->data_load->city_load}} // {{$loadOrders->customer->postal_cod_load}}<br>
+                {{$loadOrders->data_load->city_load}} // {{$loadOrders->data_load->postal_cod_load}}<br>
             </label>
 
             <div class="observation">
-                <label class="info-text">{{$loadOrders->data_download->observations}}</label>
+                <label class="info-text" id="observationLabel"></label>
             </div>
         </div>
 
@@ -54,6 +66,12 @@
                 <label>{{$infoCar->vin}}</label>
             </div>
         @endforeach
+
+        <div class="info-five">
+            <label>
+                {{$loadOrders->data_load->date_load}}
+            </label>
+        </div>
     </div>
 @endsection
 @push('js')
