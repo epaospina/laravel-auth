@@ -24,6 +24,7 @@ return [
     'mobile'            => 'Telefono movil / HANDY NR',
     'fax'               => 'Correo Electronico / Email',
     'contact_person'    => 'Persona de contacto / ANSPRECHPARTNER',
+    'price'             => 'Precio',
 
     'data_driver'       => 'Datos del conductor',
     'observations'      => 'Observaciones',
