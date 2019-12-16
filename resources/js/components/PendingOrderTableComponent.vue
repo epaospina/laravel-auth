@@ -13,7 +13,7 @@
         <td>{{tr.addresses_load}}</td>
         <td>{{tr.schedule}}</td>
         <td>{{tr.addresses_download}}</td>
-        <td>{{tr.contact}}</td>
+        <td v-html="tr.contact">{{tr.contact}}</td>
         <td style="width: 10%; padding: 1%;">
             <div v-if="title" style="text-align: center;align-items: baseline;">
                 <span v-model="tr.observation" @click="title = false">{{tr.observation}}</span>

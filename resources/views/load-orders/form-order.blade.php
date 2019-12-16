@@ -62,7 +62,7 @@
             <td><input id="signing" value="{{$infoArray['client']['signing']}}" disabled></td>
         </tr>
         <tr>
-            <td class="subtitle">{{ __('clients.addresses') }} <p class="street-title">( {{ __('clients.street') }} / {{ __('clients.city') }} / {{ __('clients.postal_cod') }})</p></td>
+            <td class="subtitle">{{ __('clients.addresses') }}</td>
             <td><input id="addresses_load" value="{{$infoArray['data_load']['addresses_load']}} // {{$infoArray['data_load']['city_load']}} // {{$infoArray['data_load']['postal_cod_load']}}" disabled></td>
         </tr>
         <tr>

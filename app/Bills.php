@@ -29,12 +29,12 @@ class Bills extends Model
         $bill->num_bill = rand(100,1000);
         $bill->name_client = $loadOrder->bill_to;
         $bill->address_client = $client->addresses;
-        $bill->department_client = $client->city;
+        $bill->department_client = $client->province;
         $bill->city_client = $client->city;
         $bill->postal_cod_client = $client->postal_cod;
         $bill->load_orders_id = $loadOrder->id;
-        $bill->description = $date.': '.$client->city_load.'//'.$dataDownload->city_download;
-        $bill->unit_price = Services::all()->first()->precio;
+        $bill->description = $date.': '.$loadOrder->data_load->city_load.'//'.$dataDownload->city_download;
+        $bill->unit_price = $loadOrder->price;
         $bill->price = ($bill->unit_price*($client->infoCars->count()));
         $bill->iva = 0.21*$bill->price;
         $bill->payment_type = $payment_type;

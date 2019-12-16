@@ -17,7 +17,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <td><label>CLIENTE</label></td>
+                        <td><label>PERSONA DE CONTACTO</label></td>
                         <td><label>COMPRADOR</label></td>
                         <td><label>ACCION</label></td>
                         <td><label>VEHICULO</label></td>

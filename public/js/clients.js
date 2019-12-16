@@ -32,7 +32,7 @@ function validateForm() {
     x = document.getElementsByClassName("tab");
     y = x[currentTab].getElementsByTagName("input");
     for (i = 0; i < y.length; i++) {
-        if (y[i].name !== "data_driver" && y[i].name !== "cmr"){
+        if (y[i].name !== "data_driver" && y[i].name !== "cmr" && y[i].name !== "phone_load" && y[i].name.substr(-11) !== "[color_car]"){
             if (y[i].value === "" && y[i].type !== "radio") {
                 y[i].className += " invalid";
                 valid = false;

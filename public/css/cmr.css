@@ -192,7 +192,8 @@ label{
     border: transparent;
 }
 .matricula-camion{
-    margin: 1% 0;
+    margin: 1cm 0 0 0.5cm;
+    font-size: 11px;
 }
 .info-three{
     padding-left: 1.3cm;
@@ -209,8 +210,15 @@ label{
 }
 .info-cars{
     display: flex;
-    width: 35%;
+    width: 60%;
     padding-left: 1.6cm;
+    height: 10cm;
+}
+.info-cars label{
+    font-size: 10px;
+}
+.info-five{
+    padding-left: 5.6cm;
 }
 .text-xs-p{
     font-size: 6px !important;
