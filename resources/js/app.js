@@ -6,10 +6,21 @@
  */
 
 import Vue from 'vue';
-import VueHtmlToPaper from 'vue-html-to-paper';
-require('./bootstrap');
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 
 window.Vue = require('vue');
+Vue.use(VueAxios, axios);
+
+// Install BootstrapVue
+Vue.use(BootstrapVue);
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin);
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 /**
  * The following block of code may be used to automatically register your
@@ -25,9 +36,7 @@ Vue.component('table-car-component', require('./components/TableCarComponent.vue
 Vue.component('pending-order-component', require('./components/PendingOrderComponent.vue'));
 Vue.component('pending-order-table-component', require('./components/PendingOrderTableComponent.vue'));
 Vue.component('pending-order-car-component', require('./components/PendingOrderCarComponent.vue'));
-
-
-Vue.use(VueHtmlToPaper);
+Vue.component('table-load-order', require('./components/TableLoadOrder.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

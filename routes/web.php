@@ -18,6 +18,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::redirect('/home', '/');
 Route::get('load-orders/','LoadOrdersController@index')->name('load-orders.index');
+Route::get('load-orders/list','LoadOrdersController@listOrders')->name('load-orders.list-orders');
 Route::delete('load-orders/{parameter}','LoadOrdersController@destroy')->name('load-orders.destroy');
 Route::get('load-orders/create','LoadOrdersController@create')->name('load-orders.create');
 Route::post('load-orders/store','LoadOrdersController@store')->name('load-orders.store');

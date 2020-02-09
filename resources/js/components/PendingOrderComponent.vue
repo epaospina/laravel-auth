@@ -52,7 +52,7 @@
 
         methods:{
             list(){
-                axios.get('/load-orders/pending-api/cars/'+this.cars_pending_id).then(response => {
+                Vue.axios.get('/load-orders/pending-api/cars/'+this.cars_pending_id).then(response => {
                     this.trs = response.data;
                 })
             },

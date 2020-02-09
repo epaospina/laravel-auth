@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'load_order'        => 'ORDEN DE CARGA PARA '.env('TITLE_HOME', 'MC Vehiculos').' / ABHOLSCHEIN',
+    'load_order'        => 'ORDEN DE CARGA PARA '.env('TITLE_HOME', 'MC Vehiculos'),
     'data_car'          => 'DATOS DEL VEHICULO / FAHRZEUGDATEN',
     'load_place'        => 'LUGAR DE CARGA / FAHRZEUGSTANTDORT',
     'download_place'    => 'LUGAR DE DESCARGUE / LIEFERADRESSE',

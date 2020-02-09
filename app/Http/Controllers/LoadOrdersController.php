@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CarsPending;
 use App\LoadOrders;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -32,6 +33,21 @@ class LoadOrdersController extends Controller
         $load_orders = LoadOrders::all()->where('status', true);
         return view('load-orders.index', compact('load_orders'))
             ->with('i', 0);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return LoadOrders[]|Collection
+     */
+    public function listOrders()
+    {
+        $loadOrders = LoadOrders::all()->where('status', true);
+        foreach ($loadOrders as $loadOrder){
+            $loadOrder->customer;
+            $loadOrder->customer->infoCars;
+        }
+        return $loadOrders;
     }
 
     /**

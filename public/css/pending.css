@@ -52,3 +52,10 @@ table{
     font-size: 20px;
     text-shadow: 2px 1px #f39c2f;
 }
+
+@media screen and (max-width: 600px) {
+    .t-load-order td:nth-child(3), .t-load-order th:nth-child(3),
+    .t-load-order td:nth-child(5), .t-load-order th:nth-child(5) {
+        display: none;
+    }
+}
