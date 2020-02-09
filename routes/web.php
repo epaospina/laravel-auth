@@ -21,6 +21,8 @@ Route::get('load-orders/','LoadOrdersController@index')->name('load-orders.index
 Route::get('load-orders/list','LoadOrdersController@listOrders')->name('load-orders.list-orders');
 Route::delete('load-orders/{parameter}','LoadOrdersController@destroy')->name('load-orders.destroy');
 Route::get('load-orders/create','LoadOrdersController@create')->name('load-orders.create');
+Route::get('load-orders/filter/{filter}','LoadOrdersController@filter')->name('load-orders.filter');
+Route::get('load-orders/get-filter/{filter}','LoadOrdersController@getFilter')->name('load-orders.getFilter');
 Route::post('load-orders/store','LoadOrdersController@store')->name('load-orders.store');
 Route::get('load-orders/{parameter}','LoadOrdersController@show')->name('load-orders.show');
 Route::get('load-orders/{parameter}/edit','LoadOrdersController@edit')->name('load-orders.edit');

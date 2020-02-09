@@ -22,7 +22,10 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.bill_to') }}</span>
                 </div>
-                <input name="bill_to" type="text" value="{{old('bill_to')}}" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input id="bill_to" onkeyup="searchCustomer(this)" name="bill_to" type="text" value="{{old('bill_to')}}" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div id="customerComplete">
+
             </div>
 
             <div class="input-group-sm mb-3 input-client">
@@ -36,28 +39,28 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
                 </div>
-                <input name="addresses_client" value="{{old('addresses_client')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input id="addresses_client" name="addresses_client" value="{{old('addresses_client')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
                 </div>
-                <input name="city_client" value="{{old('city_client')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input id="city_client" name="city_client" value="{{old('city_client')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.province') }}</span>
                 </div>
-                <input name="province_client" value="{{old('province_client')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input id="province_client" name="province_client" value="{{old('province_client')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
                 </div>
-                <input name="postal_cod_client" value="{{old('postal_cod_client')}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input id="postal_cod_client" name="postal_cod_client" value="{{old('postal_cod_client')}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client">

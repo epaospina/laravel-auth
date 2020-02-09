@@ -51180,6 +51180,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['loadOrder'],
@@ -51219,17 +51221,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             label: 'Compañía',
             sortable: true
         }, {
-            key: 'date_upload',
-            label: 'Fecha de carga',
+            key: 'customer.city',
+            label: 'Ciudad',
             sortable: true
         }, {
-            key: '_showDetails',
-            label: 'Detalle',
+            key: 'customer.phone',
+            label: 'Contacto',
+            sortable: true
+        }, {
+            key: 'date_upload',
+            label: 'Fecha de carga',
             sortable: true
         }];
         Vue.axios.get('load-orders/list').then(function (response) {
             var createItems = [];
             $.each(response.data, function (key, value) {
+                console.log(value);
                 value['_showDetails'] = false;
                 createItems.push(value);
             });
@@ -51331,55 +51338,6 @@ var render = function() {
         on: { "row-clicked": _vm.onRowSelected },
         scopedSlots: _vm._u([
           {
-            key: "cell(_showDetails)",
-            fn: function(row) {
-              return [
-                _c(
-                  "b-link",
-                  {
-                    staticClass: "btn btn-outline-primary",
-                    attrs: { href: "/load-orders/" + row.item.hash }
-                  },
-                  [_c("i", { staticClass: "fas fa-stream" })]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-link",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { href: "/load-orders/" + row.item.hash + "/edit" }
-                  },
-                  [_c("i", { staticClass: "fas fa-edit" })]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-link",
-                  {
-                    staticClass: "btn btn-danger",
-                    on: {
-                      click: function($event) {
-                        return _vm.deleteItem(row)
-                      }
-                    }
-                  },
-                  [_c("i", { staticClass: "fas fa-trash-alt" })]
-                )
-              ]
-            }
-          },
-          {
-            key: "cell(contact_person)",
-            fn: function(row) {
-              return [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(row.item.contact_person) +
-                    "\n        "
-                )
-              ]
-            }
-          },
-          {
             key: "row-details",
             fn: function(row) {
               return [
@@ -51410,6 +51368,85 @@ var render = function() {
                         )
                       ],
                       1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-link",
+                      {
+                        staticClass: "btn btn-outline-primary",
+                        attrs: { href: "/load-orders/" + row.item.hash }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Ver Orden de carga\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-link",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: {
+                          href: "/load-orders/" + row.item.hash + "/edit"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Editar Orden de carga\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-link",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteItem(row)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Eiminar Cliente\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-link",
+                      {
+                        staticClass: "btn btn-outline-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteItem(row)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Ver CMR\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-link",
+                      {
+                        staticClass: "btn btn-outline-primary",
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteItem(row)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Ver Factura\n                "
+                        )
+                      ]
                     )
                   ],
                   1

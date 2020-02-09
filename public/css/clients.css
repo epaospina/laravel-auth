@@ -172,6 +172,10 @@ td,tr{
 .btn-print{
     margin: 1%;
 }
+.content-customer{
+    display: flex;
+    flex-flow: wrap;
+}
 @media print {
     .btn-not-print{
         display: none;

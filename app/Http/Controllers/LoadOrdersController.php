@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\CarsPending;
+use App\Customer;
 use App\LoadOrders;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class LoadOrdersController extends Controller
@@ -211,5 +213,18 @@ class LoadOrdersController extends Controller
         return redirect()->route('load-orders.index', compact('load_orders'))
             ->with('i', 0)
             ->with('success','Registro eliminado satisfactoriamente');
+    }
+
+    public function filter($filter){
+        if (strlen($filter) >= 3){
+            return DB::table('customer')
+                ->where('signing', 'LIKE', '%'.$filter.'%')
+                ->get();
+        }
+        return '';
+    }
+
+    public function getFilter($filter){
+        return Customer::all()->find($filter);
     }
 }

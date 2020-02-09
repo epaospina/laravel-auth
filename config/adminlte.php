@@ -115,13 +115,13 @@ return [
                     'url'  => 'load-orders/create',
                     'icon' => 'fas fa-user-plus'
                 ],
-                [
+                /*[
                     'text' => 'listar clientes',
                     'url'  => 'clients/',
                     'icon' => 'fas fa-user-plus'
-                ],
+                ],*/
                 [
-                    'text' => 'list_order',
+                    'text' => 'listar clientes',
                     'url'  => 'load-orders',
                     'icon' => 'fas fa-user-plus'
                 ],

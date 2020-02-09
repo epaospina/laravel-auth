@@ -38,20 +38,6 @@
             select-mode="single"
             :filter="filter"
         >
-            <template v-slot:cell(_showDetails)="row">
-                <b-link :href="'/load-orders/' + row.item.hash" class="btn btn-outline-primary">
-                    <i class="fas fa-stream"></i>
-                </b-link>
-                <b-link :href="'/load-orders/' + row.item.hash + '/edit'" class="btn btn-primary">
-                    <i class="fas fa-edit"></i>
-                </b-link>
-                <b-link @click="deleteItem(row)" class="btn btn-danger">
-                    <i class="fas fa-trash-alt"></i>
-                </b-link>
-            </template>
-            <template v-slot:cell(contact_person)="row">
-                {{ row.item.contact_person }}
-            </template>
             <template v-slot:row-details="row">
                 <b-card>
                     <b-row class="px-4">
@@ -64,6 +50,22 @@
                             >{{ infoCars.vin }}</b-form-checkbox>
                         </b-form-group>
                     </b-row>
+
+                    <b-link :href="'/load-orders/' + row.item.hash" class="btn btn-outline-primary">
+                        Ver Orden de carga
+                    </b-link>
+                    <b-link :href="'/load-orders/' + row.item.hash + '/edit'" class="btn btn-primary">
+                        Editar Orden de carga
+                    </b-link>
+                    <b-link @click="deleteItem(row)" class="btn btn-danger">
+                        Eiminar Cliente
+                    </b-link>
+                    <b-link @click="deleteItem(row)" class="btn btn-outline-primary">
+                        Ver CMR
+                    </b-link>
+                    <b-link @click="deleteItem(row)" class="btn btn-outline-primary">
+                        Ver Factura
+                    </b-link>
                 </b-card>
             </template>
         </b-table>
@@ -109,19 +111,25 @@
                     sortable: true
                 },
                 {
-                    key: 'date_upload',
-                    label: 'Fecha de carga',
+                    key: 'customer.city',
+                    label: 'Ciudad',
                     sortable: true
                 },
                 {
-                    key: '_showDetails',
-                    label: 'Detalle',
+                    key: 'customer.phone',
+                    label: 'Contacto',
+                    sortable: true
+                },
+                {
+                    key: 'date_upload',
+                    label: 'Fecha de carga',
                     sortable: true
                 }
             ];
             Vue.axios.get('load-orders/list').then((response) => {
                 let createItems = [];
                 $.each(response.data, function(key, value) {
+                    console.log(value);
                     value['_showDetails'] = false;
                     createItems.push(value);
                 });
