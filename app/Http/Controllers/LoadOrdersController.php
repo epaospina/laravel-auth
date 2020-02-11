@@ -7,6 +7,7 @@ use App\Customer;
 use App\LoadOrders;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -50,6 +51,35 @@ class LoadOrdersController extends Controller
             $loadOrder->customer->infoCars;
         }
         return $loadOrders;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function consultcarsPending()
+    {
+        return DB::table('information_car')
+            ->where('status', true)
+            ->where('is_pending', '=', false)
+            ->join('customer', 'customer.id', '=', 'customer_id')
+            ->get();
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Factory|View
+     */
+    public function consultCarsOldLoad()
+    {
+        $loadOrders = DB::table('information_car')
+            ->where('status', true)
+            ->where('is_pending', '=', false)
+            ->join('customer', 'customer.id', '=', 'customer_id')
+            ->get();
+        return view('load-orders.cars-pending');
     }
 
     /**
@@ -226,5 +256,9 @@ class LoadOrdersController extends Controller
 
     public function getFilter($filter){
         return Customer::all()->find($filter);
+    }
+
+    public function listCountry(){
+        return DB::table('customer')->pluck('city')->toArray();
     }
 }

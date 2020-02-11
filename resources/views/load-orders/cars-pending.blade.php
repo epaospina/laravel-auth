@@ -4,7 +4,7 @@
 @endpush
 @section('content')
     <div id="app">
-        <table-load-order></table-load-order>
+        <table-cars-pending></table-cars-pending>
     </div>
 @endsection
 @push('js')

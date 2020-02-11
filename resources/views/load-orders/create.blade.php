@@ -67,10 +67,11 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Forma de pago</span>
                 </div>
-                <select name="payment_type">
+                <select class="custom-select" onchange="changeType(this)" name="payment_type">
                     {{--<option value="0"><b>Seleccione una opcion</b></option>--}}
                     <option value="Transferencia Bancaria"><b>Transferencia Bancaria</b></option>
                     <option value="Recibo de banco"><b>Recibo de banco</b></option>
+                    <option value="otros"><b>otros</b></option>
                 </select>
             </div>
 
@@ -87,7 +88,7 @@
                 </div>
             </div>
             <br>
-            <div id="btnAddCar" class="btn btn-bitbucket" data-car="0" onclick="addCarForm()">Agregar coche</div>
+            <div id="btnAddCar" class="btn btn-secondary" data-car="0" onclick="addCarForm()">Agregar coche</div>
         </div>
 
         <div class="tab">

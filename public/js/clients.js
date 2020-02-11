@@ -147,3 +147,9 @@ function assignDataCustomer(id) {
         }
     });
 }
+
+function changeType(selectType) {
+    if ($(selectType).val() === 'otros'){
+        $(selectType).after('<input class="m-2 col-4" type="text" placeholder="Cual?"/>')
+    }
+}

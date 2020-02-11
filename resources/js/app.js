@@ -37,6 +37,8 @@ Vue.component('pending-order-component', require('./components/PendingOrderCompo
 Vue.component('pending-order-table-component', require('./components/PendingOrderTableComponent.vue'));
 Vue.component('pending-order-car-component', require('./components/PendingOrderCarComponent.vue'));
 Vue.component('table-load-order', require('./components/TableLoadOrder.vue'));
+Vue.component('table-old-load', require('./components/TableOldLoad.vue'));
+Vue.component('table-pending', require('./components/TablePending.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

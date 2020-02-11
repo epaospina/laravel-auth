@@ -140,7 +140,7 @@
                     sortable: true
                 }
             ];
-            Vue.axios.get('load-orders/list').then((response) => {
+            Vue.axios.get('load-orders/cars-pending').then((response) => {
                 let createItems = [];
                 $.each(response.data, function(key, value) {
                     console.log(value);

@@ -11,7 +11,6 @@ function selectCars() {
     let data = {
       cars: arrayCars
     };
-    console.log(data);
     $.post('/load-orders/pending/select-cars', data, function (data) {
         window.location = data;
     });

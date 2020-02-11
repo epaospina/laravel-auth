@@ -223,3 +223,7 @@ td,tr{
         justify-content: space-between;
     }
 }
+.footer-btn{
+    display: flex;
+    flex-flow: row-reverse;
+}

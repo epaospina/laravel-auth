@@ -115,14 +115,24 @@ return [
                     'url'  => 'load-orders/create',
                     'icon' => 'fas fa-user-plus'
                 ],
-                /*[
-                    'text' => 'listar clientes',
+                [
+                    'text' => 'facturas',
                     'url'  => 'clients/',
                     'icon' => 'fas fa-user-plus'
-                ],*/
+                ],
                 [
                     'text' => 'listar clientes',
                     'url'  => 'load-orders',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'pendientes',
+                    'url'  => 'load-orders/cars-pending',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'vehiculos cargados',
+                    'url'  => 'load-orders/cars-old-load',
                     'icon' => 'fas fa-user-plus'
                 ],
             ],

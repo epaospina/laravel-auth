@@ -51060,6 +51060,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(330)
+}
 var normalizeComponent = __webpack_require__(27)
 /* script */
 var __vue_script__ = __webpack_require__(321)
@@ -51068,7 +51072,7 @@ var __vue_template__ = __webpack_require__(322)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -51182,6 +51186,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['loadOrder'],
@@ -51189,7 +51201,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             fields: [],
             items: [],
-            filter: null
+            filter: null,
+            countries: []
         };
     },
 
@@ -51207,10 +51220,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
                 this.items = createItems;
             });*/
+        },
+        countriesList: function countriesList() {
+            var _this = this;
+
+            Vue.axios.get('load-orders/list-country').then(function (response) {
+                _this.countries = response.data;
+            });
         }
     },
     created: function created() {
-        var _this = this;
+        var _this2 = this;
 
         this.fields = [{
             key: 'contact_person',
@@ -51240,8 +51260,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 value['_showDetails'] = false;
                 createItems.push(value);
             });
-            _this.items = createItems;
+            _this2.items = createItems;
         });
+        this.countriesList();
     }
 });
 
@@ -51257,25 +51278,28 @@ var render = function() {
     "div",
     [
       _c(
-        "b-col",
-        { staticClass: "my-1", attrs: { lg: "6" } },
+        "b-card",
+        { staticClass: "m-2" },
         [
+          _c(
+            "b-link",
+            {
+              staticClass: "btn btn-primary col-2",
+              attrs: { id: "pending", onclick: "selectCars()" }
+            },
+            [_vm._v("pendientes")]
+          ),
+          _vm._v(" "),
           _c(
             "b-form-group",
             {
-              staticClass: "mb-0",
-              attrs: {
-                label: "Filter",
-                "label-cols-sm": "3",
-                "label-align-sm": "right",
-                "label-size": "sm",
-                "label-for": "filterInput"
-              }
+              staticClass: "my-2",
+              attrs: { label: "", "label-for": "filterInput" }
             },
             [
               _c(
                 "b-input-group",
-                { attrs: { size: "sm" } },
+                { staticClass: "col-4" },
                 [
                   _c("b-form-input", {
                     attrs: {
@@ -51305,13 +51329,41 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Clear")]
+                        [_vm._v("limpiar")]
                       )
                     ],
                     1
                   )
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "my-2 col-4",
+                  model: {
+                    value: _vm.filter,
+                    callback: function($$v) {
+                      _vm.filter = $$v
+                    },
+                    expression: "filter"
+                  }
+                },
+                [
+                  _c("b-form-select-option", { attrs: { value: null } }, [
+                    _vm._v("filtrar pais")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country, index) {
+                    return _c(
+                      "b-form-select-option",
+                      { key: index, attrs: { value: country } },
+                      [_vm._v(_vm._s(country))]
+                    )
+                  })
+                ],
+                2
               )
             ],
             1
@@ -51322,6 +51374,8 @@ var render = function() {
       _vm._v(" "),
       _c("b-table", {
         attrs: {
+          "head-variant": "dark",
+          "table-variant": "secondary",
           striped: "",
           hover: "",
           items: _vm.items,
@@ -51351,19 +51405,67 @@ var render = function() {
                         _c(
                           "b-form-group",
                           { attrs: { label: "INFORMACION DE LOS COCHES" } },
-                          _vm._l(row.item.customer.info_cars, function(
-                            infoCars,
-                            index
-                          ) {
-                            return _c(
-                              "b-form-checkbox",
-                              {
-                                key: index,
-                                attrs: { value: infoCars.id, switch: "" }
-                              },
-                              [_vm._v(_vm._s(infoCars.vin))]
+                          [
+                            _c(
+                              "b-list-group",
+                              _vm._l(row.item.customer.info_cars, function(
+                                infoCars,
+                                index
+                              ) {
+                                return _c(
+                                  "b-list-group-item",
+                                  [
+                                    _c(
+                                      "b-form-checkbox",
+                                      {
+                                        key: index,
+                                        attrs: {
+                                          value: infoCars.id,
+                                          switch: ""
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(infoCars.vin))]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-link",
+                                      {
+                                        staticClass: "btn btn-outline-primary",
+                                        attrs: {
+                                          href: "/load-orders/" + row.item.hash
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Ver Orden de carga\n                                "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "b-link",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        attrs: {
+                                          href:
+                                            "/load-orders/" +
+                                            row.item.hash +
+                                            "/edit"
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Editar Orden de carga\n                                "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              }),
+                              1
                             )
-                          }),
+                          ],
                           1
                         )
                       ],
@@ -51371,82 +51473,61 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c(
-                      "b-link",
-                      {
-                        staticClass: "btn btn-outline-primary",
-                        attrs: { href: "/load-orders/" + row.item.hash }
-                      },
+                      "div",
+                      { staticClass: "footer-btn" },
                       [
-                        _vm._v(
-                          "\n                    Ver Orden de carga\n                "
+                        _c(
+                          "b-link",
+                          {
+                            staticClass: "btn btn-danger",
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteItem(row)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        Eiminar Cliente\n                    "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-link",
+                          {
+                            staticClass: "btn btn-outline-primary",
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteItem(row)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        Ver CMR\n                    "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-link",
+                          {
+                            staticClass: "btn btn-outline-primary",
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteItem(row)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        Ver Factura\n                    "
+                            )
+                          ]
                         )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-link",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: {
-                          href: "/load-orders/" + row.item.hash + "/edit"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    Editar Orden de carga\n                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-link",
-                      {
-                        staticClass: "btn btn-danger",
-                        on: {
-                          click: function($event) {
-                            return _vm.deleteItem(row)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    Eiminar Cliente\n                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-link",
-                      {
-                        staticClass: "btn btn-outline-primary",
-                        on: {
-                          click: function($event) {
-                            return _vm.deleteItem(row)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    Ver CMR\n                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-link",
-                      {
-                        staticClass: "btn btn-outline-primary",
-                        on: {
-                          click: function($event) {
-                            return _vm.deleteItem(row)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    Ver Factura\n                "
-                        )
-                      ]
+                      ],
+                      1
                     )
                   ],
                   1
@@ -51475,6 +51556,311 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(328)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
+
+  options = _options || {}
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 328 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+/* 329 */,
+/* 330 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(331);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(327)("0291c7b4", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f73fa7f6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TableLoadOrder.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-f73fa7f6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TableLoadOrder.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(236)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.footer-btn{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: reverse;\n        -ms-flex-flow: row-reverse;\n            flex-flow: row-reverse;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
