@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CarsPending;
 use App\Customer;
+use App\InformationCar;
 use App\LoadOrders;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
@@ -33,9 +34,7 @@ class LoadOrdersController extends Controller
      */
     public function index()
     {
-        $load_orders = LoadOrders::all()->where('status', true);
-        return view('load-orders.index', compact('load_orders'))
-            ->with('i', 0);
+        return view('load-orders.index');
     }
 
     /**
@@ -58,12 +57,14 @@ class LoadOrdersController extends Controller
      *
      * @return \Illuminate\Support\Collection
      */
-    public function consultcarsPending()
+    public function consultCarsPending()
     {
-        return DB::table('information_car')
-            ->where('status', true)
-            ->where('is_pending', '=', false)
+        return DB::table('information_car as car')
+            ->select('car.id', 'car.model_car', 'car.vin',
+                'customer.signing', 'customer.city', 'customer.phone')
             ->join('customer', 'customer.id', '=', 'customer_id')
+            ->where('status', true)
+            ->where('is_pending', '=', true)
             ->get();
     }
 
@@ -72,14 +73,37 @@ class LoadOrdersController extends Controller
      *
      * @return Factory|View
      */
+    public function carsPending()
+    {
+        $load_orders = LoadOrders::all()->where('status', true);
+        return view('load-orders.cars-pending', compact('load_orders'))
+            ->with('i', 0);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Factory|View
+     */
+    public function carsOldLoad()
+    {
+        return view('load-orders.cars-old-load');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Support\Collection
+     */
     public function consultCarsOldLoad()
     {
-        $loadOrders = DB::table('information_car')
+        return DB::table('information_car as car')
+            ->select('car.id', 'car.model_car', 'car.vin',
+                'customer.signing', 'customer.city', 'customer.phone')
+            ->join('customer', 'customer.id', '=', 'customer_id')
             ->where('status', true)
             ->where('is_pending', '=', false)
-            ->join('customer', 'customer.id', '=', 'customer_id')
             ->get();
-        return view('load-orders.cars-pending');
     }
 
     /**
@@ -191,8 +215,19 @@ class LoadOrdersController extends Controller
 
     public function pendingCars(Request $request)
     {
+        $carsId = '';
+        foreach ($request->cars as $car){
+            if ($carsId === ''){
+                $carsId = $car['id'];
+            }else{
+                $carsId = $carsId.','.$car['id'];
+            }
+            $infocar = InformationCar::query()->find($car['id']);
+            $infocar->is_pending = false;
+            $infocar->save();
+        }
         $carsPending = new CarsPending();
-        $carsPending->array_cars = $request->cars;
+        $carsPending->array_cars = $carsId;
         $carsPending->user_id = auth()->id();
         $carsPending->save();
 

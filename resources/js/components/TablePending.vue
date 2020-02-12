@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-card class="m-2">
-            <b-link class="btn btn-primary col-2" id="pending" onclick="selectCars()">pendientes</b-link>
+            <b-link class="btn btn-primary col-2" id="pending" @click="selectCars">pendientes</b-link>
             <b-form-group
                 label=""
                 label-for="filterInput"
@@ -37,46 +37,21 @@
             fixed
             selectable
             responsive="sm"
-            @row-clicked="onRowSelected"
-            select-mode="single"
+            @row-selected="onRowSelected"
+            :select-mode="'multiple'"
             :filter="filter"
+            ref="selectableTable"
         >
-            <template v-slot:row-details="row">
-                <b-card>
-                    <b-row class="px-4">
-                        <b-form-group label="INFORMACION DE LOS COCHES">
-                            <b-list-group>
-                                <b-list-group-item v-for="(infoCars, index) in row.item.customer.info_cars">
-                                    <b-form-checkbox
-                                        :key="index"
-                                        :value="infoCars.id"
-                                        switch
-                                    >{{ infoCars.vin }}</b-form-checkbox>
-
-                                    <b-link :href="'/load-orders/' + row.item.hash" class="btn btn-outline-primary">
-                                        Ver Orden de carga
-                                    </b-link>
-                                    <b-link :href="'/load-orders/' + row.item.hash + '/edit'" class="btn btn-primary">
-                                        Editar Orden de carga
-                                    </b-link>
-                                </b-list-group-item>
-                            </b-list-group>
-                        </b-form-group>
-                    </b-row>
-                    <div class="footer-btn">
-                        <b-link @click="deleteItem(row)" class="btn btn-danger">
-                            Eiminar Cliente
-                        </b-link>
-                        <b-link @click="deleteItem(row)" class="btn btn-outline-primary">
-                            Ver CMR
-                        </b-link>
-                        <b-link @click="deleteItem(row)" class="btn btn-outline-primary">
-                            Ver Factura
-                        </b-link>
-                    </div>
-                </b-card>
+            <template v-slot:cell(selected)="{rowSelected}">
+                <b-form-checkbox
+                    v-if="rowSelected"
+                    v-model="rowSelected"
+                    name="check-button" button>
+                    <b>SELECCIONADO</b>
+                </b-form-checkbox>
             </template>
         </b-table>
+        {{selected}}
     </div>
 </template>
 
@@ -88,12 +63,13 @@
                 fields: [],
                 items: [],
                 filter: null,
-                countries: []
+                countries: [],
+                selected: []
             }
         },
         methods:{
             onRowSelected(items) {
-                items['_showDetails'] = !items['_showDetails'];
+                this.selected = items
             },
             deleteItem(row){
                 this.items.splice(row.index, 1)//row.index);
@@ -107,43 +83,51 @@
                 });*/
             },
             countriesList(){
-                Vue.axios.get('load-orders/list-country').then((response) => {
+                Vue.axios.get('/load-orders/list-country').then((response) => {
                     this.countries = response.data;
                 });
+            },
+            selectCars(){
+                let data = {
+                    cars: this.selected
+                };
+                Vue.axios.post('/load-orders/pending/select-cars', data)
+                    .then(res => {
+                        window.location = res.data;
+                        console.log(res);
+                    });
             }
         },
         created(){
             this.fields = [
                 {
-                    key: 'contact_person',
+                    key: 'selected',
+                    label: 'Seleccionados'
+                },
+                {
+                    key: 'signing',
                     label: 'Cliente',
                     sortable: true
                 },
                 {
-                    key: 'import_company',
-                    label: 'Compañía',
-                    sortable: true
-                },
-                {
-                    key: 'customer.city',
+                    key: 'city',
                     label: 'Ciudad',
                     sortable: true
                 },
                 {
-                    key: 'customer.phone',
-                    label: 'Contacto',
+                    key: 'vin',
+                    label: 'Bastidor',
                     sortable: true
                 },
                 {
-                    key: 'date_upload',
-                    label: 'Fecha de carga',
+                    key: 'model_car',
+                    label: 'Modelo',
                     sortable: true
                 }
             ];
-            Vue.axios.get('load-orders/cars-pending').then((response) => {
+            Vue.axios.get('/load-orders/consult-cars-pending').then((response) => {
                 let createItems = [];
                 $.each(response.data, function(key, value) {
-                    console.log(value);
                     value['_showDetails'] = false;
                     createItems.push(value);
                 });

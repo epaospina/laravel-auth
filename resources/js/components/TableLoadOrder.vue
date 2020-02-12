@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-card class="m-2">
-            <b-link class="btn btn-primary col-2" id="pending" onclick="selectCars()">pendientes</b-link>
+            <b-link class="btn btn-primary col-2" id="pending" @click="selectCars()">pendientes</b-link>
             <b-form-group
                 label=""
                 label-for="filterInput"
@@ -46,7 +46,7 @@
                     <b-row class="px-4">
                         <b-form-group label="INFORMACION DE LOS COCHES">
                             <b-list-group>
-                                <b-list-group-item v-for="(infoCars, index) in row.item.customer.info_cars">
+                                <b-list-group-item :key="index+infoCars.key" v-for="(infoCars, index) in row.item.customer.info_cars">
                                     <b-form-checkbox
                                         :key="index"
                                         :value="infoCars.id"
@@ -109,6 +109,14 @@
             countriesList(){
                 Vue.axios.get('load-orders/list-country').then((response) => {
                     this.countries = response.data;
+                });
+            },
+            selectCars(){
+                let data = {
+                    cars: this.selected
+                };
+                Vue.axios.post('/load-orders/pending/select-cars', data, function (data) {
+                    window.location = data;
                 });
             }
         },
