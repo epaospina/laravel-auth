@@ -52,7 +52,6 @@
                                         :value="infoCars.id"
                                         switch
                                     >{{ infoCars.vin }}</b-form-checkbox>
-
                                     <b-link :href="'/load-orders/' + row.item.hash" class="btn btn-outline-primary">
                                         Ver Orden de carga
                                     </b-link>
@@ -151,7 +150,6 @@
             Vue.axios.get('load-orders/list').then((response) => {
                 let createItems = [];
                 $.each(response.data, function(key, value) {
-                    console.log(value);
                     value['_showDetails'] = false;
                     createItems.push(value);
                 });

@@ -33,9 +33,21 @@ function validateForm() {
     y = x[currentTab].getElementsByTagName("input");
     for (i = 0; i < y.length; i++) {
         if (y[i].name !== "data_driver" && y[i].name !== "cmr" && y[i].name !== "phone_load" && y[i].name.substr(-11) !== "[color_car]"){
-            if (y[i].value === "" && y[i].type !== "radio") {
-                y[i].className += " invalid";
-                valid = false;
+            if (y[i].value === "" && y[i].type !== "radio" && y[i].type !== "checkbox") {
+                if ($(y[i]).parent().attr('id') !== 'constar_client'){
+                    y[i].className += " invalid";
+                    valid = false;
+                }
+
+                if (y[i].id === 'constar_client' && $('#constar').prop('check')){
+                    y[i].className += " invalid";
+                    valid = false;
+                }
+
+                if ($(y[i]).id === 'otrosInput' && $('#selectTransferencia').val('') === 'otros'){
+                    y[i].className += " invalid";
+                    valid = false;
+                }
             }
         }
     }
@@ -149,7 +161,16 @@ function assignDataCustomer(id) {
 }
 
 function changeType(selectType) {
-    if ($(selectType).val() === 'otros'){
-        $(selectType).after('<input class="m-2 col-4" type="text" placeholder="Cual?"/>')
+    //if ($(selectType).val() === 'otros'){
+    //    $(selectType).after('<input name="payment_other" class="m-2 col-4" type="text" placeholder="Cual?"/>')
+    //}
+}
+
+function checkedConstar(check) {
+    console.log($(check))
+    if ($(check).prop('checked')){
+        $('#constar_client').show();
+    }else{
+        $('#constar_client').hide();
     }
 }

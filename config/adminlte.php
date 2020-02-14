@@ -121,17 +121,17 @@ return [
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
-                    'text' => 'listar clientes',
+                    'text' => 'lista de clientes',
                     'url'  => 'load-orders',
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
-                    'text' => 'pendientes',
+                    'text' => 'coches pendientes',
                     'url'  => 'load-orders/cars-pending',
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
-                    'text' => 'vehiculos cargados',
+                    'text' => 'coches recogidos',
                     'url'  => 'load-orders/cars-old-load',
                     'icon' => 'fas fa-user-plus'
                 ],

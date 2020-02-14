@@ -1,7 +1,6 @@
 <template>
     <div>
         <b-card class="m-2">
-            <b-link class="btn btn-primary col-2" id="pending" @click="selectCars">pendientes</b-link>
             <b-form-group
                 label=""
                 label-for="filterInput"
@@ -35,18 +34,23 @@
             borderless
             small
             fixed
-            selectable
             responsive="sm"
-            @row-selected="onRowSelected"
             :filter="filter"
-            ref="selectableTable"
         >
+            <template v-slot:cell(order_load)="row">
+                <b-link :href="'/load-orders/' + row.item.hash + '/' + row.item.id" class="btn btn-outline-primary">
+                    Ver Orden
+                </b-link>
+                <b-link :href="'/load-orders/' + row.item.hash + '/' + row.item.id + '/edit'" class="btn btn-outline-primary">
+                    Ver Orden
+                </b-link>
+            </template>
         </b-table>
-        {{selected}}
     </div>
 </template>
 
 <script>
+    import jsPDF from 'jspdf'
     export default {
         props: ['loadOrder'],
         data() {
@@ -78,15 +82,14 @@
                     this.countries = response.data;
                 });
             },
-            selectCars(){
-                let data = {
-                    cars: this.selected
-                };
-                Vue.axios.post('/load-orders/pending/select-cars', data)
-                    .then(res => {
-                        window.location = res.data;
-                        console.log(res);
-                    });
+            ejemplopdf(){
+                var doc = new jsPDF;
+
+                doc.text('Hello world!', 10, 10);
+                doc.save('a4.pdf')
+            },
+            showLoadOrder(row){
+                console.log(row)
             }
         },
         created(){
@@ -110,12 +113,15 @@
                     key: 'model_car',
                     label: 'Modelo',
                     sortable: true
+                },
+                {
+                    key: 'order_load',
+                    label: 'Orden de carga',
                 }
             ];
             Vue.axios.get('/load-orders/consult-old-load').then((response) => {
                 let createItems = [];
                 $.each(response.data, function(key, value) {
-                    value['_showDetails'] = false;
                     createItems.push(value);
                 });
                 this.items = createItems;

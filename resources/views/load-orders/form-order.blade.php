@@ -1,7 +1,7 @@
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/clients.css')}} ">
 @endpush
-<div id="ContentTable{{$key}}" class="container-order edit-load">
+<div id="ContentTable" class="container-order edit-load">
     <div class="header-logo">
         <div>
             <img src="{{asset('images/logo-mc.jpg')}}" alt="Mc Vehiculos">
@@ -23,11 +23,11 @@
     <div class="title-client">
         <h3 class="title-client">{{ __('clients.load_order') }}</h3>
         @if(isset($edit))
-            <button class="btn btn-bitbucket" id="editLoadOrder" onclick="editInputs('collapse{{$key}}')">
+            <button class="btn btn-bitbucket" id="editLoadOrder" onclick="editInputs('collapse')">
                 <i class="fas fa-edit"></i>
             </button>
             <button class="btn btn-bitbucket" id="saveLoadOrder"
-                    onclick="updatePost('{{$infoArray['load_order']['id']}}', 'collapse{{$key}}')" style="display: none">
+                    onclick="updatePost('{{$infoArray['load_order']['id']}}', 'collapse')" style="display: none">
                 <i class="far fa-save"></i>
             </button>
         @endif
@@ -39,13 +39,17 @@
         </tr>
         <tr>
             <td  class="subtitle">{{ __('clients.model_car') }} / {{ __('clients.color_car') }}</td>
-            <td><input id="modelColor" value="{{$infoCar['model_car']}} // {{$infoCar['color_car']}}" disabled></td>
+            <td><input id="modelColor" value="{{$infoArray['information_car']['model_car']}} // {{$infoArray['information_car']['color_car']}}" disabled></td>
+        </tr>
+        <tr>
+            <td  class="subtitle">Fecha de carga</td>
+            <td><input id="date_load" value="{{$infoArray['data_load']['date_load']}}" disabled></td>
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.vin') }}</td>
             <td>
-                <input id="vin" value="{{$infoCar['vin']}}" disabled>
-                <input type="hidden" id="vin_original" value="{{$infoCar['vin']}}" disabled>
+                <input id="vin" value="{{$infoArray['information_car']['vin']}}" disabled>
+                <input type="hidden" id="vin_original" value="{{$infoArray['information_car']['vin']}}" disabled>
             </td>
         </tr>
         </tbody>
@@ -92,7 +96,7 @@
         </tr>
         <tr>
             <td class="subtitle">{{ __('clients.documents') }}</td>
-            <td><input id="documents" value="{{$infoCar['documents']}}" disabled></td>
+            <td><input id="documents" value="{{$infoArray['information_car']['documents']}}" disabled></td>
         </tr>
         </tbody>
     </table>
@@ -107,6 +111,21 @@
         <tr>
             <td class="subtitle">{{ __('clients.import_company') }}</td>
             <td><input id="import_company" value="{{$infoArray['load_order']['import_company']}}" disabled></td>
+        </tr>
+        <tr>
+            <td class="subtitle">Forma de pago</td>
+            <td>
+                <select class="custom-select" onchange="changeType(this)" name="payment_type">
+                    {{--<option value="0"><b>Seleccione una opcion</b></option>--}}
+                    <option value="Transferencia Bancaria"><b>Transferencia Bancaria</b></option>
+                    <option value="Recibo de banco"><b>Recibo de banco</b></option>
+                    <option value="otros"><b>otros</b></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="subtitle">precio</td>
+            <td><input id="price" value="{{$infoArray['load_order']['price']}}" disabled></td>
         </tr>
         </tbody>
     </table>
@@ -152,6 +171,6 @@
 </div>
 @if(auth()->id())
     <div class="action-div">
-        <div class="btn btn-primary {{isset($edit) ? 'hide' : 'show'}} btn-print" onclick="printTable('ContentTable{{$key}}')">IMPRIMIR</div>
+        <div class="btn btn-primary {{isset($edit) ? 'hide' : 'show'}} btn-print" onclick="printTable('ContentTable')">IMPRIMIR</div>
     </div>
 @endif

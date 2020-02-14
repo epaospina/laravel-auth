@@ -99,9 +99,10 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id', 'car.model_car', 'car.vin',
-                'customer.signing', 'customer.city', 'customer.phone')
-            ->join('customer', 'customer.id', '=', 'customer_id')
-            ->where('status', true)
+                'customer.signing', 'customer.city', 'customer.phone', 'load_orders.hash')
+            ->join('customer', 'customer.id', '=', 'car.customer_id')
+            ->join('load_orders', 'customer.id', '=', 'load_orders.customer_id')
+            ->where('car.status', true)
             ->where('is_pending', '=', false)
             ->get();
     }
@@ -113,7 +114,10 @@ class LoadOrdersController extends Controller
      */
     public function create()
     {
-        return view('load-orders.create');
+        $countries = ['Austria', 'Bélgica', 'Bulgaria', 'Croacia', 'Dinamarca', 'Estonia', 'Francia', 'Alemania',
+            'Grecia', 'Hungría', 'Italia', 'Polonia', 'Portugal', 'Rumania', 'Eslovaquia', 'Eslovenia', 'España'
+        ];
+        return view('load-orders.create', compact('countries'));
     }
 
     /**
@@ -127,8 +131,7 @@ class LoadOrdersController extends Controller
         $loadOrder = LoadOrders::createAllLoadOrder($request->all());
 
         if ($loadOrder){
-            return redirect()->action(
-                'LoadOrdersController@show', $loadOrder->hash);
+            return redirect()->action('LoadOrdersController@carsPending');
         }
 
         return redirect()
@@ -141,13 +144,19 @@ class LoadOrdersController extends Controller
      * Display the specified resource.informationCar
      *
      * @param $hash
+     * @param $car
      * @return Factory|View
      */
-    public function show($hash)
+    public function show($hash, $car)
     {
         $loadOrder = LoadOrders::assignHash($hash);
         $infoArray = LoadOrders::arrayInfo([
-            'infoCars' => $loadOrder->customer->infoCars->where('status', 1),
+            'infoCars' => $loadOrder->customer
+                ->infoCars
+                ->where('status', '=', 1)
+                ->where('id', '=', $car)
+                ->first()
+                ->toArray(),
             'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
             'data_download' => $loadOrder->data_download->toArray(),
@@ -161,13 +170,19 @@ class LoadOrdersController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param $hash
+     * @param $car
      * @return Factory|View
      */
-    public function edit($hash)
+    public function edit($hash, $car)
     {
         $loadOrder = LoadOrders::assignHash($hash);
         $infoArray = LoadOrders::arrayInfo([
-            'infoCars' => $loadOrder->customer->infoCars->where('status', 1),
+            'infoCars' => $loadOrder->customer
+                ->infoCars
+                ->where('status', 1)
+                ->where('id', $car)
+                ->first()
+                ->toArray(),
             'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
             'data_download' => $loadOrder->data_download->toArray(),

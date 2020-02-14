@@ -29,8 +29,8 @@ Route::get('load-orders/list-country','LoadOrdersController@ListCountry')->name(
 Route::get('load-orders/filter/{filter}','LoadOrdersController@filter')->name('load-orders.filter');
 Route::get('load-orders/get-filter/{filter}','LoadOrdersController@getFilter')->name('load-orders.getFilter');
 Route::post('load-orders/store','LoadOrdersController@store')->name('load-orders.store');
-Route::get('load-orders/{parameter}','LoadOrdersController@show')->name('load-orders.show');
-Route::get('load-orders/{parameter}/edit','LoadOrdersController@edit')->name('load-orders.edit');
+Route::get('load-orders/{hash}/{car}','LoadOrdersController@show')->name('load-orders.show');
+Route::get('load-orders/{hash}/{car}/edit','LoadOrdersController@edit')->name('load-orders.edit');
 Route::get('load-orders/pending/cars/{carsPending}','LoadOrdersController@pending')->name('load-orders.pending-cars');
 Route::post('load-orders/pending/select-cars','LoadOrdersController@pendingCars')->name('load-orders.pending-select-cars');
 Route::get('load-orders/pending-api/cars/{carsPending}','LoadOrdersController@pendingApiCars')->name('load-orders.pending-api-cars');

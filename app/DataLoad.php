@@ -10,6 +10,7 @@ class DataLoad extends Model
 
     static public function validateDataLoad($info){
         $dataLoad = [
+            'date_load'   => isset($info['data_load']['date_load']) ? $info['data_load']['date_load'] : '',
             'addresses_load'   => isset($info['data_load']['addresses_load']) ? $info['data_load']['addresses_load'] : '',
             'city_load'        => isset($info['data_load']['city_load']) ? $info['data_load']['city_load'] : '',
             'postal_cod_load'  => isset($info['data_load']['postal_cod_load']) ? $info['data_load']['postal_cod_load'] : '',

@@ -51,7 +51,6 @@
                 </b-form-checkbox>
             </template>
         </b-table>
-        {{selected}}
     </div>
 </template>
 
