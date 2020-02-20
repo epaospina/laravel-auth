@@ -122,7 +122,33 @@ function printTable(divName) {
     document.body.innerHTML = printContents;
     window.print();
     document.body.innerHTML = originalContents;
-    location.reload();
+    //location.reload();
+}
+
+function exportPDF(divName) {
+    const pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.addHTML($('#contentTable'), function () {
+        pdf.save('Test.pdf');
+    });
+}
+
+function downWord() {
+    var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+        "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+        "xmlns='http://www.w3.org/TR/REC-html40'>"+
+        "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>" +
+        "<link rel='stylesheet' href='/home/johan/proyectos/php/laravel/auth/public/vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.min.css'>" +
+        "<link rel='stylesheet' href='/home/johan/proyectos/php/laravel/auth/public/css/clients.css'></head><body>";
+    var footer = "</body></html>";
+    var sourceHTML = header+document.getElementById("contentTable").innerHTML+footer;
+
+    var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+    var fileDownload = document.createElement("a");
+    document.body.appendChild(fileDownload);
+    fileDownload.href = source;
+    fileDownload.download = 'document.doc';
+    fileDownload.click();
+    document.body.removeChild(fileDownload);
 }
 
 function searchCustomer(search) {
@@ -167,7 +193,7 @@ function changeType(selectType) {
 }
 
 function checkedConstar(check) {
-    console.log($(check))
+    console.log($(check));
     if ($(check).prop('checked')){
         $('#constar_client').show();
     }else{

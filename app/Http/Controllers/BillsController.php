@@ -11,6 +11,8 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class BillsController extends Controller
@@ -28,14 +30,20 @@ class BillsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Factory|View
+     * @return Collection
      */
     public function index()
     {
-        $bills = Bills::all();
-        return view('bills.index', compact('bills'))
-            ->with('i', 0);
+        return DB::table('information_car as car')
+            ->select('bills.*', 'car.id as card_id', 'car.model_car', 'car.vin',
+                'customer.signing', 'load_orders.id as order_id','customer.city', 'customer.phone', 'load_orders.hash')
+            ->join('customer', 'customer.id', '=', 'car.customer_id')
+            ->join('load_orders', 'customer.id', '=', 'load_orders.customer_id')
+            ->join('bills', 'bills.load_orders_id', '=', 'load_orders.id')
+            ->where('is_pending', '=', false)
+            ->get();
     }
+
     /**
      * Display a listing of the resource.
      **

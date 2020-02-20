@@ -29,6 +29,7 @@
             table-variant="secondary"
             striped
             hover
+            stacked="md"
             :items="items"
             :fields="fields"
             bordered
@@ -40,6 +41,7 @@
             @row-clicked="onRowSelected"
             select-mode="single"
             :filter="filter"
+            class="text-break"
         >
             <template v-slot:row-details="row">
                 <b-card>
@@ -47,16 +49,12 @@
                         <b-form-group label="INFORMACION DE LOS COCHES">
                             <b-list-group>
                                 <b-list-group-item :key="index+infoCars.key" v-for="(infoCars, index) in row.item.customer.info_cars">
-                                    <b-form-checkbox
-                                        :key="index"
-                                        :value="infoCars.id"
-                                        switch
-                                    >{{ infoCars.vin }}</b-form-checkbox>
-                                    <b-link :href="'/load-orders/' + row.item.hash" class="btn btn-outline-primary">
-                                        Ver Orden de carga
+                                    {{ infoCars.vin }}
+                                    <b-link :href="'/load-orders/' + row.item.hash + '/' + infoCars.id" class="btn btn-outline-primary m-1">
+                                        Ver Orden
                                     </b-link>
-                                    <b-link :href="'/load-orders/' + row.item.hash + '/edit'" class="btn btn-primary">
-                                        Editar Orden de carga
+                                    <b-link :href="'/load-orders/' + row.item.hash + '/' + infoCars.id + '/edit'" class="btn btn-outline-primary m-1">
+                                        Editar Orden
                                     </b-link>
                                 </b-list-group-item>
                             </b-list-group>
@@ -66,10 +64,10 @@
                         <b-link @click="deleteItem(row)" class="btn btn-danger">
                             Eiminar Cliente
                         </b-link>
-                        <b-link @click="deleteItem(row)" class="btn btn-outline-primary">
+                        <b-link :href="'load-order/' + row.item.id + '/cmr'" class="btn btn-outline-primary">
                             Ver CMR
                         </b-link>
-                        <b-link @click="deleteItem(row)" class="btn btn-outline-primary">
+                        <b-link :href="'bills/load-order/' + row.item.id" class="btn btn-outline-primary">
                             Ver Factura
                         </b-link>
                     </div>
@@ -81,7 +79,6 @@
 
 <script>
     export default {
-        props: ['loadOrder'],
         data() {
             return {
                 fields: [],
@@ -95,15 +92,9 @@
                 items['_showDetails'] = !items['_showDetails'];
             },
             deleteItem(row){
-                this.items.splice(row.index, 1)//row.index);
-                /*Vue.axios.get('load-orders/list').then((response) => {
-                    let createItems = [];
-                    $.each(response.data, function(key, value) {
-                        value['_showDetails'] = false;
-                        createItems.push(value);
-                    });
-                    this.items = createItems;
-                });*/
+                Vue.axios.post('load-order/delete/' + row.item.hash).then(() => {
+                    this.items.splice(row.index, 1);
+                });
             },
             countriesList(){
                 Vue.axios.get('load-orders/list-country').then((response) => {

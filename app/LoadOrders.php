@@ -53,7 +53,7 @@ class LoadOrders extends Model
             $loadOrder->date_upload = Carbon::now();
             $loadOrder->bill_to = $infoArray['bill_to'];
             $loadOrder->price = $infoArray['price_order'];
-            $loadOrder->constancy = $infoArray['constar_client'];
+            $loadOrder->constancy = isset($infoArray['constar_client']) ? $infoArray['constar_client'] : '.';
             $loadOrder->payment_type_other = isset($infoArray['otrosInput']) ? $infoArray['otrosInput'] : '.';
             $loadOrder->import_company = $infoArray['import_company'];
             $loadOrder->save();

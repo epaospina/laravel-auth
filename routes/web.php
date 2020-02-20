@@ -23,7 +23,7 @@ Route::get('load-orders/consult-cars-pending','LoadOrdersController@consultCarsP
 Route::get('load-orders/consult-old-load','LoadOrdersController@consultCarsOldLoad')->name('load-orders.consultCarsOldLoad');
 Route::get('load-orders/cars-pending','LoadOrdersController@carsPending')->name('load-orders.carsPending');
 Route::get('load-orders/cars-old-load','LoadOrdersController@carsOldLoad')->name('load-orders.carsOldLoad');
-Route::delete('load-orders/{parameter}','LoadOrdersController@destroy')->name('load-orders.destroy');
+Route::post('load-order/delete/{parameter}','LoadOrdersController@destroy')->name('load-orders.destroy');
 Route::get('load-orders/create','LoadOrdersController@create')->name('load-orders.create');
 Route::get('load-orders/list-country','LoadOrdersController@ListCountry')->name('load-orders.list-country');
 Route::get('load-orders/filter/{filter}','LoadOrdersController@filter')->name('load-orders.filter');
@@ -38,7 +38,7 @@ Route::put('load-orders/{parameter}','LoadOrdersController@update')->name('load-
 Route::resource('users','UserController');
 Route::resource('clients','ClientsController');
 Route::resource('services','ServicesController');
-Route::get('load-orders/{loadOrders}/cmr','LoadOrdersController@cmr')->name('load-orders.cmr');
+Route::get('load-order/{loadOrders}/cmr','LoadOrdersController@cmr')->name('load-orders.cmr');
 Route::get('bills/load-order/{loadOrder}','BillsController@showBillLoadOrder')->name('bills.show-bill-load-order');
 Route::resource('bills','BillsController');
 Route::get('bills/load-order-api/{loadOrder}','BillsController@billLoadOrder');

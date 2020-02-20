@@ -9,6 +9,7 @@ use App\LoadOrders;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -60,7 +61,7 @@ class LoadOrdersController extends Controller
     public function consultCarsPending()
     {
         return DB::table('information_car as car')
-            ->select('car.id', 'car.model_car', 'car.vin',
+            ->select('car.id as card_id', 'car.model_car', 'car.vin',
                 'customer.signing', 'customer.city', 'customer.phone')
             ->join('customer', 'customer.id', '=', 'customer_id')
             ->where('status', true)
@@ -98,11 +99,10 @@ class LoadOrdersController extends Controller
     public function consultCarsOldLoad()
     {
         return DB::table('information_car as car')
-            ->select('car.id', 'car.model_car', 'car.vin',
+            ->select('car.id as card_id', 'car.model_car', 'car.vin',
                 'customer.signing', 'customer.city', 'customer.phone', 'load_orders.hash')
             ->join('customer', 'customer.id', '=', 'car.customer_id')
             ->join('load_orders', 'customer.id', '=', 'load_orders.customer_id')
-            ->where('car.status', true)
             ->where('is_pending', '=', false)
             ->get();
     }
@@ -276,7 +276,7 @@ class LoadOrdersController extends Controller
      * Remove the specified resource from storage.
      *
      * @param $hash
-     * @return RedirectResponse
+     * @return JsonResponse
      */
     public function destroy($hash)
     {
@@ -288,11 +288,7 @@ class LoadOrdersController extends Controller
         }
 
         $loadOrder->save();
-
-        $load_orders = LoadOrders::all();
-        return redirect()->route('load-orders.index', compact('load_orders'))
-            ->with('i', 0)
-            ->with('success','Registro eliminado satisfactoriamente');
+        return \response()->json('ok');
     }
 
     public function filter($filter){

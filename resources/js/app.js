@@ -30,15 +30,16 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
  * Eg. ./components/TableBillComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('header-bill-component', require('./components/HeaderBillComponent.vue'));
-Vue.component('table-bill-component', require('./components/TableBillComponent.vue'));
-Vue.component('table-car-component', require('./components/TableCarComponent.vue'));
-Vue.component('pending-order-component', require('./components/PendingOrderComponent.vue'));
-Vue.component('pending-order-table-component', require('./components/PendingOrderTableComponent.vue'));
-Vue.component('pending-order-car-component', require('./components/PendingOrderCarComponent.vue'));
-Vue.component('table-load-order', require('./components/TableLoadOrder.vue'));
-Vue.component('table-old-load', require('./components/TableOldLoad.vue'));
-Vue.component('table-cars-pending', require('./components/TablePending.vue'));
+Vue.component('header-bill-component', require('./components/HeaderBillComponent'));
+Vue.component('table-bill-component', require('./components/TableBillComponent'));
+Vue.component('table-car-component', require('./components/TableCarComponent'));
+Vue.component('pending-order-component', require('./components/PendingOrderComponent'));
+Vue.component('pending-order-table-component', require('./components/PendingOrderTableComponent'));
+Vue.component('pending-order-car-component', require('./components/PendingOrderCarComponent'));
+Vue.component('table-load-order', require('./components/TableLoadOrder'));
+Vue.component('table-old-load', require('./components/TableOldLoad'));
+Vue.component('table-bills', require('./components/TableBills'));
+Vue.component('table-cars-pending', require('./components/TablePending'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

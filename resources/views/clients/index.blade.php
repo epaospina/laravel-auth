@@ -8,11 +8,7 @@
             {{$success}}
         </div>
     @endif
-    <div class="accordion" id="accordionExample">
-        <div class="container">
-            @foreach ($customers as $key => $client)
-                @include('clients.collapse_customers', [$i++])
-            @endforeach
-        </div>
+    <div id="app">
+        <table-bills></table-bills>
     </div>
 @endsection

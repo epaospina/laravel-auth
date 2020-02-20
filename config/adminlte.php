@@ -106,37 +106,32 @@ return [
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
     */
     'menu' => [
-        [
-            'text'    => 'client',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
+            'CLIENTES',
                 [
                     'text' => 'add_customer',
                     'url'  => 'load-orders/create',
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
-                    'text' => 'facturas',
+                    'text' => 'Facturas',
                     'url'  => 'clients/',
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
-                    'text' => 'lista de clientes',
+                    'text' => 'Lista de clientes',
                     'url'  => 'load-orders',
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
-                    'text' => 'coches pendientes',
+                    'text' => 'Coches pendientes',
                     'url'  => 'load-orders/cars-pending',
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
-                    'text' => 'coches recogidos',
+                    'text' => 'Coches recogidos',
                     'url'  => 'load-orders/cars-old-load',
                     'icon' => 'fas fa-user-plus'
                 ],
-            ],
-        ],
         /*[
             'text'    => 'users',
             'icon'    => 'fas fa-fw fa-share',

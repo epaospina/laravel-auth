@@ -1,7 +1,6 @@
 <template>
     <div>
         <b-card class="m-2">
-            <b-link class="btn btn-primary col-2" id="pending" @click="selectCars">pendientes</b-link>
             <b-form-group
                 label=""
                 label-for="filterInput"
@@ -35,29 +34,23 @@
             borderless
             small
             fixed
-            selectable
             responsive="sm"
-            @row-selected="onRowSelected"
-            :select-mode="'multiple'"
             :filter="filter"
-            ref="selectableTable"
             class="text-break"
-            stacked="md"
         >
-            <template v-slot:cell(selected)="{rowSelected}">
-                <b-form-checkbox
-                    v-if="rowSelected"
-                    v-model="rowSelected"
-                    name="check-button" button>
-                    <b>SELECCIONADO</b>
-                </b-form-checkbox>
+            <template v-slot:cell(order_load)="row">
+                <b-link :href="'bills/load-order/' + row.item.order_id" class="btn btn-outline-primary">
+                    Ver Factura
+                </b-link>
             </template>
         </b-table>
     </div>
 </template>
 
 <script>
+    import jsPDF from 'jspdf'
     export default {
+        props: ['loadOrder'],
         data() {
             return {
                 fields: [],
@@ -72,30 +65,33 @@
                 this.selected = items
             },
             deleteItem(row){
-                this.items.splice(row.index, 1);
+                this.items.splice(row.index, 1)//row.index);
+                /*Vue.axios.get('load-orders/list').then((response) => {
+                    let createItems = [];
+                    $.each(response.data, function(key, value) {
+                        value['_showDetails'] = false;
+                        createItems.push(value);
+                    });
+                    this.items = createItems;
+                });*/
             },
             countriesList(){
                 Vue.axios.get('/load-orders/list-country').then((response) => {
                     this.countries = response.data;
                 });
             },
-            selectCars(){
-                let data = {
-                    cars: this.selected
-                };
-                Vue.axios.post('/load-orders/pending/select-cars', data)
-                    .then(res => {
-                        window.location = res.data;
-                        console.log(res);
-                    });
+            ejemplopdf(){
+                var doc = new jsPDF;
+
+                doc.text('Hello world!', 10, 10);
+                doc.save('a4.pdf')
+            },
+            showLoadOrder(row){
+                console.log(row)
             }
         },
         created(){
             this.fields = [
-                {
-                    key: 'selected',
-                    label: 'Seleccionados'
-                },
                 {
                     key: 'signing',
                     label: 'Cliente',
@@ -107,20 +103,18 @@
                     sortable: true
                 },
                 {
-                    key: 'vin',
-                    label: 'Bastidor',
+                    key: 'num_bill',
+                    label: 'Numero de factura',
                     sortable: true
                 },
                 {
-                    key: 'model_car',
-                    label: 'Modelo',
-                    sortable: true
+                    key: 'order_load',
+                    label: 'Orden de carga',
                 }
             ];
-            Vue.axios.get('/load-orders/consult-cars-pending').then((response) => {
+            Vue.axios.get('/bills/').then((response) => {
                 let createItems = [];
                 $.each(response.data, function(key, value) {
-                    value['_showDetails'] = false;
                     createItems.push(value);
                 });
                 this.items = createItems;

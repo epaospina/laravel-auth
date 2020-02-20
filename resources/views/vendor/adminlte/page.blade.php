@@ -113,8 +113,7 @@
             </section>
 
             <!-- Main content -->
-            <section class="content">
-
+            <section class="m-2">
                 @yield('content')
 
             </section>
