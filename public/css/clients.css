@@ -39,7 +39,7 @@ input {
 }
 .header-logo-span {
     font-size: 7px;
-    width: 38%;
+    width: 60%;
     padding-left: 30px;
     margin-top: -10px;
 }
@@ -55,6 +55,7 @@ input {
 .edit-load textarea{
     padding: 3%;
     margin: 3% 0;
+    height: 45px;
 }
 
 .input-client{
@@ -84,6 +85,12 @@ input {
 }
 .street-title{
     font-size: 10px;
+}
+.container-order-m{
+    display: none;
+}
+.container-order{
+    display: block;
 }
 
 /* Mark input boxes that gets an error on validation: */
@@ -144,6 +151,12 @@ td,tr{
     margin: 0 10%;
     border: 1px solid #dbc6bf;
 }
+.container-order-edit{
+    padding: 2% 3%;
+    background-color: white;
+    margin: 0 10%;
+    border: 1px solid #dbc6bf;
+}
 .header-car{
     display: inline-flex;
     justify-content: space-between;
@@ -172,6 +185,10 @@ td,tr{
 .btn-print{
     margin: 1%;
 }
+.content-customer{
+    display: flex;
+    flex-flow: wrap;
+}
 @media print {
     .btn-not-print{
         display: none;
@@ -189,4 +206,64 @@ td,tr{
     .subtitle-sign{
         font-size: 12px;
     }
+}
+@media screen and (max-width: 600px) {
+    .edit-load textarea{
+        height: 70px;
+    }
+    .container-order-edit{
+        padding: 2% 3%;
+        background-color: white;
+        margin: 0 10%;
+        border: 1px solid #dbc6bf;
+    }
+    .container-order{
+        display: none;
+    }
+    .container-order-m{
+        display: block;
+        margin: 0;
+    }
+    .header-logo-m{
+        display: flex;
+    }
+    .container-order-m img{
+        width: 90%;
+    }
+    .content-wrapper{
+        background-color: white;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #666;
+    }
+
+    .t-load-order td:nth-child(3){
+        display: none;
+    }
+
+    #regForm{
+        margin: 0;
+        padding: 0;
+        width: 95%;
+        min-width: 300px;
+    }
+
+    .title-client{
+        font-size: 12px;
+        margin: 0 0 1rem 0;
+        text-align: center;
+        font-weight: bolder;
+        text-decoration: blink;
+        display: block;
+        justify-content: space-between;
+    }
+    .transcaliguz{
+        width: 100%;
+        padding: 2% 8%;
+        justify-content: center
+    }
+}
+.footer-btn{
+    display: flex;
+    flex-flow: row-reverse;
 }

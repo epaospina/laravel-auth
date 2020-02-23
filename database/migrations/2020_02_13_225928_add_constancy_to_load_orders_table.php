@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddProvinceToCustomer extends Migration
+class AddConstancyToLoadOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddProvinceToCustomer extends Migration
      */
     public function up()
     {
-        Schema::table('customer', function (Blueprint $table) {
-            $table->string('province')->nullable();
+        Schema::table('load_orders', function (Blueprint $table) {
+            $table->string('constancy');
+            $table->string('payment_type_other');
         });
     }
 
@@ -25,8 +26,8 @@ class AddProvinceToCustomer extends Migration
      */
     public function down()
     {
-        Schema::table('customer', function (Blueprint $table) {
-            $table->dropColumn(['province']);
+        Schema::table('load_orders', function (Blueprint $table) {
+            //
         });
     }
 }

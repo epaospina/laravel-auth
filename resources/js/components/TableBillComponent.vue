@@ -78,7 +78,7 @@
                         </td>
                         <td class="td-xs"><b>CP</b></td>
                         <td class="td-xs" style="width: 50%;">
-                            <input v-if="allEdit" v-model="postal_cod_client">
+                            <input style="width: 45px;" v-if="allEdit" v-model="postal_cod_client">
                             <span v-else v-model="postal_cod_client"> {{postal_cod_client}} </span>
                         </td>
                     </tr>
@@ -226,7 +226,7 @@
 
         methods:{
             listBill(){
-                axios.get('/bills/load-order-api/' + this.order_id).then(response => {
+                Vue.axios.get('/bills/load-order-api/' + this.order_id).then(response => {
                     this.date = response.data.date;
                     this.numBill = response.data.bill.num_bill;
                     this.cif = response.data.bill.cif;

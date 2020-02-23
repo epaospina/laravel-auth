@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPriceToLoadOrders extends Migration
+class AddCountryToLoadOrders extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddPriceToLoadOrders extends Migration
     public function up()
     {
         Schema::table('load_orders', function (Blueprint $table) {
-            $table->float('price')->nullable();
+            $table->integer('countries_id')->default(1);
+            $table->foreign('countries_id')->references('id')->on('countries');
         });
     }
 
@@ -26,7 +27,8 @@ class AddPriceToLoadOrders extends Migration
     public function down()
     {
         Schema::table('load_orders', function (Blueprint $table) {
-            $table->float('price')->nullable();
+            $table->integer('countries_id')->default(1);
+            $table->foreign('countries_id')->references('id')->on('countries');
         });
     }
 }

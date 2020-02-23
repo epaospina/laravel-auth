@@ -106,43 +106,128 @@ return [
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
     */
     'menu' => [
-        [
-            'text'    => 'client',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
+            'CLIENTES',
                 [
                     'text' => 'add_customer',
                     'url'  => 'load-orders/create',
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
-                    'text' => 'listar clientes',
+                    'text' => 'Facturas',
                     'url'  => 'clients/',
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
-                    'text' => 'list_order',
+                    'text' => 'Lista de clientes',
                     'url'  => 'load-orders',
                     'icon' => 'fas fa-user-plus'
                 ],
-            ],
-        ],
-        /*[
-            'text'    => 'users',
+                [
+                    'text' => 'Coches pendientes',
+                    'url'  => 'load-orders/cars-pending',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Coches recogidos',
+                    'url'  => 'load-orders/cars-old-load',
+                    'icon' => 'fas fa-user-plus'
+                ],
+        [
+            'text'    => 'Lista de paises',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'add_user',
+                    'text' => 'Nacionales',
+                    'url'  => 'load-orders/list-by-country/1',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Alemania',
+                    'url'  => 'load-orders/list-by-country/2',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Austria',
+                    'url'  => 'load-orders/list-by-country/3',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Bélgica',
+                    'url'  => 'load-orders/list-by-country/4',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Bulgaria',
+                    'url'  => 'load-orders/list-by-country/5',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                /*[
+                    'text' => 'Croacia',
                     'url'  => 'users/create',
                     'icon' => 'fas fa-user-plus'
                 ],
                 [
-                    'text' => 'list_users',
-                    'url'  => 'users',
+                    'text' => 'Dinamarca',
+                    'url'  => 'users/create',
                     'icon' => 'fas fa-user-plus'
                 ],
+                [
+                    'text' => 'Estonia',
+                    'url'  => 'users/create',
+                    'icon' => 'fas fa-user-plus'
+                ],*/
+                [
+                    'text' => 'Francia',
+                    'url'  => 'load-orders/list-by-country/6',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Holanda',
+                    'url'  => 'load-orders/list-by-country/7',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Italia',
+                    'url'  => 'load-orders/list-by-country/8',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Portugal',
+                    'url'  => 'load-orders/list-by-country/9',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Grecia',
+                    'url'  => 'load-orders/list-by-country/10',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Hungría',
+                    'url'  => 'load-orders/list-by-country/11',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Polonia',
+                    'url'  => 'load-orders/list-by-country/12',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Rumania',
+                    'url'  => 'load-orders/list-by-country/13',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                /*[
+                    'text' => 'Eslovaquia',
+                    'url'  => 'users/create',
+                    'icon' => 'fas fa-user-plus'
+                ],
+                [
+                    'text' => 'Eslovenia',
+                    'url'  => 'users/create',
+                    'icon' => 'fas fa-user-plus'
+                ],*/
             ],
-        ],*/
+        ],
     ],
 
     /*

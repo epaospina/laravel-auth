@@ -16,7 +16,6 @@
         methods:{
         },
         created(){
-            console.log(car);
         }
     }
 </script>

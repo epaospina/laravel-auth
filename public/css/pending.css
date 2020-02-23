@@ -29,9 +29,12 @@ label {
 }
 td{
     border: 1px solid black;
-    padding: 0 1%;
+    padding: 0 5px;
     font-size: 10px;
 }
+td:nth-child(2) {
+     width: 15%;
+ }
 table{
     width: 100%;
 }
@@ -51,4 +54,11 @@ table{
     font-weight: bold;
     font-size: 20px;
     text-shadow: 2px 1px #f39c2f;
+}
+
+@media screen and (max-width: 600px) {
+    .t-load-order td:nth-child(3), .t-load-order th:nth-child(3),
+    .t-load-order td:nth-child(5), .t-load-order th:nth-child(5) {
+        display: none;
+    }
 }

@@ -1,18 +1,26 @@
 <?php
 
 return [
-    'load_order'        => 'ORDEN DE CARGA PARA '.env('TITLE_HOME', 'MC Vehiculos').' / ABHOLSCHEIN',
+    'load_order'        => 'ORDEN DE CARGA PARA '.env('TITLE_HOME', 'MC Vehiculos'),
     'data_car'          => 'DATOS DEL VEHICULO / FAHRZEUGDATEN',
     'load_place'        => 'LUGAR DE CARGA / FAHRZEUGSTANTDORT',
     'download_place'    => 'LUGAR DE DESCARGUE / LIEFERADRESSE',
+    'data_car_m'          => 'DATOS DEL VEHICULO',
+    'load_place_m'        => 'LUGAR DE CARGA',
+    'download_place_m'    => 'LUGAR DE DESCARGUE',
 
     'model_car'         => 'Modelo - MODELL',
+    'model_car_m'         => 'Modelo',
     'color_car'         => 'Color - FARBE',
+    'color_car_m'         => 'Color',
     'bill_to'           => 'Facturar transporte a / TRANSPORT RECHNUNG AN',
+    'bill_to_m'           => 'Facturar transporte a',
     'import_company'    => 'empresa importadora / IMPORT FIRMA',
+    'import_company_m'    => 'empresa importadora',
     'vin'               => 'BASTIDOR / MATRICULA',
     'itv'               => 'Pasar ITV al vehiculo / TÜV',
     'documents'         => 'Documentacion del vehiculo / FAHRZEUGDOKUMENTE',
+    'documents_m'         => 'Documentacion del vehiculo',
 
     'signing'           => 'Firma',
     'addresses'         => 'Direccion / ADRESSE',
@@ -25,6 +33,18 @@ return [
     'fax'               => 'Correo Electronico / Email',
     'contact_person'    => 'Persona de contacto / ANSPRECHPARTNER',
     'price'             => 'Precio',
+
+    'signing_m'           => 'Firma',
+    'addresses_m'         => 'Direccion',
+    'street_m'            => 'Calle',
+    'city_m'              => 'Ciudad',
+    'province_m'          => 'Provincia',
+    'postal_cod_m'        => 'Codigo postal',
+    'phone_m'             => 'Telefono fijo',
+    'mobile_m'            => 'Telefono movil',
+    'fax_m'               => 'Correo Electronico',
+    'contact_person_m'    => 'Persona de contacto',
+    'price_m'             => 'Precio',
 
     'data_driver'       => 'Datos del conductor',
     'observations'      => 'Observaciones',

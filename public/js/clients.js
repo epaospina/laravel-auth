@@ -33,9 +33,21 @@ function validateForm() {
     y = x[currentTab].getElementsByTagName("input");
     for (i = 0; i < y.length; i++) {
         if (y[i].name !== "data_driver" && y[i].name !== "cmr" && y[i].name !== "phone_load" && y[i].name.substr(-11) !== "[color_car]"){
-            if (y[i].value === "" && y[i].type !== "radio") {
-                y[i].className += " invalid";
-                valid = false;
+            if (y[i].value === "" && y[i].type !== "radio" && y[i].type !== "checkbox") {
+                if ($(y[i]).parent().attr('id') !== 'constar_client'){
+                    y[i].className += " invalid";
+                    valid = false;
+                }
+
+                if (y[i].id === 'constar_client' && $('#constar').prop('check')){
+                    y[i].className += " invalid";
+                    valid = false;
+                }
+
+                if ($(y[i]).id === 'otrosInput' && $('#selectTransferencia').val('') === 'otros'){
+                    y[i].className += " invalid";
+                    valid = false;
+                }
             }
         }
     }
@@ -110,5 +122,81 @@ function printTable(divName) {
     document.body.innerHTML = printContents;
     window.print();
     document.body.innerHTML = originalContents;
-    location.reload();
+    //location.reload();
+}
+
+function exportPDF(divName) {
+    const pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.addHTML($('#contentTable'), function () {
+        pdf.save('Test.pdf');
+    });
+}
+
+function downWord() {
+    var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+        "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+        "xmlns='http://www.w3.org/TR/REC-html40'>"+
+        "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>" +
+        "<link rel='stylesheet' href='/home/johan/proyectos/php/laravel/auth/public/vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.min.css'>" +
+        "<link rel='stylesheet' href='/home/johan/proyectos/php/laravel/auth/public/css/clients.css'></head><body>";
+    var footer = "</body></html>";
+    var sourceHTML = header+document.getElementById("exportWord").innerHTML+footer;
+
+    var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+    var fileDownload = document.createElement("a");
+    document.body.appendChild(fileDownload);
+    fileDownload.href = source;
+    fileDownload.download = 'document.doc';
+    fileDownload.click();
+    document.body.removeChild(fileDownload);
+}
+
+function searchCustomer(search) {
+    let searchValue = $(search).val();
+    let customers = $('#customerComplete').empty();
+    $.ajax({
+        url: "/load-orders/filter/"+searchValue,
+        type: 'GET',
+        success: function(response) {
+            let newHtml = '<div class="content-customer">';
+            $.each(response, function( index, value ) {
+                newHtml += '<span onclick="assignDataCustomer('+value.id+')" class="btn btn-outline-primary m-1">'+value.signing+'</span>';
+            });
+            newHtml += '</div>';
+            customers.append(newHtml);
+        }
+    });
+}
+
+function assignDataCustomer(id) {
+    $.ajax({
+        url: "/load-orders/get-filter/"+id,
+        type: 'GET',
+        success: function(response) {
+            $('#bill_to').val(response.signing);
+            $('#addresses_client').val(response.addresses);
+            $('#city_client').val(response.city);
+            $('#postal_cod_client').val(response.postal_cod);
+            //$('#bill_to').val(response.phone);
+            //$('#bill_to').val(response.mobile);
+            //$('#bill_to').val(response.email);
+            $('#province_client').val(response.province);
+            console.log(response);
+        }
+    });
+}
+
+function changeType(selectType) {
+    //if ($(selectType).val() === 'otros'){
+    //    $(selectType).after('<input name="payment_other" class="m-2 col-4" type="text" placeholder="Cual?"/>')
+    //}
+}
+
+function checkedConstar(check) {
+    console.log($(check));
+    if ($(check).prop('checked')){
+        $('#constar_client').show();
+    }else{
+        $('#constar_client').hide();
+    }
 }

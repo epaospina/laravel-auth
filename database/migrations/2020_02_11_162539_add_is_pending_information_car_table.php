@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddProvinceToCustomer extends Migration
+class AddIsPendingInformationCarTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddProvinceToCustomer extends Migration
      */
     public function up()
     {
-        Schema::table('customer', function (Blueprint $table) {
-            $table->string('province')->nullable();
+        Schema::table('information_car', function (Blueprint $table) {
+            $table->boolean('is_pending')->default(true);
         });
     }
 
@@ -25,8 +25,8 @@ class AddProvinceToCustomer extends Migration
      */
     public function down()
     {
-        Schema::table('customer', function (Blueprint $table) {
-            $table->dropColumn(['province']);
+        Schema::table('information_car', function (Blueprint $table) {
+            $table->date('is_pending')->nullable();
         });
     }
 }

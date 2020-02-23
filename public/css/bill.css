@@ -1,9 +1,9 @@
 b{
-    font-size: 10px;
+    font-size: 1rem;
     font-weight: bold;
 }
 label{
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: bold;
 }
 input{
@@ -164,8 +164,13 @@ textarea{
         align-items: center;
     }
     .header-bill table {
-        width: 100%;
+        width: 100% !important;
         margin-bottom: 5%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .content-bill {
+        margin: 0;
     }
 }
 @media print {

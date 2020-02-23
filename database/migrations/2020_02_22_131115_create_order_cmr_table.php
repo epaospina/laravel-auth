@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddProvinceToCustomer extends Migration
+class CreateOrderCmrTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddProvinceToCustomer extends Migration
      */
     public function up()
     {
-        Schema::table('customer', function (Blueprint $table) {
-            $table->string('province')->nullable();
+        Schema::create('order_cmr', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('enrollment');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddProvinceToCustomer extends Migration
      */
     public function down()
     {
-        Schema::table('customer', function (Blueprint $table) {
-            $table->dropColumn(['province']);
-        });
+        Schema::dropIfExists('order_cmr');
     }
 }
