@@ -224,8 +224,11 @@ td,tr{
         display: block;
         margin: 0;
     }
+    .header-logo-m{
+        display: flex;
+    }
     .container-order-m img{
-        width: 100%;
+        width: 90%;
     }
     .content-wrapper{
         background-color: white;

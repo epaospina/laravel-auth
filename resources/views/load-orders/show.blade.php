@@ -228,6 +228,12 @@
                     <td class="subtitle">Facturar transporte a / TRANSPORT RECHNUNG AN</td>
                     <td><label>{{$infoArray['load_order']['bill_to']}}</label></td>
                 </tr>
+                @isset($infoArray['load_order']['constancy'])
+                    <tr>
+                        <td class="subtitle">Coche contratado por terceros para:</td>
+                        <td><label>{{$infoArray['load_order']['constancy']}}</label></td>
+                    </tr>
+                @endisset
                 <tr>
                     <td class="subtitle">empresa importadora / IMPORT FIRMA</td>
                     <td><label>{{$infoArray['load_order']['import_company']}}</label></td>

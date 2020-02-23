@@ -1,22 +1,20 @@
 function editInputs() {
     let idOrder = '';
-    if ($(window).width() <= 600) {
+    if ($(window).width() < 600) {
         idOrder = '#contentTableM';
     }else{
         idOrder = '#contentTable';
     }
-    console.log(idOrder);
     $('input').prop("disabled", false);
     $('textarea').prop("disabled", false);
 
-    console.log($(idOrder + ' #editLoadOrder'));
     $(idOrder + ' #editLoadOrder').hide();
     $(idOrder + ' #saveLoadOrder').show();
 }
 
 function updatePost(id) {
     let idOrder = '';
-    if ($(window).width() <= 600) {
+    if ($(window).width() < 600) {
         idOrder = '#contentTableM';
     }else{
         idOrder = '#contentTable';
@@ -25,15 +23,15 @@ function updatePost(id) {
     let address_load = $(idOrder + ' .addresses_load').text().split('//');
     let address_download = $(idOrder + ' .info_download').text().split('//');
 
-    console.log(address_download);
+    console.log($(idOrder + ' .date_load'));
 
 
     let data = {
         'load_id'                   : id,
         'car[0][model_car]'         : modelColor[0],
         'car[0][color_car]'         : modelColor[1],
-        'date_load'                 : $(idOrder + ' .date_load').text(),
-        'car[0][vin]'               : $(idOrder + ' .vin').text(),
+        'date_load'                 : $(idOrder + ' .date_load').val(),
+        'car[0][vin]'               : $(idOrder + ' .vin').val(),
         'car[0][vin_original]'      : $(idOrder + ' .vin_original').val(),
         'signing'                   : $(idOrder + ' .signing').val(),
         'addresses_load'            : address_load[0],
@@ -53,7 +51,7 @@ function updatePost(id) {
         'contact_download'          : $(idOrder + ' .contact_download').val(),
         'driver_data'               : $(idOrder + ' .driver_data').val(),
         'cmr'                       : $(idOrder + ' .cmr').val(),
-        'observations'              : $(idOrder + ' .observations').text(),
+        'observations'              : $(idOrder + ' .observations').val(),
         'mobile_download'           : $(idOrder + ' .mobile_download').val(),
     };
 

@@ -80,6 +80,7 @@
                 });
             },
             selectCars(){
+                console.log(this.selected);
                 let data = {
                     cars: this.selected
                 };

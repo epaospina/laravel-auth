@@ -53,6 +53,7 @@ class LoadOrders extends Model
             $loadOrder->date_upload = Carbon::now();
             $loadOrder->bill_to = $infoArray['bill_to'];
             $loadOrder->price = $infoArray['price_order'];
+            $loadOrder->countries_id = $infoArray['country'];
             $loadOrder->constancy = isset($infoArray['constar_client']) ? $infoArray['constar_client'] : '.';
             $loadOrder->payment_type_other = isset($infoArray['otrosInput']) ? $infoArray['otrosInput'] : '.';
             $loadOrder->import_company = $infoArray['import_company'];
@@ -130,17 +131,15 @@ class LoadOrders extends Model
     }
 
     static public function validateLoadOrder($info){
-        $loadOrder = [
+        return [
             'id'               => isset($info['load_order']['hash']) ? $info['load_order']['hash'] : '',
             'contact_person'   => isset($info['load_order']['contact_person']) ? $info['load_order']['contact_person'] : '',
             'bill_to'          => isset($info['load_order']['bill_to']) ? $info['load_order']['bill_to'] : '',
             'payment_type_other'   => isset($info['load_order']['payment_other']) ? $info['load_order']['payment_other'] : '',
-            'constancy'          => isset($info['load_order']['constar_client']) ? $info['load_order']['constar_client'] : '',
+            'constancy'          => isset($info['load_order']['constancy']) ? $info['load_order']['constancy'] : '',
             'payment_type'     => isset($info['load_order']['payment_type']) ? $info['load_order']['payment_type'] : '',
             'import_company'   => isset($info['load_order']['import_company']) ? $info['load_order']['import_company'] : '',
             'price'            => isset($info['load_order']['price']) ? $info['load_order']['price'] : '',
         ];
-
-        return $loadOrder;
     }
 }

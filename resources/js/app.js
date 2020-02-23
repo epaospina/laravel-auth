@@ -37,6 +37,7 @@ Vue.component('pending-order-component', require('./components/PendingOrderCompo
 Vue.component('pending-order-table-component', require('./components/PendingOrderTableComponent'));
 Vue.component('pending-order-car-component', require('./components/PendingOrderCarComponent'));
 Vue.component('table-load-order', require('./components/TableLoadOrder'));
+Vue.component('table-load-order-country', require('./components/TableLoadOrderCountry'));
 Vue.component('table-old-load', require('./components/TableOldLoad'));
 Vue.component('table-bills', require('./components/TableBills'));
 Vue.component('table-cars-pending', require('./components/TablePending'));

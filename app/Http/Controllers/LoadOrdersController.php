@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CarsPending;
+use App\Countries;
 use App\Customer;
 use App\InformationCar;
 use App\LoadOrders;
@@ -51,6 +52,35 @@ class LoadOrdersController extends Controller
             $loadOrder->customer->infoCars;
         }
         return $loadOrders;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param $country
+     * @return LoadOrders[]|Collection
+     */
+    public function filterCountry($country)
+    {
+        $loadOrders = LoadOrders::all()
+            ->where('countries_id', $country)
+            ->where('status', true);
+        foreach ($loadOrders as $loadOrder){
+            $loadOrder->customer;
+            $loadOrder->customer->infoCars;
+        }
+        return $loadOrders;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param $country
+     * @return Factory|View
+     */
+    public function listByCountry($country)
+    {
+        return view('load-orders.order-country');
     }
 
     /**
@@ -114,9 +144,7 @@ class LoadOrdersController extends Controller
      */
     public function create()
     {
-        $countries = ['Austria', 'Bélgica', 'Bulgaria', 'Croacia', 'Dinamarca', 'Estonia', 'Francia', 'Alemania',
-            'Grecia', 'Hungría', 'Italia', 'Polonia', 'Portugal', 'Rumania', 'Eslovaquia', 'Eslovenia', 'España'
-        ];
+        $countries = Countries::all()->pluck('country', 'id');
         return view('load-orders.create', compact('countries'));
     }
 
@@ -233,11 +261,11 @@ class LoadOrdersController extends Controller
         $carsId = '';
         foreach ($request->cars as $car){
             if ($carsId === ''){
-                $carsId = $car['id'];
+                $carsId = $car['card_id'];
             }else{
-                $carsId = $carsId.','.$car['id'];
+                $carsId = $carsId.','.$car['card_id'];
             }
-            $infocar = InformationCar::query()->find($car['id']);
+            $infocar = InformationCar::query()->find($car['card_id']);
             $infocar->is_pending = false;
             $infocar->save();
         }
@@ -257,7 +285,7 @@ class LoadOrdersController extends Controller
             foreach ($loadOrder->customer->infoCars->where('status', 1) as $key => $infoCar) {
                 if (in_array($infoCar->id, explode(',',$carsPending->array_cars))){
                     $cars[$keyLoad]['client']             = $loadOrder->customer->signing;
-                    $cars[$keyLoad]['buyer']              = $loadOrder->bill_to;
+                    $cars[$keyLoad]['buyer']              = isset($loadOrder->constancy) ? $loadOrder->constancy : $loadOrder->bill_to;
                     $cars[$keyLoad]['action_do']          = 'DESCARGAR';
                     $cars[$keyLoad]['car'][$key]          = $infoCar->model_car ."<br>". $infoCar->vin;
                     $cars[$keyLoad]['addresses_load']     = $loadOrder->customer->addresses_load;

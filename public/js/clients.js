@@ -140,7 +140,7 @@ function downWord() {
         "<link rel='stylesheet' href='/home/johan/proyectos/php/laravel/auth/public/vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.min.css'>" +
         "<link rel='stylesheet' href='/home/johan/proyectos/php/laravel/auth/public/css/clients.css'></head><body>";
     var footer = "</body></html>";
-    var sourceHTML = header+document.getElementById("contentTable").innerHTML+footer;
+    var sourceHTML = header+document.getElementById("exportWord").innerHTML+footer;
 
     var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
     var fileDownload = document.createElement("a");

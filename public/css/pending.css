@@ -29,9 +29,12 @@ label {
 }
 td{
     border: 1px solid black;
-    padding: 0 1%;
+    padding: 0 5px;
     font-size: 10px;
 }
+td:nth-child(2) {
+     width: 15%;
+ }
 table{
     width: 100%;
 }

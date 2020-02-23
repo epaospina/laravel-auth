@@ -17,10 +17,6 @@
                         <b-button :disabled="!filter" @click="filter = ''">limpiar</b-button>
                     </b-input-group-append>
                 </b-input-group>
-                <b-form-select v-model="filter" class="my-2 col-4">
-                    <b-form-select-option :value="null">filtrar pais</b-form-select-option>
-                    <b-form-select-option :key="index" v-for="(country, index) in countries" :value="country">{{country}}</b-form-select-option>
-                </b-form-select>
             </b-form-group>
         </b-card>
         <b-table
@@ -63,10 +59,10 @@
                         <b-link @click="deleteItem(row)" class="btn btn-danger">
                             Eiminar Cliente
                         </b-link>
-                        <b-link :href="'load-order/' + row.item.id + '/cmr'" class="btn btn-outline-primary">
+                        <b-link :href="'/load-order/' + row.item.id + '/cmr'" class="btn btn-outline-primary">
                             Ver CMR
                         </b-link>
-                        <b-link :href="'bills/load-order/' + row.item.id" class="btn btn-outline-primary">
+                        <b-link :href="'/bills/load-order/' + row.item.id" class="btn btn-outline-primary">
                             Ver Factura
                         </b-link>
                     </div>
@@ -96,7 +92,7 @@
                 });
             },
             countriesList(){
-                Vue.axios.get('load-orders/list-country').then((response) => {
+                Vue.axios.get('/load-orders/list-country').then((response) => {
                     this.countries = response.data;
                 });
             },
@@ -137,7 +133,7 @@
                     sortable: true
                 }
             ];
-            Vue.axios.get('load-orders/list').then((response) => {
+            Vue.axios.get('/load-orders/country/' + window.location.pathname.split('/')[3]).then((response) => {
                 let createItems = [];
                 $.each(response.data, function(key, value) {
                     value['_showDetails'] = false;

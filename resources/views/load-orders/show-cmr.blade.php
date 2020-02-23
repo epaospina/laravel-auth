@@ -5,8 +5,11 @@
 @section('content')
     <div class="btn btn-bitbucket btn-print" onclick="printTable('contentCmr')">IMPRIMIR  <i class="fas fa-print"></i></div>
     <label>
-        Ingrese la matricula para el camion
+        Ingrese o modifique la matricula para el camion
         <input onkeyup="$('#span-car').text($(this).val())" placeholder="Matricula del camion">
+        <br>
+        Ingrese o modifique una fecha de alta
+        <input id="inputDate" placeholder="Modificar Fecha">
         <div class="control">
             <label class="radio">
                 <input type="radio" name="type_obsevation"
@@ -69,11 +72,20 @@
 
         <div class="info-five">
             <label>
-                {{$loadOrders->data_load->date_load}}
+                <span id="span-date_load">{{$loadOrders->data_load->date_load}}</span>
             </label>
         </div>
     </div>
 @endsection
 @push('js')
     <script src="{{asset('js/clients.js')}}"></script>
+    <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
+    <script>
+        $( document ).ready(function() {
+            $('#inputDate').datepicker()
+            .on('change', function(e) {
+                $('#span-date_load').text($(this).val())
+            });
+        });
+    </script>
 @endpush

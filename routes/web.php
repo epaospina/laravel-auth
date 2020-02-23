@@ -19,6 +19,7 @@ Route::get('/', 'HomeController@index');
 Route::redirect('/home', '/');
 Route::get('load-orders/','LoadOrdersController@index')->name('load-orders.index');
 Route::get('load-orders/list','LoadOrdersController@listOrders')->name('load-orders.list-orders');
+Route::get('load-orders/list-by-country/{filter}','LoadOrdersController@listByCountry')->name('load-orders.listByCountry');
 Route::get('load-orders/consult-cars-pending','LoadOrdersController@consultCarsPending')->name('load-orders.consultCarsPending');
 Route::get('load-orders/consult-old-load','LoadOrdersController@consultCarsOldLoad')->name('load-orders.consultCarsOldLoad');
 Route::get('load-orders/cars-pending','LoadOrdersController@carsPending')->name('load-orders.carsPending');
@@ -27,7 +28,7 @@ Route::post('load-order/delete/{parameter}','LoadOrdersController@destroy')->nam
 Route::get('load-orders/create','LoadOrdersController@create')->name('load-orders.create');
 Route::get('load-orders/list-country','LoadOrdersController@ListCountry')->name('load-orders.list-country');
 Route::get('load-orders/filter/{filter}','LoadOrdersController@filter')->name('load-orders.filter');
-Route::get('load-orders/get-filter/{filter}','LoadOrdersController@getFilter')->name('load-orders.getFilter');
+Route::get('load-orders/country/{country}','LoadOrdersController@filterCountry')->name('load-orders.filterCountry');
 Route::post('load-orders/store','LoadOrdersController@store')->name('load-orders.store');
 Route::get('load-orders/{hash}/{car}','LoadOrdersController@show')->name('load-orders.show');
 Route::get('load-orders/{hash}/{car}/edit','LoadOrdersController@edit')->name('load-orders.edit');
