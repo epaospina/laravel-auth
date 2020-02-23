@@ -3,7 +3,14 @@
     <link rel="stylesheet" href="{{ asset('css/cmr.css')}} ">
 @endpush
 @section('content')
-    <div class="btn btn-bitbucket btn-print" onclick="printTable('contentCmr')">IMPRIMIR  <i class="fas fa-print"></i></div>
+
+    <div class="action-div">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn btn-primary" onclick="printTable('contentCmr')">IMPRIMIR</div>
+            <div class="btn btn-secondary" onclick="exportPDF('contentCmr')">PDF</div>
+            <div class="btn btn-secondary" onclick="downWord('contentCmr')">WORD</div>
+        </div>
+    </div>
     <label>
         Ingrese o modifique la matricula para el camion
         <input onkeyup="$('#span-car').text($(this).val())" placeholder="Matricula del camion">
@@ -78,7 +85,10 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{asset('js/clients.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" integrity="sha256-c3RzsUWg+y2XljunEQS0LqWdQ04X1D3j22fd/8JCAKw=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js" integrity="sha256-gJWdmuCRBovJMD9D/TVdo4TIK8u5Sti11764sZT1DhI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.13/jspdf.plugin.autotable.min.js" integrity="sha256-1gTovbU9vikIejcyjJKJce/HMA0eRnSWOed8ekl0Jgs=" crossorigin="anonymous"></script>
+     <script src="{{asset('js/clients.js')}}"></script>
     <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
     <script>
         $( document ).ready(function() {

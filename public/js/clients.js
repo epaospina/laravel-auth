@@ -127,20 +127,21 @@ function printTable(divName) {
 
 function exportPDF(divName) {
     const pdf = new jsPDF('p', 'pt', 'a4');
-    pdf.addHTML($('#contentTable'), function () {
+    pdf.addHTML($('#'+divName), function () {
         pdf.save('Test.pdf');
     });
 }
 
-function downWord() {
+function downWord(divName) {
     var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
         "xmlns:w='urn:schemas-microsoft-com:office:word' "+
         "xmlns='http://www.w3.org/TR/REC-html40'>"+
         "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title>" +
         "<link rel='stylesheet' href='/home/johan/proyectos/php/laravel/auth/public/vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.min.css'>" +
-        "<link rel='stylesheet' href='/home/johan/proyectos/php/laravel/auth/public/css/clients.css'></head><body>";
+        "<link rel='stylesheet' href='/home/johan/proyectos/php/laravel/auth/public/css/clients.css'></head>" +
+        "<link rel='stylesheet' href='/home/johan/proyectos/php/laravel/auth/public/css/cmr.css'></head><body>";
     var footer = "</body></html>";
-    var sourceHTML = header+document.getElementById("exportWord").innerHTML+footer;
+    var sourceHTML = header+document.getElementById(divName).innerHTML+footer;
 
     var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
     var fileDownload = document.createElement("a");
