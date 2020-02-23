@@ -15,7 +15,7 @@ class AddConstancyToLoadOrdersTable extends Migration
     {
         Schema::table('load_orders', function (Blueprint $table) {
             $table->string('constancy')->nullable();
-            $table->string('payment_type_other');
+            $table->string('payment_type_other')->nullable();
         });
     }
 
