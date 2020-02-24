@@ -320,15 +320,16 @@ class LoadOrdersController extends Controller
     }
 
     public function filter($filter){
-        if (strlen($filter) >= 3){
+        if (strlen($filter) >= 2){
             return DB::table('customer')
                 ->where('signing', 'LIKE', '%'.$filter.'%')
                 ->get();
         }
-        return '';
+        return 'no se encontro';
     }
 
     public function getFilter($filter){
+        dd($filter);
         return Customer::all()->find($filter);
     }
 
