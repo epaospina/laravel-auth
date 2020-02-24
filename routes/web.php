@@ -28,6 +28,7 @@ Route::post('load-order/delete/{parameter}','LoadOrdersController@destroy')->nam
 Route::get('load-orders/create','LoadOrdersController@create')->name('load-orders.create');
 Route::get('load-orders/list-country','LoadOrdersController@ListCountry')->name('load-orders.list-country');
 Route::get('load-orders/filter/{filter}','LoadOrdersController@filter')->name('load-orders.filter');
+Route::get('load-orders/get-filter/{filter}','LoadOrdersController@getFilter')->name('load-orders.getFilter');
 Route::get('load-orders/country/{country}','LoadOrdersController@filterCountry')->name('load-orders.filterCountry');
 Route::post('load-orders/store','LoadOrdersController@store')->name('load-orders.store');
 Route::get('load-orders/{hash}/{car}','LoadOrdersController@show')->name('load-orders.show');
