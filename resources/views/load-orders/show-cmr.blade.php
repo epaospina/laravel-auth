@@ -11,25 +11,30 @@
             <div class="btn btn-secondary" onclick="downWord('contentCmr')">WORD</div>
         </div>
     </div>
-    <label>
-        Ingrese o modifique la matricula para el camion
-        <input onkeyup="$('#span-car').text($(this).val())" placeholder="Matricula del camion">
-        <br>
-        Ingrese o modifique una fecha de alta
-        <input id="inputDate" placeholder="Modificar Fecha">
-        <div class="control">
-            <label class="radio">
-                <input type="radio" name="type_obsevation"
-                       onclick="$('#observationLabel').text('COCHES USADOS, DA&#241;ADOS Y SUCIEDAD PROPIOS DEL USO')">
-                Coches Internacionales
-            </label>
-            <label class="radio">
-                <input type="radio" name="type_obsevation"
-                       onclick="$('#observationLabel').text('COCHES NUEVOS')">
-                Coches Nacionales
-            </label>
+    <div class="card m-3">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Ingrese o modifique la matricula para el camion</label>
+                <input onkeyup="$('#span-car').text($(this).val())" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Matricula del camion">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Ingrese o modifique una fecha de alta</label>
+                <input onkeyup="$('#span-car').text($(this).val())" type="email" class="form-control" aria-describedby="emailHelp" id="inputDate" placeholder="Modificar Fecha">
+            </div>
+            <div class="form-check">
+                <input onclick="$('#observationLabel').text('COCHES USADOS, DA&#241;ADOS Y SUCIEDAD PROPIOS DEL USO')" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1">
+                <label class="form-check-label" for="exampleRadios1">
+                    Coches Internacionales
+                </label>
+            </div>
+            <div class="form-check">
+                <input onclick="$('#observationLabel').text('COCHES NUEVOS')" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2">
+                <label class="form-check-label" for="exampleRadios2">
+                    Coches Nacionales
+                </label>
+            </div>
         </div>
-    </label>
+    </div>
     <div class="container-cmr" id="contentCmr">
         <div class="info-one">
             <label>
@@ -70,12 +75,14 @@
             </div>
         </div>
 
-        @foreach($loadOrders->customer->infoCars AS $key => $infoCar)
-            <div class="info-cars">
-                <label>{{$infoCar->model_car}}</label>
-                <label>{{$infoCar->vin}}</label>
-            </div>
-        @endforeach
+        <div class="info-cars">
+            @foreach($loadOrders->customer->infoCars AS $key => $infoCar)
+                <div>
+                    <label>{{$infoCar->model_car}}</label>
+                    <label>{{$infoCar->vin}}</label>
+                </div>
+            @endforeach
+        </div>
 
         <div class="info-five">
             <label>
