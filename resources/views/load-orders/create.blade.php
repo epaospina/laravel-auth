@@ -13,7 +13,7 @@
     @endif
     <form id="regForm" action="{{ route('load-orders.store') }}" method="POST">
         @csrf
-        <div class="tab">
+        <div class="tab border p-4">
             <h3 class="title-client">{{ __('clients.load_order') }}</h3>
 
             <div class="input-group-sm mb-3 input-client">
@@ -58,7 +58,6 @@
                 <label class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Pais de carga</span>
                     <select id="country" class="custom-select" name="country">
-                        <option value="0"><b>Seleccion un pais</b></option>
                         @foreach($countries as $key => $country)
                             <option value="{{$key}}"><b>{{$country}}</b></option>
                         @endforeach
@@ -254,8 +253,8 @@
 
         <div style="overflow:auto;">
             <div style="float:right;">
-                <button class="btn" type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fas fa-arrow-left"></i></button>
-                <button class="btn" type="button" id="nextBtn" onclick="nextPrev(1)"><i class="fas fa-arrow-right"></i></button>
+                <button class="btn btn-primary" type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fas fa-arrow-left"></i></button>
+                <button class="btn btn-primary" type="button" id="nextBtn" onclick="nextPrev(1)"><i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
 
