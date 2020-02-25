@@ -36,8 +36,8 @@
             fixed
             responsive="sm"
             :filter="filter"
-            class="text-break"
-            stacked="md"
+            class="text-break w-100"
+            stacked="sm"
         >
             <template v-slot:cell(order_load)="row">
                 <div class="d-flex flex-wrap">
@@ -51,7 +51,6 @@
 </template>
 
 <script>
-    import jsPDF from 'jspdf'
     export default {
         data() {
             return {
@@ -70,12 +69,6 @@
                 Vue.axios.get('/load-orders/list-country').then((response) => {
                     this.countries = response.data;
                 });
-            },
-            ejemplopdf(){
-                var doc = new jsPDF;
-
-                doc.text('Hello world!', 10, 10);
-                doc.save('a4.pdf')
             },
             showLoadOrder(row){
                 console.log(row)
@@ -119,7 +112,10 @@
         }
     }
 </script>
-<style>
+<style scoped>
+    td{
+        width: 100% !important;
+    }
     .footer-btn{
         display: flex;
         flex-flow: row-reverse;

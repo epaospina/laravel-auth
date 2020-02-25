@@ -1,3 +1,6 @@
+.page-content{
+    background-color: white;
+}
 @media print {
     @page{
         size: A4;
@@ -41,6 +44,7 @@ label{
     background-size: cover;
     width: 21cm;
     height: 29.7cm;
+    background-color: white;
 }
 .td-l1{
     border-left: 1px solid black;

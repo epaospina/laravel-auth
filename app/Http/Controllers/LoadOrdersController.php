@@ -49,7 +49,7 @@ class LoadOrdersController extends Controller
         $loadOrders = LoadOrders::all()->where('status', true);
         foreach ($loadOrders as $loadOrder){
             $loadOrder->customer;
-            $loadOrder->customer->infoCars;
+            $loadOrder->customer->infoCars->where('status', true);
         }
         return $loadOrders;
     }
@@ -67,7 +67,7 @@ class LoadOrdersController extends Controller
             ->where('status', true);
         foreach ($loadOrders as $loadOrder){
             $loadOrder->customer;
-            $loadOrder->customer->infoCars;
+            $loadOrder->customer->infoCars->where('status', true);
         }
         return $loadOrders;
     }
