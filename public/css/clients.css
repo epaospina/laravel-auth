@@ -153,6 +153,7 @@ td,tr{
     background-color: white;
     margin: 0 10%;
     border: 1px solid #dbc6bf;
+    font-size: 1.3em;
 }
 .container-order-edit{
     padding: 2% 3%;
@@ -192,24 +193,7 @@ td,tr{
     display: flex;
     flex-flow: wrap;
 }
-@media print {
-    .btn-not-print{
-        display: none;
-    }
-    input {
-        padding: 0;
-        width: 100%;
-        font-size: 12px;
-        border: 0;
-        /*border: 1px solid #aaaaaa;*/
-    }
-    .subtitle{
-        font-size: 12px;
-    }
-    .subtitle-sign{
-        font-size: 12px;
-    }
-}
+
 @media screen and (max-width: 600px) {
     .edit-load textarea{
         height: 70px;
