@@ -1,0 +1,36 @@
+
+@page {
+    size: A4;
+    font-size: 16px;
+}
+.btn-not-print{
+    display: none;
+}
+label {
+    padding: 0;
+    width: 100%;
+    font-size: 19px;
+    border: 0;
+    /*border: 1px solid #aaaaaa;*/
+}
+.subtitle{
+    font-size: 19px;
+}
+.subtitle-sign{
+    font-size: 19px;
+}
+li{
+    font-size: 19px;
+}
+.title-client{
+    font-size: 22px;
+}
+.transcaliguz{
+    font-size: 15px;
+}
+.header-logo{
+    display: flex;
+}
+.header-logo img{
+    width: 50%;
+}

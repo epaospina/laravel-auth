@@ -126,7 +126,7 @@ function printTable(divName) {
 }
 
 function exportPDF(divName) {
-    const pdf = new jsPDF('p', 'pt', 'a4');
+    const pdf = new jsPDF('a4');
     pdf.addHTML($('#'+divName), function () {
         pdf.save('Test.pdf');
     });

@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/clients.css')}} ">
+    <link href="{{ asset('css/print.css')}}" media="print" rel="stylesheet" />
 @endpush
 @section('content')
     @if(auth()->id())
@@ -167,7 +168,7 @@
             <div class="title-client">
                 <h3 class="title-client">ORDEN DE CARGA</h3>
             </div>
-            DATOS DEL VEHICULO / FAHRZEUGDATEN
+            <label>DATOS DEL VEHICULO / FAHRZEUGDATEN</label>
             <table class="table-load-order" style="width: 100%;">
                 <tr>
                     <td  class="subtitle">Modelo - MODELL / Color - FARBE</td>
@@ -182,8 +183,8 @@
                     <td><label>{{$infoArray['information_car']['vin']}}</label></td>
                 </tr>
             </table>
-
-            LUGAR DE CARGA / FAHRZEUGSTANTDORT
+            <br>
+            <label>LUGAR DE CARGA / FAHRZEUGSTANTDORT</label>
             <table class="table-load-order" style="width: 100%;">
                 <tr>
                     <td class="subtitle">Firma</td>
