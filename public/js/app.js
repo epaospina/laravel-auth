@@ -53372,13 +53372,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         selectCars: function selectCars() {
-            console.log(this.selected);
             var data = {
                 cars: this.selected
             };
             Vue.axios.post('/load-orders/pending/select-cars', data).then(function (res) {
                 window.location = res.data;
-                console.log(res);
             });
         }
     },

@@ -80,14 +80,12 @@
                 });
             },
             selectCars(){
-                console.log(this.selected);
                 let data = {
                     cars: this.selected
                 };
                 Vue.axios.post('/load-orders/pending/select-cars', data)
                     .then(res => {
                         window.location = res.data;
-                        console.log(res);
                     });
             }
         },
