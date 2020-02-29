@@ -113,6 +113,11 @@
                     sortable: true
                 },
                 {
+                    key: 'created_at',
+                    label: 'Fecha de creacion',
+                    sortable: true
+                },
+                {
                     key: 'model_car',
                     label: 'Modelo',
                     sortable: true
@@ -134,5 +139,11 @@
     .footer-btn{
         display: flex;
         flex-flow: row-reverse;
+    }
+    @media (max-width: 800px) {
+        .table.b-table.b-table-stacked-md > tbody > tr > td{
+            display: block;
+            width: 100%;
+        }
     }
 </style>

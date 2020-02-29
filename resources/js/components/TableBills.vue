@@ -35,6 +35,7 @@
             small
             fixed
             responsive="sm"
+            stacked="md"
             :filter="filter"
             class="text-break"
         >
@@ -105,6 +106,11 @@
                 {
                     key: 'num_bill',
                     label: 'Numero de factura',
+                    sortable: true
+                },
+                {
+                    key: 'created_at',
+                    label: 'Fecha de creacion',
                     sortable: true
                 },
                 {

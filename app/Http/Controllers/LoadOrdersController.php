@@ -46,7 +46,9 @@ class LoadOrdersController extends Controller
      */
     public function listOrders()
     {
-        $loadOrders = LoadOrders::all()->where('status', true);
+        $loadOrders = LoadOrders::all()
+            ->where('status', true)
+            ->sortBy('created_at');
         foreach ($loadOrders as $loadOrder){
             $loadOrder->customer;
             $loadOrder->customer->infoCars->where('status', true);
@@ -92,10 +94,11 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id as card_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'customer.city', 'customer.phone')
+                'customer.signing', 'customer.city', 'customer.phone', 'customer.created_at')
             ->join('customer', 'customer.id', '=', 'customer_id')
             ->where('status', true)
             ->where('is_pending', '=', true)
+            ->orderBy('customer.created_at')
             ->get();
     }
 
@@ -130,10 +133,11 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id as card_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'customer.city', 'customer.phone', 'load_orders.hash')
+                'customer.signing', 'customer.city', 'customer.phone', 'load_orders.hash', 'customer.created_at')
             ->join('customer', 'customer.id', '=', 'car.customer_id')
             ->join('load_orders', 'customer.id', '=', 'load_orders.customer_id')
             ->where('is_pending', '=', false)
+            ->orderBy('customer.created_at')
             ->get();
     }
 
