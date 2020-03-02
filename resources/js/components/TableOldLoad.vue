@@ -37,7 +37,7 @@
             responsive="sm"
             :filter="filter"
             class="text-break w-100"
-            stacked="sm"
+            stacked="md"
         >
             <template v-slot:cell(order_load)="row">
                 <div class="d-flex flex-wrap">
@@ -97,6 +97,11 @@
                     sortable: true
                 },
                 {
+                    key: 'created_at',
+                    label: 'Fecha de creacion',
+                    sortable: true
+                },
+                {
                     key: 'order_load',
                     label: 'Orden de carga',
                 }
@@ -112,12 +117,15 @@
         }
     }
 </script>
-<style scoped>
-    td{
-        width: 100% !important;
-    }
+<style>
     .footer-btn{
         display: flex;
         flex-flow: row-reverse;
+    }
+    @media (max-width: 800px) {
+        .table.b-table.b-table-stacked-md > tbody > tr > td{
+            display: block;
+            width: 100%;
+        }
     }
 </style>

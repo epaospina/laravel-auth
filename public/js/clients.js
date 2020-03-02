@@ -116,8 +116,8 @@ function removeCarForm(num) {
     }
 }
 
-function printTable(divName) {
-    let printContents = document.getElementById(divName).innerHTML;
+function printTable(divPrint) {
+    let printContents = $('#' + divPrint).html();
     let originalContents = document.body.innerHTML;
     document.body.innerHTML = printContents;
     window.print();

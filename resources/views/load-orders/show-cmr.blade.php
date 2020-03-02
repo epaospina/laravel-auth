@@ -51,7 +51,7 @@
                 {{$loadOrders->data_download->city_download}} {{$loadOrders->data_download->postal_cod_download}}
             </label>
 
-            <div class="matricula-camion">
+            <div class="matricula-camion text-break">
                 <span id="span-car">Matricula</span>
             </div>
         </div>
