@@ -4,7 +4,6 @@
 
 @section('content_header')
 @stop
-
 @section('content')
     <div class="container">
         <div class="home" style="text-align: center;">
