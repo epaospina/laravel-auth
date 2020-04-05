@@ -1238,7 +1238,7 @@ var hasIntersectionObserverSupport = isBrowser && 'IntersectionObserver' in wind
 
 var getEnv = function getEnv(key) {
   var fallback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var env = typeof process !== 'undefined' && process ? Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) || {} : {};
+  var env = typeof process !== 'undefined' && process ? Object({"NODE_ENV":"development"}) || {} : {};
 
   if (!key) {
     /* istanbul ignore next */
@@ -51348,7 +51348,7 @@ var content = __webpack_require__(323);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(39)("0291c7b4", content, false, {});
+var update = __webpack_require__(39)("4974df13", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -51908,7 +51908,7 @@ var content = __webpack_require__(329);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(39)("9a55a592", content, false, {});
+var update = __webpack_require__(39)("18efb5aa", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -52016,7 +52016,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52024,7 +52023,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             fields: [],
             items: [],
             filter: null,
-            countries: []
+            countries: [],
+            selected: []
         };
     },
 
@@ -52067,11 +52067,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             label: 'Compañía',
             sortable: true
         }, {
-            key: 'customer.city',
+            key: 'city',
             label: 'Ciudad',
             sortable: true
         }, {
-            key: 'customer.phone',
+            key: 'phone',
             label: 'Contacto',
             sortable: true
         }, {
@@ -52084,6 +52084,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             sortable: true
         }];
         Vue.axios.get('/load-orders/country/' + window.location.pathname.split('/')[3]).then(function (response) {
+            console.log(response.data);
+
             var createItems = [];
             $.each(response.data, function (key, value) {
                 value['_showDetails'] = false;
@@ -52110,6 +52112,16 @@ var render = function() {
         "b-card",
         { staticClass: "m-2" },
         [
+          _c(
+            "b-link",
+            {
+              staticClass: "btn btn-primary col-2",
+              attrs: { id: "pending" },
+              on: { click: _vm.selectCars }
+            },
+            [_vm._v("pendientes")]
+          ),
+          _vm._v(" "),
           _c(
             "b-form-group",
             {
@@ -52156,6 +52168,34 @@ var render = function() {
                   )
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "my-2 col-4",
+                  model: {
+                    value: _vm.filter,
+                    callback: function($$v) {
+                      _vm.filter = $$v
+                    },
+                    expression: "filter"
+                  }
+                },
+                [
+                  _c("b-form-select-option", { attrs: { value: null } }, [
+                    _vm._v("filtrar pais")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country, index) {
+                    return _c(
+                      "b-form-select-option",
+                      { key: index, attrs: { value: country } },
+                      [_vm._v(_vm._s(country))]
+                    )
+                  })
+                ],
+                2
               )
             ],
             1
@@ -52198,123 +52238,99 @@ var render = function() {
                       [
                         _c(
                           "b-form-group",
-                          { attrs: { label: "INFORMACION DE LOS COCHES" } },
                           [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(_vm.items.vin) +
+                                "\n                        "
+                            ),
                             _c(
-                              "b-list-group",
-                              _vm._l(row.item.customer.info_cars, function(
-                                infoCars,
-                                index
-                              ) {
-                                return _c(
-                                  "b-list-group-item",
-                                  { key: index + infoCars.key },
-                                  [
-                                    _vm._v(
-                                      "\n                                " +
-                                        _vm._s(infoCars.vin) +
-                                        "\n                                "
-                                    ),
-                                    _c(
-                                      "b-link",
-                                      {
-                                        staticClass:
-                                          "btn btn-outline-primary m-1",
-                                        attrs: {
-                                          href:
-                                            "/load-orders/" +
-                                            row.item.hash +
-                                            "/" +
-                                            infoCars.id
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                    Ver Orden\n                                "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "b-link",
-                                      {
-                                        staticClass:
-                                          "btn btn-outline-primary m-1",
-                                        attrs: {
-                                          href:
-                                            "/load-orders/" +
-                                            row.item.hash +
-                                            "/" +
-                                            infoCars.id +
-                                            "/edit"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                    Editar Orden\n                                "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
+                              "b-link",
+                              {
+                                staticClass: "btn btn-outline-primary m-1",
+                                attrs: {
+                                  href:
+                                    "/load-orders/" +
+                                    _vm.items.hash +
+                                    "/" +
+                                    _vm.items.id
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Ver Orden\n                        "
                                 )
-                              }),
-                              1
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-link",
+                              {
+                                staticClass: "btn btn-outline-primary m-1",
+                                attrs: {
+                                  href:
+                                    "/load-orders/" +
+                                    _vm.items.hash +
+                                    "/" +
+                                    _vm.items.id +
+                                    "/edit"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Editar Orden\n                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-link",
+                              {
+                                staticClass: "btn btn-outline-primary",
+                                attrs: {
+                                  href: "/load-order/" + _vm.items.id + "/cmr"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Ver CMR\n                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-link",
+                              {
+                                staticClass: "btn btn-outline-primary",
+                                attrs: {
+                                  href: "/bills/load-order/" + _vm.items.id
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Ver Factura\n                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-link",
+                              {
+                                staticClass: "btn btn-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteItem(_vm.items)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Eiminar Cliente\n                        "
+                                )
+                              ]
                             )
                           ],
                           1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "footer-btn" },
-                      [
-                        _c(
-                          "b-link",
-                          {
-                            staticClass: "btn btn-danger",
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteItem(row)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Eiminar Cliente\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-link",
-                          {
-                            staticClass: "btn btn-outline-primary",
-                            attrs: {
-                              href: "/load-order/" + row.item.id + "/cmr"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Ver CMR\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-link",
-                          {
-                            staticClass: "btn btn-outline-primary",
-                            attrs: { href: "/bills/load-order/" + row.item.id }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Ver Factura\n                    "
-                            )
-                          ]
                         )
                       ],
                       1
@@ -52348,13 +52364,13 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(350)
+  __webpack_require__(333)
 }
 var normalizeComponent = __webpack_require__(19)
 /* script */
 var __vue_script__ = __webpack_require__(335)
 /* template */
-var __vue_template__ = __webpack_require__(352)
+var __vue_template__ = __webpack_require__(336)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52393,8 +52409,46 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 333 */,
-/* 334 */,
+/* 333 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(334);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(39)("30c3f287", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a71f06a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TableOldLoad.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a71f06a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TableOldLoad.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(28)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.footer-btn{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: reverse;\n        -ms-flex-flow: row-reverse;\n            flex-flow: row-reverse;\n}\n@media (max-width: 800px) {\n.table.b-table.b-table-stacked-md > tbody > tr > td{\n        display: block;\n        width: 100%;\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 335 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -52518,7 +52572,169 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 336 */,
+/* 336 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-card",
+        { staticClass: "m-2" },
+        [
+          _c(
+            "b-form-group",
+            {
+              staticClass: "my-2",
+              attrs: { label: "", "label-for": "filterInput" }
+            },
+            [
+              _c(
+                "b-input-group",
+                { staticClass: "col-4" },
+                [
+                  _c("b-form-input", {
+                    attrs: {
+                      type: "search",
+                      id: "filterInput",
+                      placeholder: "Realizar busqueda"
+                    },
+                    model: {
+                      value: _vm.filter,
+                      callback: function($$v) {
+                        _vm.filter = $$v
+                      },
+                      expression: "filter"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "b-input-group-append",
+                    [
+                      _c(
+                        "b-button",
+                        {
+                          attrs: { disabled: !_vm.filter },
+                          on: {
+                            click: function($event) {
+                              _vm.filter = ""
+                            }
+                          }
+                        },
+                        [_vm._v("limpiar")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "my-2 col-4",
+                  model: {
+                    value: _vm.filter,
+                    callback: function($$v) {
+                      _vm.filter = $$v
+                    },
+                    expression: "filter"
+                  }
+                },
+                [
+                  _c("b-form-select-option", { attrs: { value: null } }, [
+                    _vm._v("filtrar pais")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.countries, function(country, index) {
+                    return _c(
+                      "b-form-select-option",
+                      { key: index, attrs: { value: country } },
+                      [_vm._v(_vm._s(country))]
+                    )
+                  })
+                ],
+                2
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("b-table", {
+        staticClass: "text-break w-100",
+        attrs: {
+          "head-variant": "dark",
+          "table-variant": "secondary",
+          striped: "",
+          hover: "",
+          items: _vm.items,
+          fields: _vm.fields,
+          bordered: "",
+          borderless: "",
+          small: "",
+          fixed: "",
+          responsive: "sm",
+          filter: _vm.filter,
+          stacked: "md"
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "cell(order_load)",
+            fn: function(row) {
+              return [
+                _c(
+                  "div",
+                  { staticClass: "d-flex flex-wrap" },
+                  [
+                    _c(
+                      "b-link",
+                      {
+                        staticClass: "btn btn-outline-primary m-1",
+                        attrs: {
+                          href:
+                            "/load-orders/" +
+                            row.item.hash +
+                            "/" +
+                            row.item.card_id
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Ver Orden\n                "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]
+            }
+          }
+        ])
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2a71f06a", module.exports)
+  }
+}
+
+/***/ }),
 /* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -52580,7 +52796,7 @@ var content = __webpack_require__(339);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(39)("2ae67372", content, false, {});
+var update = __webpack_require__(39)("2359f098", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -53252,7 +53468,7 @@ var content = __webpack_require__(345);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(39)("ef9eec70", content, false, {});
+var update = __webpack_require__(39)("9927b816", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -53593,210 +53809,6 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 349 */,
-/* 350 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(351);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(39)("0588585a", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a71f06a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TableOldLoad.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a71f06a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TableOldLoad.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 351 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(28)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.footer-btn{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: reverse;\n        -ms-flex-flow: row-reverse;\n            flex-flow: row-reverse;\n}\n@media (max-width: 800px) {\n.table.b-table.b-table-stacked-md > tbody > tr > td{\n        display: block;\n        width: 100%;\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 352 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "b-card",
-        { staticClass: "m-2" },
-        [
-          _c(
-            "b-form-group",
-            {
-              staticClass: "my-2",
-              attrs: { label: "", "label-for": "filterInput" }
-            },
-            [
-              _c(
-                "b-input-group",
-                { staticClass: "col-4" },
-                [
-                  _c("b-form-input", {
-                    attrs: {
-                      type: "search",
-                      id: "filterInput",
-                      placeholder: "Realizar busqueda"
-                    },
-                    model: {
-                      value: _vm.filter,
-                      callback: function($$v) {
-                        _vm.filter = $$v
-                      },
-                      expression: "filter"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "b-input-group-append",
-                    [
-                      _c(
-                        "b-button",
-                        {
-                          attrs: { disabled: !_vm.filter },
-                          on: {
-                            click: function($event) {
-                              _vm.filter = ""
-                            }
-                          }
-                        },
-                        [_vm._v("limpiar")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "my-2 col-4",
-                  model: {
-                    value: _vm.filter,
-                    callback: function($$v) {
-                      _vm.filter = $$v
-                    },
-                    expression: "filter"
-                  }
-                },
-                [
-                  _c("b-form-select-option", { attrs: { value: null } }, [
-                    _vm._v("filtrar pais")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.countries, function(country, index) {
-                    return _c(
-                      "b-form-select-option",
-                      { key: index, attrs: { value: country } },
-                      [_vm._v(_vm._s(country))]
-                    )
-                  })
-                ],
-                2
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("b-table", {
-        staticClass: "text-break w-100",
-        attrs: {
-          "head-variant": "dark",
-          "table-variant": "secondary",
-          striped: "",
-          hover: "",
-          items: _vm.items,
-          fields: _vm.fields,
-          bordered: "",
-          borderless: "",
-          small: "",
-          fixed: "",
-          responsive: "sm",
-          filter: _vm.filter,
-          stacked: "md"
-        },
-        scopedSlots: _vm._u([
-          {
-            key: "cell(order_load)",
-            fn: function(row) {
-              return [
-                _c(
-                  "div",
-                  { staticClass: "d-flex flex-wrap" },
-                  [
-                    _c(
-                      "b-link",
-                      {
-                        staticClass: "btn btn-outline-primary m-1",
-                        attrs: {
-                          href:
-                            "/load-orders/" +
-                            row.item.hash +
-                            "/" +
-                            row.item.card_id
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                    Ver Orden\n                "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                )
-              ]
-            }
-          }
-        ])
-      })
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2a71f06a", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

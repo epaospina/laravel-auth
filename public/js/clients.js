@@ -161,7 +161,7 @@ function searchCustomer(search) {
         success: function(response) {
             let newHtml = '<div class="content-customer">';
             $.each(response, function( index, value ) {
-                newHtml += '<span onclick="assignDataCustomer('+value.id+')" class="btn btn-outline-primary m-1">'+value.signing+'</span>';
+                newHtml += '<span onclick="assignDataCustomer('+value.id+')" class="btn btn-outline-primary m-1">'+value.import_company+'</span>';
             });
             newHtml += '</div>';
             customers.append(newHtml);
@@ -174,10 +174,11 @@ function assignDataCustomer(id) {
         url: "/load-orders/get-filter/"+id,
         type: 'GET',
         success: function(response) {
-            $('#bill_to').val(response.signing);
-            $('#addresses_client').val(response.addresses);
-            $('#city_client').val(response.city);
-            $('#postal_cod_client').val(response.postal_cod);
+            $('#bill_to').val(response[0].signing);
+            $('#import_company').val(response[0].import_company);
+            $('#addresses_client').val(response[0].addresses);
+            $('#city_client').val(response[0].city);
+            $('#postal_cod_client').val(response[0].postal_cod);
             //$('#bill_to').val(response.phone);
             //$('#bill_to').val(response.mobile);
             //$('#bill_to').val(response.email);

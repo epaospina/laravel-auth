@@ -28,7 +28,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.import_company') }}</span>
                 </div>
-                <input name="import_company" value="{{old('import_company')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input id="import_company" name="import_company" value="{{old('import_company')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group-sm mb-3 input-client col-12 d-flex">

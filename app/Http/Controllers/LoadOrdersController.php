@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use mysql_xdevapi\Table;
 
 class LoadOrdersController extends Controller
 {
@@ -60,18 +61,17 @@ class LoadOrdersController extends Controller
      * Display a listing of the resource.
      *
      * @param $country
-     * @return LoadOrders[]|Collection
+     * @return \Illuminate\Support\Collection
      */
     public function filterCountry($country)
     {
-        $loadOrders = LoadOrders::all()
-            ->where('countries_id', $country)
-            ->where('status', true);
-        foreach ($loadOrders as $loadOrder){
-            $loadOrder->customer;
-            $loadOrder->customer->infoCars->where('status', true);
-        }
-        return $loadOrders;
+        return DB::table('information_car as info_cars')
+            ->select('info_cars.*', 'c.*', 'order.*')
+            ->join('customer as c', 'c.id', '=', 'info_cars.customer_id')
+            ->join('load_orders as order', 'c.id', '=', 'order.customer_id')
+            ->where('order.countries_id', $country)
+            ->where('order.status', true)
+            ->get();
     }
 
     /**
@@ -324,17 +324,21 @@ class LoadOrdersController extends Controller
     }
 
     public function filter($filter){
-        if (strlen($filter) >= 2){
+        if (strlen($filter) > 2){
             $filter = strtolower($filter);
-            return DB::table('customer')
-                ->whereRaw('lower(signing) like (?)',["%{$filter}%"])
+            return DB::table('load_orders')
+                ->whereRaw('lower(import_company) like (?)',["%{$filter}%"])
+                ->orWhereRaw('lower(bill_to) like (?)',["%{$filter}%"])
                 ->get();
         }
         return '';
     }
 
     public function getFilter($filter){
-        return Customer::all()->find($filter);
+        return DB::table('load_orders')
+            ->join('customer', 'customer.id', '=', 'load_orders.customer_id')
+            ->where('load_orders.id', $filter)
+            ->get();
     }
 
     public function listCountry(){

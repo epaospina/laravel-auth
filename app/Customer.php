@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Customer extends Model
 {
@@ -30,7 +31,10 @@ class Customer extends Model
     }
 
     static public function findOrCreateClient($infoArray){
-        $client = Customer::all()->where('signing', $infoArray['signing'])->first();
+        $client = DB::table('load_orders')
+            ->whereRaw('lower(import_company) like (?)',["%{$infoArray['import_company']}%"])
+            ->orWhereRaw('lower(bill_to) like (?)',["%{$infoArray['bill_to']}%"])
+            ->get();
 
         if (!isset($client->id)){
             $client = new Customer();
