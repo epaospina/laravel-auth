@@ -11,9 +11,7 @@
             </button>
         </div>
     @endif
-
-
-    <button id="upload-button">Select PDF</button>
+    {{--<button id="upload-button">Select PDF</button>
     <input type="file" id="file-to-upload" accept="application/pdf" />
     <div id="pdf-main-container">
         <div id="pdf-loader">Loading document ...</div>
@@ -30,7 +28,7 @@
             <a id="download-image" href="#">Download PNG</a>
         </div>
     </div>
-    <img id="imgTest" src="{{asset('/pdf/page.png')}}" alt="">
+    <img id="imgTest" src="{{asset('/pdf/page.png')}}" alt="">--}}
     <form id="regForm" action="{{ route('load-orders.store') }}" method="POST">
         @csrf
         <div class="tab border p-4">
@@ -288,6 +286,7 @@
     <script src="{{asset('js/clients.js')}}"></script>
     <script>
         $( document ).ready(function() {
+            $('.pace').remove();
             $('#inputDate').datepicker()
                 .on('change', function(e) {
                     $('#dateLoad').text($(this).val())
