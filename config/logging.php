@@ -65,11 +65,11 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
-        /*'stackdriver' => [
+        'stackdriver' => [
             'driver' => 'custom',
             'via' => App\Logging\CreateCustomLogger::class,
             'level' => 'debug',
-        ],*/
+        ],
 
     ],
 
