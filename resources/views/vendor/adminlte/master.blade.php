@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
 
+    <link rel="stylesheet" href="{{ asset('css/default.css') }}">
 
     @include('adminlte::plugins', ['type' => 'css'])
 

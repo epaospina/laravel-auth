@@ -47,21 +47,21 @@
                 <b-card>
                     <b-row class="px-4">
                         <b-form-group>
-                            {{ items.vin }}
-                            <b-link :href="'/load-orders/' + items.hash + '/' + items.id" class="btn btn-outline-primary m-1">
-                                Ver Orden
+                            {{ row.item }}
+                            <b-link :href="'/load-orders/' + row.item.hash + '/' + row.item.order_id" class="btn btn-outline-primary m-1">
+                                VER ORDEN
                             </b-link>
-                            <b-link :href="'/load-orders/' + items.hash + '/' + items.id + '/edit'" class="btn btn-outline-primary m-1">
-                                Editar Orden
+                            <b-link :href="'/load-orders/' + row.item.hash + '/' + row.item.id + '/edit'" class="btn btn-outline-primary m-1">
+                                EDITAR ORDEN
                             </b-link>
-                            <b-link :href="'/load-order/' + items.id + '/cmr'" class="btn btn-outline-primary">
-                                Ver CMR
+                            <b-link :href="'/load-order/' + row.item.id + '/cmr'" class="btn btn-outline-primary">
+                                VER CMR
                             </b-link>
-                            <b-link :href="'/bills/load-order/' + items.id" class="btn btn-outline-primary">
-                                Ver Factura
+                            <b-link :href="'/bills/load-order/' + row.item.id" class="btn btn-outline-primary">
+                                VER FACTURA
                             </b-link>
-                            <b-link @click="deleteItem(items)" class="btn btn-danger">
-                                Eiminar Cliente
+                            <b-link @click="deleteItem(row.item)" class="btn btn-danger">
+                                ELIMINAR
                             </b-link>
                         </b-form-group>
                     </b-row>
@@ -108,13 +108,8 @@
         created(){
             this.fields = [
                 {
-                    key: 'contact_person',
-                    label: 'Cliente',
-                    sortable: true
-                },
-                {
-                    key: 'import_company',
-                    label: 'Compañía',
+                    key: 'country',
+                    label: 'Pais',
                     sortable: true
                 },
                 {
@@ -123,8 +118,18 @@
                     sortable: true
                 },
                 {
-                    key: 'phone',
-                    label: 'Contacto',
+                    key: 'import_company',
+                    label: 'Compañía',
+                    sortable: true
+                },
+                {
+                    key: 'model_car',
+                    label: 'Coche',
+                    sortable: true
+                },
+                {
+                    key: 'vin',
+                    label: 'Bastidor',
                     sortable: true
                 },
                 {
@@ -139,8 +144,6 @@
                 }
             ];
             Vue.axios.get('/load-orders/country/' + window.location.pathname.split('/')[3]).then((response) => {
-                console.log(response.data);
-
                 let createItems = [];
                 $.each(response.data, function(key, value) {
                     value['_showDetails'] = false;

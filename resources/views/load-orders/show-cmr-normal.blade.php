@@ -71,7 +71,7 @@
                     </div>
                 </td>
                 <td class="td-logo-start" colspan="7" rowspan="2">
-                    <img src="{{asset('images/logo-mc.jpg')}}" alt="Mc Vehiculos">
+                    <img src="{{asset('images/logoMC.png')}}" alt="Mc Vehiculos">
                     <div>
                         <p>C/. Altagracia, 8 - 13003 CIUDAD REAL</p>
                         <p>Telf.: 926 228 453 - Fax 926 222 588</p>
@@ -383,7 +383,7 @@
                     </div>
                 </td>
                 <td class="td-logo-end" colspan="3">
-                    <img src="{{asset('images/logo-mc.jpg')}}" alt="Mc Vehiculos">
+                    <img src="{{asset('images/logoMC.png')}}" alt="Mc Vehiculos">
                     <p>C/. Altagracia, 8 - 13003 CIUDAD REAL</p>
                     <p>Telf.: 926 228 453 - Fax 926 222 588</p>
                     <p>Movil: 629 423 149 - mcvehiculos1935@msn.com</p>

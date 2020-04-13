@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'MC vehiculos',
+    'title' => 'MCVehiculos',
 
     'title_prefix' => '',
 
@@ -106,79 +106,141 @@ return [
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
     */
     'menu' => [
-            'CLIENTES',
-                [
-                    'text' => 'AGREGAR',
-                    'url'  => 'load-orders/create',
-                    'icon' => 'fas fa-user-plus'
-                ],
-                [
-                    'text' => 'FACTURAS',
-                    'url'  => 'clients/',
-                    'icon' => 'fas fa-user-plus'
-                ],
-                [
-                    'text'    => 'ORDENES DE CARGA',
-                    'icon'    => 'fas fa-fw fa-share',
-                    'submenu' => [
-                        [
-                            'text' => 'Nacionales',
-                            'url'  => 'load-orders/list-by-country/1',
-                            'icon' => 'fas fa-user-plus'
-                        ],
-                        [
-                            'text'    => 'Internacionales',
-                            'icon'    => 'fas fa-fw fa-share',
-                            'submenu' => [
-                                [
-                                    'text' => 'Alemania',
-                                    'url'  => 'load-orders/list-by-country/2',
-                                    'icon' => 'fas fa-user-plus'
-                                ],
-                                [
-                                    'text' => 'Bélgica',
-                                    'url'  => 'load-orders/list-by-country/4',
-                                    'icon' => 'fas fa-user-plus'
-                                ],
-                                [
-                                    'text' => 'Francia',
-                                    'url'  => 'load-orders/list-by-country/6',
-                                    'icon' => 'fas fa-user-plus'
-                                ],
-                                [
-                                    'text' => 'Holanda',
-                                    'url'  => 'load-orders/list-by-country/7',
-                                    'icon' => 'fas fa-user-plus'
-                                ],
-                                [
-                                    'text' => 'Luxemburgo',
-                                    'url'  => 'load-orders/list-by-country/8',
-                                    'icon' => 'fas fa-user-plus'
-                                ],
-                                [
-                                    'text' => 'Inglaterra',
-                                    'url'  => 'load-orders/list-by-country/9',
-                                    'icon' => 'fas fa-user-plus'
-                                ],
+        'CLIENTES',
+            [
+                'text' => 'AGREGAR',
+                'url'  => 'load-orders/create',
+                'icon' => 'fas fa-user-plus'
+            ],
+            [
+                'text' => 'FACTURAS',
+                'url'  => 'clients/',
+                'icon' => 'fas fa-user-plus'
+            ],
+            [
+                'text'    => 'ORDENES DE CARGA',
+                'icon'    => 'fas fa-fw fa-share',
+                'submenu' => [
+                    [
+                        'text' => 'Nacionales',
+                        'url'  => 'load-orders/list-by-country/1',
+                        'icon' => 'fas fa-user-plus'
+                    ],
+                    [
+                        'text'    => 'Internacionales',
+                        'icon'    => 'fas fa-fw fa-share',
+                        'submenu' => [
+                            [
+                                'text' => 'Todos',
+                                'url'  => 'load-orders/list-by-country/0',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Alemania',
+                                'url'  => 'load-orders/list-by-country/2',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Bélgica',
+                                'url'  => 'load-orders/list-by-country/4',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Francia',
+                                'url'  => 'load-orders/list-by-country/6',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Holanda',
+                                'url'  => 'load-orders/list-by-country/7',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Luxemburgo',
+                                'url'  => 'load-orders/list-by-country/8',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Inglaterra',
+                                'url'  => 'load-orders/list-by-country/9',
+                                'icon' => 'fas fa-user-plus'
                             ],
                         ],
                     ],
                 ],
-        [
-            'text' => 'COCHES RECOGIDOS',
-            'url'  => 'load-orders/cars-old-load',
-            'icon' => 'fas fa-user-plus'
-        ],
-                [
-                    'text' => 'LISTA DE CLIENTES',
-                    'url'  => 'load-orders',
-                    'icon' => 'fas fa-user-plus'
+            ],
+            [
+                'text' => 'COCHES RECOGIDOS',
+                'url'  => 'load-orders/cars-old-load',
+                'icon' => 'fas fa-user-plus'
+            ],
+            [
+                'text' => 'LISTA DE CLIENTES',
+                'url'  => 'load-orders',
+                'icon' => 'fas fa-user-plus'
+            ],
+            [
+                'text' => 'COCHES PENDIENTES',
+                'url'  => 'load-orders/cars-pending',
+                'icon' => 'fas fa-user-plus'
+            ],
+            [
+                'text' => 'COCHES PENDIENTES',
+                'url'  => 'load-orders/cars-pending',
+                'icon' => 'fas fa-user-plus'
+            ],
+            /*[
+                'text'    => 'LISTA DE COCHES',
+                'icon'    => 'fas fa-fw fa-share',
+                'submenu' => [
+                    [
+                        'text' => 'Nacionales',
+                        'url'  => 'load-orders/list-by-country/1',
+                        'icon' => 'fas fa-user-plus'
+                    ],
+                    [
+                        'text'    => 'Internacionales',
+                        'icon'    => 'fas fa-fw fa-share',
+                        'submenu' => [
+                            [
+                                'text' => 'Todos',
+                                'url'  => 'load-orders/list-by-country/0',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Alemania',
+                                'url'  => 'load-orders/list-by-country/2',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Bélgica',
+                                'url'  => 'load-orders/list-by-country/4',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Francia',
+                                'url'  => 'load-orders/list-by-country/6',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Holanda',
+                                'url'  => 'load-orders/list-by-country/7',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Luxemburgo',
+                                'url'  => 'load-orders/list-by-country/8',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                            [
+                                'text' => 'Inglaterra',
+                                'url'  => 'load-orders/list-by-country/9',
+                                'icon' => 'fas fa-user-plus'
+                            ],
+                        ],
+                    ],
                 ],
-                [
-                    'text' => 'Coches pendientes',
-                    'url'  => 'load-orders/cars-pending',
-                    'icon' => 'fas fa-user-plus'
-                ],
+            ],*/
     ],
 
     /*
@@ -290,3 +352,4 @@ return [
         ],
     ],
 ];
+

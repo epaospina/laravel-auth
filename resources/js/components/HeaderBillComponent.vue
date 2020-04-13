@@ -21,7 +21,7 @@
         data(){
             return {
                 numBill: 'T0669/2019',
-                urlImg: '../../images/logo-mc.jpg',
+                urlImg: '../../images/logoMC.png',
                 email: 'mcvehiculos1935@msn.com'
             }
         },

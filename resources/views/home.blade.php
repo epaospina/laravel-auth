@@ -7,8 +7,7 @@
 @section('content')
     <div class="container">
         <div class="home" style="text-align: center;">
-            <h1 class="title-home">Bienvenido {{auth()->user()->email}}</h1>
-            <img src="{{asset('../../images/logomcTrans.png')}}" alt="Mc Vehiculos">
+            <img src="{{asset('../../images/logoMC.png')}}" alt="Mc Vehiculos">
         </div>
     </div>
 @stop

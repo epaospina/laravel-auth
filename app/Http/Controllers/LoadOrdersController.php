@@ -65,13 +65,20 @@ class LoadOrdersController extends Controller
      */
     public function filterCountry($country)
     {
-        return DB::table('information_car as info_cars')
-            ->select('info_cars.*', 'c.*', 'order.*')
+        $listCountries =  DB::table('information_car as info_cars')
+            ->select('info_cars.*', 'c.*', 'order.*', 'c2.*', 'order.id as order_id')
             ->join('customer as c', 'c.id', '=', 'info_cars.customer_id')
             ->join('load_orders as order', 'c.id', '=', 'order.customer_id')
-            ->where('order.countries_id', $country)
-            ->where('order.status', true)
+            ->join('countries as c2', 'c2.id', '=', 'order.countries_id');
+
+        if ($country !== '0'){
+            $listCountries->where('order.countries_id', $country);
+        }
+
+        $listCountries->where('order.status', true)
             ->get();
+
+        return $listCountries->get();
     }
 
     /**

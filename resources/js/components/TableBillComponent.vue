@@ -200,7 +200,7 @@
         props: ['order_id'],
         data(){
             return {
-                urlImg: '../../images/logomcTrans.png',
+                urlImg: '../../images/logoMC.png',
                 numBill: 'T0669/2019',
                 email: 'mcvehiculos1935@msn.com',
                 date : 'ok',

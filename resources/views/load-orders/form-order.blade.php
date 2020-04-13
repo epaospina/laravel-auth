@@ -4,7 +4,7 @@
 <div id="contentTableM" class="container-order-m edit-load">
     <div class="header-logo-m">
         <div>
-            <img src="{{asset('images/logo-mc.jpg')}}" alt="Mc Vehiculos">
+            <img src="{{asset('images/logoMC')}}" alt="Mc Vehiculos">
         </div>
         <div class="transcaliguz">
             <p>TRANSCALYGUZ, S.L.</p>

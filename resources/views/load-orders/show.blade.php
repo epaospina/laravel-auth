@@ -16,7 +16,7 @@
     <div id="contentTableM" class="container-order-m edit-load">
         <div class="header-logo-m">
             <div>
-                <img src="{{asset('images/logo-mc.jpg')}}" alt="Mc Vehiculos">
+                <img src="{{asset('images/logoMC.png')}}" alt="Mc Vehiculos">
             </div>
             <div class="transcaliguz">
                 <p>TRANSCALYGUZ, S.L.</p>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="title-client">
-            <h3 class="title-client">{{ __('clients.load_order') }}</h3>
+            <h3>{{ __('clients.load_order') }}</h3>
         </div>
         <table class="table-load-order" style="width: 100%;">
             <tbody>
@@ -147,7 +147,7 @@
         <div class="header-logo">
             <div>
                 <div>
-                    <img src="{{asset('images/logo-mc.jpg')}}" alt="Mc Vehiculos">
+                    <img src="{{asset('images/logoMC.png')}}" alt="Mc Vehiculos">
                 </div>
                 <div class="header-logo-span">
                     <span>C/. Altagracia, 8 - 13003 CIUDAD REAL - ESPAÑA</span>
@@ -166,7 +166,7 @@
         </div>
         <div id="exportWord">
             <div class="title-client">
-                <h3 class="title-client">ORDEN DE CARGA</h3>
+                <h3>ORDEN DE CARGA</h3>
             </div>
             <label>DATOS DEL VEHICULO / FAHRZEUGDATEN</label>
             <table class="table-load-order" style="width: 100%;">
