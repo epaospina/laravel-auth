@@ -184,11 +184,6 @@ return [
                 'url'  => 'load-orders/cars-pending',
                 'icon' => 'fas fa-user-plus'
             ],
-            [
-                'text' => 'COCHES PENDIENTES',
-                'url'  => 'load-orders/cars-pending',
-                'icon' => 'fas fa-user-plus'
-            ],
             /*[
                 'text'    => 'LISTA DE COCHES',
                 'icon'    => 'fas fa-fw fa-share',
