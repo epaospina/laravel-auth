@@ -47,7 +47,6 @@
                 <b-card>
                     <b-row class="px-4">
                         <b-form-group>
-                            {{ row.item }}
                             <b-link :href="'/load-orders/' + row.item.hash + '/' + row.item.order_id" class="btn btn-outline-primary m-1">
                                 VER ORDEN
                             </b-link>

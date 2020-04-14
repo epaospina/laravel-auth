@@ -34,8 +34,12 @@ input {
     font-family: inherit;
     border: 1px solid transparent;
 }
-.header-logo{
+.header-logo {
     display: flex;
+    flex-flow: row;
+    padding-top: 20px;
+    align-items: center;
+    justify-content: space-between;
 }
 .header-logo img{
     width: 50%;
@@ -47,11 +51,11 @@ input {
     line-height: 8px;
 }
 .header-logo-span span{
-    font-size: 7px !important;
+    font-size: 10px !important;
 }
 .transcaliguz {
-    width: 50%;
-    padding: 2% 0;
+    width: 40%;
+    /* padding: 2% 0; */
 }
 .transcaliguz p {
     line-height: 7px;
