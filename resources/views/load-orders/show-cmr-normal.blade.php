@@ -18,7 +18,7 @@
                     </div>
                     <div class="info-one">
                         <label>{{$loadOrders->customer->signing}}</label><br>
-                        <label>{{$loadOrders->customer->addresses_load}}</label><br>
+                        <label>{{$loadOrders->customer->addresses}}</label><br>
                         <label>{{$loadOrders->customer->city_load}} // {{$loadOrders->customer->postal_cod_load}}</label>
                     </div>
                 </td>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="info-one">
-                        <label class="info-text">{{$loadOrders->customer->addresses_load}}</label><br>
+                        <label class="info-text">{{$loadOrders->customer->addresses}}</label><br>
                         <label class="info-text">{{$loadOrders->customer->city_load}} // {{$loadOrders->customer->postal_cod_load}}</label><br>
                         <label class="info-text">{{$loadOrders->date_upload}}</label>
                     </div>

@@ -299,7 +299,7 @@ class LoadOrdersController extends Controller
                     $cars[$keyLoad]['buyer']              = isset($loadOrder->constancy) ? $loadOrder->constancy : $loadOrder->bill_to;
                     $cars[$keyLoad]['action_do']          = 'DESCARGAR';
                     $cars[$keyLoad]['car'][$key]          = $infoCar->model_car ."<br>". $infoCar->vin;
-                    $cars[$keyLoad]['addresses_load']     = $loadOrder->customer->addresses_load;
+                    $cars[$keyLoad]['addresses_load']     = $loadOrder->data_load->addresses_load;
                     $cars[$keyLoad]['scheduler']          = '';
                     $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download;
                     $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download."<br>".$loadOrder->data_download->mobile_download;
