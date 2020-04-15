@@ -50,10 +50,10 @@
                             <b-link :href="'/load-orders/' + row.item.hash + '/' + row.item.order_id" class="btn btn-outline-primary m-1">
                                 VER ORDEN
                             </b-link>
-                            <b-link :href="'/load-orders/' + row.item.hash + '/' + row.item.id + '/edit'" class="btn btn-outline-primary m-1">
+                            <b-link :href="'/load-orders/' + row.item.hash + '/' + row.item.order_id + '/edit'" class="btn btn-outline-primary m-1">
                                 EDITAR ORDEN
                             </b-link>
-                            <b-link :href="'/load-order/' + row.item.id + '/cmr'" class="btn btn-outline-primary">
+                            <b-link :href="'/load-order/' + row.item.order_id + '/cmr'" class="btn btn-outline-primary">
                                 VER CMR
                             </b-link>
                             <b-link :href="'/bills/load-order/' + row.item.id" class="btn btn-outline-primary">

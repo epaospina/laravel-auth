@@ -58238,7 +58238,7 @@ var render = function() {
                                     "/load-orders/" +
                                     row.item.hash +
                                     "/" +
-                                    row.item.id +
+                                    row.item.order_id +
                                     "/edit"
                                 }
                               },
@@ -58254,7 +58254,8 @@ var render = function() {
                               {
                                 staticClass: "btn btn-outline-primary",
                                 attrs: {
-                                  href: "/load-order/" + row.item.id + "/cmr"
+                                  href:
+                                    "/load-order/" + row.item.order_id + "/cmr"
                                 }
                               },
                               [
