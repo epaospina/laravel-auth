@@ -77,7 +77,7 @@
         created(){
             this.fields = [
                 {
-                    key: 'signing',
+                    key: 'contact_download',
                     label: 'Cliente',
                     sortable: true
                 },

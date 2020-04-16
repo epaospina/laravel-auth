@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/clients.css')}} ">
-    <link href="{{ asset('css/print.css')}}" media="print" rel="stylesheet" />
+    <link href="{{ asset('css/print_order.css')}}" media="print" rel="stylesheet" />
 @endpush
 @section('content')
     @if(auth()->id())

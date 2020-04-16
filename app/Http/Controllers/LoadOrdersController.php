@@ -52,6 +52,7 @@ class LoadOrdersController extends Controller
             ->sortBy('created_at');
         foreach ($loadOrders as $loadOrder){
             $loadOrder->customer;
+            $loadOrder->data_download;
             $loadOrder->customer->infoCars->where('status', true);
         }
         return $loadOrders;
@@ -140,9 +141,11 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id as card_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'customer.city', 'customer.phone', 'load_orders.hash', 'customer.created_at')
+                'customer.signing', 'customer.city', 'customer.phone', 'load_orders.hash',
+                'customer.created_at', 'data_download.contact_download')
             ->join('customer', 'customer.id', '=', 'car.customer_id')
             ->join('load_orders', 'customer.id', '=', 'load_orders.customer_id')
+            ->join('data_download', 'load_orders.id', '=', 'data_download.load_orders_id')
             ->where('is_pending', '=', false)
             ->orderBy('customer.created_at')
             ->get();
@@ -295,7 +298,7 @@ class LoadOrdersController extends Controller
         foreach ($loadOrders as $keyLoad => $loadOrder){
             foreach ($loadOrder->customer->infoCars->where('status', 1) as $key => $infoCar) {
                 if (in_array($infoCar->id, explode(',',$carsPending->array_cars))){
-                    $cars[$keyLoad]['client']             = $loadOrder->customer->signing;
+                    $cars[$keyLoad]['client']             = $loadOrder->data_download->contact_download;
                     $cars[$keyLoad]['buyer']              = isset($loadOrder->constancy) ? $loadOrder->constancy : $loadOrder->bill_to;
                     $cars[$keyLoad]['action_do']          = 'DESCARGAR';
                     $cars[$keyLoad]['car'][$key]          = $infoCar->model_car ."<br>". $infoCar->vin;

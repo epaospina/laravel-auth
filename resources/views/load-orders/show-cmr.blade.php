@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/cmr.css')}} ">
+    <link href="{{ asset('css/print_cmr.css')}}" media="print" rel="stylesheet" />
 @endpush
 @section('content')
 

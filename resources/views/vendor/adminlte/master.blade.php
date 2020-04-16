@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('mcv.ico')}}">
 
     <link rel="stylesheet" href="{{ asset('css/default.css') }}">
 

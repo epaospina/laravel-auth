@@ -56692,6 +56692,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(374)
+}
 var normalizeComponent = __webpack_require__(22)
 /* script */
 var __vue_script__ = __webpack_require__(337)
@@ -56700,7 +56704,7 @@ var __vue_template__ = __webpack_require__(338)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -57013,6 +57017,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['tr', 'trs'],
@@ -57042,11 +57109,197 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("tr", [
-    _c("td", [_vm._v(_vm._s(_vm.tr.client))]),
+    _c("td", [
+      _vm.title
+        ? _c(
+            "div",
+            {
+              staticStyle: { "text-align": "center", "align-items": "baseline" }
+            },
+            [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.title = false
+                    }
+                  },
+                  model: {
+                    value: _vm.tr.client,
+                    callback: function($$v) {
+                      _vm.$set(_vm.tr, "client", $$v)
+                    },
+                    expression: "tr.client"
+                  }
+                },
+                [_vm._v(_vm._s(_vm.tr.client))]
+              )
+            ]
+          )
+        : _c(
+            "div",
+            {
+              staticStyle: {
+                display: "flex",
+                "text-align": "center",
+                "align-items": "baseline"
+              }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tr.client,
+                      expression: "tr.client"
+                    }
+                  ],
+                  staticStyle: { width: "100%" },
+                  domProps: { value: _vm.tr.client },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.tr, "client", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]
+          )
+    ]),
     _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.tr.buyer))]),
+    _c("td", [
+      _vm.title
+        ? _c(
+            "div",
+            {
+              staticStyle: { "text-align": "center", "align-items": "baseline" }
+            },
+            [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.title = false
+                    }
+                  },
+                  model: {
+                    value: _vm.tr.buyer,
+                    callback: function($$v) {
+                      _vm.$set(_vm.tr, "buyer", $$v)
+                    },
+                    expression: "tr.buyer"
+                  }
+                },
+                [_vm._v(_vm._s(_vm.tr.buyer))]
+              )
+            ]
+          )
+        : _c(
+            "div",
+            {
+              staticStyle: {
+                display: "flex",
+                "text-align": "center",
+                "align-items": "baseline"
+              }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tr.buyer,
+                      expression: "tr.buyer"
+                    }
+                  ],
+                  staticStyle: { width: "100%" },
+                  domProps: { value: _vm.tr.buyer },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.tr, "buyer", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]
+          )
+    ]),
     _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.tr.action_do))]),
+    _c("td", [
+      _vm.title
+        ? _c(
+            "div",
+            {
+              staticStyle: { "text-align": "center", "align-items": "baseline" }
+            },
+            [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.title = false
+                    }
+                  },
+                  model: {
+                    value: _vm.tr.action_do,
+                    callback: function($$v) {
+                      _vm.$set(_vm.tr, "action_do", $$v)
+                    },
+                    expression: "tr.action_do"
+                  }
+                },
+                [_vm._v(_vm._s(_vm.tr.action_do))]
+              )
+            ]
+          )
+        : _c(
+            "div",
+            {
+              staticStyle: {
+                display: "flex",
+                "text-align": "center",
+                "align-items": "baseline"
+              }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tr.action_do,
+                      expression: "tr.action_do"
+                    }
+                  ],
+                  staticStyle: { width: "100%" },
+                  domProps: { value: _vm.tr.action_do },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.tr, "action_do", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]
+          )
+    ]),
     _vm._v(" "),
     _c(
       "td",
@@ -57059,14 +57312,264 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.tr.addresses_load))]),
+    _c("td", [
+      _vm.title
+        ? _c(
+            "div",
+            {
+              staticStyle: { "text-align": "center", "align-items": "baseline" }
+            },
+            [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.title = false
+                    }
+                  },
+                  model: {
+                    value: _vm.tr.addresses_load,
+                    callback: function($$v) {
+                      _vm.$set(_vm.tr, "addresses_load", $$v)
+                    },
+                    expression: "tr.addresses_load"
+                  }
+                },
+                [_vm._v(_vm._s(_vm.tr.addresses_load))]
+              )
+            ]
+          )
+        : _c(
+            "div",
+            {
+              staticStyle: {
+                display: "flex",
+                "text-align": "center",
+                "align-items": "baseline"
+              }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tr.addresses_load,
+                      expression: "tr.addresses_load"
+                    }
+                  ],
+                  staticStyle: { width: "100%" },
+                  domProps: { value: _vm.tr.addresses_load },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.tr, "addresses_load", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]
+          )
+    ]),
     _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.tr.schedule))]),
+    _c("td", [
+      _vm.title
+        ? _c(
+            "div",
+            {
+              staticStyle: { "text-align": "center", "align-items": "baseline" }
+            },
+            [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.title = false
+                    }
+                  },
+                  model: {
+                    value: _vm.tr.schedule,
+                    callback: function($$v) {
+                      _vm.$set(_vm.tr, "schedule", $$v)
+                    },
+                    expression: "tr.schedule"
+                  }
+                },
+                [_vm._v(_vm._s(_vm.tr.schedule))]
+              )
+            ]
+          )
+        : _c(
+            "div",
+            {
+              staticStyle: {
+                display: "flex",
+                "text-align": "center",
+                "align-items": "baseline"
+              }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tr.schedule,
+                      expression: "tr.schedule"
+                    }
+                  ],
+                  staticStyle: { width: "100%" },
+                  domProps: { value: _vm.tr.schedule },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.tr, "schedule", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]
+          )
+    ]),
     _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.tr.addresses_download))]),
+    _c("td", [
+      _vm.title
+        ? _c(
+            "div",
+            {
+              staticStyle: { "text-align": "center", "align-items": "baseline" }
+            },
+            [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.title = false
+                    }
+                  },
+                  model: {
+                    value: _vm.tr.addresses_download,
+                    callback: function($$v) {
+                      _vm.$set(_vm.tr, "addresses_download", $$v)
+                    },
+                    expression: "tr.addresses_download"
+                  }
+                },
+                [_vm._v(_vm._s(_vm.tr.addresses_download))]
+              )
+            ]
+          )
+        : _c(
+            "div",
+            {
+              staticStyle: {
+                display: "flex",
+                "text-align": "center",
+                "align-items": "baseline"
+              }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tr.addresses_download,
+                      expression: "tr.addresses_download"
+                    }
+                  ],
+                  staticStyle: { width: "100%" },
+                  domProps: { value: _vm.tr.addresses_download },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.tr,
+                        "addresses_download",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ])
+            ]
+          )
+    ]),
     _vm._v(" "),
     _c("td", { domProps: { innerHTML: _vm._s(_vm.tr.contact) } }, [
-      _vm._v(_vm._s(_vm.tr.contact))
+      _vm.title
+        ? _c(
+            "div",
+            {
+              staticStyle: { "text-align": "center", "align-items": "baseline" }
+            },
+            [
+              _c(
+                "span",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.title = false
+                    }
+                  },
+                  model: {
+                    value: _vm.tr.contact,
+                    callback: function($$v) {
+                      _vm.$set(_vm.tr, "contact", $$v)
+                    },
+                    expression: "tr.contact"
+                  }
+                },
+                [_vm._v(_vm._s(_vm.tr.contact))]
+              )
+            ]
+          )
+        : _c(
+            "div",
+            {
+              staticStyle: {
+                display: "flex",
+                "text-align": "center",
+                "align-items": "baseline"
+              }
+            },
+            [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.tr.contact,
+                      expression: "tr.contact"
+                    }
+                  ],
+                  staticStyle: { width: "100%" },
+                  domProps: { value: _vm.tr.contact },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.tr, "contact", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]
+          )
     ]),
     _vm._v(" "),
     _c("td", { staticStyle: { width: "10%", padding: "1%" } }, [
@@ -57117,7 +57620,7 @@ var render = function() {
                       expression: "tr.observation"
                     }
                   ],
-                  staticStyle: { width: "40%" },
+                  staticStyle: { width: "100%" },
                   domProps: { value: _vm.tr.observation },
                   on: {
                     input: function($event) {
@@ -57506,7 +58009,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this3 = this;
 
         this.fields = [{
-            key: 'contact_person',
+            key: 'data_download.contact_download',
             label: 'Cliente',
             sortable: true
         }, {
@@ -58504,7 +59007,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this2 = this;
 
         this.fields = [{
-            key: 'signing',
+            key: 'contact_download',
             label: 'Cliente',
             sortable: true
         }, {
@@ -59776,6 +60279,47 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 373 */,
+/* 374 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(375);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(42)("5b2adba5", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0f193a6b\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PendingOrderComponent.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0f193a6b\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PendingOrderComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 375 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(33)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n@media print{\n@page {size: landscape\n}\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

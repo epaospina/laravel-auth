@@ -1,8 +1,35 @@
 <template>
     <tr>
-        <td>{{tr.client}}</td>
-        <td>{{tr.buyer}}</td>
-        <td>{{tr.action_do}}</td>
+        <td>
+            <div v-if="title" style="text-align: center;align-items: baseline;">
+                <span v-model="tr.client" @click="title = false">{{tr.client}}</span>
+            </div>
+            <div v-else style="display: flex;text-align: center;align-items: baseline;">
+                <label>
+                    <input v-model="tr.client" style="width: 100%;">
+                </label>
+            </div>
+        </td>
+        <td>
+            <div v-if="title" style="text-align: center;align-items: baseline;">
+                <span v-model="tr.buyer" @click="title = false">{{tr.buyer}}</span>
+            </div>
+            <div v-else style="display: flex;text-align: center;align-items: baseline;">
+                <label>
+                    <input v-model="tr.buyer" style="width: 100%;">
+                </label>
+            </div>
+        </td>
+        <td>
+            <div v-if="title" style="text-align: center;align-items: baseline;">
+                <span v-model="tr.action_do" @click="title = false">{{tr.action_do}}</span>
+            </div>
+            <div v-else style="display: flex;text-align: center;align-items: baseline;">
+                <label>
+                    <input v-model="tr.action_do" style="width: 100%;">
+                </label>
+            </div>
+        </td>
         <td>
             <pending-order-car-component
                 v-for="car in tr.car"
@@ -10,17 +37,53 @@
                 :car = "car"
             ></pending-order-car-component>
         </td>
-        <td>{{tr.addresses_load}}</td>
-        <td>{{tr.schedule}}</td>
-        <td>{{tr.addresses_download}}</td>
-        <td v-html="tr.contact">{{tr.contact}}</td>
+        <td>
+            <div v-if="title" style="text-align: center;align-items: baseline;">
+                <span v-model="tr.addresses_load" @click="title = false">{{tr.addresses_load}}</span>
+            </div>
+            <div v-else style="display: flex;text-align: center;align-items: baseline;">
+                <label>
+                    <input v-model="tr.addresses_load" style="width: 100%;">
+                </label>
+            </div>
+        </td>
+        <td>
+            <div v-if="title" style="text-align: center;align-items: baseline;">
+                <span v-model="tr.schedule" @click="title = false">{{tr.schedule}}</span>
+            </div>
+            <div v-else style="display: flex;text-align: center;align-items: baseline;">
+                <label>
+                    <input v-model="tr.schedule" style="width: 100%;">
+                </label>
+            </div>
+        </td>
+        <td>
+            <div v-if="title" style="text-align: center;align-items: baseline;">
+                <span v-model="tr.addresses_download" @click="title = false">{{tr.addresses_download}}</span>
+            </div>
+            <div v-else style="display: flex;text-align: center;align-items: baseline;">
+                <label>
+                    <input v-model="tr.addresses_download" style="width: 100%;">
+                </label>
+            </div>
+        </td>
+        <td v-html="tr.contact">
+            <div v-if="title" style="text-align: center;align-items: baseline;">
+                <span v-model="tr.contact" @click="title = false">{{tr.contact}}</span>
+            </div>
+            <div v-else style="display: flex;text-align: center;align-items: baseline;">
+                <label>
+                    <input v-model="tr.contact" style="width: 100%;">
+                </label>
+            </div>
+        </td>
         <td style="width: 10%; padding: 1%;">
             <div v-if="title" style="text-align: center;align-items: baseline;">
                 <span v-model="tr.observation" @click="title = false">{{tr.observation}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
                 <label>
-                    <input v-model="tr.observation" style="width: 40%;">
+                    <input v-model="tr.observation" style="width: 100%;">
                 </label>
                 <i class="fas fa-check" @click="title = true"></i>
             </div>

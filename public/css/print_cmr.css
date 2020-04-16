@@ -1,5 +1,18 @@
+label, span{
+    font-size: 24px !important;
+}
 .page-content{
     background-color: white;
+}
+@media print {
+    @page{
+        size: A4;
+        margin: 0;
+    }
+}
+@page{
+    size: A4;
+    margin: 0;
 }
 table{
     width: 100%;
@@ -14,9 +27,9 @@ p{
     line-height: 3px;
 }
 label{
-    padding: 0;
+    padding: 0 2%;
     font-size: 22px;
-    line-height: 15px;
+    line-height: 22px;
     width: 100%;
     display: inline-block;
     max-width: 100%;
@@ -29,13 +42,13 @@ label{
 .td-start{
     width: 55% !important;
 }
-.container-cmr {
-    /* background-image: url(../images/cmr.jpg); */
+.container-cmr{
+    /*background-image: url('../images/cmr.jpg');*/
     background-size: cover;
-    width: 75vw;
-    height: auto;
-    margin: 3%;
+    width: 21cm;
+    height: 29.7cm;
     background-color: white;
+    font-size: 15px;
 }
 .td-l1{
     border-left: 1px solid black;
@@ -111,9 +124,9 @@ label{
     width: 170px;
     padding: 2%;
 }
-.observation {
-    max-width: 23cm;
-    padding: 0 0 0 10cm;
+.observation{
+    max-width: 30cm;
+    padding: 0.3cm 0.2cm 0 14cm;
     position: absolute;
 }
 .double-border td{
@@ -172,48 +185,48 @@ label{
     padding: 3px 2%;
 }
 .info-one{
-    padding-left: 70px;
-    padding-top: 45px;
+    padding-left: 1.9cm;
+    padding-top: 2.2cm;
 }
-.info-two {
+.info-two{
     display: flex;
-    padding-left: 70px;
-    padding-top: 15px;
+    padding-left: 1.7cm;
+    padding-top: 2cm;
 }
 .info-two label{
-    /*max-width: 13.2cm;*/
+    max-width: 13.2cm;
 }
 .info-two input{
     width: 60%;
     border: transparent;
 }
 .matricula-camion{
-    margin: 0 0 0 550px;
+    margin: 0 0 0 19cm;
     font-size: 23px;
     font-weight: bold;
     position: absolute;
-    width: 14%;
+    width: 40%;
 }
 .info-three{
-    padding-left: 70px;
-    padding-top: 30px;
+    padding-left: 1.7cm;
+    padding-top: 1.5cm;
 }
 .info-four{
     display: flex;
-    padding-left: 70px;
-    padding-top: 30px;
+    padding-left: 1.7cm;
+    padding-top: 1.8cm;
+    padding-bottom: 3.4cm;
 }
 .info-four label{
-    max-width: 9cm;
+    max-width: 12cm;
 }
-.info-cars {
+.info-cars{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     width: 60%;
-    padding-left: 70px;
+    padding-left: 1.6cm;
     height: 10cm;
-    padding-top: 60px;
 }
 .info-cars div{
     height: 10%;
@@ -223,10 +236,9 @@ label{
 .info-cars div label{
     width: 40%;
 }
-.info-five {
-    padding-left: 185px;
-    margin-top: 60px;
-    height: 100px;
+.info-five{
+    padding-left: 6cm;
+    margin-top: 8cm;
 }
 .text-xs-p{
     font-size: 6px !important;

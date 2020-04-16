@@ -112,7 +112,7 @@
         created(){
             this.fields = [
                 {
-                    key: 'contact_person',
+                    key: 'data_download.contact_download',
                     label: 'Cliente',
                     sortable: true
                 },
