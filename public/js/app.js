@@ -59996,7 +59996,7 @@ exports = module.exports = __webpack_require__(30)(false);
 
 
 // module
-exports.push([module.i, "\n.footer-btn{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: reverse;\n        -ms-flex-flow: row-reverse;\n            flex-flow: row-reverse;\n}\n@media (max-width: 800px) {\n.table.b-table.b-table-stacked-md > tbody > tr > td{\n        display: block;\n        width: 100%;\n}\n}\n", ""]);
+exports.push([module.i, "\n@media (max-width: 800px) {\n.table.b-table.b-table-stacked-md > tbody > tr > td{\n        display: block;\n        width: 100%;\n}\n}\n", ""]);
 
 // exports
 

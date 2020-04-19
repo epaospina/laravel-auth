@@ -139,10 +139,6 @@
     }
 </script>
 <style>
-    .footer-btn{
-        display: flex;
-        flex-flow: row-reverse;
-    }
     @media (max-width: 800px) {
         .table.b-table.b-table-stacked-md > tbody > tr > td{
             display: block;
