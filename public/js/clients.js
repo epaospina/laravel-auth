@@ -154,14 +154,19 @@ function downWord(divName) {
 
 function searchCustomer(search) {
     let searchValue = $(search).val();
-    let customers = $('#customerComplete').empty();
+    let customers = $('#customerComplete');
     $.ajax({
         url: "/load-orders/filter/"+searchValue,
         type: 'GET',
         success: function(response) {
             let newHtml = '<div class="content-customer">';
+            customers.empty();
             $.each(response, function( index, value ) {
-                newHtml += '<span onclick="assignDataCustomer('+value.id+')" class="btn btn-outline-primary m-1">'+value.import_company+'</span>';
+                if (index > 0){
+                    if (response[index-1].import_company === value.import_company){
+                        newHtml += '<span onclick="assignDataCustomer('+value.id+')" class="btn btn-outline-primary m-1">'+value.import_company+'</span>';
+                    }
+                }
             });
             newHtml += '</div>';
             customers.append(newHtml);
@@ -174,16 +179,14 @@ function assignDataCustomer(id) {
         url: "/load-orders/get-filter/"+id,
         type: 'GET',
         success: function(response) {
-            $('#bill_to').val(response[0].signing);
+            $('#bill_to').val(response[0].bill_to);
+            console.log(response);
             $('#import_company').val(response[0].import_company);
             $('#addresses_client').val(response[0].addresses);
             $('#city_client').val(response[0].city);
             $('#postal_cod_client').val(response[0].postal_cod);
-            //$('#bill_to').val(response.phone);
-            //$('#bill_to').val(response.mobile);
-            //$('#bill_to').val(response.email);
-            $('#province_client').val(response.province);
-            console.log(response);
+            $("#country").val(response[0].countries_id);
+            $('#province_client').val(response[0].province);
         }
     });
 }
@@ -195,7 +198,6 @@ function changeType(selectType) {
 }
 
 function checkedConstar(check) {
-    console.log($(check));
     if ($(check).prop('checked')){
         $('#constar_client').show();
     }else{

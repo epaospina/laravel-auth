@@ -39,7 +39,7 @@
         </td>
         <td>
             <div v-if="title" style="text-align: center;align-items: baseline;">
-                <span v-model="tr.addresses_load" @click="title = false">{{tr.addresses_load}}</span>
+                <span v-html="tr.addresses_load" @click="title = false">{{tr.addresses_load}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
                 <label>
@@ -57,9 +57,9 @@
                 </label>
             </div>
         </td>
-        <td>
+        <td >
             <div v-if="title" style="text-align: center;align-items: baseline;">
-                <span v-model="tr.addresses_download" @click="title = false">{{tr.addresses_download}}</span>
+                <span v-html="tr.addresses_download" @click="title = false">{{tr.addresses_download}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
                 <label>
@@ -67,9 +67,9 @@
                 </label>
             </div>
         </td>
-        <td v-html="tr.contact">
+        <td>
             <div v-if="title" style="text-align: center;align-items: baseline;">
-                <span v-model="tr.contact" @click="title = false">{{tr.contact}}</span>
+                <span v-html="tr.contact" @click="title = false">{{tr.contact}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
                 <label>

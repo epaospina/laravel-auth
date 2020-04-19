@@ -96,8 +96,13 @@
                     label: 'Seleccionados'
                 },
                 {
-                    key: 'signing',
+                    key: 'contact_download',
                     label: 'Cliente',
+                    sortable: true
+                },
+                {
+                    key: 'country',
+                    label: 'Pais',
                     sortable: true
                 },
                 {

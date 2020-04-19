@@ -67,9 +67,11 @@ class LoadOrdersController extends Controller
     public function filterCountry($country)
     {
         $listCountries =  DB::table('information_car as info_cars')
-            ->select('info_cars.*', 'c.*', 'order.*', 'c2.*', 'order.id as order_id')
+            ->select('info_cars.*', 'c.*', 'order.*', 'c2.*', 'order.id as order_id',
+                'download.contact_download as client', 'download.city_download as destino')
             ->join('customer as c', 'c.id', '=', 'info_cars.customer_id')
             ->join('load_orders as order', 'c.id', '=', 'order.customer_id')
+            ->join('data_download as download', 'download.load_orders_id', '=', 'order.id')
             ->join('countries as c2', 'c2.id', '=', 'order.countries_id');
 
         if ($country !== '0'){
@@ -102,9 +104,13 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id as card_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'customer.city', 'customer.phone', 'customer.created_at')
+                'customer.signing', 'customer.city', 'customer.phone', 'customer.created_at',
+                'data_download.contact_download', 'countries.*')
             ->join('customer', 'customer.id', '=', 'customer_id')
-            ->where('status', true)
+            ->join('load_orders', 'load_orders.customer_id', '=', 'customer.id')
+            ->join('data_download', 'data_download.load_orders_id', '=', 'load_orders.id')
+            ->join('countries', 'countries.id', '=', 'load_orders.countries_id')
+            ->where('car.status', true)
             ->where('is_pending', '=', true)
             ->orderBy('customer.created_at')
             ->get();
@@ -141,11 +147,12 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id as card_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'customer.city', 'customer.phone', 'load_orders.hash',
-                'customer.created_at', 'data_download.contact_download')
+                'customer.signing', 'customer.city', 'customer.city', 'customer.phone', 'load_orders.hash',
+                'customer.created_at', 'data_download.contact_download', 'countries.*')
             ->join('customer', 'customer.id', '=', 'car.customer_id')
             ->join('load_orders', 'customer.id', '=', 'load_orders.customer_id')
             ->join('data_download', 'load_orders.id', '=', 'data_download.load_orders_id')
+            ->join('countries', 'countries.id', '=', 'load_orders.countries_id')
             ->where('is_pending', '=', false)
             ->orderBy('customer.created_at')
             ->get();
@@ -299,12 +306,16 @@ class LoadOrdersController extends Controller
             foreach ($loadOrder->customer->infoCars->where('status', 1) as $key => $infoCar) {
                 if (in_array($infoCar->id, explode(',',$carsPending->array_cars))){
                     $cars[$keyLoad]['client']             = $loadOrder->data_download->contact_download;
-                    $cars[$keyLoad]['buyer']              = isset($loadOrder->constancy) ? $loadOrder->constancy : $loadOrder->bill_to;
+                    $cars[$keyLoad]['buyer']              = $infoCar->customer->signing;
                     $cars[$keyLoad]['action_do']          = 'DESCARGAR';
                     $cars[$keyLoad]['car'][$key]          = $infoCar->model_car ."<br>". $infoCar->vin;
-                    $cars[$keyLoad]['addresses_load']     = $loadOrder->data_load->addresses_load;
+                    $cars[$keyLoad]['addresses_load']     = $loadOrder->data_load->addresses_load."<br>". 'Codigo postal: <b>'
+                                                            .$loadOrder->data_load->postal_cod_load."</b><br>". 'Ciudad: <b>'
+                                                            .$loadOrder->data_load->city_load.'</b>' ;
                     $cars[$keyLoad]['scheduler']          = '';
-                    $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download;
+                    $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download."<br>". 'Codigo postal: <b>'
+                                                            .$loadOrder->data_download->postal_cod_download."</b><br>". 'Ciudad: <b>'
+                                                            .$loadOrder->data_download->city_download.'</b>' ;
                     $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download."<br>".$loadOrder->data_download->mobile_download;
                     $cars[$keyLoad]['observation']        = $loadOrder->bill->price;
                 }
@@ -336,9 +347,12 @@ class LoadOrdersController extends Controller
     public function filter($filter){
         if (strlen($filter) > 2){
             $filter = strtolower($filter);
-            return DB::table('load_orders')
+            return Customer::query()
+                ->select('load_orders.*', 'customer.*')
+                ->join('load_orders', 'customer.id', '=', 'load_orders.customer_id')
                 ->whereRaw('lower(import_company) like (?)',["%{$filter}%"])
                 ->orWhereRaw('lower(bill_to) like (?)',["%{$filter}%"])
+                ->orderBy('bill_to')
                 ->get();
         }
         return '';

@@ -1,7 +1,9 @@
 <template>
-    <p v-html="car">
-        {{car}}
-    </p>
+    <div>
+        <p v-html="car">
+            {{car}}
+        </p>
+    </div>
 </template>
 
 <script>

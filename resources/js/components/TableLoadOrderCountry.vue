@@ -117,13 +117,23 @@
                     sortable: true
                 },
                 {
+                    key: 'client',
+                    label: 'Cliente',
+                    sortable: true
+                },
+                {
                     key: 'import_company',
                     label: 'Compañía',
                     sortable: true
                 },
                 {
                     key: 'model_car',
-                    label: 'Coche',
+                    label: 'Modelo de Coche',
+                    sortable: true
+                },
+                {
+                    key: 'destino',
+                    label: 'Destino',
                     sortable: true
                 },
                 {

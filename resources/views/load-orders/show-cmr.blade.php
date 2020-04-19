@@ -45,16 +45,13 @@
             </label>
         </div>
 
-        <div class="info-two">
-            <label>
-                {{$loadOrders->bill_to}}<br>
-                {{$loadOrders->data_download->addresses_download}}<br>
-                {{$loadOrders->data_download->city_download}} {{$loadOrders->data_download->postal_cod_download}}
-            </label>
-
-            <div class="matricula-camion text-break">
-                <span id="span-car">Matricula</span>
-            </div>
+        <label class="info-two">
+            {{$loadOrders->bill_to}}<br>
+            {{$loadOrders->data_download->addresses_download}}<br>
+            {{$loadOrders->data_download->city_download}} {{$loadOrders->data_download->postal_cod_download}}
+        </label>
+        <div class="matricula-camion">
+            <span id="span-car">Matricula</span>
         </div>
 
         <div class="info-three">
@@ -64,16 +61,14 @@
             </label>
         </div>
 
-        <div class="info-four">
-            <label>
-                {{$loadOrders->data_load->date_load}}
-                {{$loadOrders->data_load->addresses_load}}<br>
-                {{$loadOrders->data_load->city_load}} // {{$loadOrders->data_load->postal_cod_load}}<br>
-            </label>
+        <label class="info-four">
+            {{$loadOrders->data_load->date_load}}
+            {{$loadOrders->data_load->addresses_load}}<br>
+            {{$loadOrders->data_load->city_load}} // {{$loadOrders->data_load->postal_cod_load}}<br>
+        </label>
 
-            <div class="observation">
-                <label class="info-text" id="observationLabel"></label>
-            </div>
+        <div class="observation">
+            <label class="info-text" id="observationLabel"></label>
         </div>
 
         <div class="info-cars">
@@ -87,7 +82,11 @@
 
         <div class="info-five">
             <label>
-                <span id="span-date_load">{{$loadOrders->data_load->date_load}}</span>
+                <span id="span-date_load">
+                    {{$loadOrders->data_load->city_load}}
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    {{$loadOrders->data_load->date_load}}
+                </span>
             </label>
         </div>
     </div>
