@@ -67,45 +67,6 @@
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
-                    <input id="addresses_client" name="addresses_client" value="{{old('addresses_client')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
-            </div>
-
-            <div class="input-group-sm mb-3 input-client">
-                <label class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Pais de carga</span>
-                    <select id="country" class="custom-select" name="country">
-                        @foreach($countries as $key => $country)
-                            <option value="{{$key}}"><b>{{$country}}</b></option>
-                        @endforeach
-                    </select>
-                </label>
-            </div>
-
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
-                    <input id="city_client" name="city_client" value="{{old('city_client')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
-            </div>
-
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.province') }}</span>
-                    <input id="province_client" name="province_client" value="{{old('province_client')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
-            </div>
-
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
-                    <input id="postal_cod_client" name="postal_cod_client" value="{{old('postal_cod_client')}}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
-            </div>
-
-            <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Forma de pago</span>
                     <select id="selectTransferencia" class="custom-select" onchange="changeType(this)" name="payment_type">
                         {{--<option value="0"><b>Seleccione una opcion</b></option>--}}
@@ -158,6 +119,17 @@
             </div>
 
             <div class="input-group-sm mb-3 input-client">
+                <label class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Pais de carga</span>
+                    <select id="country" class="custom-select" name="country">
+                        @foreach($countries as $key => $country)
+                            <option value="{{$key}}"><b>{{$country}}</b></option>
+                        @endforeach
+                    </select>
+                </label>
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
                     <input name="city_load" value="{{old('city_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
@@ -205,16 +177,27 @@
             <h5 class="subtitle-client">{{ __('clients.download_place') }}</h5>
 
             <div class="input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
-                    <input name="addresses_download" value="{{old('addresses_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
+                <label class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Pais de descarga</span>
+                    <select id="country_download" class="custom-select" name="country_download">
+                        @foreach($countries as $key => $country)
+                            <option value="{{$key}}"><b>{{$country}}</b></option>
+                        @endforeach
+                    </select>
+                </label>
             </div>
 
             <div class="input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
                     <input name="city_download" value="{{old('city_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
+                    <input name="addresses_download" value="{{old('addresses_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
             </div>
 

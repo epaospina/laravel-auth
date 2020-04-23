@@ -50,5 +50,6 @@ return [
     'observations'      => 'Observaciones',
     'cmr'               => 'CMR',
     'info_download'     => 'Datos del lugar de descarga',
-    'sign_seal'         => 'POR FAVOR FIRMEN Y SELLEN ESTE FORMULARIO'
+    'sign_seal'         => 'POR FAVOR FIRMEN Y SELLEN ESTE FORMULARIO',
+    'date'              => 'Fecha'
 ];

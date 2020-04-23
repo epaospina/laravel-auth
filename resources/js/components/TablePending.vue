@@ -106,7 +106,7 @@
                     sortable: true
                 },
                 {
-                    key: 'city',
+                    key: 'city_load',
                     label: 'Ciudad',
                     sortable: true
                 },

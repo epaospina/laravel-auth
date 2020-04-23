@@ -104,12 +104,13 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id as card_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'customer.city', 'customer.phone', 'customer.created_at',
+                'customer.signing', 'data_load.city_load', 'customer.phone', 'customer.created_at',
                 'data_download.contact_download', 'countries.*')
             ->join('customer', 'customer.id', '=', 'customer_id')
             ->join('load_orders', 'load_orders.customer_id', '=', 'customer.id')
             ->join('data_download', 'data_download.load_orders_id', '=', 'load_orders.id')
-            ->join('countries', 'countries.id', '=', 'load_orders.countries_id')
+            ->join('data_load', 'data_load.load_orders_id', '=', 'load_orders.id')
+            ->join('countries', 'countries.id', '=', 'data_load.countries_id')
             ->where('car.status', true)
             ->where('is_pending', '=', true)
             ->orderBy('customer.created_at')
@@ -367,5 +368,9 @@ class LoadOrdersController extends Controller
 
     public function listCountry(){
         return DB::table('customer')->pluck('city')->toArray();
+    }
+
+    public function cmrPDF(){
+
     }
 }

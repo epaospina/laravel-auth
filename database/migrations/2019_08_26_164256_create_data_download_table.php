@@ -21,6 +21,7 @@ class CreateDataDownloadTable extends Migration
             $table->string('cmr');
             $table->string('observations');
             $table->string('addresses_download');
+            $table->integer('countries_id');
             $table->string('city_download');
             $table->string('postal_cod_download');
             $table->string('mobile_download');

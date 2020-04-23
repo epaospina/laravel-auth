@@ -16,12 +16,14 @@ class CreateClient extends Migration
         Schema::create('customer', function (Blueprint $table) {
             $table->increments('id');
             $table->string('signing');
-            $table->string('addresses_load');
-            $table->string('city_load');
-            $table->string('postal_cod_load');
-            $table->string('phone_load');
-            $table->string('mobile_load');
-            $table->string('fax');
+            $table->string('addresses');
+            $table->string('city');
+            $table->string('postal_cod');
+            $table->string('phone');
+            $table->string('mobile');
+            $table->string('email');
+            $table->string('province')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
@@ -33,6 +35,5 @@ class CreateClient extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client');
     }
 }

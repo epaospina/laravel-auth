@@ -21,6 +21,10 @@ class CreateLoadOrdersTable extends Migration
             $table->dateTime('date_upload');
             $table->string('bill_to');
             $table->string('import_company');
+            $table->string('constancy')->nullable();
+            $table->string('payment_type_other')->nullable();
+            $table->float('price')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
 
 
@@ -35,6 +39,5 @@ class CreateLoadOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('load_orders');
     }
 }

@@ -53,7 +53,6 @@ class LoadOrders extends Model
             $loadOrder->date_upload = Carbon::now();
             $loadOrder->bill_to = $infoArray['bill_to'];
             $loadOrder->price = $infoArray['price_order'];
-            $loadOrder->countries_id = $infoArray['country'];
             $loadOrder->constancy = isset($infoArray['constar_client']) ? $infoArray['constar_client'] : '.';
             $loadOrder->payment_type_other = isset($infoArray['otrosInput']) ? $infoArray['otrosInput'] : '.';
             $loadOrder->import_company = $infoArray['import_company'];
@@ -66,6 +65,7 @@ class LoadOrders extends Model
                 $dataLoad = $loadOrder->data_load;
             }
 
+            $dataLoad->countries_id = $infoArray['country'];
             $dataLoad->addresses_load = $infoArray['addresses_load'];
             $dataLoad->city_load = $infoArray['city_load'];
             $dataLoad->date_load = $infoArray['date_load'];
@@ -79,6 +79,7 @@ class LoadOrders extends Model
                 $dataDownload = $loadOrder->data_download;
             }
 
+            $dataDownload->countries_id = $infoArray['country_download'];
             $dataDownload->addresses_download = $infoArray['addresses_download'];
             $dataDownload->city_download = $infoArray['city_download'];
             $dataDownload->postal_cod_download = $infoArray['postal_cod_download'];
