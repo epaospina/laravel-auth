@@ -8,28 +8,36 @@
     <div class="action-div">
         <div class="btn-group" role="group" aria-label="Basic example">
             <div class="btn btn-primary" onclick="printTable('contentCmr')">IMPRIMIR</div>
-            <div class="btn btn-secondary" onclick="exportPDF('contentCmr')">PDF</div>
             <div class="btn btn-secondary" onclick="downWord('contentCmr')">WORD</div>
         </div>
+        <br>
+        <form action="{{route('cmr-pdf')}}" method="POST">
+            {{ csrf_field() }}
+            <input type="hidden" name="matricula" id="matricula">
+            <input type="hidden" name="date" id="date">
+            <input type="hidden" name="typeCoche" id="typeCoche">
+            <input type="hidden" value="{{$loadOrders->id}}" name="loadOrder" id="loadOrder">
+            <button type="submit" class="btn btn-primary">PDF</button>
+        </form>
     </div>
     <div class="card m-3">
         <div class="card-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Ingrese o modifique la matricula para el camion</label>
-                <input onkeyup="$('#span-car').text($(this).val())" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Matricula del camion">
+                <input onkeyup="cmrCompleteMatricula($(this))" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Matricula del camion">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Ingrese o modifique una fecha de alta</label>
-                <input onkeyup="$('#span-car').text($(this).val())" type="email" class="form-control" aria-describedby="emailHelp" id="inputDate" placeholder="Modificar Fecha">
+                <input onchange="cmrCompleteDate($(this))" type="email" class="form-control" aria-describedby="emailHelp" id="inputDate" placeholder="Modificar Fecha">
             </div>
             <div class="form-check">
-                <input onclick="$('#observationLabel').text('COCHES USADOS, DA&#241;ADOS Y SUCIEDAD PROPIOS DEL USO')" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1">
+                <input onclick="cmrCompleteCocheUsado()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1">
                 <label class="form-check-label" for="exampleRadios1">
                     Coches Internacionales
                 </label>
             </div>
             <div class="form-check">
-                <input onclick="$('#observationLabel').text('COCHES NUEVOS')" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2">
+                <input onclick="cmrCompleteCocheNuevo()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2">
                 <label class="form-check-label" for="exampleRadios2">
                     Coches Nacionales
                 </label>
@@ -51,7 +59,7 @@
             {{$loadOrders->data_download->city_download}} {{$loadOrders->data_download->postal_cod_download}}
         </label>
         <div class="matricula-camion">
-            <span id="span-car">Matricula</span>
+            <span id="span-matricula">Matricula</span>
         </div>
 
         <div class="info-three">

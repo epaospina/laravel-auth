@@ -45,10 +45,10 @@ class Customer extends Model
     }
 
     static public function infoClient($client, $infoArray){
-        $client->signing = $infoArray['contact_download'];
+        $client->name = $infoArray['contact_download'];
+        $client->signing = $infoArray['signing'];
         $client->addresses = $infoArray['addresses_download'];
         $client->city = $infoArray['city_download'];
-        $client->province = '_';
         $client->province = '_';
         $client->postal_cod = $infoArray['postal_cod_download'];
         $client->phone = $infoArray['phone_load'];

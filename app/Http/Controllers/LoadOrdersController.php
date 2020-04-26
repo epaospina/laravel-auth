@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-use mysql_xdevapi\Table;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class LoadOrdersController extends Controller
 {
@@ -67,15 +67,18 @@ class LoadOrdersController extends Controller
     public function filterCountry($country)
     {
         $listCountries =  DB::table('information_car as info_cars')
-            ->select('info_cars.*', 'c.*', 'order.*', 'c2.*', 'order.id as order_id',
-                'download.contact_download as client', 'download.city_download as destino')
-            ->join('customer as c', 'c.id', '=', 'info_cars.customer_id')
-            ->join('load_orders as order', 'c.id', '=', 'order.customer_id')
+            ->select('info_cars.*', 'order.id as order_id', 'order.*',
+                'cdown.country as country_client', 'download.city_download as city_client',
+                'download.contact_download as client', 'download.city_download as destino', 'load.*')
+            ->join('customer', 'customer.id', '=', 'info_cars.customer_id')
+            ->join('load_orders as order', 'customer.id', '=', 'order.customer_id')
             ->join('data_download as download', 'download.load_orders_id', '=', 'order.id')
-            ->join('countries as c2', 'c2.id', '=', 'order.countries_id');
+            ->join('data_load as load', 'load.load_orders_id', '=', 'order.id')
+            ->join('countries as cdown', 'cdown.id', '=', 'download.countries_id')
+            ->join('countries as cload', 'cload.id', '=', 'load.countries_id');
 
         if ($country !== '0'){
-            $listCountries->where('order.countries_id', $country);
+            $listCountries->where('download.countries_id', $country);
         }
 
         $listCountries->where('order.status', true)
@@ -153,7 +156,7 @@ class LoadOrdersController extends Controller
             ->join('customer', 'customer.id', '=', 'car.customer_id')
             ->join('load_orders', 'customer.id', '=', 'load_orders.customer_id')
             ->join('data_download', 'load_orders.id', '=', 'data_download.load_orders_id')
-            ->join('countries', 'countries.id', '=', 'load_orders.countries_id')
+            ->join('countries', 'countries.id', '=', 'data_download.countries_id')
             ->where('is_pending', '=', false)
             ->orderBy('customer.created_at')
             ->get();
@@ -307,7 +310,7 @@ class LoadOrdersController extends Controller
             foreach ($loadOrder->customer->infoCars->where('status', 1) as $key => $infoCar) {
                 if (in_array($infoCar->id, explode(',',$carsPending->array_cars))){
                     $cars[$keyLoad]['client']             = $loadOrder->data_download->contact_download;
-                    $cars[$keyLoad]['buyer']              = $infoCar->customer->signing;
+                    $cars[$keyLoad]['buyer']              = $loadOrder->bill_to;
                     $cars[$keyLoad]['action_do']          = 'DESCARGAR';
                     $cars[$keyLoad]['car'][$key]          = $infoCar->model_car ."<br>". $infoCar->vin;
                     $cars[$keyLoad]['addresses_load']     = $loadOrder->data_load->addresses_load."<br>". 'Codigo postal: <b>'
@@ -370,7 +373,17 @@ class LoadOrdersController extends Controller
         return DB::table('customer')->pluck('city')->toArray();
     }
 
-    public function cmrPDF(){
-
+    public function cmrPDF(Request $request){
+        $matricula = $request->matricula;
+        $date = $request->date;
+        $typeCoche = $request->typeCoche;
+        $loadOrders = LoadOrders::query()->find($request->loadOrder);
+        $customer = $loadOrders->customer;
+        $download = $loadOrders->data_download;
+        $load = $loadOrders->data_load;
+        $cars = $loadOrders->customer->infoCars;
+        $pdf = PDF::loadView('load-orders.pdf-cmr', compact('loadOrders', 'matricula', 'date', 'typeCoche',
+            'customer', 'download', 'load', 'cars'));
+        return $pdf->download('invoice.pdf');
     }
 }

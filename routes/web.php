@@ -44,4 +44,4 @@ Route::get('load-order/{loadOrders}/cmr','LoadOrdersController@cmr')->name('load
 Route::get('bills/load-order/{loadOrder}','BillsController@showBillLoadOrder')->name('bills.show-bill-load-order');
 Route::resource('bills','BillsController');
 Route::get('bills/load-order-api/{loadOrder}','BillsController@billLoadOrder');
-Route::get('cmr-pdf','LoadOrdersController@cmrPDF');
+Route::post('cmr-pdf','LoadOrdersController@cmrPDF')->name('cmr-pdf');

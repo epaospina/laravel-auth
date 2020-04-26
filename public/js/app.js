@@ -58557,11 +58557,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this3 = this;
 
         this.fields = [{
-            key: 'country',
+            key: 'country_client',
             label: 'Pais',
             sortable: true
         }, {
-            key: 'city',
+            key: 'city_client',
             label: 'Ciudad',
             sortable: true
         }, {

@@ -107,12 +107,12 @@
         created(){
             this.fields = [
                 {
-                    key: 'country',
+                    key: 'country_client',
                     label: 'Pais',
                     sortable: true
                 },
                 {
-                    key: 'city',
+                    key: 'city_client',
                     label: 'Ciudad',
                     sortable: true
                 },

@@ -166,6 +166,8 @@ function searchCustomer(search) {
                     if (response[index-1].import_company === value.import_company){
                         newHtml += '<span onclick="assignDataCustomer('+value.id+')" class="btn btn-outline-primary m-1">'+value.import_company+'</span>';
                     }
+                }else{
+                    newHtml += '<span onclick="assignDataCustomer('+value.id+')" class="btn btn-outline-primary m-1">'+value.import_company+'</span>';
                 }
             });
             newHtml += '</div>';
@@ -203,4 +205,24 @@ function checkedConstar(check) {
     }else{
         $('#constar_client').hide();
     }
+}
+
+function cmrCompleteMatricula(matricula) {
+    $('#matricula').val(matricula.val());
+    $('#span-matricula').text(matricula.val());
+}
+
+function cmrCompleteDate(date) {
+    $('#date').val(date.val());
+    $('#span-date').text(date.val());
+}
+
+function cmrCompleteCocheUsado() {
+    $('#observationLabel').text('COCHES USADOS, DA&#241;ADOS Y SUCIEDAD PROPIOS DEL USO');
+    $('#typeCoche').val('COCHES USADOS, DA&#241;ADOS Y SUCIEDAD PROPIOS DEL USO');
+}
+
+function cmrCompleteCocheNuevo() {
+    $('#observationLabel').text('COCHES NUEVOS');
+    $('#typeCoche').val('COCHES NUEVOS');
 }
