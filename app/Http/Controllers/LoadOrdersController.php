@@ -53,6 +53,8 @@ class LoadOrdersController extends Controller
         foreach ($loadOrders as $loadOrder){
             $loadOrder->customer;
             $loadOrder->data_download;
+            $loadOrder->data_download->countries;
+            $loadOrder->data_load;
             $loadOrder->customer->infoCars->where('status', true);
         }
         return $loadOrders;
@@ -69,7 +71,8 @@ class LoadOrdersController extends Controller
         $listCountries =  DB::table('information_car as info_cars')
             ->select('info_cars.*', 'order.id as order_id', 'order.*',
                 'cdown.country as country_client', 'download.city_download as city_client',
-                'download.contact_download as client', 'download.city_download as destino', 'load.*')
+                'download.contact_download as client', 'download.city_download as destino', 'load.*',
+                'cload.country as country_load', 'load.city_load as city_load')
             ->join('customer', 'customer.id', '=', 'info_cars.customer_id')
             ->join('load_orders as order', 'customer.id', '=', 'order.customer_id')
             ->join('data_download as download', 'download.load_orders_id', '=', 'order.id')
@@ -78,7 +81,7 @@ class LoadOrdersController extends Controller
             ->join('countries as cload', 'cload.id', '=', 'load.countries_id');
 
         if ($country !== '0'){
-            $listCountries->where('download.countries_id', $country);
+            $listCountries->where('load.countries_id', $country);
         }
 
         $listCountries->where('order.status', true)
@@ -149,16 +152,17 @@ class LoadOrdersController extends Controller
      */
     public function consultCarsOldLoad()
     {
-        return DB::table('information_car as car')
-            ->select('car.id as card_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'customer.city', 'customer.city', 'customer.phone', 'load_orders.hash',
-                'customer.created_at', 'data_download.contact_download', 'countries.*')
-            ->join('customer', 'customer.id', '=', 'car.customer_id')
-            ->join('load_orders', 'customer.id', '=', 'load_orders.customer_id')
-            ->join('data_download', 'load_orders.id', '=', 'data_download.load_orders_id')
-            ->join('countries', 'countries.id', '=', 'data_download.countries_id')
-            ->where('is_pending', '=', false)
-            ->orderBy('customer.created_at')
+        return DB::table('information_car as info_cars')
+            ->select('info_cars.*', 'order.id as order_id', 'order.*',
+                'cdown.country as country_client', 'download.city_download as city_client',
+                'download.contact_download as client', 'download.city_download as destino', 'load.*',
+                'cload.country as country_load', 'load.city_load as city_load')
+            ->join('customer', 'customer.id', '=', 'info_cars.customer_id')
+            ->join('load_orders as order', 'customer.id', '=', 'order.customer_id')
+            ->join('data_download as download', 'download.load_orders_id', '=', 'order.id')
+            ->join('data_load as load', 'load.load_orders_id', '=', 'order.id')
+            ->join('countries as cdown', 'cdown.id', '=', 'download.countries_id')
+            ->join('countries as cload', 'cload.id', '=', 'load.countries_id')
             ->get();
     }
 
@@ -352,8 +356,12 @@ class LoadOrdersController extends Controller
         if (strlen($filter) > 2){
             $filter = strtolower($filter);
             return Customer::query()
-                ->select('load_orders.*', 'customer.*')
-                ->join('load_orders', 'customer.id', '=', 'load_orders.customer_id')
+                ->select('order.*', 'customer.*', 'order.id as order_id', 'order.*', 'download.*')
+                ->join('load_orders as order', 'customer.id', '=', 'order.customer_id')
+                ->join('data_download as download', 'download.load_orders_id', '=', 'order.id')
+                ->join('data_load as load', 'load.load_orders_id', '=', 'order.id')
+                ->join('countries as cdown', 'cdown.id', '=', 'download.countries_id')
+                ->join('countries as cload', 'cload.id', '=', 'load.countries_id')
                 ->whereRaw('lower(import_company) like (?)',["%{$filter}%"])
                 ->orWhereRaw('lower(bill_to) like (?)',["%{$filter}%"])
                 ->orderBy('bill_to')
@@ -363,9 +371,14 @@ class LoadOrdersController extends Controller
     }
 
     public function getFilter($filter){
-        return DB::table('load_orders')
-            ->join('customer', 'customer.id', '=', 'load_orders.customer_id')
-            ->where('load_orders.id', $filter)
+        return Customer::query()
+            ->select('order.*', 'customer.*', 'order.id as order_id', 'order.*', 'download.*')
+            ->join('load_orders as order', 'customer.id', '=', 'order.customer_id')
+            ->join('data_download as download', 'download.load_orders_id', '=', 'order.id')
+            ->join('data_load as load', 'load.load_orders_id', '=', 'order.id')
+            ->join('countries as cdown', 'cdown.id', '=', 'download.countries_id')
+            ->join('countries as cload', 'cload.id', '=', 'load.countries_id')
+            ->where('order.id', $filter)
             ->get();
     }
 

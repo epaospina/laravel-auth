@@ -33,13 +33,13 @@
             <div class="form-check">
                 <input onclick="cmrCompleteCocheUsado()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1">
                 <label class="form-check-label" for="exampleRadios1">
-                    Coches Internacionales
+                    Coches Usados
                 </label>
             </div>
             <div class="form-check">
                 <input onclick="cmrCompleteCocheNuevo()" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2">
                 <label class="form-check-label" for="exampleRadios2">
-                    Coches Nacionales
+                    Coches Nuevos
                 </label>
             </div>
         </div>
@@ -111,6 +111,8 @@
             .on('change', function(e) {
                 $('#span-date_load').text($(this).val())
             });
+
+            $( "#exampleRadios2" ).trigger( "click" );
         });
     </script>
 @endpush

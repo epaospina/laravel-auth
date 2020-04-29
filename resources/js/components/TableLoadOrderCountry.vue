@@ -107,13 +107,13 @@
         created(){
             this.fields = [
                 {
-                    key: 'country_client',
-                    label: 'Pais',
+                    key: 'country_load',
+                    label: 'Pais de carga',
                     sortable: true
                 },
                 {
-                    key: 'city_client',
-                    label: 'Ciudad',
+                    key: 'city_load',
+                    label: 'Ciudad de carga',
                     sortable: true
                 },
                 {

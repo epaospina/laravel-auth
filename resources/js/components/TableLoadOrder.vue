@@ -122,7 +122,12 @@
                     sortable: true
                 },
                 {
-                    key: 'customer.city',
+                    key: 'data_download.countries.country',
+                    label: 'Pais',
+                    sortable: true
+                },
+                {
+                    key: 'data_download.city_download',
                     label: 'Ciudad',
                     sortable: true
                 },
@@ -148,6 +153,7 @@
                     value['_showDetails'] = false;
                     createItems.push(value);
                 });
+                console.log(createItems);
                 this.items = createItems;
             });
             this.countriesList();

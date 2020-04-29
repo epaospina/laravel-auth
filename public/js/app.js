@@ -58043,7 +58043,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             label: 'Compañía',
             sortable: true
         }, {
-            key: 'customer.city',
+            key: 'data_download.countries.country',
+            label: 'Pais',
+            sortable: true
+        }, {
+            key: 'data_download.city_download',
             label: 'Ciudad',
             sortable: true
         }, {
@@ -58065,6 +58069,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 value['_showDetails'] = false;
                 createItems.push(value);
             });
+            console.log(createItems);
             _this3.items = createItems;
         });
         this.countriesList();
@@ -58557,12 +58562,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this3 = this;
 
         this.fields = [{
-            key: 'country_client',
-            label: 'Pais',
+            key: 'country_load',
+            label: 'Pais de carga',
             sortable: true
         }, {
-            key: 'city_client',
-            label: 'Ciudad',
+            key: 'city_load',
+            label: 'Ciudad de carga',
             sortable: true
         }, {
             key: 'client',
@@ -59041,12 +59046,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this2 = this;
 
         this.fields = [{
-            key: 'contact_download',
+            key: 'country_load',
+            label: 'Pais de carga',
+            sortable: true
+        }, {
+            key: 'city_load',
+            label: 'Ciudad de carga',
+            sortable: true
+        }, {
+            key: 'client',
             label: 'Cliente',
             sortable: true
         }, {
-            key: 'city',
-            label: 'Ciudad',
+            key: 'import_company',
+            label: 'Compañía',
             sortable: true
         }, {
             key: 'vin',

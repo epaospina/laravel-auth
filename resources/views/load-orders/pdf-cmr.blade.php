@@ -39,7 +39,11 @@
             }
             .date-load{
                 display: flex;
-                font-size: 13px;
+                font-size: 12px;
+                padding-left: 20px;
+            }
+            .date-end{
+                padding-left: 150px;
             }
         </style>
     </head>
@@ -105,7 +109,7 @@
                 <td>
                     <label>
                         <span class="date-load">
-                            {{$load->city_load}} {{$load->date_load}}
+                            {{$load->city_load}}<div class="date-end">{{$load->date_load}}</div>
                         </span>
                     </label>
                 </td>

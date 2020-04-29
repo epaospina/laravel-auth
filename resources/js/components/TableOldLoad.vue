@@ -77,13 +77,23 @@
         created(){
             this.fields = [
                 {
-                    key: 'contact_download',
+                    key: 'country_load',
+                    label: 'Pais de carga',
+                    sortable: true
+                },
+                {
+                    key: 'city_load',
+                    label: 'Ciudad de carga',
+                    sortable: true
+                },
+                {
+                    key: 'client',
                     label: 'Cliente',
                     sortable: true
                 },
                 {
-                    key: 'city',
-                    label: 'Ciudad',
+                    key: 'import_company',
+                    label: 'Compañía',
                     sortable: true
                 },
                 {

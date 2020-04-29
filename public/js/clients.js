@@ -51,6 +51,11 @@ function validateForm() {
             }
         }
     }
+
+    if (!validVin()){
+        valid = false
+    }
+
     if (valid) {
         $('.step')[currentTab].className += " finish";
     }
@@ -65,12 +70,38 @@ function fixStepIndicator(n) {
     x[n].className += " active";
 }
 
+function validVin() {
+    let numCars = $('#btnAddCar').attr('data-car');
+    for (let i= 0; i <= numCars; i++){
+        let vin_original = $("input[name*='car["+i+"][vin]']");
+        let vin_clone =  $("input[name*='car["+i+"][vin_clone]']");
+        let vin_error = $("span[id*='car["+i+"][error_vin]']");
+        if (vin_original.val() !== vin_clone.val()){
+            vin_original.addClass('invalid');
+            vin_clone.addClass('invalid');
+            vin_error.addClass('show');
+            vin_error.removeClass('hide');
+            return false;
+        }else{
+            vin_original.removeClass('invalid');
+            vin_clone.removeClass('invalid');
+            vin_error.addClass('hide');
+            vin_error.removeClass('show');
+        }
+    }
+
+    return true;
+}
+
 function changeId(element, num) {
     element.prop('id', 'car__'+num);
+    console.log(element);
     element.find("input").eq(0).attr('name', "car["+num+"][model_car]");
     element.find("input").eq(1).attr('name', "car["+num+"][color_car]");
     element.find("input").eq(2).attr('name', "car["+num+"][vin]");
-    element.find("input").eq(3).attr('name', "car["+num+"][itv]");
+    element.find("input").eq(3).attr('name', "car["+num+"][vin_clone]");
+    element.find("span").eq(4).attr('id',   "car["+num+"][error_vin]");
+    element.find("input").eq(4).attr('name', "car["+num+"][itv]");
     element.find("input").eq(4).attr('name', "car["+num+"][itv]");
     element.find("input").eq(5).attr('name', "car["+num+"][documents]");
     element.find("[class*=delete-car]").attr('class', 'btn btn-danger close delete-car'+num);
@@ -183,12 +214,16 @@ function assignDataCustomer(id) {
         success: function(response) {
             $('#bill_to').val(response[0].bill_to);
             console.log(response);
+            $('#city_download').val(response[0].city_download);
+            $('#postal_cod_download').val(response[0].postal_cod_download);
+            $('#mobile_download').val(response[0].mobile_download);
+            $('#addresses_download').val(response[0].addresses_download);
+            $('#contact_download').val(response[0].contact_download);
+            $('#country_download').val(response[0].countries_id);
+            $('#signing').val(response[0].signing);
             $('#import_company').val(response[0].import_company);
-            $('#addresses_client').val(response[0].addresses);
             $('#city_client').val(response[0].city);
-            $('#postal_cod_client').val(response[0].postal_cod);
-            $("#country").val(response[0].countries_id);
-            $('#province_client').val(response[0].province);
+            $('#observations').val('.');
         }
     });
 }
@@ -218,8 +253,8 @@ function cmrCompleteDate(date) {
 }
 
 function cmrCompleteCocheUsado() {
-    $('#observationLabel').text('COCHES USADOS, DA&#241;ADOS Y SUCIEDAD PROPIOS DEL USO');
-    $('#typeCoche').val('COCHES USADOS, DA&#241;ADOS Y SUCIEDAD PROPIOS DEL USO');
+    $('#observationLabel').text('COCHES USADOS, DAÑADOS Y SUCIEDAD PROPIOS DEL USO');
+    $('#typeCoche').val('COCHES USADOS, DAÑADOS Y SUCIEDAD PROPIOS DEL USO');
 }
 
 function cmrCompleteCocheNuevo() {

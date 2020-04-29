@@ -27,6 +27,14 @@
 
 <div class="input-group-sm mb-3 input-client">
     <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Confirmar matricula</span>
+    </div>
+    <input name="car[0][vin_clone]" value="{{old('car[0][vin_clone]')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    <span id="car[0][error_vin]" class="hide alert-danger">La confirmacion del bastidor no coincide</span>
+</div>
+
+<div class="input-group-sm mb-3 input-client">
+    <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.itv') }}</span>
     </div>
     <div class="itv-input">

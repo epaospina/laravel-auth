@@ -8,6 +8,11 @@ class DataDownload extends Model
 {
     protected $table = 'data_download';
 
+    public function countries()
+    {
+        return $this->belongsTo('App\Countries');
+    }
+
     static public function validateDataDownload($info){
         $dataDownload = [
             'contact_download'          => isset($info['data_download']['contact_download']) ? $info['data_download']['contact_download'] : '',
