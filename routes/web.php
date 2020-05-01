@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-Route::get('/', 'HomeController@index');
-Route::redirect('/home', '/');
+Route::get('/admin', 'HomeController@admin');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('load-orders/','LoadOrdersController@index')->name('load-orders.index');
 Route::get('load-orders/list','LoadOrdersController@listOrders')->name('load-orders.list-orders');
 Route::get('load-orders/list-by-country/{filter}','LoadOrdersController@listByCountry')->name('load-orders.listByCountry');
