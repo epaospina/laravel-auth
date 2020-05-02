@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Transporte de vehículos</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -31,7 +31,7 @@
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
     <div class="w3-bar w3-white w3-card" id="myNavbar">
-        <a href="#home" class="w3-bar-item w3-button"><b>MC</b> Vehiculos</a>
+        <a href="#home" class="w3-bar-item w3-button"><b>MC</b> Vehículos</a>
         <!-- Right-sided navbar links -->
         <div class="w3-right w3-hide-small">
             <a href="#about" class="w3-bar-item w3-button"> NOSOTROS</a>
@@ -57,7 +57,7 @@
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
     <div class="w3-display-left w3-text-white" style="padding:48px">
-        <span class="w3-large">MC Transporte  Vehículos - Nacional - Internacional </span>
+        <span class="w3-large">Transporte de vehículos</span>
         <p><a href="#contact" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">CONTACTANOS</a></p>
     </div>
     <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
@@ -102,7 +102,7 @@
 <div class="w3-container w3-light-grey" style="padding:128px 16px">
     <div class="w3-row-padding">
         <div class="w3-col m6">
-            <h3>MC VEHÍCULOS - TRANSCALYGUZ</h3>
+            <h3>TRANSPORTE DE VEHICULOS - MC</h3>
             <p>MC Transporte de Vehículos – Transcalyguz, s.l.,
                 somos especialistas tanto en transporte de vehículos usados como de vehículos nuevos traídos de fábrica,
                 procedentes de países de la UE, con cargas completas o fraccionadas.</p>
