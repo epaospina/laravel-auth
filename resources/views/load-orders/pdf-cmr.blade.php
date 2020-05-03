@@ -109,7 +109,7 @@
                 <td>
                     <label>
                         <span class="date-load">
-                            {{$load->city_load}}<div class="date-end">{{$load->date_load}}</div>
+                            {{$load->city_load}}<div class="date-end">{{isset($date) ? $date : $load->date_load}}</div>
                         </span>
                     </label>
                 </td>

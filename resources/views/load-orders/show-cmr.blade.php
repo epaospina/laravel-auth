@@ -93,7 +93,7 @@
                 <span id="span-date_load">
                     {{$loadOrders->data_load->city_load}}
                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    {{$loadOrders->data_load->date_load}}
+                    {{isset($date) ? $date : $loadOrders->data_load->date_load}}
                 </span>
             </label>
         </div>

@@ -397,6 +397,6 @@ class LoadOrdersController extends Controller
         $cars = $loadOrders->customer->infoCars;
         $pdf = PDF::loadView('load-orders.pdf-cmr', compact('loadOrders', 'matricula', 'date', 'typeCoche',
             'customer', 'download', 'load', 'cars'));
-        return $pdf->download('invoice.pdf');
+        return $pdf->download($download->contact_download.'_'.$date.'_CMR.pdf');
     }
 }
