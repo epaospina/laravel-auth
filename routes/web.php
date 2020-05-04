@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/admin', 'HomeController@admin');
+Route::redirect('/home', '/admin');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('load-orders/','LoadOrdersController@index')->name('load-orders.index');
 Route::get('load-orders/list','LoadOrdersController@listOrders')->name('load-orders.list-orders');
