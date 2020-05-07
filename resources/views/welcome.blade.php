@@ -64,8 +64,46 @@
 
         <!-- Header with full-height image -->
         <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
-            <div class="w3-display-left w3-text-white" style="padding:48px">
-                <h1 itemprop="name">MCVEHICULOS - Transporte de vehículos</h1>
+
+            <div class="w3-row-padding">
+                <div class="w3-col m6" style="padding-top: 10vh;">
+                    <h1 itemprop="name">MCVEHICULOS - Transporte de vehículos</h1>
+                </div>
+                <div class="w3-col m6" style="padding-top: 10vh;">
+                    <form action="/action_page.php" target="_blank">
+                        <p>Calcule su presupuesto</p>
+                        <p><label>
+                                <input class="w3-input w3-border" type="text" placeholder="Tipo de vehiculo" required name="tipo_vehiculo">
+                            </label>
+                        </p>
+                        <p><label>
+                                <input class="w3-input w3-border" type="text" placeholder="Modelo" required name="modelo">
+                            </label></p>
+                        <p><label>
+                                <input class="w3-input w3-border" type="text" placeholder="Telefono" required name="telefono">
+                            </label></p>
+                        <p><label>
+                                <input class="w3-input w3-border" type="text" placeholder="Email" required name="email">
+                            </label>
+                        </p>
+                        <p><label>
+                                <input class="w3-input w3-border" type="text" placeholder="Desde" required name="desde">
+                            </label>
+                        </p>
+                        <p><label>
+                                <input class="w3-input w3-border" type="text" placeholder="Hasta" required name="hasta">
+                            </label>
+                        </p>
+                        <p>
+                            He leído, entiendo y acepto la cláusula de protección de datos.
+                        </p>
+                        <p>
+                            <button class="w3-button w3-black" type="submit">
+                                <i class="fa fa-paper-plane"></i>Enviar Presupuesto
+                            </button>
+                        </p>
+                    </form>
+                </div>
             </div>
         </header>
 
@@ -213,10 +251,26 @@
             <div style="margin-top:10px">
                 <br>
                 <form action="/action_page.php" target="_blank">
-                    <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
-                    <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
-                    <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
-                    <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+                    <p>
+                        <label>
+                            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject">
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+                        </label>
+                    </p>
                     <p>
                         <button class="w3-button w3-black" type="submit">
                             <i class="fa fa-paper-plane"></i>Enviar
