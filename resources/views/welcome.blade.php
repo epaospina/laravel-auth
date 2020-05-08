@@ -27,12 +27,21 @@
             .bgimg-1 {
                 background-position: center;
                 background-size: cover;
-                background-image: url("../images/home/mcvehiculos_01.jpg");
+                background-image: url("../images/home/mcvehiculos_01.webp");
                 min-height: 100%;
             }
 
             .w3-bar .w3-button {
                 padding: 16px;
+            }
+
+            @font-face {
+                font-family: ExampleFont;
+                src: url(/path/to/fonts/examplefont.woff) format('woff'),
+                url(/path/to/fonts/examplefont.eot) format('eot');
+                font-weight: 400;
+                font-style: normal;
+                font-display: fallback;
             }
         </style>
     </head>
@@ -147,7 +156,7 @@
                         brindamos a las empresas la oportunidad de ofrecer a sus clientes el más completo  y esmerado servicio.</p>
                 </div>
                 <div class="w3-col m6">
-                    <img class="w3-image w3-round-large" src="{{asset('images/home/flota_01.jpeg')}}" alt="Buildings" width="400" height="394">
+                    <img class="w3-image w3-round-large" src="{{asset('images/home/flota_01.webp')}}" alt="Buildings" width="400" height="394">
                 </div>
             </div>
         </div>
@@ -156,7 +165,7 @@
         <div class="w3-container" style="padding:128px 16px" id="team">
             <div class="w3-row-padding">
                 <div class="w3-col m6">
-                    <img class="w3-image w3-round-large" src="{{asset('images/home/flota_03.jpeg')}}" alt="Buildings" width="400" height="394">
+                    <img class="w3-image w3-round-large" src="{{asset('images/home/flota_03.webp')}}" alt="Buildings" width="400" height="394">
                 </div>
                 <div class="w3-col m6">
                     <h3>Nuestra Misión</h3>
@@ -186,31 +195,31 @@
 
             <div class="w3-row-padding" style="margin-top:64px">
                 <div class="w3-col l3 m6">
-                    <img src="{{asset('images/home/flota_01.jpeg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A microphone">
+                    <img src="{{asset('images/home/flota_01.webp')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="transporte de vehiculos flota">
                 </div>
                 <div class="w3-col l3 m6">
-                    <img src="{{asset('images/home/flota_02.jpeg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A phone">
+                    <img src="{{asset('images/home/flota_02.webp')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="transporte de vehiculos niñera">
                 </div>
                 <div class="w3-col l3 m6">
-                    <img src="{{asset('images/home/flota_03.jpeg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A drone">
+                    <img src="{{asset('images/home/flota_03.webp')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="transporte de vehiculos mcvehiculos">
                 </div>
                 <div class="w3-col l3 m6">
-                    <img src="{{asset('images/home/flota_04.jpeg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Soundbox">
+                    <img src="{{asset('images/home/flota_04.webp')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="transporte de vehiculos flota">
                 </div>
             </div>
 
             <div class="w3-row-padding w3-section">
                 <div class="w3-col l3 m6">
-                    <img src="{{asset('images/home/flota_05.jpeg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A tablet">
+                    <img src="{{asset('images/home/flota_05.webp')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="transporte de vehiculos flota">
                 </div>
                 <div class="w3-col l3 m6">
-                    <img src="{{asset('images/home/flota_06.jpeg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A camera">
+                    <img src="{{asset('images/home/flota_06.webp')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="transporte de vehiculos niñera">
                 </div>
                 <div class="w3-col l3 m6">
-                    <img src="{{asset('images/home/flota_07.jpeg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A typewriter">
+                    <img src="{{asset('images/home/flota_07.webp')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="transporte de vehiculos mcvehiculos">
                 </div>
                 <div class="w3-col l3 m6">
-                    <img src="{{asset('images/home/flota_08.jpeg')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A tableturner">
+                    <img src="{{asset('images/home/flota_08.webp')}}" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="transporte de coches">
                 </div>
             </div>
         </div>
