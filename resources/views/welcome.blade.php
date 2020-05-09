@@ -62,7 +62,7 @@
             }
         </script>
     </head>
-    <body itemscope itemtype="http://schema.org/WebPage">
+    <body>
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPFGXXW"
                           height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="mcv-sidebar mcv-bar-block mcv-black mcv-card mcv-animate-left mcv-hide-medium mcv-hide-large" style="display:none" id="mySidebar">
+        <nav class="mcv-sidebar mcv-bar-block mcv-black mcv-card mcv-animate-left mcv-hide-medium mcv-hide-large" style="display:none" id="mySidebar">
             <a href="javascript:void(0)" onclick="mcv_close()" class="mcv-bar-item mcv-button mcv-large mcv-padding-16">Close ×</a>
             <a href="#about" onclick="mcv_close()" class="mcv-bar-item mcv-button">NOSOTROS</a>
             <a href="#work" onclick="mcv_close()" class="mcv-bar-item mcv-button">FLOTA</a>
