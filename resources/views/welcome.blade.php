@@ -247,41 +247,6 @@
             </div>
         </div>
 
-        <!-- Contact Section -->
-        <div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
-            <h3 class="w3-center">CONTACTANOS</h3>
-            <div style="margin-top:10px">
-                <br>
-                <form action="/action_page.php" target="_blank">
-                    <p>
-                        <label>
-                            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            <input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject">
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-                        </label>
-                    </p>
-                    <p>
-                        <button class="w3-button w3-black" type="submit">
-                            <i class="fa fa-paper-plane"></i>Enviar
-                        </button>
-                    </p>
-                </form>
-            </div>
-        </div>
-
         <!-- Footer -->
         <footer class="w3-center w3-black w3-padding-64">
             <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>Inicio</a>
