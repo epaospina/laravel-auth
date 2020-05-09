@@ -15,6 +15,13 @@
         <link rel="stylesheet" href="{{asset('css/home/style.css')}}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-PPFGXXW');</script>
+        <!-- End Google Tag Manager -->
         <style>
             body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
@@ -37,6 +44,10 @@
         </style>
     </head>
     <body itemscope itemtype="http://schema.org/WebPage">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PPFGXXW"
+                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
         <div class="mcv-top">
             <div class="mcv-bar mcv-white mcv-card" id="myNavbar">
                 <a href="#home" class="mcv-bar-item mcv-button"><b>MC</b> Vehículos</a>

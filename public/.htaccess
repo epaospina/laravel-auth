@@ -6,8 +6,12 @@
     DirectoryIndex index.php # This line does the trick
 
     RewriteEngine On
-    RewriteCond %{HTTP_HOST} ^www.mcvehiculos.com [NC]
+    RewriteCond %{HTTP_HOST} ^www.mcvehiculos.com[NC,OR]
     RewriteRule ^(.*)$ https://mcvehiculos.com/$1 [L,R=301]
+
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST} ^https://mcvehiculos.com[NC,OR]
+    RewriteRule ^(.*)$ https://mcvehiculos.com/$1 [L,R=301,NC]
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
