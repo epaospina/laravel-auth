@@ -48,7 +48,7 @@
                 </div>
                 <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+                <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
@@ -72,28 +72,30 @@
                 <div class="w3-col m6" style="padding-top: 10vh;">
                     <form action="/action_page.php" target="_blank">
                         <p>Calcule su presupuesto</p>
-                        <p><label>
-                                <input class="w3-input w3-border" type="text" placeholder="Tipo de vehiculo" required name="tipo_vehiculo">
-                            </label>
-                        </p>
-                        <p><label>
-                                <input class="w3-input w3-border" type="text" placeholder="Modelo" required name="modelo">
-                            </label></p>
-                        <p><label>
-                                <input class="w3-input w3-border" type="text" placeholder="Telefono" required name="telefono">
-                            </label></p>
-                        <p><label>
-                                <input class="w3-input w3-border" type="text" placeholder="Email" required name="email">
-                            </label>
-                        </p>
-                        <p><label>
-                                <input class="w3-input w3-border" type="text" placeholder="Desde" required name="desde">
-                            </label>
-                        </p>
-                        <p><label>
-                                <input class="w3-input w3-border" type="text" placeholder="Hasta" required name="hasta">
-                            </label>
-                        </p>
+                        <div class="form-group">
+                            <label for="tipo_vehiculo">Tipo de vehiculo:</label>
+                            <input class="w3-input w3-border" placeholder="Tipo de vehiculo" required type="text" name="tipo_vehiculo" id="tipo_vehiculo">
+                        </div>
+                        <div class="form-group">
+                            <label for="modelo">Modelo:</label>
+                            <input class="w3-input w3-border" placeholder="Modelo" required type="text" name="modelo" id="modelo">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Telefono:</label>
+                            <input class="w3-input w3-border" placeholder="Telefono" required type="text" name="telefono" id="telefono">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input class="w3-input w3-border" placeholder="Email" required type="text" name="email" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="desde">Desde:</label>
+                            <input class="w3-input w3-border" placeholder="Desde" required type="text" name="desde" id="desde">
+                        </div>
+                        <div class="form-group">
+                            <label for="hasta">Hasta:</label>
+                            <input class="w3-input w3-border" placeholder="Hasta" required type="text" name="hasta" id="hasta">
+                        </div>
                         <p>
                             He leído, entiendo y acepto la cláusula de protección de datos.
                         </p>
