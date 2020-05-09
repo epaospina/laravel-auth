@@ -2,9 +2,12 @@
     <IfModule mod_negotiation.c>
         Options -MultiViews
     </IfModule>
-
     RewriteEngine On
     DirectoryIndex index.php # This line does the trick
+
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^www.mcvehiculos.com [NC]
+    RewriteRule ^(.*)$ https://mcvehiculos.com/$1 [L,R=301]
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
