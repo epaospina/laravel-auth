@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Transporte de vehículos en España | MCvehiculos</title>
+        <title>Transporte de vehículos en Europa | MCvehiculos</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="author" content="mcvehiculos">
         <meta name="google-site-verification" content="5EVbZ67ex5x_fHNM4Vm-_U_vd3O2dD1tMtS7NgoInmo">
-        <meta name="description" content="ofrecemos transportes de vehículos al mejor precio para toda España. Especialistas en vehículos usados y nuevos. !entra y pide tu presupuesto¡">
+        <meta name="description" content="ofrecemos transportes de vehículos al mejor precio para toda Europa. Especialistas en vehículos usados y nuevos. !entra y pide tu presupuesto¡">
         {{-- open graph --}}
-        <meta property="og:title" content="Transporte de vehículos en España">
+        <meta property="og:title" content="Transporte de vehículos en Europa">
         <meta property="og:site_name" content="MC Vehículos">
         <meta property="og:url" content="https://mcvehiculos.com">
-        <meta property="og:description" content="ofrecemos transportes de vehículos al mejor precio para toda España. Especialistas en vehículos usados y nuevos. !entra y pide tu presupuesto¡">
+        <meta property="og:description" content="ofrecemos transportes de vehículos al mejor precio para toda Europa">
         <meta property="og:type" content="business.business">
         <meta property="og:image" content="https://mcvehiculos.com/images/home/flota_01.webp">
         {{-- close --}}
 
         <meta charset="UTF-8">
-        <meta name="keywords" content="transporte de vehiculos en españa, transporte de vehiculos, transporte vehiculos">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#339900"/>
         <link rel="canonical" href="https://mcvehiculos.com">
