@@ -6,11 +6,20 @@
         <meta name="author" content="mcvehiculos">
         <meta name="google-site-verification" content="5EVbZ67ex5x_fHNM4Vm-_U_vd3O2dD1tMtS7NgoInmo">
         <meta name="description" content="ofrecemos transportes de vehículos al mejor precio para toda España. Especialistas en vehículos usados y nuevos. !entra y pide tu presupuesto¡">
+        {{-- open graph --}}
+        <meta property="og:title" content="Transporte de vehículos en España">
+        <meta property="og:site_name" content="MC Vehículos">
+        <meta property="og:url" content="https://mcvehiculos.com">
+        <meta property="og:description" content="ofrecemos transportes de vehículos al mejor precio para toda España. Especialistas en vehículos usados y nuevos. !entra y pide tu presupuesto¡">
+        <meta property="og:type" content="business.business">
+        <meta property="og:image" content="https://mcvehiculos.com/images/home/flota_01.webp">
+        {{-- close --}}
+
         <meta charset="UTF-8">
-        <meta name="keywords" content="transporte de vehiculos, transporte de coches, transporte vehiculos">
+        <meta name="keywords" content="transporte de vehiculos en españa, transporte de vehiculos, transporte vehiculos">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#339900"/>
-        <link rel="canonical" href="https://mcvehiculos.com/">
+        <link rel="canonical" href="https://mcvehiculos.com">
         <link rel="icon" type="image/png" sizes="16x16" href="{{asset('mcv.ico')}}">
         <link rel="stylesheet" href="{{asset('css/home/style.css')}}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -82,44 +91,50 @@
         </div>
 
         <nav class="mcv-sidebar mcv-bar-block mcv-black mcv-card mcv-animate-left mcv-hide-medium mcv-hide-large" style="display:none" id="mySidebar">
-            <a href="javascript:void(0)" onclick="mcv_close()" class="mcv-bar-item mcv-button mcv-large mcv-padding-16">Close ×</a>
+            <a onclick="mcv_close()" class="mcv-bar-item mcv-button mcv-large mcv-padding-16">Close ×</a>
             <a href="#about" onclick="mcv_close()" class="mcv-bar-item mcv-button">NOSOTROS</a>
             <a href="#work" onclick="mcv_close()" class="mcv-bar-item mcv-button">FLOTA</a>
             <a href="#contact" onclick="mcv_close()" class="mcv-bar-item mcv-button">CONTACTANOS</a>
         </nav>
-
         <header class="bgimg-1 mcv-display-container mcv-grayscale-min" id="home">
-
             <div class="mcv-row-padding">
-                <div class="mcv-col m6" style="padding-top: 10vh;">
-                    <h1 itemprop="name">MCVEHICULOS - Transporte de vehículos</h1>
+                <div class="mcv-col m5 mcv-title">
+                    <h1 itemprop="name">El mejor precio en el transporte de vehículos</h1>
                 </div>
-                <div class="mcv-col m6" style="padding-top: 10vh;">
+                <div class="mcv-col m7 presupuesto">
                     <form action="/action_page.php" target="_blank">
                         <p>Calcule su presupuesto</p>
-                        <div class="form-group">
-                            <label for="tipo_vehiculo">Tipo de vehiculo:</label>
-                            <input class="mcv-input mcv-border" placeholder="Tipo de vehiculo" required type="text" name="tipo_vehiculo" id="tipo_vehiculo">
+                        <div class="mcv-col m6">
+                            <div class="item-presupuesto">
+                                <label for="tipo_vehiculo">Tipo de vehiculo:</label>
+                                <input class="mcv-input mcv-border" placeholder="Tipo de vehiculo" required type="text" name="tipo_vehiculo" id="tipo_vehiculo">
+                            </div>
+                            <div class="item-presupuesto">
+                                <label for="modelo">Modelo:</label>
+                                <input class="mcv-input mcv-border" placeholder="Modelo" required type="text" name="modelo" id="modelo">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="modelo">Modelo:</label>
-                            <input class="mcv-input mcv-border" placeholder="Modelo" required type="text" name="modelo" id="modelo">
+                        <div class="mcv-col m6">
+                            <div class="item-presupuesto">
+                                <label for="telefono">Telefono:</label>
+                                <input class="mcv-input mcv-border" placeholder="Telefono" required type="text" name="telefono" id="telefono">
+                            </div>
+                            <div class="item-presupuesto">
+                                <label for="email">Email:</label>
+                                <input class="mcv-input mcv-border" placeholder="Email" required type="text" name="email" id="email">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="telefono">Telefono:</label>
-                            <input class="mcv-input mcv-border" placeholder="Telefono" required type="text" name="telefono" id="telefono">
+                        <div class="mcv-col m6">
+                            <div class="item-presupuesto">
+                                <label for="desde">Desde:</label>
+                                <input class="mcv-input mcv-border" placeholder="Desde" required type="text" name="desde" id="desde">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input class="mcv-input mcv-border" placeholder="Email" required type="text" name="email" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="desde">Desde:</label>
-                            <input class="mcv-input mcv-border" placeholder="Desde" required type="text" name="desde" id="desde">
-                        </div>
-                        <div class="form-group">
-                            <label for="hasta">Hasta:</label>
-                            <input class="mcv-input mcv-border" placeholder="Hasta" required type="text" name="hasta" id="hasta">
+                        <div class="mcv-col m6">
+                            <div class="item-presupuesto">
+                                <label for="hasta">Hasta:</label>
+                                <input class="mcv-input mcv-border" placeholder="Hasta" required type="text" name="hasta" id="hasta">
+                            </div>
                         </div>
                         <p>
                             He leído, entiendo y acepto la cláusula de protección de datos.
@@ -167,8 +182,7 @@
             <div class="mcv-row-padding">
                 <div class="mcv-col m6">
                     <h3>TRANSPORTE DE VEHICULOS - MC</h3>
-                    <p>MC Transporte de Vehículos – Transcalyguz, s.l.,
-                        somos especialistas tanto en transporte de vehículos usados como de vehículos nuevos traídos de fábrica,
+                    <p>Somos especialistas tanto en transporte de vehículos usados como de vehículos nuevos traídos de fábrica,
                         procedentes de países de la UE, con cargas completas o fraccionadas.</p>
                     <p>Con nuestros servicios de transporte de vehículos tanto a nivel nacional como internacional,
                         brindamos a las empresas la oportunidad de ofrecer a sus clientes el más completo  y esmerado servicio.</p>
