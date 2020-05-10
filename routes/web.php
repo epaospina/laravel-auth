@@ -18,6 +18,11 @@ Auth::routes();
 Route::get('/admin', 'HomeController@admin');
 Route::redirect('/home', '/admin');
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::post('presupuesto', 'HomeController@presupuesto')->name('presupuesto');
+Route::get('presupuesto-transporte-vehiculo', 'HomeController@guardarPresupuesto')->name('Guardarpresupuesto');
+
+
 Route::get('load-orders/','LoadOrdersController@index')->name('load-orders.index');
 Route::get('load-orders/list','LoadOrdersController@listOrders')->name('load-orders.list-orders');
 Route::get('load-orders/list-by-country/{filter}','LoadOrdersController@listByCountry')->name('load-orders.listByCountry');
