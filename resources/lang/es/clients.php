@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'load_order'        => 'ORDEN DE CARGA PARA '.env('TITLE_HOME', 'MCVehiculos'),
+    'load_order'        => 'ORDEN DE CARGA',
     'data_car'          => 'DATOS DEL VEHICULO / FAHRZEUGDATEN',
     'load_place'        => 'LUGAR DE CARGA / FAHRZEUGSTANTDORT',
     'download_place'    => 'LUGAR DE DESCARGUE / LIEFERADRESSE',
@@ -13,13 +13,13 @@ return [
     'model_car_m'         => 'Modelo',
     'color_car'         => 'Color - FARBE',
     'color_car_m'         => 'Color',
-    'bill_to'           => 'Facturar transporte a / TRANSPORT RECHNUNG AN',
+    'bill_to'           => 'Facturar transporte',
     'bill_to_m'           => 'Facturar transporte a',
     'import_company'    => 'empresa importadora / IMPORT FIRMA',
     'import_company_m'    => 'empresa importadora',
     'vin'               => 'BASTIDOR / MATRICULA',
     'itv'               => 'Pasar ITV al vehiculo / TÜV',
-    'documents'         => 'Documentacion del vehiculo / FAHRZEUGDOKUMENTE',
+    'documents'         => 'Documentacion del vehiculo',
     'documents_m'         => 'Documentacion del vehiculo',
 
     'signing'           => 'Firma',

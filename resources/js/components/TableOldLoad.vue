@@ -41,7 +41,7 @@
         >
             <template v-slot:cell(order_load)="row">
                 <div class="d-flex flex-wrap">
-                    <b-link :href="'/load-orders/' + row.item.hash + '/' + row.item.card_id" class="btn btn-outline-primary m-1">
+                    <b-link :href="'/load-orders/' + row.item.hash + '/' + row.item.order_id" class="btn btn-outline-primary m-1">
                         Ver Orden
                     </b-link>
                 </div>

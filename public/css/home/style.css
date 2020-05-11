@@ -242,8 +242,8 @@ h1{
     text-align: center;
 }
 .presupuesto{
-    padding: 3vw 3vw !important;
-    margin: 10vw 0 0 0;
+    padding: 0 2vw !important;
+    margin: 9vw 0 0 0;
     background: #33990069;
     display: flex;
     border-radius: 50px;
@@ -259,4 +259,33 @@ h1{
 }
 .clausula-proteccion{
 
+}
+.items-title{
+    font-family: georgia, palatino;
+    font-size: 14pt;
+}
+.items-title a{
+    color: rgb(85, 85, 85);
+    text-decoration-line: none;
+}
+.img-item{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.description{
+    padding:128px 16px;
+}
+.sabia-que{
+    display: block;
+    padding: 10px 20%;
+}
+.flota{
+    margin-top:64px;
+}
+.img-flota{
+    width:100%;
+}
+.mcv-info{
+    margin-top:64px;
 }

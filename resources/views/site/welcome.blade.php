@@ -1,9 +1,13 @@
 @extends('site.layouts')
 @section('content_site')
     <!-- About Section -->
-    <div class="mcv-container" style="padding:128px 16px" id="about">
-        <span style="font-family: georgia, palatino; font-size: 14pt;"><a style="color: rgb(85, 85, 85); text-decoration-line: none;" title="MC Vehículos - Transporte de Vehículos - Transcalyguz - Ciudad Real" href="{{route('home')}}"><img style="display: block; margin-left: auto; margin-right: auto;" src="{{asset('images/logoMC.png')}}" alt="Logo de MC Vehículos" width="200" height="98"></a></span>
-        <div class="mcv-row-padding mcv-center" style="margin-top:64px">
+    <div class="mcv-container description" id="about">
+        <span class="items-title">
+            <a title="MC Vehículos - Transporte de Vehículos - Transcalyguz - Ciudad Real" href="{{route('home')}}">
+                <img class="img-item" src="{{asset('images/logoMC.png')}}" alt="Logo de MC Vehículos" width="200" height="98">
+            </a>
+        </span>
+        <div class="mcv-row-padding mcv-center mcv-info">
             <div class="mcv-quarter">
                 <h2 class="mcv-large">TRANSPORTE SEGURO</h2>
                 <p>
@@ -29,7 +33,7 @@
     </div>
 
     <!-- Promo Section - "We know design" -->
-    <div class="mcv-container mcv-light-grey" style="padding:128px 16px">
+    <div class="mcv-container mcv-light-grey description">
         <div class="mcv-row-padding">
             <div class="mcv-col m6">
                 <h3>TRANSPORTE DE VEHICULOS - MC</h3>
@@ -45,7 +49,7 @@
     </div>
 
     <!-- Team Section -->
-    <div class="mcv-container" style="padding:128px 16px" id="team">
+    <div class="mcv-container description" id="team">
         <div class="mcv-row-padding">
             <div class="mcv-col m6">
                 <img class="mcv-image mcv-round-large" src="{{asset('images/home/flota_03.webp')}}" alt="Buildings" width="400" height="394">
@@ -65,7 +69,7 @@
     <div class="mcv-container mcv-row mcv-center mcv-dark-grey mcv-padding-64">
         <div class="mcv-col">
             <h3>¿SABIAS QUÉ?</h3>
-            <p style="display: block; padding: 10px 20%;">
+            <p class="sabia-que">
                 MC Vehículos - Transcalyguz, bajo el punto de vista estratégico,
                 nuestra empresa se encuentra muy bien ubicada en el centro de la península Ibérica, en ciudad Real,
                 a menos de 200 km. de Madrid.  </p>
@@ -73,36 +77,36 @@
     </div>
 
     <!-- Work Section -->
-    <div class="mcv-container" style="padding:128px 16px" id="work">
+    <div class="mcv-container description" id="work">
         <h3 class="mcv-center">FLOTA</h3>
 
-        <div class="mcv-row-padding" style="margin-top:64px">
+        <div class="mcv-row-padding flota">
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_01.webp')}}" style="width:100%" onclick="onClick(this)" class="mcv-hover-opacity" alt="transporte de vehiculos flota">
+                <img src="{{asset('images/home/flota_01.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos flota">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_02.webp')}}" style="width:100%" onclick="onClick(this)" class="mcv-hover-opacity" alt="transporte de vehiculos niñera">
+                <img src="{{asset('images/home/flota_02.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos niñera">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_03.webp')}}" style="width:100%" onclick="onClick(this)" class="mcv-hover-opacity" alt="transporte de vehiculos mcvehiculos">
+                <img src="{{asset('images/home/flota_03.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos mcvehiculos">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_04.webp')}}" style="width:100%" onclick="onClick(this)" class="mcv-hover-opacity" alt="transporte de vehiculos flota">
+                <img src="{{asset('images/home/flota_04.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos flota">
             </div>
         </div>
 
         <div class="mcv-row-padding mcv-section">
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_05.webp')}}" style="width:100%" onclick="onClick(this)" class="mcv-hover-opacity" alt="transporte de vehiculos flota">
+                <img src="{{asset('images/home/flota_05.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos flota">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_06.webp')}}" style="width:100%" onclick="onClick(this)" class="mcv-hover-opacity" alt="transporte de vehiculos niñera">
+                <img src="{{asset('images/home/flota_06.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos niñera">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_07.webp')}}" style="width:100%" onclick="onClick(this)" class="mcv-hover-opacity" alt="transporte de vehiculos mcvehiculos">
+                <img src="{{asset('images/home/flota_07.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos mcvehiculos">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_08.webp')}}" style="width:100%" onclick="onClick(this)" class="mcv-hover-opacity" alt="transporte de coches">
+                <img src="{{asset('images/home/flota_08.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de coches">
             </div>
         </div>
     </div>
