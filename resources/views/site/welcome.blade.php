@@ -1,4 +1,4 @@
-@extends('site.layouts')
+@extends('site.layouts.layouts')
 @section('content_site')
     <!-- About Section -->
     <div class="mcv-container description" id="about">
@@ -125,15 +125,15 @@
         <div class="mcv-row-padding">
             <div class="mcv-col m6">
                 <h3>DATOS DE CONTACTO</h3>
-                <p><i class="fa fa-phone fa-fw mcv-xxlarge mcv-margin-right"></i> Phone: +34 926 22 84 53</p>
-                <p><i class="fa fa-phone fa-fw mcv-xxlarge mcv-margin-right"></i> Phone: +34 926 25 59 63</p>
-                <p><i class="fa fa-phone fa-fw mcv-xxlarge mcv-margin-right"></i> Phone: +34 629 42 31 79.</p>
+                <p><img class="svg-img" src="{{asset('svg/phone-solid.svg')}}" alt="transporte de vehiculos fa-envelope">Phone: +34 926 22 84 53</p>
+                <p><img class="svg-img" src="{{asset('svg/phone-solid.svg')}}" alt="transporte de vehiculos fa-envelope">Phone: +34 926 25 59 63</p>
+                <p><img class="svg-img" src="{{asset('svg/phone-solid.svg')}}" alt="transporte de vehiculos fa-envelope">Phone: +34 629 42 31 79.</p>
             </div>
             <div class="mcv-col m6">
-                <p><i class="fa fa-map-marker fa-fw mcv-xxlarge mcv-margin-right"></i>
+                <p><img class="svg-img" src="{{asset('svg/map-marker-alt-solid.svg')}}" alt="transporte de vehiculos fa-envelope">
                     Calle Altagracia, 8 - CP 13003 - Ciudad Real<br>
                     Castilla La Mancha - Spain</p>
-                <p><i class="fa fa-envelope fa-fw mcv-xxlarge mcv-margin-right"> </i>
+                <p><img class="svg-img" src="{{asset('svg/envelope-solid.svg')}}" alt="transporte de vehiculos fa-envelope">
                     mcvehiculos1935@msn.com
                     centroclimagd@msn.com
                 </p>
@@ -143,7 +143,7 @@
 
     <!-- Footer -->
     <footer class="mcv-center mcv-black mcv-padding-64">
-        <a href="#home" class="mcv-button mcv-light-grey"><i class="fa fa-arrow-up mcv-margin-right"></i>Inicio</a>
+        <a href="#home" class="mcv-button mcv-light-grey"><img class="svg-img" src="{{asset('svg/arrow-up-solid.svg')}}" alt="transporte de vehiculos fa-envelope">Inicio</a>
     </footer>
 @stop
 

@@ -55535,8 +55535,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.date = response.data.date;
                 _this.numBill = response.data.bill.num_bill;
                 _this.cif = response.data.bill.cif;
-                _this.name_client = response.data.bill.name_client;
-                _this.address_client = response.data.bill.address_client;
+                if (response.data.bill.identificacion_fiscal === null) {
+                    _this.name_client = response.data.bill.name_client;
+                } else {
+                    _this.name_client = response.data.bill.identificacion_fiscal;
+                }
+
+                if (response.data.bill.domicilio_fiscal === null) {
+                    _this.address_client = response.data.bill.address_client;
+                } else {
+                    _this.address_client = response.data.bill.domicilio_fiscal;
+                }
                 _this.city_client = response.data.bill.city_client;
                 _this.department_client = response.data.bill.department_client;
                 _this.postal_cod_client = response.data.bill.postal_cod_client;

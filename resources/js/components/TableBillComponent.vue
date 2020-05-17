@@ -230,8 +230,17 @@
                     this.date = response.data.date;
                     this.numBill = response.data.bill.num_bill;
                     this.cif = response.data.bill.cif;
-                    this.name_client = response.data.bill.name_client;
-                    this.address_client = response.data.bill.address_client;
+                    if(response.data.bill.identificacion_fiscal === null){
+                        this.name_client = response.data.bill.name_client;
+                    }else{
+                        this.name_client = response.data.bill.identificacion_fiscal;
+                    }
+
+                    if(response.data.bill.domicilio_fiscal === null){
+                        this.address_client = response.data.bill.address_client;
+                    }else{
+                        this.address_client = response.data.bill.domicilio_fiscal;
+                    }
                     this.city_client = response.data.bill.city_client;
                     this.department_client = response.data.bill.department_client;
                     this.postal_cod_client = response.data.bill.postal_cod_client;

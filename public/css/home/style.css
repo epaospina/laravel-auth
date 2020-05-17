@@ -235,7 +235,6 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 }
 h1{
     font-size: 40px;
-    font-weight: bold;
     margin: 20vw 0 0 0;
     padding: 0;
     line-height: 40px;
@@ -243,13 +242,14 @@ h1{
 }
 .presupuesto{
     padding: 0 2vw !important;
-    margin: 9vw 0 0 0;
     background: #33990069;
     display: flex;
     border-radius: 50px;
     color: white;
-    font-size: 17px;
     font-weight: bolder;
+
+    margin: 10vw 0 0 4vw;
+    font-size: 0.7rem;
 }
 .item-presupuesto{
     padding: 1rem;
@@ -288,4 +288,15 @@ h1{
 }
 .mcv-info{
     margin-top:64px;
+}
+.svg-img{
+    width: 2rem;
+    margin-right: 8px !important;
+}
+.mcv-btn{
+    color: #fff!important;
+    font-size: 1rem;
+    background-color: #339900!important;
+    padding: 10px;
+    border-radius: 14px;
 }

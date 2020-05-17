@@ -84,6 +84,23 @@
                 </div>
             </div>
 
+            <label class="form-check-label" for="defaultCheck1">
+                Datos de facturacion
+            </label>
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">número de identificación fiscal</span>
+                    <input id="otrosInput" name="identificacion_fiscal" value="{{old('identificacion_fiscal')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            </div>
+
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">domicilio fiscal</span>
+                    <input id="otrosInput" name="domicilio_fiscal" value="{{old('domicilio_fiscal')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            </div>
+
             <div id="create_car">
                 <div id="car__0">
                     @include('load-orders.create_car')

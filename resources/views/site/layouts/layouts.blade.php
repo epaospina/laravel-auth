@@ -14,7 +14,6 @@
     <meta property="og:type" content="business.business">
     <meta property="og:image" content="https://mcvehiculos.com/images/home/flota_01.webp">
     {{-- close --}}
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#339900"/>
@@ -54,22 +53,22 @@
 
     <!-- Marcado JSON-LD generado por el Asistente para el marcado de datos estructurados de Google. -->
     <script type="application/ld+json">
-            {
-              "@context" : "http://schema.org",
-              "@type" : "LocalBusiness",
-              "name" : "MCVEHICULOS - Transporte de vehículos",
-              "image" : "https://mcvehiculos.com/images/home/flota_01.webp",
-              "telephone" : "+34 926 22 84 53",
-              "email" : "",
-              "address" : {
-                "@type" : "PostalAddress",
-                "streetAddress" : "Calle Altagracia, 8",
-                "addressRegion" : "Ciudad Real",
-                "addressCountry" : "Spain",
-                "postalCode" : "13003"
-              }
-            }
-        </script>
+        {
+          "@context" : "http://schema.org",
+          "@type" : "LocalBusiness",
+          "name" : "MCVEHICULOS - Transporte de vehículos",
+          "image" : "https://mcvehiculos.com/images/home/flota_01.webp",
+          "telephone" : "+34 926 22 84 53",
+          "email" : "",
+          "address" : {
+            "@type" : "PostalAddress",
+            "streetAddress" : "Calle Altagracia, 8",
+            "addressRegion" : "Ciudad Real",
+            "addressCountry" : "Spain",
+            "postalCode" : "13003"
+          }
+        }
+    </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -81,11 +80,11 @@
             <a href="#home" class="mcv-bar-item mcv-button"><b>MC</b> Vehículos</a>
             <div class="mcv-right mcv-hide-small">
                 <a href="#about" class="mcv-bar-item mcv-button"> NOSOTROS</a>
-                <a href="#work" class="mcv-bar-item mcv-button"><i class="fa fa-th"></i> FLOTAS</a>
-                <a href="#contact" class="mcv-bar-item mcv-button"><i class="fa fa-envelope"></i> CONTACTANOS</a>
+                <a href="#work" class="mcv-bar-item mcv-button"><img class="svg-img" src="{{asset('svg/th-solid.svg')}}" alt="transporte de vehiculos th"> FLOTAS</a>
+                <a href="#contact" class="mcv-bar-item mcv-button"><img class="svg-img" src="{{asset('svg/envelope-solid.svg')}}" alt="transporte de vehiculos fa-envelope">CONTACTANOS</a>
             </div>
             <a class="mcv-bar-item mcv-button mcv-right mcv-hide-large mcv-hide-medium" onclick="mcv_open()">
-                <i class="fa fa-bars"></i>
+                <img class="svg-img" src="{{asset('svg/bars-solid.svg')}}" alt="transporte de vehiculos fa-envelope">
             </a>
         </div>
     </div>
@@ -99,9 +98,9 @@
     <header class="bgimg-1 mcv-display-container mcv-grayscale-min" id="home">
         <div class="mcv-row-padding">
             <div class="mcv-col m5 mcv-title">
-                <h1 itemprop="name">El mejor precio en el transporte de vehículos</h1>
+                <h1 itemprop="name">Transporte de vehículos por carretera seguro y personalizado</h1>
             </div>
-            <div class="mcv-col m7 presupuesto">
+            <div class="mcv-col m6 presupuesto">
                 <form method="post" action="{{route('presupuesto')}}">
                     <p class="text-center">Calcule su presupuesto</p>
                     <div class="mcv-col m6">
@@ -140,8 +139,8 @@
                         He leído, entiendo y acepto la cláusula de protección de datos.
                     </p>
                     <p class="text-center">
-                        <button class="mcv-button mcv-black" type="submit">
-                            <i class="fa fa-paper-plane"></i>Enviar Presupuesto
+                        <button class="mcv-button mcv-btn" type="submit">
+                            <img class="svg-img" src="{{asset('svg/paper-plane-solid.svg')}}" alt="transporte de vehiculos fa-envelope">Enviar Presupuesto
                         </button>
                     </p>
                 </form>
