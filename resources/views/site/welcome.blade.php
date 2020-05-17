@@ -110,41 +110,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal for full size images on click-->
-    <div id="modal01" class="mcv-modal mcv-black" onclick="this.style.display='none'">
-        <span class="mcv-button mcv-xxlarge mcv-black mcv-padding-large mcv-display-topright" title="Close Modal Image">×</span>
-        <div class="mcv-modal-content mcv-animate-zoom mcv-center mcv-transparent mcv-padding-64">
-            <img id="img01" class="mcv-image">
-            <p id="caption" class="mcv-opacity mcv-large"></p>
-        </div>
-    </div>
-
-    <!-- Skills Section -->
-    <div class="mcv-container mcv-dark-grey mcv-padding-64">
-        <div class="mcv-row-padding">
-            <div class="mcv-col m6">
-                <h3>DATOS DE CONTACTO</h3>
-                <p><img class="svg-img" src="{{asset('svg/phone-solid.svg')}}" alt="transporte de vehiculos fa-envelope">Phone: +34 926 22 84 53</p>
-                <p><img class="svg-img" src="{{asset('svg/phone-solid.svg')}}" alt="transporte de vehiculos fa-envelope">Phone: +34 926 25 59 63</p>
-                <p><img class="svg-img" src="{{asset('svg/phone-solid.svg')}}" alt="transporte de vehiculos fa-envelope">Phone: +34 629 42 31 79.</p>
-            </div>
-            <div class="mcv-col m6">
-                <p><img class="svg-img" src="{{asset('svg/map-marker-alt-solid.svg')}}" alt="transporte de vehiculos fa-envelope">
-                    Calle Altagracia, 8 - CP 13003 - Ciudad Real<br>
-                    Castilla La Mancha - Spain</p>
-                <p><img class="svg-img" src="{{asset('svg/envelope-solid.svg')}}" alt="transporte de vehiculos fa-envelope">
-                    mcvehiculos1935@msn.com
-                    centroclimagd@msn.com
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="mcv-center mcv-black mcv-padding-64">
-        <a href="#home" class="mcv-button mcv-light-grey"><img class="svg-img" src="{{asset('svg/arrow-up-solid.svg')}}" alt="transporte de vehiculos fa-envelope">Inicio</a>
-    </footer>
 @stop
 
 <script>

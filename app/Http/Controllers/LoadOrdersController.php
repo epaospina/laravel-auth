@@ -399,4 +399,62 @@ class LoadOrdersController extends Controller
             'customer', 'download', 'load', 'cars'));
         return $pdf->download($download->contact_download.'_'.$date.'_CMR.pdf');
     }
+
+    public function cmrWord(Request $request){
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection();
+
+        $matricula = $request->matricula;
+        $date = $request->date;
+        $typeCoche = $request->typeCoche;
+        $loadOrders = LoadOrders::query()->find($request->loadOrder);
+        $customer = $loadOrders->customer;
+        $download = $loadOrders->data_download;
+        $load = $loadOrders->data_load;
+        $cars = $loadOrders->customer->infoCars;
+
+        $fontStyle = new \PhpOffice\PhpWord\Style\Font();
+        $fontStyle->setBold(true);
+        $fontStyle->setName('Tahoma');
+        $fontStyle->setSize(12);
+        $section->addText($customer->signing);
+        $section->addText($load->addresses_load);
+        $section->addText($load->city_load .'//'. $load->postal_cod_load);
+        $section->addTextBreak(2);
+        $section->addText($loadOrders->bill_to);
+        $section->addText($download->addresses_download);
+        $section->addText($download->city_download .'//'. $download->postal_cod_download);
+        $section->addText($matricula);
+        $section->addTextBreak(2);
+        $section->addText($download->addresses_download);
+        $section->addText($download->city_download);
+        $section->addText($download->postal_cod_download);
+        $section->addTextBreak(2);
+        $section->addText($load->date_load);
+        $section->addText($load->addresses_load);
+        $section->addText($load->city_load .'//'. $load->postal_cod_load);
+        $section->addText($typeCoche);
+        $section->addTextBreak(2);
+        foreach ($cars as $car){
+            $section->addText($car->model_car.'    '.$car->vin);
+        }
+        $section->addText($load->city_load);
+        $section->addText(isset($date) ? $date : $load->date_load);
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        $objWriter->save('helloWorld.docx');
+    }
+
+    public function requestPrint($request){
+        $info = '';
+        $matricula = $request->matricula;
+        $date = $request->date;
+        $typeCoche = $request->typeCoche;
+        $loadOrders = LoadOrders::query()->find($request->loadOrder);
+        $customer = $loadOrders->customer;
+        $download = $loadOrders->data_download;
+        $load = $loadOrders->data_load;
+        $cars = $loadOrders->customer->infoCars;
+
+        return $info;
+    }
 }
