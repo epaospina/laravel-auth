@@ -14,10 +14,9 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "phpoffice/phpword": "^0.17.0",
+        "renatomarinho/laravel-page-speed": "^1.8",
         "spatie/schema-org": "^2.13",
-        "twbs/bootstrap": "^4.3",
-        "kylekatarnls/laravel-carbon-2": "^1.0.0",
-        "nesbot/carbon": "2.0.0-beta.2 as 1.25.0"
+        "twbs/bootstrap": "^4.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
