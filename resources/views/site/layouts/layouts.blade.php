@@ -56,6 +56,12 @@
     <script type="application/ld+json">
         {
           "@context": "http://schema.org/",
+          "@context": {
+                "type": "@type",
+                "id": "@id",
+                "HTML": { "@id": "rdf:HTML" },
+                "@vocab": "http://schema.org/",
+          }
           "@type" : "LocalBusiness",
           "name" : "MCVEHICULOS - Transporte de vehículos",
           "image" : "https://mcvehiculos.com/images/home/flota_01.webp",
