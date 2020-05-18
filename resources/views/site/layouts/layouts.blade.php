@@ -55,12 +55,7 @@
     <!-- Marcado JSON-LD generado por el Asistente para el marcado de datos estructurados de Google. -->
     <script type="application/ld+json">
         {
-          "@context": {
-                "type": "@type",
-                "id": "@id",
-                "HTML": { "@id": "rdf:HTML" },
-                "@vocab": "http://schema.org/",
-          }
+          "@context": "http://schema.org/",
           "@type" : "LocalBusiness",
           "name" : "MCVEHICULOS - Transporte de vehículos",
           "image" : "https://mcvehiculos.com/images/home/flota_01.webp",
