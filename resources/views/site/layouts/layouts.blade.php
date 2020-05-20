@@ -53,23 +53,15 @@
     </style>
 
     <!-- Marcado JSON-LD generado por el Asistente para el marcado de datos estructurados de Google. -->
-    <script type="application/ld+json">
+    <script type='application/ld+json'>
         {
-          "@context": "http://schema.org/",
-          "@type" : "LocalBusiness",
-          "name" : "MCVEHICULOS - Transporte de vehículos",
-          "image" : "https://mcvehiculos.com/images/home/flota_01.webp",
-          "telephone" : "+34 926 22 84 53",
-          "email" : "",
-          "address" : {
-            "@type" : "PostalAddress",
-            "streetAddress" : "Calle Altagracia, 8",
-            "addressRegion" : "Ciudad Real",
-            "addressCountry" : "Spain",
-            "postalCode" : "13003"
-          }
+          "@context": "https://www.schema.org",
+          "@type": "WebSite",
+          "name": "MCvehiculos",
+          "alternateName": "mcvehiculos",
+          "url": "https://mcvehiculos.com/"
         }
-    </script>
+     </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
