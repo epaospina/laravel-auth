@@ -15,7 +15,6 @@
         "laravel/tinker": "^1.0",
         "phpoffice/phpword": "^0.17.0",
         "renatomarinho/laravel-page-speed": "^1.8",
-        "spatie/schema-org": "^2.13",
         "twbs/bootstrap": "^4.3"
     },
     "require-dev": {
