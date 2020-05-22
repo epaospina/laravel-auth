@@ -13,6 +13,7 @@
         "jeroennoten/laravel-adminlte": "^1.26",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "phpoffice/phpword": "^0.17.0",
         "renatomarinho/laravel-page-speed": "^1.8",
         "twbs/bootstrap": "^4.3"

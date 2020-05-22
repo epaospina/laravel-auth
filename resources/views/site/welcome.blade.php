@@ -3,8 +3,8 @@
     <!-- About Section -->
     <div class="mcv-container description" id="about">
         <span class="items-title">
-            <a title="MC Vehículos - Transporte de Vehículos - Transcalyguz - Ciudad Real" href="{{route('home')}}">
-                <img class="img-item" src="{{asset('images/logoMC.png')}}" alt="Logo de MC Vehículos" width="200" height="98">
+            <a title="MC Vehículos transporte de vehículos en toda españa" href="{{route('home')}}">
+                <img class="img-item" src="{{Storage::disk('s3')->url('images/logoMC.png')}}" alt="Logo de MC Vehículos" width="200" height="98">
             </a>
         </span>
         <div class="mcv-row-padding mcv-center mcv-info">
@@ -43,7 +43,7 @@
                     brindamos a las empresas la oportunidad de ofrecer a sus clientes el más completo  y esmerado servicio.</p>
             </div>
             <div class="mcv-col m6">
-                <img class="mcv-image mcv-round-large" src="{{asset('images/home/flota_01.webp')}}" alt="Buildings" width="400" height="394">
+                <img class="mcv-image mcv-round-large" src="{{Storage::disk('s3')->url('images/flota_01.webp')}}" alt="Buildings" width="400" height="394">
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
     <div class="mcv-container description" id="team">
         <div class="mcv-row-padding">
             <div class="mcv-col m6">
-                <img class="mcv-image mcv-round-large" src="{{asset('images/home/flota_03.webp')}}" alt="Buildings" width="400" height="394">
+                <img class="mcv-image mcv-round-large" src="{{Storage::disk('s3')->url('images/flota_03.webp')}}" alt="Buildings" width="400" height="394">
             </div>
             <div class="mcv-col m6">
                 <h3>Misión</h3>
@@ -82,59 +82,60 @@
 
         <div class="mcv-row-padding flota">
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_01.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos flota">
+                <img src="{{Storage::disk('s3')->url('images/flota_01.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos flota">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_02.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos niñera">
+                <img src="{{Storage::disk('s3')->url('images/flota_02.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos niñera">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_03.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos mcvehiculos">
+                <img src="{{Storage::disk('s3')->url('images/flota_03.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos mcvehiculos">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_04.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos flota">
+                <img src="{{Storage::disk('s3')->url('images/flota_04.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos flota">
             </div>
         </div>
 
         <div class="mcv-row-padding mcv-section">
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_05.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos flota">
+                <img src="{{Storage::disk('s3')->url('images/flota_05.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos flota">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_06.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos niñera">
+                <img src="{{Storage::disk('s3')->url('images/flota_06.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos niñera">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_07.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos mcvehiculos">
+                <img src="{{Storage::disk('s3')->url('images/flota_07.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de vehiculos mcvehiculos">
             </div>
             <div class="mcv-col l3 m6">
-                <img src="{{asset('images/home/flota_08.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de coches">
+                <img src="{{Storage::disk('s3')->url('images/flota_08.webp')}}" onclick="onClick(this)" class="mcv-hover-opacity img-flota" alt="transporte de coches">
             </div>
         </div>
     </div>
 @stop
-
-<script>
-    // Modal Image Gallery
-    function onClick(element) {
-        document.getElementById("img01").src = element.src;
-        document.getElementById("modal01").style.display = "block";
-        var captionText = document.getElementById("caption");
-        captionText.innerHTML = element.alt;
-    }
-
-
-    // Toggle between showing and hiding the sidebar when clicking the menu icon
-    var mySidebar = document.getElementById("mySidebar");
-
-    function mcv_open() {
-        if (mySidebar.style.display === 'block') {
-            mySidebar.style.display = 'none';
-        } else {
-            mySidebar.style.display = 'block';
+@push('js_site')
+    <script>
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
         }
-    }
 
-    // Close the sidebar with the close button
-    function mcv_close() {
-        mySidebar.style.display = "none";
-    }
-</script>
+
+        // Toggle between showing and hiding the sidebar when clicking the menu icon
+        var mySidebar = document.getElementById("mySidebar");
+
+        function mcv_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+            } else {
+                mySidebar.style.display = 'block';
+            }
+        }
+
+        // Close the sidebar with the close button
+        function mcv_close() {
+            mySidebar.style.display = "none";
+        }
+    </script>
+@endpush
