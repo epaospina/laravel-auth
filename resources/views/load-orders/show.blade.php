@@ -13,136 +13,6 @@
             </div>
         </div>
     @endif
-    <div id="contentTableM" class="container-order-m edit-load">
-        <div class="header-logo-m">
-            <div>
-                <img src="{{asset('images/logoMC.png')}}" alt="Mc Vehiculos">
-            </div>
-            <div class="transcaliguz">
-                <p>TRANSCALYGUZ, S.L.</p>
-                <p>C/. Altagracia, 8 </p>
-                <p> 13003 CIUDAD REAL</p>
-                <p>Telf.:926 228 453 / 629 423 149</p>
-                <p>Fax: 926 222 588</p>
-                <p>Email:mcvehiculos1935@msn.com</p>
-                <p>C.I.F: B-13523345</p>
-            </div>
-        </div>
-        <div class="title-client">
-            <h3>{{ __('clients.load_order') }}</h3>
-        </div>
-        <table class="table-load-order" style="width: 100%;">
-            <tbody>
-            <tr class="subtitle-car">
-                <td colspan="2">{{ __('clients.data_car_m') }}</td>
-            </tr>
-            <tr>
-                <td  class="subtitle">{{ __('clients.model_car_m') }} / {{ __('clients.color_car_m') }}</td>
-                <td><label>{{$infoArray['information_car']['model_car']}} // {{$infoArray['information_car']['color_car']}}</label></td>
-            </tr>
-            <tr>
-                <td  class="subtitle">Fecha de carga</td>
-                <td><label>{{$infoArray['data_load']['date_load']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{ __('clients.vin') }}</td>
-                <td><label>{{$infoArray['information_car']['vin']}}</label></td>
-            </tr>
-            </tbody>
-        </table>
-
-
-        <table class="table-load-order" style="width: 100%;">
-            <tbody>
-            <tr class="subtitle-car">
-                <td class="subtitle" colspan="2">{{ __('clients.load_place_m') }}</td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{ __('clients.signing_m') }}</td>
-                <td><label>{{$infoArray['client']['signing']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{ __('clients.addresses_m') }}</td>
-                <td><label>{{$infoArray['data_load']['addresses_load']}} // {{$infoArray['data_load']['city_load']}} // {{$infoArray['data_load']['postal_cod_load']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{ __('clients.phone') }}</td>
-                <td><label>{{$infoArray['data_load']['phone_load']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{ __('clients.mobile_m') }}</td>
-                <td><label>{{$infoArray['data_load']['mobile_load']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{ __('clients.fax_m') }}</td>
-                <td><label>{{$infoArray['client']['email']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{ __('clients.contact_person_m') }}</td>
-                <td><label>{{$infoArray['load_order']['contact_person']}}</label></td>
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table-load-order" style="width: 100%;">
-            <tbody>
-            <tr>
-                <td class="subtitle">{{ __('clients.itv') }}</td>
-                <td>No</td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{ __('clients.documents') }}</td>
-                <td><label>{{$infoArray['information_car']['documents']}}</label></td>
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table-load-order" style="width: 100%;">
-            <tbody>
-            <tr>
-                <td class="subtitle">{!! __('clients.bill_to_m') !!}</td>
-                <td><label>{{$infoArray['load_order']['bill_to']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{ __('clients.import_company_m') }}</td>
-                <td><label>{{$infoArray['load_order']['import_company']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">Forma de pago</td>
-                <td><label>{{$infoArray['load_order']['payment_type']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">precio</td>
-                <td><label>{{$infoArray['load_order']['price']}}</label></td>
-            </tr>
-            </tbody>
-        </table>
-
-        <table class="table-load-order" style="width: 100%;">
-            <tr>
-                <td class="subtitle">{{ __('clients.download_place_m') }}</td>
-                <td class="subtitle observation">{{ __('clients.observations') }}</td>
-            </tr>
-            <tr>
-                <td><label>{{$infoArray['data_download']['addresses_download']}} // {{$infoArray['data_download']['city_download']}} // {{$infoArray['data_download']['postal_cod_download']}}</label></td>
-                <td><label>{{$infoArray['data_download']['observations']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{__('clients.mobile_m')}}</td>
-                <td><label>{{$infoArray['data_download']['mobile_download']}}</label></td>
-            </tr>
-            <tr>
-                <td class="subtitle">{{__('clients.contact_person_m')}}</td>
-                <td><label>{{$infoArray['data_download']['contact_download']}}</label></td>
-            </tr>
-        </table>
-        <br>
-        <br>
-        <ul>
-            <li>Es imprecindible que envien una autorizacion al proveedor autorizando a la empresa {{env('TITLE_HOME', 'MC Vehiculos')}} a poder retirar el vehiculo.</li>
-            <li>En el casi de necesitar la identidad del conductor y matricula del camion, rogamos nos la pidan previamente.</li>
-        </ul>
-    </div>
     <div id="contentTable" class="container-order edit-load">
         <div class="header-logo">
             <div>
@@ -229,12 +99,20 @@
                     <td class="subtitle">Facturar transporte a / TRANSPORT RECHNUNG AN</td>
                     <td><label>{{$infoArray['load_order']['bill_to']}}</label></td>
                 </tr>
-                @isset($infoArray['load_order']['constancy'])
+                @if($infoArray['load_order']['constancy'] !== ".")
                     <tr>
                         <td class="subtitle">Coche contratado por terceros para:</td>
                         <td><label>{{$infoArray['load_order']['constancy']}}</label></td>
                     </tr>
                 @endisset
+                <tr>
+                    <td class="subtitle">Identificacion fiscal</td>
+                    <td><label>{{$infoArray['load_order']['identificacion_fiscal']}}</label></td>
+                </tr>
+                <tr>
+                    <td class="subtitle">Domicilio fiscal</td>
+                    <td><label>{{$infoArray['load_order']['domicilio_fiscal']}}</label></td>
+                </tr>
                 <tr>
                     <td class="subtitle">empresa importadora / IMPORT FIRMA</td>
                     <td><label>{{$infoArray['load_order']['import_company']}}</label></td>

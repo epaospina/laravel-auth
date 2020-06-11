@@ -205,6 +205,7 @@
             <td  class="subtitle">Fecha de carga</td>
             <td><textarea class="footer-text-area date_load" disabled>{{$infoArray['data_load']['date_load']}}</textarea></td>
         </tr>
+
         <tr>
             <td class="subtitle">{{ __('clients.vin') }}</td>
             <td>
@@ -269,10 +270,25 @@
             <td class="subtitle">{!! __('clients.bill_to') !!}</td>
             <td><input class="bill_to" value="{{$infoArray['load_order']['bill_to']}}" disabled></td>
         </tr>
+        @if($infoArray['load_order']['constancy'] !== ".")
+            <tr>
+                <td class="subtitle">Coche contratado por terceros para:</td>
+                <td><label>{{$infoArray['load_order']['constancy']}}</label></td>
+            </tr>
+        @endisset
+        <tr>
+            <td class="subtitle">Identificacion fiscal</td>
+            <td><input class="identificacion_fiscal" value="{{$infoArray['load_order']['identificacion_fiscal']}}" disabled></td>
+        </tr>
+        <tr>
+            <td class="subtitle">Domicilio fiscal</td>
+            <td><input class="domicilio_fiscal" value="{{$infoArray['load_order']['domicilio_fiscal']}}" disabled></td>
+        </tr>
         <tr>
             <td class="subtitle">{{ __('clients.import_company') }}</td>
             <td><input class="import_company" value="{{$infoArray['load_order']['import_company']}}" disabled></td>
         </tr>
+
         <tr>
             <td class="subtitle">Forma de pago</td>
             <td>

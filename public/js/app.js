@@ -55534,12 +55534,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             Vue.axios.get('/bills/load-order-api/' + this.order_id).then(function (response) {
                 _this.date = response.data.date;
                 _this.numBill = response.data.bill.num_bill;
-                _this.cif = response.data.bill.cif;
                 if (response.data.bill.identificacion_fiscal === null) {
-                    _this.name_client = response.data.bill.name_client;
+                    _this.cif = response.data.bill.cif;
                 } else {
-                    _this.name_client = response.data.bill.identificacion_fiscal;
+                    _this.cif = response.data.bill.identificacion_fiscal;
                 }
+
+                _this.name_client = response.data.bill.name_client;
 
                 if (response.data.bill.domicilio_fiscal === null) {
                     _this.address_client = response.data.bill.address_client;
@@ -56782,7 +56783,7 @@ exports = module.exports = __webpack_require__(30)(false);
 
 
 // module
-exports.push([module.i, "\n@media print{\n@page {size: landscape\n}\n}\n", ""]);
+exports.push([module.i, "\n@media print{\n@page {size: landscape\n}\nspan{\n        font-size: 11px !important;\n        line-height : 1px;\n}\n}\n", ""]);
 
 // exports
 
@@ -56988,7 +56989,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("td", [_c("label", [_vm._v("PERSONA DE CONTACTO")])]),
+      _c("td", [_c("label", [_vm._v("CLIENTE")])]),
       _vm._v(" "),
       _c("td", [_c("label", [_vm._v("COMPRADOR")])]),
       _vm._v(" "),

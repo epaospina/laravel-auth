@@ -17,7 +17,7 @@
             <table>
                 <tbody>
                     <tr>
-                        <td><label>PERSONA DE CONTACTO</label></td>
+                        <td><label>CLIENTE</label></td>
                         <td><label>COMPRADOR</label></td>
                         <td><label>ACCION</label></td>
                         <td><label>VEHICULO</label></td>
@@ -71,5 +71,11 @@
     }
 </script>
 <style>
-    @media print{@page {size: landscape}}
+    @media print{
+        @page {size: landscape}
+        span{
+            font-size: 11px !important;
+            line-height : 1px;
+        }
+    }
 </style>

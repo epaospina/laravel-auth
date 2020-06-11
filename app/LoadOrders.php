@@ -55,7 +55,10 @@ class LoadOrders extends Model
             $loadOrder->price = $infoArray['price_order'];
             $loadOrder->constancy = isset($infoArray['constar_client']) ? $infoArray['constar_client'] : '.';
             $loadOrder->payment_type_other = isset($infoArray['otrosInput']) ? $infoArray['otrosInput'] : '.';
+            $loadOrder->payment_type = $infoArray['payment_type'];
             $loadOrder->import_company = $infoArray['import_company'];
+            $loadOrder->identificacion_fiscal = $infoArray['identificacion_fiscal'];
+            $loadOrder->domicilio_fiscal = $infoArray['domicilio_fiscal'];
             $loadOrder->save();
 
             $loadOrder->hash = md5($loadOrder->id);
@@ -105,7 +108,7 @@ class LoadOrders extends Model
     static function arrayInfo($validateInfo){
         $infoArray = [];
         $infoArray['information_car'] = [];
-
+        
         if (isset($validateInfo['infoCars']['id'])){
             $infoArray['information_car'] = [
                 'model_car'      => isset($validateInfo['infoCars']['model_car']) ? $validateInfo['infoCars']['model_car'] : '',
@@ -134,14 +137,16 @@ class LoadOrders extends Model
 
     static public function validateLoadOrder($info){
         return [
-            'id'               => isset($info['load_order']['hash']) ? $info['load_order']['hash'] : '',
-            'contact_person'   => isset($info['load_order']['contact_person']) ? $info['load_order']['contact_person'] : '',
-            'bill_to'          => isset($info['load_order']['bill_to']) ? $info['load_order']['bill_to'] : '',
-            'payment_type_other'   => isset($info['load_order']['payment_other']) ? $info['load_order']['payment_other'] : '',
-            'constancy'          => isset($info['load_order']['constancy']) ? $info['load_order']['constancy'] : '',
-            'payment_type'     => isset($info['load_order']['payment_type']) ? $info['load_order']['payment_type'] : '',
-            'import_company'   => isset($info['load_order']['import_company']) ? $info['load_order']['import_company'] : '',
-            'price'            => isset($info['load_order']['price']) ? $info['load_order']['price'] : '',
+            'id'                        => isset($info['load_order']['hash']) ? $info['load_order']['hash'] : '',
+            'contact_person'            => isset($info['load_order']['contact_person']) ? $info['load_order']['contact_person'] : '',
+            'bill_to'                   => isset($info['load_order']['bill_to']) ? $info['load_order']['bill_to'] : '',
+            'payment_type_other'        => isset($info['load_order']['payment_other']) ? $info['load_order']['payment_other'] : '',
+            'constancy'                 => isset($info['load_order']['constancy']) ? $info['load_order']['constancy'] : '',
+            'import_company'            => isset($info['load_order']['import_company']) ? $info['load_order']['import_company'] : '',
+            'price'                     => isset($info['load_order']['price']) ? $info['load_order']['price'] : '',
+            'identificacion_fiscal'     => isset($info['load_order']['identificacion_fiscal']) ? $info['load_order']['identificacion_fiscal'] : '',
+            'domicilio_fiscal'          => isset($info['load_order']['domicilio_fiscal']) ? $info['load_order']['domicilio_fiscal'] : '',
+            'payment_type'              => isset($info['load_order']['payment_type']) ? $info['load_order']['payment_type'] : '',
         ];
     }
 }

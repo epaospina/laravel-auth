@@ -229,12 +229,13 @@
                 Vue.axios.get('/bills/load-order-api/' + this.order_id).then(response => {
                     this.date = response.data.date;
                     this.numBill = response.data.bill.num_bill;
-                    this.cif = response.data.bill.cif;
                     if(response.data.bill.identificacion_fiscal === null){
-                        this.name_client = response.data.bill.name_client;
+                        this.cif = response.data.bill.cif;
                     }else{
-                        this.name_client = response.data.bill.identificacion_fiscal;
+                        this.cif = response.data.bill.identificacion_fiscal;
                     }
+
+                    this.name_client = response.data.bill.name_client;
 
                     if(response.data.bill.domicilio_fiscal === null){
                         this.address_client = response.data.bill.address_client;
