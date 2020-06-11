@@ -13,17 +13,12 @@ function editInputs() {
 }
 
 function updatePost(id) {
-    let idOrder = '';
-    if ($(window).width() < 600) {
-        idOrder = '#contentTableM';
-    }else{
-        idOrder = '#contentTable';
-    }
-    let modelColor = $(idOrder + ' .modelColor').text().split('//');
-    let address_load = $(idOrder + ' .addresses_load').text().split('//');
-    let address_download = $(idOrder + ' .info_download').text().split('//');
+    let idOrder = '#contentTable';
+    let modelColor = $(idOrder + ' .modelColor').val().split('//');
+    let address_load = $(idOrder + ' .addresses_load').val().split('//');
+    let address_download = $(idOrder + ' .info_download').val().split('//');
 
-    console.log($(idOrder + ' .date_load'));
+    console.log(modelColor);
 
 
     let data = {
@@ -65,6 +60,7 @@ function updatePost(id) {
         type: 'PUT',
         data: data,
         success: function() {
+            $('#contentTable .vin_original').val($(idOrder + ' .vin').val());
             $('input').prop("disabled", true);
             $('textarea').prop("disabled", true);
             $('#editLoadOrder').show();
@@ -77,5 +73,22 @@ function changeType(selectType) {
     if ($(selectType).val() === 'otros'){
         $(selectType).after('<input class="m-2 col-4" type="text" placeholder="Cual?"/>')
     }
+}
+
+function setTextareaHeight(textareas) {
+    textareas.each(function () {
+        let textarea = $(this);
+        if ( !textarea.hasClass('autoHeightDone') ) {
+            textarea.addClass('autoHeightDone');
+            let extraHeight = parseInt(textarea.css('padding-top')) + parseInt(textarea.css('padding-bottom')),
+                h = textarea[0].scrollHeight - extraHeight;
+            textarea.height('auto').height(h);
+            textarea.bind('keyup', function() {
+                textarea.removeAttr('style');
+                h = textarea.get(0).scrollHeight - extraHeight;
+                textarea.height(h+'px');
+            });
+        }
+    })
 }
 

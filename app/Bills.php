@@ -22,10 +22,14 @@ class Bills extends Model
     ];
 
 
-    static function createBill(LoadOrders $loadOrder, Customer $client, DataDownload $dataDownload, $payment_type, $nombreFiscal, $domicilioFiscal){
+    static function createBill(LoadOrders $loadOrder, Customer $client, DataDownload $dataDownload, $payment_type, $nombreFiscal, $domicilioFiscal, $edit){
         $date = Carbon::parse($loadOrder->date_upload)->format('d/m/Y');
 
-        $bill = new Bills();
+        if ($edit){
+            $bill = Bills::query()->where('load_orders_id', $loadOrder->id)->first();
+        }else{
+            $bill = new Bills();
+        }
         $bill->num_bill = rand(100,1000);
         $bill->name_client = $loadOrder->bill_to;
         $bill->address_client = $client->addresses;

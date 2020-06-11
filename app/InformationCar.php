@@ -47,7 +47,6 @@ class InformationCar extends Model
             ]);
         }
 
-        $informationCar->model_car = $infoCar['model_car'];
         $informationCar->color_car = $infoCar['color_car'];
         $informationCar->vin = $infoCar['vin'];
         $informationCar->documents = $infoCar['documents'];

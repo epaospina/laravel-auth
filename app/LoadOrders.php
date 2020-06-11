@@ -35,7 +35,7 @@ class LoadOrders extends Model
 
         return $loadOrder;
     }
-    static function createAllLoadOrder($infoArray, $hash = null){
+    static function createAllLoadOrder($infoArray, $edit, $hash = null){
         $loadOrder = self::assignHash($hash);
 
         if (empty($loadOrder)){
@@ -96,7 +96,7 @@ class LoadOrders extends Model
 
             if (!empty($loadOrder) && !empty($infoCars->customer) && !empty($dataDownload) && !empty($dataLoad) && !empty($infoArray)){
                 Bills::createBill($loadOrder, $infoCars->customer, $dataDownload, $infoArray['payment_type'],
-                    $infoArray['identificacion_fiscal'], $infoArray['domicilio_fiscal']);
+                    $infoArray['identificacion_fiscal'], $infoArray['domicilio_fiscal'], $edit);
             }
 
             return $loadOrder;
@@ -108,7 +108,7 @@ class LoadOrders extends Model
     static function arrayInfo($validateInfo){
         $infoArray = [];
         $infoArray['information_car'] = [];
-        
+
         if (isset($validateInfo['infoCars']['id'])){
             $infoArray['information_car'] = [
                 'model_car'      => isset($validateInfo['infoCars']['model_car']) ? $validateInfo['infoCars']['model_car'] : '',

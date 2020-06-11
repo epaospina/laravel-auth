@@ -185,7 +185,7 @@ class LoadOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        $loadOrder = LoadOrders::createAllLoadOrder($request->all());
+        $loadOrder = LoadOrders::createAllLoadOrder($request->all(), false);
 
         if ($loadOrder){
             return redirect()->action('LoadOrdersController@carsPending');
@@ -258,7 +258,7 @@ class LoadOrdersController extends Controller
      */
     public function update(Request $request, $loadOrder)
     {
-        LoadOrders::createAllLoadOrder($request->all(), $loadOrder);
+        LoadOrders::createAllLoadOrder($request->all(), true, $loadOrder);
 
         return \response('ok', 200);
     }
