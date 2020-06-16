@@ -108,7 +108,6 @@ class LoadOrders extends Model
     static function arrayInfo($validateInfo){
         $infoArray = [];
         $infoArray['information_car'] = [];
-
         if (isset($validateInfo['infoCars']['id'])){
             $infoArray['information_car'] = [
                 'model_car'      => isset($validateInfo['infoCars']['model_car']) ? $validateInfo['infoCars']['model_car'] : '',
