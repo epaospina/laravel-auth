@@ -242,7 +242,7 @@
                     }else{
                         this.address_client = response.data.bill.domicilio_fiscal;
                     }
-                    this.city_client = response.data.bill.city_client;
+                    this.city_client = response.data.bill.poblacion;
                     this.department_client = response.data.bill.department_client;
                     this.postal_cod_client = response.data.bill.postal_cod_client;
                     this.quantity_car = response.data.cars.length;

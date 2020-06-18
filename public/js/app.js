@@ -55547,7 +55547,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 } else {
                     _this.address_client = response.data.bill.domicilio_fiscal;
                 }
-                _this.city_client = response.data.bill.city_client;
+                _this.city_client = response.data.bill.poblacion;
                 _this.department_client = response.data.bill.department_client;
                 _this.postal_cod_client = response.data.bill.postal_cod_client;
                 _this.quantity_car = response.data.cars.length;
