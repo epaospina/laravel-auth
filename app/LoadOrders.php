@@ -59,6 +59,7 @@ class LoadOrders extends Model
             $loadOrder->import_company = $infoArray['import_company'];
             $loadOrder->identificacion_fiscal = $infoArray['identificacion_fiscal'];
             $loadOrder->domicilio_fiscal = $infoArray['domicilio_fiscal'];
+            $loadOrder->poblacion = $infoArray['poblacion'];
             $loadOrder->save();
 
             $loadOrder->hash = md5($loadOrder->id);
@@ -96,7 +97,7 @@ class LoadOrders extends Model
 
             if (!empty($loadOrder) && !empty($infoCars->customer) && !empty($dataDownload) && !empty($dataLoad) && !empty($infoArray)){
                 Bills::createBill($loadOrder, $infoCars->customer, $dataDownload, $infoArray['payment_type'],
-                    $infoArray['identificacion_fiscal'], $infoArray['domicilio_fiscal'], $edit);
+                    $infoArray['identificacion_fiscal'], $infoArray['domicilio_fiscal'], $infoArray['poblacion'], $edit);
             }
 
             return $loadOrder;
@@ -145,6 +146,7 @@ class LoadOrders extends Model
             'price'                     => isset($info['load_order']['price']) ? $info['load_order']['price'] : '',
             'identificacion_fiscal'     => isset($info['load_order']['identificacion_fiscal']) ? $info['load_order']['identificacion_fiscal'] : '',
             'domicilio_fiscal'          => isset($info['load_order']['domicilio_fiscal']) ? $info['load_order']['domicilio_fiscal'] : '',
+            'poblacion'                 => isset($info['load_order']['poblacion']) ? $info['load_order']['poblacion'] : '',
             'payment_type'              => isset($info['load_order']['payment_type']) ? $info['load_order']['payment_type'] : '',
         ];
     }

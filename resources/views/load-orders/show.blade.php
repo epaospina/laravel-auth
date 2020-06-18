@@ -114,6 +114,10 @@
                     <td><label>{{$infoArray['load_order']['domicilio_fiscal']}}</label></td>
                 </tr>
                 <tr>
+                    <td class="subtitle">Poblacion</td>
+                    <td><label>{{$infoArray['load_order']['poblacion']}}</label></td>
+                </tr>
+                <tr>
                     <td class="subtitle">empresa importadora / IMPORT FIRMA</td>
                     <td><label>{{$infoArray['load_order']['import_company']}}</label></td>
                 </tr>

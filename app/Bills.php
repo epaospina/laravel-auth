@@ -22,7 +22,7 @@ class Bills extends Model
     ];
 
 
-    static function createBill(LoadOrders $loadOrder, Customer $client, DataDownload $dataDownload, $payment_type, $nombreFiscal, $domicilioFiscal, $edit){
+    static function createBill(LoadOrders $loadOrder, Customer $client, DataDownload $dataDownload, $payment_type, $nombreFiscal, $domicilioFiscal, $poblacion,$edit){
         $date = Carbon::parse($loadOrder->date_upload)->format('d/m/Y');
 
         if ($edit){
@@ -44,6 +44,7 @@ class Bills extends Model
         $bill->payment_type = $payment_type;
         $bill->identificacion_fiscal = $nombreFiscal;
         $bill->domicilio_fiscal = $domicilioFiscal;
+        $bill->poblacion = $poblacion;
 
         if ($payment_type === 'Transferencia Bancaria'){
             $bill->observations = 'Numero de cuenta ES34 3190 2073 1644 0287 5522   ';

@@ -106,6 +106,10 @@
             <td><input class="domicilio_fiscal" value="{{$infoArray['load_order']['domicilio_fiscal']}}" disabled></td>
         </tr>
         <tr>
+            <td class="subtitle">Poblacion</td>
+            <td><input class="poblacion" value="{{$infoArray['load_order']['poblacion']}}" disabled></td>
+        </tr>
+        <tr>
             <td class="subtitle">{{ __('clients.import_company') }}</td>
             <td><input class="import_company" value="{{$infoArray['load_order']['import_company']}}" disabled></td>
         </tr>

@@ -101,6 +101,13 @@
                 </div>
             </div>
 
+            <div class="input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">poblacion</span>
+                    <input id="otrosInput" name="poblacion" value="{{old('poblacion')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            </div>
+
             <div id="create_car">
                 <div id="car__0">
                     @include('load-orders.create_car')
