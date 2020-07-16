@@ -14,6 +14,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -27,7 +28,8 @@ class LoadOrdersController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->only('index', 'cmr', 'pending');
+        $this->middleware('auth')->only('index', 'cmr', 'pending', 'consultCarsPending',
+            'carsPending', 'carsOldLoad', 'listOrders', 'listByCountry');
     }
 
     /**
@@ -188,7 +190,14 @@ class LoadOrdersController extends Controller
         $loadOrder = LoadOrders::createAllLoadOrder($request->all(), false);
 
         if ($loadOrder){
-            return redirect()->action('LoadOrdersController@carsPending');
+            if(Auth::id()){
+                return redirect()->action('LoadOrdersController@carsPending');
+            }
+
+            $hash = $loadOrder->hash;
+            $car = InformationCar::findBy($request->car[0]["vin"]);
+            $car = $car->id;
+            return redirect()->action('LoadOrdersController@show', compact('hash', 'car'));
         }
 
         return redirect()
