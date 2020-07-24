@@ -7,13 +7,17 @@
         @if(isset($edit))
             <button class="btn btn-bitbucket" id="editLoadOrder" onclick="editInputs('collapse')">
                 <i class="fas fa-edit"></i>
+                Editar
             </button>
             <button class="btn btn-bitbucket" id="saveLoadOrder"
                     onclick="updatePost('{{$infoArray['load_order']['id']}}', 'collapse')" style="display: none">
                 <i class="far fa-save"></i>
+                Guardar
             </button>
         @endif
     </div>
+    <input type="hidden" id="country_download" disabled value="{{$infoArray['data_download']['country_download']}}">
+    <input type="hidden" id="country_load" disabled value="{{$infoArray['data_load']['country_load']}}">
     <table class="table-load-order" style="width: 100%;">
         <tbody>
         <tr class="subtitle-car">

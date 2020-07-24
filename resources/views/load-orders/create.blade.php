@@ -38,7 +38,11 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.bill_to') }}</span>
                 </div>
-                <input id="bill_to" onkeyup="searchCustomer(this)" name="bill_to" type="text" value="{{old('bill_to')}}" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                @if(!is_null(auth()->id()))
+                    <input id="bill_to" autocomplete="off" onkeyup="searchCustomer(this)" name="bill_to" type="text" value="{{old('bill_to')}}" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                @else
+                    <input id="bill_to" autocomplete="off" name="bill_to" type="text" value="{{old('bill_to')}}" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                @endif
             </div>
             <div id="customerComplete"></div>
 
@@ -286,6 +290,13 @@
     </form>
 @endsection
 @push('js')
+    @if(!is_null(auth()->id()))
+        <script>
+            $( document ).ready(function() {
+                $(".sidebar-mini").addClass("sidebar-collapse")
+            });
+        </script>
+    @endif
     <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('js/pdf.js')}}"></script>
     <script src="{{asset('js/pdf.worker.js')}}"></script>
@@ -293,6 +304,7 @@
     <script src="{{asset('js/clients.js')}}"></script>
     <script>
         $( document ).ready(function() {
+            $(".sidebar-mini").addClass( "sidebar-collapse" )
             $('.pace').remove();
             $('#inputDate').datepicker()
                 .on('change', function(e) {
