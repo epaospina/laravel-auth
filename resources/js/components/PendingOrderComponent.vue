@@ -21,11 +21,11 @@
                         <td><label>COMPRADOR</label></td>
                         <td><label>ACCION</label></td>
                         <td><label>VEHICULO</label></td>
-                        <td><label>CARGA</label></td>
+                        <td><label class="carga">CARGA</label></td>
                         <td><label>HORARIO</label></td>
                         <td><label>DESCARGA</label></td>
                         <td><label>CONTACTO</label></td>
-                        <td><label>OBSERVACIONES</label></td>
+                        <td><label class="observation">OBSERVACIONES</label></td>
                     </tr>
                     <pending-order-table-component
                         v-for="tr in trs"
@@ -71,11 +71,36 @@
     }
 </script>
 <style>
+    .pending-order{
+        overflow: auto;
+    }
+
+    .carga{
+        width: 25vw;
+    }
+    p{
+        width: 20vw;
+        word-wrap: break-word;
+        padding: 1rem;
+    }
+    .observation{
+        font-size: 8px !important;
+    }
     @media print{
         @page {size: landscape}
         span{
             font-size: 11px !important;
             line-height : 1px;
         }
+        p{
+            width: 15vw;
+            word-wrap: break-word;
+            padding: 10px;
+        }
+
+        .carga{
+            width: 18vw;
+        }
     }
+
 </style>

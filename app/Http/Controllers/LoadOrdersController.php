@@ -165,6 +165,8 @@ class LoadOrdersController extends Controller
             ->join('data_load as load', 'load.load_orders_id', '=', 'order.id')
             ->join('countries as cdown', 'cdown.id', '=', 'download.countries_id')
             ->join('countries as cload', 'cload.id', '=', 'load.countries_id')
+            ->where('info_cars.status', true)
+            ->where('info_cars.is_pending', '=', false)
             ->get();
     }
 
@@ -218,11 +220,7 @@ class LoadOrdersController extends Controller
         $loadOrder = LoadOrders::assignHash($hash);
         $infoArray = LoadOrders::arrayInfo([
             'infoCars' => $loadOrder->customer
-                ->infoCars
-                ->where('status', '=', 1)
-                ->where('id', '=', $car)
-                ->first()
-                ->toArray(),
+                ->infoCars->where('load_orders_id', $loadOrder->id)->first(),
             'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
             'data_download' => $loadOrder->data_download->toArray(),
@@ -244,17 +242,12 @@ class LoadOrdersController extends Controller
         $loadOrder = LoadOrders::assignHash($hash);
         $infoArray = LoadOrders::arrayInfo([
             'infoCars' => $loadOrder->customer
-                ->infoCars
-                ->where('status', 1)
-                ->where('id', $car)
-                ->first()
-                ->toArray(),
+                ->infoCars->where('load_orders_id', $loadOrder->id)->first(),
             'client' => $loadOrder->customer->toArray(),
             'load_order' => $loadOrder->toArray(),
             'data_download' => $loadOrder->data_download->toArray(),
             'data_load' => $loadOrder->data_load->toArray(),
         ]);
-
         return view('load-orders.edit', compact('infoArray'));
     }
 
@@ -303,9 +296,6 @@ class LoadOrdersController extends Controller
             }else{
                 $carsId = $carsId.','.$car['card_id'];
             }
-            $infocar = InformationCar::query()->find($car['card_id']);
-            $infocar->is_pending = false;
-            $infocar->save();
         }
         $carsPending = new CarsPending();
         $carsPending->array_cars = $carsId;
@@ -313,6 +303,14 @@ class LoadOrdersController extends Controller
         $carsPending->save();
 
         return route('load-orders.pending-cars', $carsPending->id);
+    }
+
+    public function sendCollected(Request $request){
+        $infocar = InformationCar::query()->find($request->card_id);
+        $infocar->is_pending = false;
+        $infocar->save();
+
+        return \response()->json($infocar, 200);
     }
 
     public function pendingApiCars(CarsPending $carsPending)

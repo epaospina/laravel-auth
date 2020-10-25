@@ -31,10 +31,9 @@ class LoadOrders extends Model
     }
 
     static function assignHash($hash){
-        $loadOrder = LoadOrders::all()->where('hash', $hash)->first();
-
-        return $loadOrder;
+        return LoadOrders::all()->where('hash', $hash)->first();
     }
+
     static function createAllLoadOrder($infoArray, $edit, $hash = null){
         $loadOrder = self::assignHash($hash);
 
@@ -109,23 +108,12 @@ class LoadOrders extends Model
     static function arrayInfo($validateInfo){
         $infoArray = [];
         $infoArray['information_car'] = [];
-        if (isset($validateInfo['infoCars']['id'])){
-            $infoArray['information_car'] = [
-                'model_car'      => isset($validateInfo['infoCars']['model_car']) ? $validateInfo['infoCars']['model_car'] : '',
-                'color_car'      => isset($validateInfo['infoCars']['color_car']) ? $validateInfo['infoCars']['color_car'] : '',
-                'vin'            => isset($validateInfo['infoCars']['vin']) ? $validateInfo['infoCars']['vin'] : '',
-                'documents'      => isset($validateInfo['infoCars']['documents']) ? $validateInfo['infoCars']['documents'] : '',
-            ];
-        }else{
-            foreach ($validateInfo['infoCars'] as $key => $clientCar){
-                $infoArray['information_car'][$key] = [
-                    'model_car'  => isset($clientCar->model_car) ? $clientCar->model_car : '',
-                    'color_car'  => isset($clientCar->color_car) ? $clientCar->color_car : '',
-                    'vin'        => isset($clientCar->vin) ? $clientCar->vin : '',
-                    'documents'  => isset($clientCar->documents) ? $clientCar->documents : '',
-                ];
-            }
-        }
+        $infoArray['information_car'] = [
+            'model_car'      => isset($validateInfo['infoCars']['model_car']) ? $validateInfo['infoCars']['model_car'] : '',
+            'color_car'      => isset($validateInfo['infoCars']['color_car']) ? $validateInfo['infoCars']['color_car'] : '',
+            'vin'            => isset($validateInfo['infoCars']['vin']) ? $validateInfo['infoCars']['vin'] : '',
+            'documents'      => isset($validateInfo['infoCars']['documents']) ? $validateInfo['infoCars']['documents'] : '',
+        ];
 
         $infoArray['client'] = Customer::validateClient($validateInfo);
         $infoArray['load_order'] = LoadOrders::validateLoadOrder($validateInfo);

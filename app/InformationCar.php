@@ -29,6 +29,7 @@ class InformationCar extends Model
                 $informationCar = self::findBy($infoCar['vin_original']);
                 $valid = false;
             }
+
             $saveCars = self::infoArray($informationCar, $infoCar, $client, $valid);
         }
 

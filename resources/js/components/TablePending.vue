@@ -38,6 +38,7 @@
             selectable
             responsive="sm"
             @row-selected="onRowSelected"
+            @item="items"
             :select-mode="'multiple'"
             :filter="filter"
             ref="selectableTable"
@@ -52,7 +53,19 @@
                     <b>SELECCIONADO</b>
                 </b-form-checkbox>
             </template>
+
+            <template v-slot:cell(collected)="{item, rowSelected}">
+                <b-button  @click="confirmarAccion(item)">Enviar a recogidos</b-button>
+            </template>
         </b-table>
+
+        <sweet-modal title="¡ALERTA!" ref="modal">
+            Este vehiculos sera enviado a recogidos. ¿Esta seguro de ejecutar esta accion?
+
+            <template slot="box-action">
+                <b-button  @click="cocheRecogido()">Guardar cambios</b-button>
+            </template>
+        </sweet-modal>
     </div>
 </template>
 
@@ -64,7 +77,8 @@
                 items: [],
                 filter: null,
                 countries: [],
-                selected: []
+                selected: [],
+                card: null
             }
         },
         methods:{
@@ -87,6 +101,23 @@
                     .then(res => {
                         window.location = res.data;
                     });
+            },
+            cocheRecogido(){
+                console.log(this.card.card_id);
+                this.items.splice(row.index, 1);
+                let new_refs = this.$refs.modal;
+                let data = {
+                    card_id: this.card.card_id
+                };
+                Vue.axios.post('/load-orders/send-collected', data)
+                    .then(function (){
+                        new_refs.close();
+                    });
+            },
+            confirmarAccion(item, rowSelected){
+                this.$refs.modal.open();
+                this.removeSelected = rowSelected
+                this.card = item;
             }
         },
         created(){
@@ -124,6 +155,10 @@
                     key: 'model_car',
                     label: 'Modelo',
                     sortable: true
+                },
+                {
+                    key: 'collected',
+                    label: 'Recogidos'
                 }
             ];
             Vue.axios.get('/load-orders/consult-cars-pending').then((response) => {

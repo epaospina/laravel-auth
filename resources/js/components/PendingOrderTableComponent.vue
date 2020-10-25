@@ -1,17 +1,17 @@
 <template>
     <tr>
         <td>
-            <div v-if="title" style="text-align: center;align-items: baseline;">
+            <div v-if="title"  style="">
                 <span v-model="tr.client" @click="title = false">{{tr.client}}</span>
             </div>
-            <div v-else style="display: flex;text-align: center;align-items: baseline;">
+            <div v-else>
                 <label>
                     <input v-model="tr.client" style="width: 100%;">
                 </label>
             </div>
         </td>
         <td>
-            <div v-if="title" style="text-align: center;align-items: baseline;">
+            <div v-if="title">
                 <span v-model="tr.buyer" @click="title = false">{{tr.buyer}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
@@ -21,7 +21,7 @@
             </div>
         </td>
         <td>
-            <div v-if="title" style="text-align: center;align-items: baseline;">
+            <div v-if="title">
                 <span v-model="tr.action_do" @click="title = false">{{tr.action_do}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
@@ -38,7 +38,7 @@
             ></pending-order-car-component>
         </td>
         <td>
-            <div v-if="title" style="text-align: center;align-items: baseline;">
+            <div v-if="title">
                 <span v-html="tr.addresses_load" @click="title = false">{{tr.addresses_load}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
@@ -48,7 +48,7 @@
             </div>
         </td>
         <td>
-            <div v-if="title" style="text-align: center;align-items: baseline;">
+            <div v-if="title">
                 <span v-model="tr.schedule" @click="title = false">{{tr.schedule}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
@@ -57,8 +57,8 @@
                 </label>
             </div>
         </td>
-        <td >
-            <div v-if="title" style="text-align: center;align-items: baseline;">
+        <td>
+            <div v-if="title">
                 <span v-html="tr.addresses_download" @click="title = false">{{tr.addresses_download}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
@@ -68,7 +68,7 @@
             </div>
         </td>
         <td>
-            <div v-if="title" style="text-align: center;align-items: baseline;">
+            <div v-if="title">
                 <span v-html="tr.contact" @click="title = false">{{tr.contact}}</span>
             </div>
             <div v-else style="display: flex;text-align: center;align-items: baseline;">
@@ -110,4 +110,33 @@
         }
     }
 </script>
+<style>
+    td{
+        text-align: center;
+    }
+    label{
+        font-size: 10px !important;
+        margin: 0;
+        text-align: center;
+    }
+    td > div{
+        text-align: center;align-items: baseline;
+    }
+    td:nth-child(7) > div{
+        width: 25vw;
+    }
+    td:nth-child(8) > div{
+        width: 12vw;
+    }
+
+    @media print{
+        @page {size: landscape}
+        td:nth-child(7) > div{
+            width: 13vw;
+        }
+        td:nth-child(8) > div {
+            width: 5vw;
+        }
+    }
+</style>
 
