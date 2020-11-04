@@ -56,7 +56,9 @@ class LoadOrdersController extends Controller
         foreach ($loadOrders as $loadOrder){
             $loadOrder->customer;
             $loadOrder->data_download;
-            $loadOrder->data_download->countries;
+            if (isset($loadOrder->data_download)){
+                $loadOrder->data_download->countries;
+            }
             $loadOrder->data_load;
             $loadOrder->customer->infoCars->where('status', true);
         }
