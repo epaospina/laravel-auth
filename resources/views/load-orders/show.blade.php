@@ -4,15 +4,13 @@
     <link href="{{ asset('css/print_order.css')}}" media="print" rel="stylesheet" />
 @endpush
 @section('content')
-    @if(auth()->id())
-        <div class="action-div">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <div class="btn btn-primary" onclick="printTable('contentTable')">IMPRIMIR</div>
-                <div class="btn btn-secondary" onclick="exportPDF('contentTable')">PDF</div>
-                <div class="btn btn-secondary" onclick="downWord('contentTable')">WORD</div>
-            </div>
+    <div class="action-div">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn btn-primary" onclick="printTable('contentTable')">IMPRIMIR</div>
+            <div class="btn btn-secondary" onclick="exportPDF('contentTable')">PDF</div>
+            <div class="btn btn-secondary" onclick="downWord('contentTable')">WORD</div>
         </div>
-    @endif
+    </div>
     <div id="contentTable" class="container-order edit-load">
         <div class="header-logo">
             <div>
@@ -35,9 +33,6 @@
             </div>
         </div>
         <div id="exportWord">
-            <div class="title-client">
-                <h3>ORDEN DE CARGA</h3>
-            </div>
             <label>DATOS DEL VEHICULO / FAHRZEUGDATEN</label>
             <table class="table-load-order" style="width: 100%;">
                 <tr>
@@ -177,4 +172,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js" integrity="sha256-gJWdmuCRBovJMD9D/TVdo4TIK8u5Sti11764sZT1DhI=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.13/jspdf.plugin.autotable.min.js" integrity="sha256-1gTovbU9vikIejcyjJKJce/HMA0eRnSWOed8ekl0Jgs=" crossorigin="anonymous"></script>
     <script src="{{asset('js/clients.js')}}"></script>
+    <script>
+        $(document).ready(function (){
+            $( "#foo" ).trigger( "click" );
+        })
+    </script>
 @endpush

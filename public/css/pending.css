@@ -32,9 +32,12 @@ td{
     padding: 0 5px;
     font-size: 10px;
 }
-td:nth-child(2) {
-     width: 15%;
- }
+td:nth-child(1) label {
+    width: 130px;
+}
+td:nth-child(2) label {
+    width: 130px;
+}
 table{
     width: 100%;
 }

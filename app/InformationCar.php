@@ -19,7 +19,7 @@ class InformationCar extends Model
         return self::all()->where('vin', $parameter)->first();
     }
 
-    static function findOrCreateInformationCar($client, $infoCars)
+    static function findOrCreateInformationCar($client, $infoCars, $loadOrder)
     {
         $saveCars = false;
         foreach ($infoCars as $infoCar) {
@@ -30,13 +30,13 @@ class InformationCar extends Model
                 $valid = false;
             }
 
-            $saveCars = self::infoArray($informationCar, $infoCar, $client, $valid);
+            $saveCars = self::infoArray($informationCar, $infoCar, $client, $valid, $loadOrder);
         }
 
         return $saveCars;
     }
 
-    static function infoArray($informationCar, $infoCar, $client, $valid){
+    static function infoArray($informationCar, $infoCar, $client, $valid, $loadOrder){
         $validator = false;
         if ($valid){
             $validator = Validator::make($infoCar, [
@@ -51,20 +51,15 @@ class InformationCar extends Model
         $informationCar->color_car = $infoCar['color_car'];
         $informationCar->model_car = $infoCar['model_car'];
         $informationCar->vin = $infoCar['vin'];
-        $informationCar->documents = $infoCar['documents'];
-
-        if ($valid) {
-            if (!$validator->fails()) {
-                $client = Customer::findOrCreateClient($client);
-                $informationCar->customer_id = $client->id;
-                $informationCar->save();
-                return $informationCar;
-            }
+        if (isset($infoCar['documents'])){
+            $informationCar->documents = !is_null($infoCar['documents']) ? $infoCar['documents'] : '';
+        }else{
+            $informationCar->documents = '';
         }
 
-        if (!$validator){
-            $client = Customer::findOrCreateClient($client);
+        if (empty($validator->errors()->messages())){
             $informationCar->customer_id = $client->id;
+            $informationCar->load_orders_id = $loadOrder->id;
             $informationCar->save();
             return $informationCar;
         }

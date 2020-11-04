@@ -44,10 +44,10 @@ class LoadOrders extends Model
         $dataDownload = new DataDownload();
         $dataLoad = new DataLoad();
 
-        $infoCars = InformationCar::findOrCreateInformationCar($infoArray, $infoArray["car"]);
+        $client = Customer::findOrCreateClient($infoArray);
 
-        if ($infoCars){
-            $loadOrder->customer_id = $infoCars->customer->id;
+        if ($client){
+            $loadOrder->customer_id = $client->id;
             $loadOrder->contact_person = $infoArray['contact_person'];
             $loadOrder->date_upload = Carbon::now();
             $loadOrder->bill_to = $infoArray['bill_to'];
@@ -94,8 +94,10 @@ class LoadOrders extends Model
             $dataDownload->observations = $infoArray['observations'];
             $dataDownload->save();
 
-            if (!empty($loadOrder) && !empty($infoCars->customer) && !empty($dataDownload) && !empty($dataLoad) && !empty($infoArray)){
-                Bills::createBill($loadOrder, $infoCars->customer, $dataDownload, $infoArray['payment_type'],
+            InformationCar::findOrCreateInformationCar($client, $infoArray["car"], $loadOrder);
+
+            if (!empty($loadOrder) && !empty($dataDownload) && !empty($dataLoad) && !empty($infoArray)){
+                Bills::createBill($loadOrder, $client, $dataDownload, $infoArray['payment_type'],
                     $infoArray['identificacion_fiscal'], $infoArray['domicilio_fiscal'], $infoArray['poblacion'], $edit);
             }
 
