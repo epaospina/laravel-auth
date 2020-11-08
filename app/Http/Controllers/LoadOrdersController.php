@@ -46,23 +46,24 @@ class LoadOrdersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return LoadOrders[]|Collection
+     * @return \Illuminate\Support\Collection
      */
     public function listOrders()
     {
-        $loadOrders = LoadOrders::all()
-            ->where('status', true)
-            ->sortBy('created_at');
-        foreach ($loadOrders as $loadOrder){
-            $loadOrder->customer;
-            $loadOrder->data_download;
-            if (isset($loadOrder->data_download)){
-                $loadOrder->data_download->countries;
-            }
-            $loadOrder->data_load;
-            $loadOrder->customer->infoCars->where('status', true);
-        }
-        return $loadOrders;
+        return DB::table('information_car as car')
+            ->select('car.id as card_id', 'car.model_car', 'car.vin',
+                'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at',
+                'data_download.contact_download', 'countries.*', 'load_orders.hash as hash',
+                'load_orders.id as order_id')
+            ->leftJoin('customer', 'customer.id', '=', 'customer_id')
+            ->leftJoin('load_orders', 'load_orders.customer_id', '=', 'customer.id')
+            ->leftJoin('data_download', 'data_download.load_orders_id', '=', 'load_orders.id')
+            ->leftJoin('data_load', 'data_load.load_orders_id', '=', 'load_orders.id')
+            ->leftJoin('countries', 'countries.id', '=', 'data_load.countries_id')
+            ->where('car.status', true)
+            ->where('process_finish', '=', true)
+            ->orderByDesc('car.created_at')
+            ->get();
     }
 
     /**
@@ -116,8 +117,9 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id as card_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'data_load.city_load', 'customer.phone', 'customer.created_at',
-                'data_download.contact_download', 'countries.*')
+                'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at',
+                'data_download.contact_download', 'countries.*', 'load_orders.hash as hash',
+                'load_orders.id as order_id')
             ->leftJoin('customer', 'customer.id', '=', 'customer_id')
             ->leftJoin('load_orders', 'load_orders.customer_id', '=', 'customer.id')
             ->leftJoin('data_download', 'data_download.load_orders_id', '=', 'load_orders.id')
@@ -158,19 +160,19 @@ class LoadOrdersController extends Controller
      */
     public function consultCarsOldLoad()
     {
-        return DB::table('information_car as info_cars')
-            ->select('info_cars.*', 'order.id as order_id', 'order.*',
-                'cdown.country as country_client', 'download.city_download as city_client',
-                'download.contact_download as client', 'download.city_download as destino', 'load.*',
-                'cload.country as country_load', 'load.city_load as city_load')
-            ->leftJoin('customer', 'customer.id', '=', 'info_cars.customer_id')
-            ->leftJoin('load_orders as order', 'customer.id', '=', 'order.customer_id')
-            ->leftJoin('data_download as download', 'download.load_orders_id', '=', 'order.id')
-            ->leftJoin('data_load as load', 'load.load_orders_id', '=', 'order.id')
-            ->leftJoin('countries as cdown', 'cdown.id', '=', 'download.countries_id')
-            ->leftJoin('countries as cload', 'cload.id', '=', 'load.countries_id')
-            ->where('info_cars.status', true)
-            ->where('info_cars.is_pending', '=', false)
+        return DB::table('information_car as car')
+            ->select('car.id as card_id', 'car.model_car', 'car.vin',
+                'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at',
+                'data_download.contact_download', 'countries.*', 'load_orders.hash as hash',
+                'load_orders.id as order_id')
+            ->leftJoin('customer', 'customer.id', '=', 'customer_id')
+            ->leftJoin('load_orders', 'load_orders.customer_id', '=', 'customer.id')
+            ->leftJoin('data_download', 'data_download.load_orders_id', '=', 'load_orders.id')
+            ->leftJoin('data_load', 'data_load.load_orders_id', '=', 'load_orders.id')
+            ->leftJoin('countries', 'countries.id', '=', 'data_load.countries_id')
+            ->where('car.status', true)
+            ->where('is_pending', '=', false)
+            ->orderByDesc('car.created_at')
             ->get();
     }
 
@@ -312,6 +314,14 @@ class LoadOrdersController extends Controller
     public function sendCollected(Request $request){
         $infocar = InformationCar::query()->find($request->card_id);
         $infocar->is_pending = false;
+        $infocar->save();
+
+        return \response()->json($infocar, 200);
+    }
+
+    public function sendCollectedFinish(Request $request){
+        $infocar = InformationCar::query()->find($request->card_id);
+        $infocar->process_finish = true;
         $infocar->save();
 
         return \response()->json($infocar, 200);

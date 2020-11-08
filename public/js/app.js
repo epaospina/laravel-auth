@@ -58888,7 +58888,7 @@ exports = module.exports = __webpack_require__(24)(false);
 
 
 // module
-exports.push([module.i, "\n.footer-btn{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: reverse;\n        -ms-flex-flow: row-reverse;\n            flex-flow: row-reverse;\n}\n@media (max-width: 800px) {\n.table.b-table.b-table-stacked-md > tbody > tr > td{\n        display: block;\n        width: 100%;\n}\n}\n", ""]);
+exports.push([module.i, "\n@media (max-width: 800px) {\n.table.b-table.b-table-stacked-md > tbody > tr > td{\n        display: block;\n        width: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -58959,24 +58959,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -58984,77 +58966,86 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             fields: [],
             items: [],
             filter: null,
-            countries: []
+            countries: [],
+            selected: [],
+            card: null
         };
     },
 
     methods: {
-        onRowSelected: function onRowSelected(items) {
-            items['_showDetails'] = !items['_showDetails'];
-        },
         deleteItem: function deleteItem(row) {
-            var _this = this;
-
-            Vue.axios.post('load-order/delete/' + row.item.hash).then(function () {
-                _this.items.splice(row.index, 1);
-            });
+            this.items.splice(row.index, 1);
         },
         countriesList: function countriesList() {
-            var _this2 = this;
+            var _this = this;
 
-            Vue.axios.get('load-orders/list-country').then(function (response) {
-                _this2.countries = response.data;
+            Vue.axios.get('/load-orders/list-country').then(function (response) {
+                _this.countries = response.data;
             });
         },
         selectCars: function selectCars() {
             var data = {
                 cars: this.selected
             };
-            Vue.axios.post('/load-orders/pending/select-cars', data, function (data) {
-                window.location = data;
+            Vue.axios.post('/load-orders/pending/select-cars', data).then(function (res) {
+                window.location = res.data;
             });
+        },
+        cocheRecogido: function cocheRecogido() {
+            console.log(this.card.card_id);
+            this.items.splice(this.items.indexOf(this.card), 1);
+            var new_refs = this.$refs.modal;
+            var data = {
+                card_id: this.card.card_id
+            };
+            Vue.axios.post('/load-orders/send-collected', data).then(function () {
+                new_refs.close();
+            });
+        },
+        confirmarAccion: function confirmarAccion(item, rowSelected) {
+            this.$refs.modal.open();
+            this.removeSelected = rowSelected;
+            this.card = item;
         }
     },
     created: function created() {
-        var _this3 = this;
+        var _this2 = this;
 
         this.fields = [{
-            key: 'data_download.contact_download',
+            key: 'contact_download',
             label: 'Cliente',
             sortable: true
         }, {
-            key: 'import_company',
-            label: 'Compañía',
-            sortable: true
-        }, {
-            key: 'data_download.countries.country',
+            key: 'country',
             label: 'Pais',
             sortable: true
         }, {
-            key: 'data_download.city_download',
+            key: 'city_load',
             label: 'Ciudad',
             sortable: true
         }, {
-            key: 'customer.phone',
-            label: 'Contacto',
+            key: 'vin',
+            label: 'Bastidor',
             sortable: true
         }, {
             key: 'created_at',
             label: 'Fecha de creacion',
             sortable: true
         }, {
-            key: 'date_upload',
-            label: 'Fecha de carga',
+            key: 'model_car',
+            label: 'Modelo',
             sortable: true
+        }, {
+            key: 'collected',
+            label: 'Recogidos'
         }];
-        Vue.axios.get('load-orders/list').then(function (response) {
+        Vue.axios.get('/load-orders/consult-old-load').then(function (response) {
             var createItems = [];
             $.each(response.data, function (key, value) {
                 value['_showDetails'] = false;
                 createItems.push(value);
             });
-            console.log(createItems);
-            _this3.items = createItems;
+            _this2.items = createItems;
         });
         this.countriesList();
     }
@@ -59164,156 +59155,67 @@ var render = function() {
           "table-variant": "secondary",
           striped: "",
           hover: "",
-          stacked: "md",
           items: _vm.items,
           fields: _vm.fields,
           bordered: "",
           borderless: "",
           small: "",
           fixed: "",
-          selectable: "",
           responsive: "sm",
-          "select-mode": "single",
-          filter: _vm.filter
+          filter: _vm.filter,
+          stacked: "md"
         },
-        on: { "row-clicked": _vm.onRowSelected },
+        on: { item: _vm.items },
         scopedSlots: _vm._u([
           {
-            key: "row-details",
-            fn: function(row) {
+            key: "cell(collected)",
+            fn: function(ref) {
+              var item = ref.item
+              var rowSelected = ref.rowSelected
               return [
                 _c(
-                  "b-card",
-                  [
-                    _c(
-                      "b-row",
-                      { staticClass: "px-4" },
-                      [
-                        _c(
-                          "b-form-group",
-                          { attrs: { label: "INFORMACION DE LOS COCHES" } },
-                          [
-                            _c(
-                              "b-list-group",
-                              _vm._l(row.item.customer.info_cars, function(
-                                infoCars,
-                                index
-                              ) {
-                                return _c(
-                                  "b-list-group-item",
-                                  { key: index + infoCars.key },
-                                  [
-                                    _vm._v(
-                                      "\n                                " +
-                                        _vm._s(infoCars.vin) +
-                                        "\n                                "
-                                    ),
-                                    _c(
-                                      "b-link",
-                                      {
-                                        staticClass:
-                                          "btn btn-outline-primary m-1",
-                                        attrs: {
-                                          href:
-                                            "/load-orders/" +
-                                            row.item.hash +
-                                            "/" +
-                                            infoCars.id
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                    Ver Orden\n                                "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "b-link",
-                                      {
-                                        staticClass:
-                                          "btn btn-outline-primary m-1",
-                                        attrs: {
-                                          href:
-                                            "/load-orders/" +
-                                            row.item.hash +
-                                            "/" +
-                                            infoCars.id +
-                                            "/edit"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                    Editar Orden\n                                "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                )
-                              }),
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "footer-btn" },
-                      [
-                        _c(
-                          "b-link",
-                          {
-                            staticClass: "btn btn-danger",
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteItem(row)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Eiminar Cliente\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-link",
-                          {
-                            staticClass: "btn btn-outline-primary",
-                            attrs: {
-                              href: "load-order/" + row.item.id + "/cmr"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Ver CMR\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-link",
-                          {
-                            staticClass: "btn btn-outline-primary",
-                            attrs: { href: "bills/load-order/" + row.item.id }
-                          },
-                          [
-                            _vm._v(
-                              "\n                        Ver Factura\n                    "
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
+                  "b-link",
+                  {
+                    staticClass: "btn btn-outline-primary m-1",
+                    attrs: {
+                      href: "/load-orders/" + item.hash + "/" + item.car_id
+                    }
+                  },
+                  [_vm._v("\n                Ver Orden\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-link",
+                  {
+                    staticClass: "btn btn-outline-primary m-1",
+                    attrs: {
+                      href:
+                        "/load-orders/" +
+                        item.hash +
+                        "/" +
+                        item.car_id +
+                        "/edit"
+                    }
+                  },
+                  [_vm._v("\n                Editar Orden\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-link",
+                  {
+                    staticClass: "btn btn-outline-primary",
+                    attrs: { href: "/load-order/" + item.order_id + "/cmr" }
+                  },
+                  [_vm._v("\n                Ver CMR\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-link",
+                  {
+                    staticClass: "btn btn-outline-primary",
+                    attrs: { href: "bills/load-order/" + item.order_id }
+                  },
+                  [_vm._v("\n                Ver Factura\n            ")]
                 )
               ]
             }
@@ -59936,7 +59838,7 @@ exports = module.exports = __webpack_require__(24)(false);
 
 
 // module
-exports.push([module.i, "\n.footer-btn{\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: reverse;\n        -ms-flex-flow: row-reverse;\n            flex-flow: row-reverse;\n}\n@media (max-width: 800px) {\n.table.b-table.b-table-stacked-md > tbody > tr > td{\n        display: block;\n        width: 100%;\n}\n}\n", ""]);
+exports.push([module.i, "\n@media (max-width: 800px) {\n.table.b-table.b-table-stacked-md > tbody > tr > td{\n        display: block;\n        width: 100%;\n}\n}\n", ""]);
 
 // exports
 
@@ -59999,6 +59901,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -60007,13 +59937,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             items: [],
             filter: null,
             countries: [],
-            selected: []
+            selected: [],
+            card: null
         };
     },
 
     methods: {
         onRowSelected: function onRowSelected(items) {
             this.selected = items;
+            items['_showDetails'] = !items['_showDetails'];
+        },
+        deleteItem: function deleteItem(row) {
+            this.items.splice(row.index, 1);
         },
         countriesList: function countriesList() {
             var _this = this;
@@ -60022,48 +59957,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.countries = response.data;
             });
         },
-        showLoadOrder: function showLoadOrder(row) {
-            console.log(row);
+        selectCars: function selectCars() {
+            var data = {
+                cars: this.selected
+            };
+            Vue.axios.post('/load-orders/pending/select-cars', data).then(function (res) {
+                window.location = res.data;
+            });
+        },
+        cocheRecogido: function cocheRecogido() {
+            console.log(this.card.card_id);
+            this.items.splice(this.items.indexOf(this.card), 1);
+            var new_refs = this.$refs.modal;
+            var data = {
+                card_id: this.card.card_id
+            };
+            Vue.axios.post('/load-orders/send-collected', data).then(function () {
+                new_refs.close();
+            });
+        },
+        confirmarAccion: function confirmarAccion(item, rowSelected) {
+            this.$refs.modal.open();
+            this.removeSelected = rowSelected;
+            this.card = item;
         }
     },
     created: function created() {
         var _this2 = this;
 
         this.fields = [{
-            key: 'country_load',
-            label: 'Pais de carga',
-            sortable: true
+            key: 'selected',
+            label: 'Seleccionados'
         }, {
-            key: 'city_load',
-            label: 'Ciudad de carga',
-            sortable: true
-        }, {
-            key: 'client',
+            key: 'contact_download',
             label: 'Cliente',
             sortable: true
         }, {
-            key: 'import_company',
-            label: 'Compañía',
+            key: 'country',
+            label: 'Pais',
+            sortable: true
+        }, {
+            key: 'city_load',
+            label: 'Ciudad',
             sortable: true
         }, {
             key: 'vin',
             label: 'Bastidor',
             sortable: true
         }, {
-            key: 'model_car',
-            label: 'Modelo',
-            sortable: true
-        }, {
             key: 'created_at',
             label: 'Fecha de creacion',
             sortable: true
         }, {
-            key: 'order_load',
-            label: 'Orden de carga'
+            key: 'model_car',
+            label: 'Modelo',
+            sortable: true
+        }, {
+            key: 'collected',
+            label: 'Recogidos'
         }];
         Vue.axios.get('/load-orders/consult-old-load').then(function (response) {
             var createItems = [];
             $.each(response.data, function (key, value) {
+                value['_showDetails'] = false;
                 createItems.push(value);
             });
             _this2.items = createItems;
@@ -60087,6 +60043,16 @@ var render = function() {
         "b-card",
         { staticClass: "m-2" },
         [
+          _c(
+            "b-link",
+            {
+              staticClass: "btn btn-primary col-2",
+              attrs: { id: "pending" },
+              on: { click: _vm.selectCars }
+            },
+            [_vm._v("pendientes")]
+          ),
+          _vm._v(" "),
           _c(
             "b-form-group",
             {
@@ -60170,7 +60136,8 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("b-table", {
-        staticClass: "text-break w-100",
+        ref: "selectableTable",
+        staticClass: "text-break",
         attrs: {
           "head-variant": "dark",
           "table-variant": "secondary",
@@ -60182,45 +60149,125 @@ var render = function() {
           borderless: "",
           small: "",
           fixed: "",
+          selectable: "",
           responsive: "sm",
+          "select-mode": "multiple",
           filter: _vm.filter,
           stacked: "md"
         },
+        on: { "row-selected": _vm.onRowSelected, item: _vm.items },
         scopedSlots: _vm._u([
           {
-            key: "cell(order_load)",
-            fn: function(row) {
+            key: "cell(selected)",
+            fn: function(ref) {
+              var rowSelected = ref.rowSelected
               return [
-                _c(
-                  "div",
-                  { staticClass: "d-flex flex-wrap" },
-                  [
-                    _c(
-                      "b-link",
+                rowSelected
+                  ? _c(
+                      "b-form-checkbox",
                       {
-                        staticClass: "btn btn-outline-primary m-1",
-                        attrs: {
-                          href:
-                            "/load-orders/" +
-                            row.item.hash +
-                            "/" +
-                            row.item.order_id
+                        attrs: { name: "check-button", button: "" },
+                        model: {
+                          value: rowSelected,
+                          callback: function($$v) {
+                            rowSelected = $$v
+                          },
+                          expression: "rowSelected"
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                    Ver Orden\n                "
-                        )
-                      ]
+                      [_c("b", [_vm._v("SELECCIONADO")])]
                     )
-                  ],
-                  1
+                  : _vm._e()
+              ]
+            }
+          },
+          {
+            key: "cell(collected)",
+            fn: function(ref) {
+              var item = ref.item
+              var rowSelected = ref.rowSelected
+              return [
+                _c(
+                  "b-button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.confirmarAccion(item)
+                      }
+                    }
+                  },
+                  [_vm._v("Enviar a entregados")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-link",
+                  {
+                    staticClass: "btn btn-outline-primary m-1",
+                    attrs: {
+                      href: "/load-orders/" + item.hash + "/" + item.car_id
+                    }
+                  },
+                  [_vm._v("\n                Ver Orden\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-link",
+                  {
+                    staticClass: "btn btn-outline-primary m-1",
+                    attrs: {
+                      href:
+                        "/load-orders/" +
+                        item.hash +
+                        "/" +
+                        item.car_id +
+                        "/edit"
+                    }
+                  },
+                  [_vm._v("\n                Editar Orden\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-link",
+                  {
+                    staticClass: "btn btn-outline-primary",
+                    attrs: { href: "/load-order/" + item.order_id + "/cmr" }
+                  },
+                  [_vm._v("\n                Ver CMR\n            ")]
                 )
               ]
             }
           }
         ])
-      })
+      }),
+      _vm._v(" "),
+      _c(
+        "sweet-modal",
+        { ref: "modal", attrs: { title: "¡ALERTA!" } },
+        [
+          _vm._v(
+            "\n        Este vehiculos sera enviado a coches entregados. ¿Esta seguro de ejecutar esta accion?\n\n        "
+          ),
+          _c(
+            "template",
+            { slot: "box-action" },
+            [
+              _c(
+                "b-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.cocheRecogido()
+                    }
+                  }
+                },
+                [_vm._v("Guardar cambios")]
+              )
+            ],
+            1
+          )
+        ],
+        2
+      )
     ],
     1
   )
@@ -61075,6 +61122,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -61091,6 +61147,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         onRowSelected: function onRowSelected(items) {
             this.selected = items;
+            items['_showDetails'] = !items['_showDetails'];
         },
         deleteItem: function deleteItem(row) {
             this.items.splice(row.index, 1);
@@ -61112,7 +61169,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         cocheRecogido: function cocheRecogido() {
             console.log(this.card.card_id);
-            this.items.splice(row.index, 1);
+            this.items.splice(this.items.indexOf(this.card), 1);
             var new_refs = this.$refs.modal;
             var data = {
                 card_id: this.card.card_id
@@ -61342,6 +61399,42 @@ var render = function() {
                     }
                   },
                   [_vm._v("Enviar a recogidos")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-link",
+                  {
+                    staticClass: "btn btn-outline-primary m-1",
+                    attrs: {
+                      href: "/load-orders/" + item.hash + "/" + item.car_id
+                    }
+                  },
+                  [_vm._v("\n                Ver Orden\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-link",
+                  {
+                    staticClass: "btn btn-outline-primary m-1",
+                    attrs: {
+                      href:
+                        "/load-orders/" +
+                        item.hash +
+                        "/" +
+                        item.car_id +
+                        "/edit"
+                    }
+                  },
+                  [_vm._v("\n                Editar Orden\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-link",
+                  {
+                    staticClass: "btn btn-outline-primary",
+                    attrs: { href: "/load-order/" + item.order_id + "/cmr" }
+                  },
+                  [_vm._v("\n                Ver CMR\n            ")]
                 )
               ]
             }

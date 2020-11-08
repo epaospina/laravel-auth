@@ -113,7 +113,7 @@
 @stop
 @push('js_site')
     <script>
-        // Modal Image Gallery
+/*        // Modal Image Gallery
         function onClick(element) {
             document.getElementById("img01").src = element.src;
             document.getElementById("modal01").style.display = "block";
@@ -134,8 +134,8 @@
         }
 
         // Close the sidebar with the close button
-        function mcv_close() {
+        /!*function mcv_close() {
             mySidebar.style.display = "none";
-        }
+        }*!/*/
     </script>
 @endpush

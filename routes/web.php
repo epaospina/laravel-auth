@@ -42,6 +42,7 @@ Route::get('load-orders/{hash}/{car}/edit','LoadOrdersController@edit')->name('l
 Route::get('load-orders/pending/cars/{carsPending}','LoadOrdersController@pending')->name('load-orders.pending-cars');
 Route::post('load-orders/pending/select-cars','LoadOrdersController@pendingCars')->name('load-orders.pending-select-cars');
 Route::post('load-orders/send-collected','LoadOrdersController@sendCollected')->name('load-orders.send-collected');
+Route::post('load-orders/send-collected-finish','LoadOrdersController@sendCollectedFinish')->name('load-orders.send-collected-finish');
 Route::get('load-orders/pending-api/cars/{carsPending}','LoadOrdersController@pendingApiCars')->name('load-orders.pending-api-cars');
 Route::put('load-orders/{parameter}','LoadOrdersController@update')->name('load-orders.update');
 Route::resource('users','UserController');

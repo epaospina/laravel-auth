@@ -28,147 +28,138 @@
             table-variant="secondary"
             striped
             hover
-            stacked="md"
             :items="items"
             :fields="fields"
             bordered
             borderless
             small
             fixed
-            selectable
             responsive="sm"
-            @row-clicked="onRowSelected"
-            select-mode="single"
+            @item="items"
             :filter="filter"
             class="text-break"
+            stacked="md"
         >
-            <template v-slot:row-details="row">
-                <b-card>
-                    <b-row class="px-4">
-                        <b-form-group label="INFORMACION DE LOS COCHES">
-                            <b-list-group>
-                                <b-list-group-item :key="index+infoCars.key" v-for="(infoCars, index) in row.item.customer.info_cars">
-                                    {{ infoCars.vin }}
-                                    <b-link :href="'/load-orders/' + row.item.hash + '/' + infoCars.id" class="btn btn-outline-primary m-1">
-                                        Ver Orden
-                                    </b-link>
-                                    <b-link :href="'/load-orders/' + row.item.hash + '/' + infoCars.id + '/edit'" class="btn btn-outline-primary m-1">
-                                        Editar Orden
-                                    </b-link>
-                                </b-list-group-item>
-                            </b-list-group>
-                        </b-form-group>
-                    </b-row>
-                    <div class="footer-btn">
-                        <b-link @click="deleteItem(row)" class="btn btn-danger">
-                            Eiminar Cliente
-                        </b-link>
-                        <b-link :href="'load-order/' + row.item.id + '/cmr'" class="btn btn-outline-primary">
-                            Ver CMR
-                        </b-link>
-                        <b-link :href="'bills/load-order/' + row.item.id" class="btn btn-outline-primary">
-                            Ver Factura
-                        </b-link>
-                    </div>
-                </b-card>
+            <template v-slot:cell(collected)="{item, rowSelected}">
+                <b-link :href="'/load-orders/' + item.hash + '/' + item.car_id" class="btn btn-outline-primary m-1">
+                    Ver Orden
+                </b-link>
+                <b-link :href="'/load-orders/' + item.hash + '/' + item.car_id + '/edit'" class="btn btn-outline-primary m-1">
+                    Editar Orden
+                </b-link>
+                <b-link :href="'/load-order/' + item.order_id + '/cmr'" class="btn btn-outline-primary">
+                    Ver CMR
+                </b-link>
+                <b-link :href="'bills/load-order/' + item.order_id" class="btn btn-outline-primary">
+                    Ver Factura
+                </b-link>
             </template>
         </b-table>
     </div>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                fields: [],
-                items: [],
-                filter: null,
-                countries: []
-            }
-        },
-        methods:{
-            onRowSelected(items) {
-                items['_showDetails'] = !items['_showDetails'];
-            },
-            deleteItem(row){
-                Vue.axios.post('load-order/delete/' + row.item.hash).then(() => {
-                    this.items.splice(row.index, 1);
-                });
-            },
-            countriesList(){
-                Vue.axios.get('load-orders/list-country').then((response) => {
-                    this.countries = response.data;
-                });
-            },
-            selectCars(){
-                let data = {
-                    cars: this.selected
-                };
-                Vue.axios.post('/load-orders/pending/select-cars', data, function (data) {
-                    window.location = data;
-                });
-            }
-        },
-        created(){
-            this.fields = [
-                {
-                    key: 'data_download.contact_download',
-                    label: 'Cliente',
-                    sortable: true
-                },
-                {
-                    key: 'import_company',
-                    label: 'Compañía',
-                    sortable: true
-                },
-                {
-                    key: 'data_download.countries.country',
-                    label: 'Pais',
-                    sortable: true
-                },
-                {
-                    key: 'data_download.city_download',
-                    label: 'Ciudad',
-                    sortable: true
-                },
-                {
-                    key: 'customer.phone',
-                    label: 'Contacto',
-                    sortable: true
-                },
-                {
-                    key: 'created_at',
-                    label: 'Fecha de creacion',
-                    sortable: true
-                },
-                {
-                    key: 'date_upload',
-                    label: 'Fecha de carga',
-                    sortable: true
-                }
-            ];
-            Vue.axios.get('load-orders/list').then((response) => {
-                let createItems = [];
-                $.each(response.data, function(key, value) {
-                    value['_showDetails'] = false;
-                    createItems.push(value);
-                });
-                console.log(createItems);
-                this.items = createItems;
-            });
-            this.countriesList();
+export default {
+    data() {
+        return {
+            fields: [],
+            items: [],
+            filter: null,
+            countries: [],
+            selected: [],
+            card: null
         }
+    },
+    methods:{
+        deleteItem(row){
+            this.items.splice(row.index, 1);
+        },
+        countriesList(){
+            Vue.axios.get('/load-orders/list-country').then((response) => {
+                this.countries = response.data;
+            });
+        },
+        selectCars(){
+            let data = {
+                cars: this.selected
+            };
+            Vue.axios.post('/load-orders/pending/select-cars', data)
+                .then(res => {
+                    window.location = res.data;
+                });
+        },
+        cocheRecogido(){
+            console.log(this.card.card_id);
+            this.items.splice(this.items.indexOf(this.card), 1);
+            let new_refs = this.$refs.modal;
+            let data = {
+                card_id: this.card.card_id
+            };
+            Vue.axios.post('/load-orders/send-collected', data)
+                .then(function (){
+                    new_refs.close();
+                });
+        },
+        confirmarAccion(item, rowSelected){
+            this.$refs.modal.open();
+            this.removeSelected = rowSelected
+            this.card = item;
+        }
+    },
+    created(){
+        this.fields = [
+            {
+                key: 'contact_download',
+                label: 'Cliente',
+                sortable: true
+            },
+            {
+                key: 'country',
+                label: 'Pais',
+                sortable: true
+            },
+            {
+                key: 'city_load',
+                label: 'Ciudad',
+                sortable: true
+            },
+            {
+                key: 'vin',
+                label: 'Bastidor',
+                sortable: true
+            },
+            {
+                key: 'created_at',
+                label: 'Fecha de creacion',
+                sortable: true
+            },
+            {
+                key: 'model_car',
+                label: 'Modelo',
+                sortable: true
+            },
+            {
+                key: 'collected',
+                label: 'Recogidos'
+            }
+        ];
+        Vue.axios.get('/load-orders/consult-old-load').then((response) => {
+            let createItems = [];
+            $.each(response.data, function(key, value) {
+                value['_showDetails'] = false;
+                createItems.push(value);
+            });
+            this.items = createItems;
+        });
+        this.countriesList();
     }
+}
 </script>
 <style>
-    .footer-btn{
-        display: flex;
-        flex-flow: row-reverse;
+@media (max-width: 800px) {
+    .table.b-table.b-table-stacked-md > tbody > tr > td{
+        display: block;
+        width: 100%;
     }
-    @media (max-width: 800px) {
-        .table.b-table.b-table-stacked-md > tbody > tr > td{
-            display: block;
-            width: 100%;
-        }
-    }
+}
 </style>

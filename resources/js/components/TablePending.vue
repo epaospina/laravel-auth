@@ -56,6 +56,15 @@
 
             <template v-slot:cell(collected)="{item, rowSelected}">
                 <b-button  @click="confirmarAccion(item)">Enviar a recogidos</b-button>
+                <b-link :href="'/load-orders/' + item.hash + '/' + item.car_id" class="btn btn-outline-primary m-1">
+                    Ver Orden
+                </b-link>
+                <b-link :href="'/load-orders/' + item.hash + '/' + item.car_id + '/edit'" class="btn btn-outline-primary m-1">
+                    Editar Orden
+                </b-link>
+                <b-link :href="'/load-order/' + item.order_id + '/cmr'" class="btn btn-outline-primary">
+                    Ver CMR
+                </b-link>
             </template>
         </b-table>
 
@@ -84,6 +93,7 @@
         methods:{
             onRowSelected(items) {
                 this.selected = items
+                items['_showDetails'] = !items['_showDetails'];
             },
             deleteItem(row){
                 this.items.splice(row.index, 1);
@@ -104,7 +114,7 @@
             },
             cocheRecogido(){
                 console.log(this.card.card_id);
-                this.items.splice(row.index, 1);
+                this.items.splice(this.items.indexOf(this.card), 1);
                 let new_refs = this.$refs.modal;
                 let data = {
                     card_id: this.card.card_id

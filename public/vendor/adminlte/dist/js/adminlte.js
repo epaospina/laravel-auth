@@ -178,7 +178,7 @@ throw new Error('AdminLTE requires jQuery')
         expanding: 'expanding.boxwidget',
         expanded: 'expanded.boxwidget',
         removing: 'removing.boxwidget',
-        removed: 'removed.boxwidget'        
+        removed: 'removed.boxwidget'
     };
 
   // BoxWidget Class Definition
