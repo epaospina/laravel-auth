@@ -119,7 +119,7 @@ export default {
             let data = {
                 card_id: this.card.card_id
             };
-            Vue.axios.post('/load-orders/send-collected', data)
+            Vue.axios.post('/load-orders/send-collected-finish', data)
                 .then(function (){
                     new_refs.close();
                 });

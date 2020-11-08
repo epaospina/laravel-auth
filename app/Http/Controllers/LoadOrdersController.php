@@ -127,6 +127,7 @@ class LoadOrdersController extends Controller
             ->leftJoin('countries', 'countries.id', '=', 'data_load.countries_id')
             ->where('car.status', true)
             ->where('is_pending', '=', true)
+            ->where('process_finish', '=', false)
             ->orderByDesc('car.created_at')
             ->get();
     }
@@ -172,6 +173,7 @@ class LoadOrdersController extends Controller
             ->leftJoin('countries', 'countries.id', '=', 'data_load.countries_id')
             ->where('car.status', true)
             ->where('is_pending', '=', false)
+            ->where('process_finish', '=', false)
             ->orderByDesc('car.created_at')
             ->get();
     }

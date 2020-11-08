@@ -59039,7 +59039,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             key: 'collected',
             label: 'Recogidos'
         }];
-        Vue.axios.get('/load-orders/consult-old-load').then(function (response) {
+        Vue.axios.get('/load-orders/list').then(function (response) {
             var createItems = [];
             $.each(response.data, function (key, value) {
                 value['_showDetails'] = false;
@@ -59972,7 +59972,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var data = {
                 card_id: this.card.card_id
             };
-            Vue.axios.post('/load-orders/send-collected', data).then(function () {
+            Vue.axios.post('/load-orders/send-collected-finish', data).then(function () {
                 new_refs.close();
             });
         },

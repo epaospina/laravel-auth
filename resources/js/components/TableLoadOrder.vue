@@ -143,7 +143,7 @@ export default {
                 label: 'Recogidos'
             }
         ];
-        Vue.axios.get('/load-orders/consult-old-load').then((response) => {
+        Vue.axios.get('/load-orders/list').then((response) => {
             let createItems = [];
             $.each(response.data, function(key, value) {
                 value['_showDetails'] = false;
