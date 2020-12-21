@@ -6,34 +6,63 @@ use Carbon\Carbon;
 use http\Client;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class LoadOrders
+ * @package App
+ */
 class LoadOrders extends Model
 {
+    /**
+     * @var string
+     */
     protected $table = 'load_orders';
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function customer()
     {
         return $this->belongsTo('App\Customer');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function data_download()
     {
         return $this->hasOne('App\DataDownload');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function data_load()
     {
         return $this->hasOne('App\DataLoad');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function bill()
     {
         return $this->hasOne('App\Bills');
     }
 
+    /**
+     * @param $hash
+     * @return mixed
+     */
     static function assignHash($hash){
         return LoadOrders::all()->where('hash', $hash)->first();
     }
 
+    /**
+     * @param $infoArray
+     * @param $edit
+     * @param null $hash
+     * @return LoadOrders|false|mixed
+     */
     static function createAllLoadOrder($infoArray, $edit, $hash = null){
         $loadOrder = self::assignHash($hash);
 
@@ -59,6 +88,8 @@ class LoadOrders extends Model
             $loadOrder->identificacion_fiscal = $infoArray['identificacion_fiscal'];
             $loadOrder->domicilio_fiscal = $infoArray['domicilio_fiscal'];
             $loadOrder->poblacion = $infoArray['poblacion'];
+            $loadOrder->auto_id = $infoArray['auto_id'];
+            $loadOrder->pick_up = $infoArray['pick_up'];
             $loadOrder->save();
 
             $loadOrder->hash = md5($loadOrder->id);
@@ -107,6 +138,10 @@ class LoadOrders extends Model
         return false;
     }
 
+    /**
+     * @param $validateInfo
+     * @return array
+     */
     static function arrayInfo($validateInfo){
         $infoArray = [];
         $infoArray['information_car'] = [];
@@ -114,6 +149,7 @@ class LoadOrders extends Model
             'model_car'      => isset($validateInfo['infoCars']['model_car']) ? $validateInfo['infoCars']['model_car'] : '',
             'color_car'      => isset($validateInfo['infoCars']['color_car']) ? $validateInfo['infoCars']['color_car'] : '',
             'vin'            => isset($validateInfo['infoCars']['vin']) ? $validateInfo['infoCars']['vin'] : '',
+            'plate_number'   => isset($validateInfo['infoCars']['plate_number']) ? $validateInfo['infoCars']['plate_number'] : '',
             'documents'      => isset($validateInfo['infoCars']['documents']) ? $validateInfo['infoCars']['documents'] : '',
         ];
 
@@ -125,6 +161,10 @@ class LoadOrders extends Model
         return $infoArray;
     }
 
+    /**
+     * @param $info
+     * @return string[]
+     */
     static public function validateLoadOrder($info){
         return [
             'id'                        => isset($info['load_order']['hash']) ? $info['load_order']['hash'] : '',
@@ -138,6 +178,8 @@ class LoadOrders extends Model
             'domicilio_fiscal'          => isset($info['load_order']['domicilio_fiscal']) ? $info['load_order']['domicilio_fiscal'] : '',
             'poblacion'                 => isset($info['load_order']['poblacion']) ? $info['load_order']['poblacion'] : '',
             'payment_type'              => isset($info['load_order']['payment_type']) ? $info['load_order']['payment_type'] : '',
+            'auto_id'                   => isset($info['load_order']['auto_id']) ? $info['load_order']['auto_id'] : '',
+            'pick_up'                   => isset($info['load_order']['pick_up']) ? $info['load_order']['pick_up'] : '',
         ];
     }
 }

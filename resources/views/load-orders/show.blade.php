@@ -37,15 +37,27 @@
             <table class="table-load-order" style="width: 100%;">
                 <tr>
                     <td  class="subtitle">Modelo - MODELL / Color - FARBE</td>
-                    <td><label>{{$infoArray['information_car']['model_car']}} // {{$infoArray['information_car']['color_car']}}</label></td>
+                    <td><label>{{$infoArray['information_car']['model_car']}} - {{$infoArray['information_car']['color_car']}}</label></td>
                 </tr>
                 <tr>
                     <td  class="subtitle">Fecha de carga</td>
                     <td><label>{{$infoArray['data_load']['date_load']}}</label></td>
                 </tr>
                 <tr>
-                    <td class="subtitle">BASTIDOR / MATRICULA</td>
+                    <td class="subtitle">BASTIDOR / CHASSIS NUMBER</td>
                     <td><label>{{$infoArray['information_car']['vin']}}</label></td>
+                </tr>
+                <tr>
+                    <td class="subtitle">MATRICULA / PLATE NUMBER</td>
+                    <td><label>{{$infoArray['information_car']['plate_number']}}</label></td>
+                </tr>
+                <tr>
+                    <td class="subtitle">AUTO ID</td>
+                    <td><label>{{$infoArray['load_order']['auto_id']}}</label></td>
+                </tr>
+                <tr>
+                    <td class="subtitle">PICK UP NUM</td>
+                    <td><label>{{$infoArray['load_order']['pick_up']}}</label></td>
                 </tr>
             </table>
             <br>
@@ -57,11 +69,7 @@
                 </tr>
                 <tr>
                     <td class="subtitle">Direccion / ADRESSE</td>
-                    <td><label>{{$infoArray['data_load']['addresses_load']}} // {{$infoArray['data_load']['city_load']}} // {{$infoArray['data_load']['postal_cod_load']}}</label></td>
-                </tr>
-                <tr>
-                    <td class="subtitle">Telefono fijo / TELEFONO NR</td>
-                    <td><label>{{$infoArray['data_load']['phone_load']}}</label></td>
+                    <td><label>{{$infoArray['data_load']['addresses_load']}} - {{$infoArray['data_load']['city_load']}} - {{$infoArray['data_load']['postal_cod_load']}}</label></td>
                 </tr>
                 <tr>
                     <td class="subtitle">Telefono movil / HANDY NR</td>
@@ -91,7 +99,7 @@
             <table class="table-load-order" style="width: 100%;">
                 <tbody>
                 <tr>
-                    <td class="subtitle">Facturar transporte a / TRANSPORT RECHNUNG AN</td>
+                    <td class="subtitle">Facturar transporte a</td>
                     <td><label>{{$infoArray['load_order']['bill_to']}}</label></td>
                 </tr>
                 @if($infoArray['load_order']['constancy'] !== ".")
@@ -135,7 +143,7 @@
                     <td class="subtitle-sign">{{__('clients.sign_seal')}}</td>
                 </tr>
                 <tr>
-                    <td><label>{{$infoArray['data_download']['addresses_download']}} // {{$infoArray['data_download']['city_download']}} // {{$infoArray['data_download']['postal_cod_download']}}</label></td>
+                    <td><label>{{$infoArray['data_download']['addresses_download']}} - {{$infoArray['data_download']['city_download']}} - {{$infoArray['data_download']['postal_cod_download']}}</label></td>
                     <td><label>{{$infoArray['data_download']['observations']}}</label></td>
                 </tr>
                 <tr>

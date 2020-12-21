@@ -34,10 +34,13 @@ class Customer extends Model
         $client = DB::table('load_orders')
             ->whereRaw('lower(import_company) like (?)',["%{$infoArray['import_company']}%"])
             ->orWhereRaw('lower(bill_to) like (?)',["%{$infoArray['bill_to']}%"])
-            ->get();
+            ->first();
 
         if (!isset($client->id)){
             $client = new Customer();
+            self::infoClient($client, $infoArray);
+        }else{
+            $client = Customer::query()->find($client->customer_id);
             self::infoClient($client, $infoArray);
         }
 

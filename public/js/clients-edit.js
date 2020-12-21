@@ -27,6 +27,7 @@ function updatePost(id) {
         'car[0][color_car]'         : modelColor[1],
         'date_load'                 : $(idOrder + ' .date_load').val(),
         'car[0][vin]'               : $(idOrder + ' .vin').val(),
+        'car[0][plate_number]'      : $(idOrder + ' .plate_number').val(),
         'car[0][vin_original]'      : $(idOrder + ' .vin_original').val(),
         'signing'                   : $(idOrder + ' .signing').val(),
         'addresses_load'            : address_load[0],
@@ -54,6 +55,8 @@ function updatePost(id) {
         'cmr'                       : $(idOrder + ' .cmr').val(),
         'observations'              : $(idOrder + ' .observations').val(),
         'mobile_download'           : $(idOrder + ' .mobile_download').val(),
+        'auto_id'                   : $(idOrder + ' .auto_id').val(),
+        'pick_up'                   : $(idOrder + ' .pick_up').val(),
     };
 
     $.ajax({

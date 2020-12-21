@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOrderIdToInfoCars extends Migration
+class AddAutoIdToLoadOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddOrderIdToInfoCars extends Migration
      */
     public function up()
     {
-        Schema::table('information_car', function (Blueprint $table) {
-            $table->unsignedBigInteger('load_orders_id')->default(1);
-
-            $table->foreign('load_orders_id')->references('id')->on('load_orders');
+        Schema::table('load_orders', function (Blueprint $table) {
+            $table->string('auto_id')->nullable();
+            $table->string('pick_up')->nullable();
         });
     }
 
@@ -27,8 +26,9 @@ class AddOrderIdToInfoCars extends Migration
      */
     public function down()
     {
-        Schema::table('info_cars', function (Blueprint $table) {
-            //
+        Schema::table('load_orders', function (Blueprint $table) {
+            $table->string('auto_id');
+            $table->string('pick_up');
         });
     }
 }

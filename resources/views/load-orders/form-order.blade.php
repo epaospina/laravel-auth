@@ -3,7 +3,7 @@
 @endpush
 <div id="contentTable" class="container-order edit-load">
     <div class="title-client">
-        <h3 class="title-client">{{ __('clients.load_order') }}</h3>
+        <h3 class="title-client">EDITAR ORDEN DE CARGA</h3>
         @if(isset($edit))
             <button class="btn btn-bitbucket" id="editLoadOrder" onclick="editInputs('collapse')">
                 <i class="fas fa-edit"></i>
@@ -37,6 +37,27 @@
             <td>
                 <input class="footer-text-area vin" disabled value="{{$infoArray['information_car']['vin']}}"/>
                 <input type="hidden" class="vin_original" value="{{$infoArray['information_car']['vin']}}" disabled>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="subtitle">{{ __('clients.plate_number') }}</td>
+            <td>
+                <input class="footer-text-area plate_number" disabled value="{{$infoArray['information_car']['plate_number']}}"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="subtitle">AUTO ID</td>
+            <td>
+                <input class="footer-text-area auto_id" disabled value="{{$infoArray['load_order']['auto_id']}}"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="subtitle">PICK UP NUM</td>
+            <td>
+                <input class="footer-text-area pick_up" disabled value="{{$infoArray['load_order']['pick_up']}}"/>
             </td>
         </tr>
         </tbody>

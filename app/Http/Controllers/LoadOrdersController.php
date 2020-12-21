@@ -51,7 +51,7 @@ class LoadOrdersController extends Controller
     public function listOrders()
     {
         return DB::table('information_car as car')
-            ->select('car.id as card_id', 'car.model_car', 'car.vin',
+            ->select('car.id as car_id', 'car.model_car', 'car.vin',
                 'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at',
                 'data_download.contact_download', 'countries.*', 'load_orders.hash as hash',
                 'load_orders.id as order_id')
@@ -116,7 +116,7 @@ class LoadOrdersController extends Controller
     public function consultCarsPending()
     {
         return DB::table('information_car as car')
-            ->select('car.id as card_id', 'car.model_car', 'car.vin',
+            ->select('car.id as car_id', 'car.model_car', 'car.vin',
                 'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at',
                 'data_download.contact_download', 'countries.*', 'load_orders.hash as hash',
                 'load_orders.id as order_id')
@@ -128,6 +128,7 @@ class LoadOrdersController extends Controller
             ->where('car.status', true)
             ->where('is_pending', '=', true)
             ->where('process_finish', '=', false)
+            ->whereNotNull('hash')
             ->orderByDesc('car.created_at')
             ->get();
     }
@@ -162,7 +163,7 @@ class LoadOrdersController extends Controller
     public function consultCarsOldLoad()
     {
         return DB::table('information_car as car')
-            ->select('car.id as card_id', 'car.model_car', 'car.vin',
+            ->select('car.id as car_id', 'car.model_car', 'car.vin',
                 'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at',
                 'data_download.contact_download', 'countries.*', 'load_orders.hash as hash',
                 'load_orders.id as order_id')
@@ -300,9 +301,9 @@ class LoadOrdersController extends Controller
         $carsId = '';
         foreach ($request->cars as $car){
             if ($carsId === ''){
-                $carsId = $car['card_id'];
+                $carsId = $car['car_id'];
             }else{
-                $carsId = $carsId.','.$car['card_id'];
+                $carsId = $carsId.','.$car['car_id'];
             }
         }
         $carsPending = new CarsPending();
@@ -314,7 +315,7 @@ class LoadOrdersController extends Controller
     }
 
     public function sendCollected(Request $request){
-        $infocar = InformationCar::query()->find($request->card_id);
+        $infocar = InformationCar::query()->find($request->car_id);
         $infocar->is_pending = false;
         $infocar->save();
 
@@ -322,7 +323,7 @@ class LoadOrdersController extends Controller
     }
 
     public function sendCollectedFinish(Request $request){
-        $infocar = InformationCar::query()->find($request->card_id);
+        $infocar = InformationCar::query()->find($request->car_id);
         $infocar->process_finish = true;
         $infocar->save();
 

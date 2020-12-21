@@ -51,18 +51,22 @@ class InformationCar extends Model
         $informationCar->color_car = $infoCar['color_car'];
         $informationCar->model_car = $infoCar['model_car'];
         $informationCar->vin = $infoCar['vin'];
+        $informationCar->plate_number = $infoCar['plate_number'];
         if (isset($infoCar['documents'])){
             $informationCar->documents = !is_null($infoCar['documents']) ? $infoCar['documents'] : '';
         }else{
             $informationCar->documents = '';
         }
 
-        if (empty($validator->errors()->messages())){
-            $informationCar->customer_id = $client->id;
-            $informationCar->load_orders_id = $loadOrder->id;
-            $informationCar->save();
-            return $informationCar;
+        if($valid) {
+            if (empty($validator->errors()->messages()) ){
+                $informationCar->customer_id = $client->id;
+                $informationCar->load_orders_id = $loadOrder->id;
+                return $informationCar;
+            }
         }
+
+        $informationCar->save();
 
         return false;
     }

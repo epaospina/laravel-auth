@@ -161,5 +161,13 @@ export default {
         display: block;
         width: 100%;
     }
+    .table.b-table.b-table-stacked-md > tbody > tr {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid blue;
+        margin: 1rem 0;
+        background-color: white;
+    }
 }
 </style>
