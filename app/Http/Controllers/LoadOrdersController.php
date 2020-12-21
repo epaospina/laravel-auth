@@ -52,7 +52,7 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id as car_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at',
+                'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at as car_created_at',
                 'data_download.contact_download', 'countries.*', 'load_orders.hash as hash',
                 'load_orders.id as order_id')
             ->leftJoin('customer', 'customer.id', '=', 'customer_id')
@@ -117,7 +117,7 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id as car_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at',
+                'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at as car_created_at',
                 'data_download.contact_download', 'countries.*', 'load_orders.hash as hash',
                 'load_orders.id as order_id')
             ->leftJoin('customer', 'customer.id', '=', 'customer_id')
@@ -164,7 +164,7 @@ class LoadOrdersController extends Controller
     {
         return DB::table('information_car as car')
             ->select('car.id as car_id', 'car.model_car', 'car.vin',
-                'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at',
+                'customer.signing', 'data_load.city_load', 'customer.phone', 'car.created_at as car_created_at',
                 'data_download.contact_download', 'countries.*', 'load_orders.hash as hash',
                 'load_orders.id as order_id')
             ->leftJoin('customer', 'customer.id', '=', 'customer_id')

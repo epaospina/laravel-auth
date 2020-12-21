@@ -129,7 +129,7 @@ export default {
                 sortable: true
             },
             {
-                key: 'created_at',
+                key: 'car_created_at',
                 label: 'Fecha de creacion',
                 sortable: true
             },

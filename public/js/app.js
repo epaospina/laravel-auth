@@ -59204,7 +59204,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             label: 'Bastidor',
             sortable: true
         }, {
-            key: 'created_at',
+            key: 'car_created_at',
             label: 'Fecha de creacion',
             sortable: true
         }, {
@@ -60181,7 +60181,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             label: 'Bastidor',
             sortable: true
         }, {
-            key: 'created_at',
+            key: 'car_created_at',
             label: 'Fecha de creacion',
             sortable: true
         }, {
@@ -61383,7 +61383,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             label: 'Bastidor',
             sortable: true
         }, {
-            key: 'created_at',
+            key: 'car_created_at',
             label: 'Fecha de creacion',
             sortable: true
         }, {
