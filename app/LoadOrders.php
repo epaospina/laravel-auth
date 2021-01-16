@@ -100,12 +100,12 @@ class LoadOrders extends Model
             }
 
             $dataLoad->countries_id = $infoArray['country'];
-            $dataLoad->addresses_load = $infoArray['addresses_load'];
-            $dataLoad->city_load = $infoArray['city_load'];
-            $dataLoad->date_load = $infoArray['date_load'];
-            $dataLoad->postal_cod_load = $infoArray['postal_cod_load'];
-            $dataLoad->phone_load = $infoArray['phone_load'];
-            $dataLoad->mobile_load = $infoArray['mobile_load'];
+            $dataLoad->addresses_load = isset($infoArray['addresses_load']) ? $infoArray['addresses_load'] : '';
+            $dataLoad->city_load = isset($infoArray['city_load']) ? $infoArray['city_load'] : '';
+            $dataLoad->date_load = isset($infoArray['date_load']) ? $infoArray['date_load'] : '';
+            $dataLoad->postal_cod_load = isset($infoArray['postal_cod_load']) ? $infoArray['postal_cod_load'] : '';
+            $dataLoad->phone_load = isset($infoArray['phone_load']) ? $infoArray['phone_load'] : '';
+            $dataLoad->mobile_load = isset($infoArray['mobile_load']) ? $infoArray['mobile_load'] : '';
             $dataLoad->load_orders_id = $loadOrder->id;
             $dataLoad->save();
 
@@ -113,17 +113,17 @@ class LoadOrders extends Model
                 $dataDownload = $loadOrder->data_download;
             }
 
-            $dataDownload->countries_id = $infoArray['country_download'];
-            $dataDownload->addresses_download = $infoArray['addresses_download'];
-            $dataDownload->city_download = $infoArray['city_download'];
-            $dataDownload->signing_download = $infoArray['signing_download'];
-            $dataDownload->postal_cod_download = $infoArray['postal_cod_download'];
-            $dataDownload->contact_download = $infoArray['contact_download'];
-            $dataDownload->mobile_download = $infoArray['mobile_download'];
+            $dataDownload->countries_id = isset($infoArray['country_download']) ? $infoArray['country_download'] : '';
+            $dataDownload->addresses_download = isset($infoArray['addresses_download']) ? $infoArray['addresses_download'] : '';
+            $dataDownload->city_download = isset($infoArray['city_download']) ? $infoArray['city_download'] : '';
+            $dataDownload->signing_download = isset($infoArray['signing_download']) ? $infoArray['signing_download'] : '';
+            $dataDownload->postal_cod_download = isset($infoArray['postal_cod_download']) ? $infoArray['postal_cod_download'] : '';
+            $dataDownload->contact_download = isset($infoArray['contact_download']) ? $infoArray['contact_download'] : '';
+            $dataDownload->mobile_download = isset($infoArray['mobile_download']) ? $infoArray['mobile_download'] : '';
             $dataDownload->load_orders_id = $loadOrder->id;
             $dataDownload->driver_data_id = DriverData::all()->first()->id;//isset($infoArray['data_driver']) ? $infoArray['data_driver'] : 2;
             $dataDownload->cmr = isset($infoArray['cmr']) ? $infoArray['cmr'] : " ";
-            $dataDownload->observations = $infoArray['observations'];
+            $dataDownload->observations = isset($infoArray['observations']) ? $infoArray['observations'] : '';
             $dataDownload->save();
 
             InformationCar::findOrCreateInformationCar($client, $infoArray["car"], $loadOrder);
