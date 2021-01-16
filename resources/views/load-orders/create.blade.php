@@ -279,7 +279,8 @@
                 </div>
                 <input id="otrosInput" name="price_order" value="{{old('price_order')}}" type="number" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
-            {{--<div class="content-order input-group-sm mb-3 input-client">
+{{--
+            <div class="content-order input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">número de identificación fiscal (CIF/NIF/NIE)</span>
                 </div>
@@ -291,14 +292,14 @@
                     <span class="input-group-text" id="inputGroup-sizing-sm">domicilio fiscal (calle, numero, codigo postal)</span>
                 </div>
                 <input id="otrosInput" name="domicilio_fiscal" value="{{old('domicilio_fiscal')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>--}}
+            </div>
 
             <div class="content-order input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">poblacion (calle, numero, ciudad, codigo postal, pais)</span>
                 </div>
                 <input id="otrosInput" name="poblacion" value="{{old('poblacion')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
+            </div>--}}
         </div>
         <!-- Circles which indicates the steps of the form: -->
         <div style="text-align:center;margin-top:40px;">
