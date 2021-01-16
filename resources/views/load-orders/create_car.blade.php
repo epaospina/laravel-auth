@@ -6,6 +6,13 @@
 
 <div class="content-order input-group-sm mb-3 input-client">
     <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">{{ 'Marca' }}</span>
+    </div>
+    <input name="car[0][marca_car]"  value="{{old('car[0][marca_car]')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+</div>
+
+<div class="content-order input-group-sm mb-3 input-client">
+    <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.model_car') }}</span>
     </div>
     <input name="car[0][model_car]"  value="{{old('car[0][model_car]')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
@@ -20,16 +27,16 @@
 
 <div class="content-order input-group-sm mb-3 input-client">
     <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.vin') }}</span>
+        <span class="input-group-text" id="inputGroup-sizing-sm">{{ 'Matricula' }}</span>
     </div>
-    <input name="car[0][vin]" value="{{old('car[0][vin]')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    <input name="car[0][plate_number]" value="{{old('car[0][plate_number]')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 </div>
 
 <div class="content-order input-group-sm mb-3 input-client">
     <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.plate_number') }}</span>
+        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.vin') }}</span>
     </div>
-    <input name="car[0][plate_number]" value="{{old('car[0][plate_number]')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    <input name="car[0][vin]" value="{{old('car[0][vin]')}}" type="text" class="form-control" oninput="this.className = ''" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 </div>
 
 <div class="content-order input-group-sm mb-3 input-client">

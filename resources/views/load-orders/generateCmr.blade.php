@@ -80,7 +80,7 @@
         </div>
 
         <div class="info-cars">
-            @foreach($loadOrders->customer->infoCars AS $key => $infoCar)
+            @foreach($infoCars AS $key => $infoCar)
                 <div id="car_{{$key}}">
                     <label>{{$infoCar->model_car}}</label>
                     <label>{{$infoCar->vin}}</label>
@@ -104,14 +104,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js" integrity="sha256-c3RzsUWg+y2XljunEQS0LqWdQ04X1D3j22fd/8JCAKw=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js" integrity="sha256-gJWdmuCRBovJMD9D/TVdo4TIK8u5Sti11764sZT1DhI=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.13/jspdf.plugin.autotable.min.js" integrity="sha256-1gTovbU9vikIejcyjJKJce/HMA0eRnSWOed8ekl0Jgs=" crossorigin="anonymous"></script>
-     <script src="{{asset('js/clients.js')}}"></script>
+    <script src="{{asset('js/clients.js')}}"></script>
     <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
     <script>
         $( document ).ready(function() {
             $('#inputDate').datepicker()
-            .on('change', function(e) {
-                $('#span-date_load').text($(this).val())
-            });
+                .on('change', function(e) {
+                    $('#span-date_load').text($(this).val())
+                });
 
             $( "#exampleRadios2" ).trigger( "click" );
         });

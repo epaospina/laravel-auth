@@ -44,6 +44,7 @@ Vue.component('table-load-order-country', require('./components/TableLoadOrderCo
 Vue.component('table-old-load', require('./components/TableOldLoad'));
 Vue.component('table-bills', require('./components/TableBills'));
 Vue.component('table-cars-pending', require('./components/TablePending'));
+Vue.component('generate-cmr-component', require('./components/TablePending'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

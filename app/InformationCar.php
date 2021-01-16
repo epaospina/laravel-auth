@@ -38,6 +38,7 @@ class InformationCar extends Model
 
     static function infoArray($informationCar, $infoCar, $client, $valid, $loadOrder){
         $validator = false;
+
         if ($valid){
             $validator = Validator::make($infoCar, [
                 'vin' => [
@@ -62,7 +63,6 @@ class InformationCar extends Model
             if (empty($validator->errors()->messages()) ){
                 $informationCar->customer_id = $client->id;
                 $informationCar->load_orders_id = $loadOrder->id;
-                return $informationCar;
             }
         }
 

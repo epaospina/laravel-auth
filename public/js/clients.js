@@ -31,8 +31,10 @@ function validateForm() {
     let x, y, i, valid = true;
     x = document.getElementsByClassName("tab");
     y = x[currentTab].getElementsByTagName("input");
-    for (i = 0; i < y.length; i++) {
-        if (y[i].name !== "data_driver" && y[i].name !== "cmr" && y[i].name !== "phone_load" && y[i].name.substr(-11) !== "[color_car]"){
+    /*for (i = 0; i < y.length; i++) {
+        if (y[i].name !== "data_driver" && y[i].name !== "cmr" && y[i].name !== "phone_load"
+            && y[i].name.substr(-11) !== "[vin]"
+            && y[i].name.substr(-11) !== "[vin_clone]"){
             if (y[i].value === "" && y[i].type !== "radio" && y[i].type !== "checkbox") {
                 if ($(y[i]).parent().attr('id') !== 'constar_client'){
                     y[i].className += " invalid";
@@ -50,15 +52,8 @@ function validateForm() {
                 }
             }
         }
-    }
+    }*/
 
-    if (!validVin()){
-        valid = false
-    }
-
-    if (valid) {
-        $('.step')[currentTab].className += " finish";
-    }
     return valid;
 }
 
@@ -95,15 +90,16 @@ function validVin() {
 
 function changeId(element, num) {
     element.prop('id', 'car__'+num);
-    console.log(element);
-    element.find("input").eq(0).attr('name', "car["+num+"][model_car]");
-    element.find("input").eq(1).attr('name', "car["+num+"][color_car]");
-    element.find("input").eq(2).attr('name', "car["+num+"][vin]");
-    element.find("input").eq(3).attr('name', "car["+num+"][vin_clone]");
-    element.find("span").eq(4).attr('id',   "car["+num+"][error_vin]");
-    element.find("input").eq(4).attr('name', "car["+num+"][itv]");
-    element.find("input").eq(4).attr('name', "car["+num+"][itv]");
-    element.find("input").eq(5).attr('name', "car["+num+"][documents]");
+    element.find("input").eq(0).attr('name', "car["+num+"][marca_car]");
+    element.find("input").eq(1).attr('name', "car["+num+"][plate_number]");
+    element.find("input").eq(2).attr('name', "car["+num+"][model_car]");
+    element.find("input").eq(3).attr('name', "car["+num+"][color_car]");
+    element.find("input").eq(4).attr('name', "car["+num+"][vin]");
+    element.find("input").eq(5).attr('name', "car["+num+"][vin_clone]");
+    element.find("span").eq(6).attr('id',   "car["+num+"][error_vin]");
+    element.find("input").eq(7).attr('name', "car["+num+"][itv]");
+    element.find("input").eq(7).attr('name', "car["+num+"][itv]");
+    element.find("input").eq(8).attr('name', "car["+num+"][documents]");
     element.find("[class*=delete-car]").attr('class', 'btn btn-danger close delete-car'+num);
 }
 

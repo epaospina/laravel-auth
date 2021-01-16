@@ -116,6 +116,7 @@ class LoadOrders extends Model
             $dataDownload->countries_id = $infoArray['country_download'];
             $dataDownload->addresses_download = $infoArray['addresses_download'];
             $dataDownload->city_download = $infoArray['city_download'];
+            $dataDownload->signing_download = $infoArray['signing_download'];
             $dataDownload->postal_cod_download = $infoArray['postal_cod_download'];
             $dataDownload->contact_download = $infoArray['contact_download'];
             $dataDownload->mobile_download = $infoArray['mobile_download'];

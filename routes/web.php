@@ -40,7 +40,10 @@ Route::post('load-orders/store','LoadOrdersController@store')->name('load-orders
 Route::get('load-orders/{hash}/{car}','LoadOrdersController@show')->name('load-orders.show');
 Route::get('load-orders/{hash}/{car}/edit','LoadOrdersController@edit')->name('load-orders.edit');
 Route::get('load-orders/pending/cars/{carsPending}','LoadOrdersController@pending')->name('load-orders.pending-cars');
+
+Route::get('load-order/generte-cmr/{cmrGenerate}','LoadOrdersController@cmrGenerate')->name('load-orders.cmrGenerate');
 Route::post('load-orders/pending/select-cars','LoadOrdersController@pendingCars')->name('load-orders.pending-select-cars');
+Route::post('load-orders/pending/select-cars-cmr','LoadOrdersController@generateCMR')->name('load-orders.generate-cmr');
 Route::post('load-orders/send-collected','LoadOrdersController@sendCollected')->name('load-orders.send-collected');
 Route::post('load-orders/send-collected-finish','LoadOrdersController@sendCollectedFinish')->name('load-orders.send-collected-finish');
 Route::get('load-orders/pending-api/cars/{carsPending}','LoadOrdersController@pendingApiCars')->name('load-orders.pending-api-cars');

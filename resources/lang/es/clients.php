@@ -13,9 +13,9 @@ return [
     'model_car_m'       => 'Modelo',
     'color_car'         => 'Color - FARBE',
     'color_car_m'       => 'Color',
-    'bill_to'           => 'Facturar transporte',
-    'bill_to_m'         => 'Facturar transporte a',
-    'import_company'    => 'empresa importadora / IMPORT FIRMA',
+    'bill_to'           => 'Empresa o persona compradora del vehiculo',
+    'bill_to_m'         => 'Datos de facturación',
+    'import_company'    => 'Nombre comercial de la empresa compradora',
     'import_company_m'  => 'empresa importadora',
     'vin'               => 'BASTIDOR / CHASSIS NUMBER',
     'plate_number'      => 'MATRICULA / PLATE NUMBER',
@@ -23,8 +23,8 @@ return [
     'documents'         => 'Documentacion del vehiculo',
     'documents_m'       => 'Documentacion del vehiculo',
 
-    'signing'           => 'Firma',
-    'addresses'         => 'Direccion / ADRESSE',
+    'signing'           => 'Concesionario / nombre comercial',
+    'addresses'         => 'Direccion / ADRESSE (calle, numero)',
     'street'            => 'Calle - Street',
     'city'              => 'Ciudad - City',
     'province'          => 'Provincia - Pais',
@@ -33,7 +33,7 @@ return [
     'mobile'            => 'Telefono movil / HANDY NR',
     'fax'               => 'Correo Electronico / Email',
     'contact_person'    => 'Persona de contacto / ANSPRECHPARTNER',
-    'price'             => 'Precio',
+    'price'             => 'Precio acordado',
 
     'signing_m'         => 'Firma',
     'addresses_m'       => 'Direccion',
@@ -53,7 +53,7 @@ return [
     'info_download'     => 'Datos del lugar de descarga',
     'sign_seal'         => 'POR FAVOR FIRMEN Y SELLEN ESTE FORMULARIO',
     'date'              => 'Fecha',
-    'auto_id'           => 'AUTO ID',
-    'pick_up'           => 'PICK UP NUM (if it is logistikzentrum)',
+    'auto_id'           => 'AUTORIZACIÓN',
+    'pick_up'           => 'NUMERO DE PICK UP',
     'tooltip_add_coche' => 'Este boton cumple la funcion de agregar mas coches a esta orden de carga'
 ];

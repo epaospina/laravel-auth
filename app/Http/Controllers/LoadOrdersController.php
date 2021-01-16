@@ -7,6 +7,7 @@ use App\Countries;
 use App\Customer;
 use App\InformationCar;
 use App\LoadOrders;
+use App\OrderCMR;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Query\Builder;
@@ -296,6 +297,26 @@ class LoadOrdersController extends Controller
         return view('load-orders.pending', compact('carsPending'));
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param OrderCMR $cmrGenerate
+     * @return Factory|View
+     */
+    public function cmrGenerate(OrderCMR $cmrGenerate)
+    {
+        $cars = explode(",", $cmrGenerate->array_cars);
+        $loadOrders = InformationCar::query()->find($cars[0])->load_orders_id;
+        $loadOrders = LoadOrders::query()->find($loadOrders);
+
+        $infoCars = [];
+        foreach ($cars as $car){
+            $infoCars[] = InformationCar::query()->find($car);
+        }
+
+        return view('load-orders.generateCmr', compact('infoCars','loadOrders'));
+    }
+
     public function pendingCars(Request $request)
     {
         $carsId = '';
@@ -312,6 +333,25 @@ class LoadOrdersController extends Controller
         $carsPending->save();
 
         return route('load-orders.pending-cars', $carsPending->id);
+    }
+
+    public function generateCMR(Request $request)
+    {
+        $carsId = '';
+        foreach ($request->cars as $car){
+            if ($carsId === ''){
+                $carsId = $car['car_id'];
+            }else{
+                $carsId = $carsId.','.$car['car_id'];
+            }
+        }
+        $generateCMR = new OrderCMR();
+        $generateCMR->array_cars = $carsId;
+        $generateCMR->enrollment = 0;
+        $generateCMR->user_id = auth()->id();
+        $generateCMR->save();
+
+        return route('load-orders.cmrGenerate', $generateCMR->id);
     }
 
     public function sendCollected(Request $request){

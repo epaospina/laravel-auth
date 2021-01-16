@@ -1,7 +1,8 @@
 <template>
     <div>
         <b-card class="m-2">
-            <b-link class="btn btn-primary col-2" id="pending" @click="selectCars">pendientes</b-link>
+            <b-link class="btn btn-primary col-2 p-2" id="pending" @click="selectCars">PEDIENTES</b-link>
+            <b-link class="btn btn-primary col-2 p-2" id="generate_cmr" @click="generateCmr">GENERAR CMR</b-link>
             <b-form-group
                 label=""
                 label-for="filterInput"
@@ -38,6 +39,7 @@
             selectable
             responsive="sm"
             @row-selected="onRowSelected"
+            :tbody-tr-class="rowClass"
             @item="items"
             :select-mode="'multiple'"
             :filter="filter"
@@ -87,13 +89,53 @@
                 filter: null,
                 countries: [],
                 selected: [],
-                card: null
+                card: null,
+                bgItem: [
+                    'mb-2 bg-primary',
+                    'mb-2 bg-secondary',
+                    'mb-2 bg-success',
+                    'mb-2 bg-danger',
+                    'mb-2 bg-warning',
+                    'mb-2 bg-info',
+                    'mb-2 bg-light',
+                    'mb-2 bg-dark',
+                    'mb-2 bg-white',
+                ]
             }
         },
         methods:{
+            rowClass(item){
+                let index = this.items.indexOf(item)
+                if(index > 0){
+                    if (this.items[index].order_id === this.items[index - 1].order_id){
+                        const random = Math.floor(Math.random() * this.bgItem.length);
+                        if ((index - 1) === 0){
+                            return 'bg-primary'
+                        }
+
+                        return this.bgItem[random]
+                    }else{
+                        return null
+                    }
+                }else{
+                    return 'bg-primary'
+                }
+            },
             onRowSelected(items) {
                 this.selected = items
                 items['_showDetails'] = !items['_showDetails'];
+            },
+            generarLetra(){
+                var letras = ["a","b","c","d","e","f","0","1","2","3","4","5","6","7","8","9"];
+                var numero = (Math.random()*15).toFixed(0);
+                return letras[numero];
+            },
+            colorHEX(){
+                var coolor = "";
+                for(var i=0;i<6;i++){
+                    coolor = coolor + this.generarLetra() ;
+                }
+                return "#" + coolor;
             },
             deleteItem(row){
                 this.items.splice(row.index, 1);
@@ -108,6 +150,15 @@
                     cars: this.selected
                 };
                 Vue.axios.post('/load-orders/pending/select-cars', data)
+                    .then(res => {
+                        window.location = res.data;
+                    });
+            },
+            generateCmr(){
+                let data = {
+                    cars: this.selected
+                };
+                Vue.axios.post('/load-orders/pending/select-cars-cmr', data)
                     .then(res => {
                         window.location = res.data;
                     });
@@ -193,5 +244,26 @@
             margin: 1rem 0;
             background-color: white;
         }
+    }
+
+    .table-tr-blue{
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid blue;
+        margin: 1rem 0;
+    }
+
+    .table-tr-red{
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid blue;
+        margin: 1rem 0;
+    }
+
+    .table-tr-red{
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid blue;
+        margin: 1rem 0;
     }
 </style>

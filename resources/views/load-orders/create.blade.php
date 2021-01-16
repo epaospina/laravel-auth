@@ -33,6 +33,178 @@
         @csrf
         <div class="tab border-create p-4">
             <h3 class="title-client">{{ __('clients.load_order') }}</h3>
+
+            <div id="create_car">
+                <div id="car__0">
+                    @include('load-orders.create_car')
+                </div>
+            </div>
+            <br>
+            <div data-toggle="tooltip" data-placement="top" title="{{__('clients.tooltip_add_coche')}}" id="btnAddCar" class="btn btn-link" data-car="0" onclick="addCarForm()">Para agregar mas vehiculos en esta orden de carga pinchar aqui!</div>
+        </div>
+
+        <div class="tab">
+
+            <h5 class="subtitle-client">{{ __('clients.load_place') }}</h5>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.signing') }}</span>
+                </div>
+                <input name="signing" value="{{old('signing')}}" id="signing" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
+                </div>
+                <input name="addresses_load" value="{{old('addresses_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
+                </div>
+                <input name="city_load" value="{{old('city_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
+                </div>
+                <input name="postal_cod_load" value="{{old('postal_cod_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <label class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Pais de carga</span>
+                </label>
+                <select id="country" class="custom-select" name="country">
+                    @foreach($countries as $key => $country)
+                        <option value="{{$key}}"><b>{{$country}}</b></option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.phone') }}</span>
+                </div>
+                <input name="phone_load" value="{{old('phone_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.mobile') }}</span>
+                </div>
+                <input name="mobile_load" value="{{old('mobile_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.fax') }}</span>
+                </div>
+                <input name="fax" value="{{old('fax')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.contact_person') }}</span>
+                </div>
+                <input name="contact_person" value="{{old('contact_person')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.date') }}</span>
+                </div>
+                <input id="dateLoad" name="date_load" value="{{old('date_load')}}" type="date" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+        <div class="tab">
+            <h5 class="subtitle-client">{{ __('clients.download_place') }}</h5>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.signing') }}</span>
+                </div>
+                <input name="signing_download" value="{{old('signing')}}" id="signing_download" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
+                </div>
+                <input id="addresses_download" name="addresses_download" value="{{old('addresses_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
+                </div>
+                <input id="city_download" name="city_download" value="{{old('city_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
+                </div>
+                <input id="postal_cod_download" name="postal_cod_download" value="{{old('postal_cod_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <label class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Pais de descarga</span>
+                    <select id="country_download" class="custom-select" name="country_download">
+                        @foreach($countries as $key => $country)
+                            <option value="{{$key}}"><b>{{$country}}</b></option>
+                        @endforeach
+                    </select>
+                </label>
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.mobile') }}</span>
+                </div>
+                <input id="mobile_download" name="mobile_download" value="{{old('mobile_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.contact_person') }}</span>
+                </div>
+                <input id="contact_download" name="contact_download" value="{{old('contact_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            @if(auth()->id() && false)
+                <div class="content-order input-group-sm mb-3 input-client">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.data_driver') }}</span>
+                    </div>
+                    <input value="{{empty(old('data_driver')) ? ' ' : old('data_driver')}}" name="data_driver" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="content-order input-group-sm mb-3 input-client">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.cmr') }}</span>
+                    </div>
+                    <input value="{{empty(old('cmr')) ? ' ' : old('cmr')}}" name="cmr" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+            @endif
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.observations') }}</span>
+                </div>
+                <input id="observations" name="observations" value="{{old('observations')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+        <div class="tab">
+
+            <label class="form-check-label" for="defaultCheck1">
+                Datos de facturacion
+            </label>
+
             <div class="content-order input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.bill_to') }}</span>
@@ -68,7 +240,7 @@
 
             <div class="content-order input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.import_company') }}</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ 'empresa importadora (nombre completo, CIF, Direccion)' }}</span>
                 </div>
                 <input id="import_company" name="import_company" value="{{old('import_company')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
@@ -107,182 +279,28 @@
                 </div>
                 <input id="otrosInput" name="price_order" value="{{old('price_order')}}" type="number" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
-
-            <label class="form-check-label" for="defaultCheck1">
-                Datos de facturacion
-            </label>
+{{--
             <div class="content-order input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">número de identificación fiscal</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">número de identificación fiscal (CIF/NIF/NIE)</span>
                 </div>
                 <input id="otrosInput" name="identificacion_fiscal" value="{{old('identificacion_fiscal')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="content-order input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">domicilio fiscal</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">domicilio fiscal (calle, numero, codigo postal)</span>
                 </div>
                 <input id="otrosInput" name="domicilio_fiscal" value="{{old('domicilio_fiscal')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="content-order input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">poblacion</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">poblacion (calle, numero, ciudad, codigo postal, pais)</span>
                 </div>
                 <input id="otrosInput" name="poblacion" value="{{old('poblacion')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div id="create_car">
-                <div id="car__0">
-                    @include('load-orders.create_car')
-                </div>
-            </div>
-            <br>
-            <div data-toggle="tooltip" data-placement="top" title="{{__('clients.tooltip_add_coche')}}" id="btnAddCar" class="btn btn-link" data-car="0" onclick="addCarForm()">Agregar coche en esta orden</div>
+            </div>--}}
         </div>
-
-        <div class="tab">
-
-            <h5 class="subtitle-client">{{ __('clients.load_place') }}</h5>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.signing') }}</span>
-                </div>
-                <input name="signing" value="{{old('signing')}}" id="signing" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.date') }}</span>
-                </div>
-                <input id="dateLoad" name="date_load" value="{{old('date_load')}}" type="date" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
-                </div>
-                <input name="addresses_load" value="{{old('addresses_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <label class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Pais de carga</span>
-                </label>
-                <select id="country" class="custom-select" name="country">
-                    @foreach($countries as $key => $country)
-                        <option value="{{$key}}"><b>{{$country}}</b></option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
-                </div>
-                <input name="city_load" value="{{old('city_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
-                </div>
-                <input name="postal_cod_load" value="{{old('postal_cod_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.phone') }}</span>
-                </div>
-                <input name="phone_load" value="{{old('phone_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.mobile') }}</span>
-                </div>
-                <input name="mobile_load" value="{{old('mobile_load')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.fax') }}</span>
-                </div>
-                <input name="fax" value="{{old('fax')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.contact_person') }}</span>
-                </div>
-                <input name="contact_person" value="{{old('contact_person')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-        </div>
-        <div class="tab">
-            <h5 class="subtitle-client">{{ __('clients.download_place') }}</h5>
-            <div class="content-order input-group-sm mb-3 input-client">
-                <label class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Pais de descarga</span>
-                    <select id="country_download" class="custom-select" name="country_download">
-                        @foreach($countries as $key => $country)
-                            <option value="{{$key}}"><b>{{$country}}</b></option>
-                        @endforeach
-                    </select>
-                </label>
-            </div>
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.city') }}</span>
-                </div>
-                <input id="city_download" name="city_download" value="{{old('city_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.addresses') }}</span>
-                </div>
-                <input id="addresses_download" name="addresses_download" value="{{old('addresses_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.postal_cod') }}</span>
-                </div>
-                <input id="postal_cod_download" name="postal_cod_download" value="{{old('postal_cod_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.contact_person') }}</span>
-                </div>
-                <input id="contact_download" name="contact_download" value="{{old('contact_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.mobile') }}</span>
-                </div>
-                <input id="mobile_download" name="mobile_download" value="{{old('mobile_download')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-            @if(auth()->id() && false)
-                <div class="content-order input-group-sm mb-3 input-client">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.data_driver') }}</span>
-                    </div>
-                    <input value="{{empty(old('data_driver')) ? ' ' : old('data_driver')}}" name="data_driver" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
-                <div class="content-order input-group-sm mb-3 input-client">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.cmr') }}</span>
-                    </div>
-                    <input value="{{empty(old('cmr')) ? ' ' : old('cmr')}}" name="cmr" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                </div>
-            @endif
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.observations') }}</span>
-                </div>
-                <input id="observations" name="observations" value="{{old('observations')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-        </div>
-
         <!-- Circles which indicates the steps of the form: -->
         <div style="text-align:center;margin-top:40px;">
             <span class="step"></span>
@@ -391,13 +409,13 @@
                 });
             }
 
-// Upon click this should should trigger click on the #file-to-upload file input element
-// This is better than showing the not-good-looking file input element
+            // Upon click this should should trigger click on the #file-to-upload file input element
+            // This is better than showing the not-good-looking file input element
             $("#upload-button").on('click', function() {
                 $("#file-to-upload").trigger('click');
             });
 
-// When user chooses a PDF file
+            // When user chooses a PDF file
             $("#file-to-upload").on('change', function() {
                 // Validate whether PDF
                 if(['application/pdf'].indexOf($("#file-to-upload").get(0).files[0].type) == -1) {
@@ -411,19 +429,19 @@
                 showPDF(URL.createObjectURL($("#file-to-upload").get(0).files[0]));
             });
 
-// Previous page of the PDF
+            // Previous page of the PDF
             $("#pdf-prev").on('click', function() {
                 if(__CURRENT_PAGE != 1)
                     showPage(--__CURRENT_PAGE);
             });
 
-// Next page of the PDF
+            // Next page of the PDF
             $("#pdf-next").on('click', function() {
                 if(__CURRENT_PAGE != __TOTAL_PAGES)
                     showPage(++__CURRENT_PAGE);
             });
 
-// Download button
+            // Download button
             $("#download-image").on('click', function() {
                 $(this).attr('href', __CANVAS.toDataURL()).attr('download', 'page.png');
             });
