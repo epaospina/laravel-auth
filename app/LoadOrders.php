@@ -79,17 +79,17 @@ class LoadOrders extends Model
             $loadOrder->customer_id = $client->id;
             $loadOrder->contact_person = isset($infoArray['contact_person']) ? $infoArray['contact_person'] : '';
             $loadOrder->date_upload = Carbon::now();
-            $loadOrder->bill_to = isset($infoArray['bill_to']) ? $infoArray['bill_to'] : '';
-            $loadOrder->price = isset($infoArray['price_order']) ? $infoArray['price_order'] : 0;
-            $loadOrder->constancy = isset($infoArray['constar_client']) ? $infoArray['constar_client'] : '';
+            $loadOrder->bill_to = $infoArray['bill_to'];
+            $loadOrder->price = $infoArray['price_order'];
+            $loadOrder->constancy = $infoArray['constar_client'];
             $loadOrder->payment_type_other = isset($infoArray['otrosInput']) ? $infoArray['otrosInput'] : '';
             $loadOrder->payment_type = isset($infoArray['identificacion_fiscal']) ? $infoArray['identificacion_fiscal'] : '';
             $loadOrder->import_company = isset($infoArray['identificacion_fiscal']) ? $infoArray['identificacion_fiscal'] : '';
             $loadOrder->identificacion_fiscal = isset($infoArray['identificacion_fiscal']) ? $infoArray['identificacion_fiscal'] : '';
             $loadOrder->domicilio_fiscal = isset($infoArray['domicilio_fiscal']) ? $infoArray['domicilio_fiscal'] : '';
-            $loadOrder->poblacion = isset($infoArray['poblacion']) ? $infoArray['poblacion'] : '';
-            $loadOrder->auto_id = isset($infoArray['auto_id']) ? $infoArray['auto_id'] : '';
-            $loadOrder->pick_up = isset($infoArray['pick_up']) ? $infoArray['pick_up'] : '';
+            $loadOrder->poblacion = $infoArray['poblacion'];
+            $loadOrder->auto_id = $infoArray['auto_id'];
+            $loadOrder->pick_up = $infoArray['pick_up'];
             $loadOrder->save();
 
             $loadOrder->hash = md5($loadOrder->id);
