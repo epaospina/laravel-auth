@@ -91,7 +91,6 @@
                 selected: [],
                 card: null,
                 bgItem: [
-                    'mb-2 bg-primary',
                     'mb-2 bg-secondary',
                     'mb-2 bg-success',
                     'mb-2 bg-danger',
@@ -110,7 +109,7 @@
                     if (this.items[index].order_id === this.items[index - 1].order_id){
                         const random = Math.floor(Math.random() * this.bgItem.length);
                         if ((index - 1) === 0){
-                            return 'bg-primary'
+                            return 'bg-secondary'
                         }
 
                         return this.bgItem[random]
@@ -118,7 +117,7 @@
                         return null
                     }
                 }else{
-                    return 'bg-primary'
+                    return 'bg-secondary'
                 }
             },
             onRowSelected(items) {
