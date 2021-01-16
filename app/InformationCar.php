@@ -59,13 +59,8 @@ class InformationCar extends Model
             $informationCar->documents = '';
         }
 
-        if($valid) {
-            if (empty($validator->errors()->messages()) ){
-                $informationCar->customer_id = $client->id;
-                $informationCar->load_orders_id = $loadOrder->id;
-            }
-        }
-
+        $informationCar->customer_id = $client->id;
+        $informationCar->load_orders_id = $loadOrder->id;
         $informationCar->save();
 
         return false;

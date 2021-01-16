@@ -14,7 +14,7 @@ class CountriesSeed extends Seeder
     {
         $country = new Countries();
         $country->id = 1;
-        $country->country = 'Nacionales';
+        $country->country = 'España';
         $country->save();
         $country = new Countries();
         $country->id = 2;
