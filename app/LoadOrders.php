@@ -80,7 +80,7 @@ class LoadOrders extends Model
             $loadOrder->contact_person = isset($infoArray['contact_person']) ? $infoArray['contact_person'] : '';
             $loadOrder->date_upload = Carbon::now();
             $loadOrder->bill_to = isset($infoArray['bill_to']) ? $infoArray['bill_to'] : '';
-            $loadOrder->price = isset($infoArray['price_order']) ? $infoArray['price_order'] : '';
+            $loadOrder->price = isset($infoArray['price_order']) ? $infoArray['price_order'] : 0;
             $loadOrder->constancy = isset($infoArray['constar_client']) ? $infoArray['constar_client'] : '';
             $loadOrder->payment_type_other = isset($infoArray['otrosInput']) ? $infoArray['otrosInput'] : '';
             $loadOrder->payment_type = isset($infoArray['identificacion_fiscal']) ? $infoArray['identificacion_fiscal'] : '';
