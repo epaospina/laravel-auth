@@ -102,7 +102,7 @@ class LoadOrders extends Model
             $dataLoad->countries_id = $infoArray['country'];
             $dataLoad->addresses_load = isset($infoArray['addresses_load']) ? $infoArray['addresses_load'] : '';
             $dataLoad->city_load = isset($infoArray['city_load']) ? $infoArray['city_load'] : '';
-            $dataLoad->date_load = isset($infoArray['date_load']) ? $infoArray['date_load'] : '';
+            $dataLoad->date_load = isset($infoArray['date_load']) ? $infoArray['date_load'] : Carbon::now();
             $dataLoad->postal_cod_load = isset($infoArray['postal_cod_load']) ? $infoArray['postal_cod_load'] : '';
             $dataLoad->phone_load = isset($infoArray['phone_load']) ? $infoArray['phone_load'] : '';
             $dataLoad->mobile_load = isset($infoArray['mobile_load']) ? $infoArray['mobile_load'] : '';
