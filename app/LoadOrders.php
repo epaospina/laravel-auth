@@ -129,8 +129,7 @@ class LoadOrders extends Model
             InformationCar::findOrCreateInformationCar($client, $infoArray["car"], $loadOrder);
 
             if (!empty($loadOrder) && !empty($dataDownload) && !empty($dataLoad) && !empty($infoArray)){
-                Bills::createBill($loadOrder, $client, $dataDownload, $infoArray['payment_type'],
-                    $infoArray['identificacion_fiscal'], $infoArray['domicilio_fiscal'], $infoArray['poblacion'], $edit);
+                Bills::createBill($loadOrder, $client, $dataDownload, $infoArray['payment_type'], $edit);
             }
 
             return $loadOrder;
