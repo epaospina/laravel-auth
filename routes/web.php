@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', 'HomeController@admin');
-Route::redirect('/home', '/admin');
+Route::redirect('/home', '/');
 //Route::get('/', 'HomeController@index')->name('home');
 
 Route::post('presupuesto', 'HomeController@presupuesto')->name('presupuesto');

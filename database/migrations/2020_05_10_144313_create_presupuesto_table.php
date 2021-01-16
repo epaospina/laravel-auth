@@ -15,12 +15,12 @@ class CreatePresupuestoTable extends Migration
     {
         Schema::create('presupuesto', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tipo_vehiculo');
-            $table->string('telefono');
-            $table->string('modelo');
-            $table->string('email');
-            $table->string('desde');
-            $table->string('hasta');
+            $table->string('tipo_vehiculo')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('modelo')->nullable();
+            $table->string('email')->nullable();
+            $table->string('desde')->nullable();
+            $table->string('hasta')->nullable();
             $table->timestamps();
         });
     }

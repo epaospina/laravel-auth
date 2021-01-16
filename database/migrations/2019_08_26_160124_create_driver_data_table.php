@@ -16,8 +16,8 @@ class CreateDriverDataTable extends Migration
         Schema::create('driver_data', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->unsigned();
-            $table->string('cap');
-            $table->date('date_cap');
+            $table->string('cap')->nullable();;
+            $table->date('date_cap')->nullable();;
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

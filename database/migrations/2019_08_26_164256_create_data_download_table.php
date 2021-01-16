@@ -15,16 +15,16 @@ class CreateDataDownloadTable extends Migration
     {
         Schema::create('data_download', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('contact_download');
-            $table->integer('load_orders_id')->unsigned();
-            $table->integer('driver_data_id')->unsigned();
-            $table->string('cmr');
-            $table->string('observations');
-            $table->string('addresses_download');
-            $table->integer('countries_id');
-            $table->string('city_download');
-            $table->string('postal_cod_download');
-            $table->string('mobile_download');
+            $table->string('contact_download')->nullable();;
+            $table->integer('load_orders_id')->unsigned()->nullable();;
+            $table->integer('driver_data_id')->unsigned()->nullable();;
+            $table->string('cmr')->nullable();;
+            $table->string('observations')->nullable();;
+            $table->string('addresses_download')->nullable();;
+            $table->integer('countries_id')->nullable();;
+            $table->string('city_download')->nullable();;
+            $table->string('postal_cod_download')->nullable();;
+            $table->string('mobile_download')->nullable();;
             $table->timestamps();
 
             $table->foreign('load_orders_id')->references('id')->on('load_orders');

@@ -15,12 +15,12 @@ class CreateLoadTable extends Migration
     {
         Schema::create('data_load', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('addresses_load');
-            $table->integer('countries_id');
-            $table->string('city_load');
-            $table->string('postal_cod_load');
-            $table->string('phone_load');
-            $table->string('mobile_load');
+            $table->string('addresses_load')->nullable();;
+            $table->integer('countries_id')->nullable();;
+            $table->string('city_load')->nullable();;
+            $table->string('postal_cod_load')->nullable();;
+            $table->string('phone_load')->nullable();;
+            $table->string('mobile_load')->nullable();;
             $table->date('date_load')->nullable();
             $table->unsignedInteger('load_orders_id');
             $table->timestamps();

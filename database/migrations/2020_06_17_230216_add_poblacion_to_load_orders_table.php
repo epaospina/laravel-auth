@@ -14,7 +14,7 @@ class AddPoblacionToLoadOrdersTable extends Migration
     public function up()
     {
         Schema::table('load_orders', function (Blueprint $table) {
-            $table->string('poblacion')->default('-');
+            $table->string('poblacion')->default('-')->nullable();
         });
     }
 

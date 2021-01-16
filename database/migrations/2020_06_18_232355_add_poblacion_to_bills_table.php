@@ -14,7 +14,7 @@ class AddPoblacionToBillsTable extends Migration
     public function up()
     {
         Schema::table('bills', function (Blueprint $table) {
-            $table->string('poblacion')->default('-');
+            $table->string('poblacion')->default('-')->nullable();
         });
     }
 

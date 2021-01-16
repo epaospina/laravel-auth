@@ -15,12 +15,14 @@ class CreateCarTable extends Migration
     {
         Schema::create('information_car', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('model_car');
-            $table->string('color_car');
-            $table->string('vin')->unique();
-            $table->string('documents');
+            $table->string('model_car')->nullable();
+            $table->string('color_car')->nullable();
+            $table->string('vin')->unique()->nullable();
+            $table->string('documents')->nullable();
+            $table->boolean('process_finish')->default(false);
             $table->boolean('is_pending')->default(true);
-            $table->unsignedInteger('customer_id');
+            $table->unsignedInteger('customer_id')->nullable();
+            $table->unsignedInteger('load_orders_id')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
 

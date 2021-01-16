@@ -15,20 +15,20 @@ class CreateBillsTable extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('num_bill');
-            $table->string('name_client');
-            $table->string('department_client');
-            $table->string('city_client');
-            $table->string('address_client');
-            $table->string('postal_cod_client');
-            $table->string('description');
-            $table->string('unit_price');
-            $table->string('price');
-            $table->string('iva');
-            $table->string('cif')->default('B-00000000');
-            $table->string('observations');
-            $table->string('identificacion_fiscal');
-            $table->string('domicilio_fiscal');
+            $table->string('num_bill')->nullable();
+            $table->string('name_client')->nullable();
+            $table->string('department_client')->nullable();
+            $table->string('city_client')->nullable();
+            $table->string('address_client')->nullable();
+            $table->string('postal_cod_client')->nullable();
+            $table->string('description')->nullable();
+            $table->string('unit_price')->nullable();
+            $table->string('price')->nullable();
+            $table->string('iva')->nullable();
+            $table->string('cif')->default('B-00000000')->nullable();
+            $table->string('observations')->nullable();
+            //$table->string('identificacion_fiscal');
+            //$table->string('domicilio_fiscal');
             $table->string('payment_type')->default('Transferencia Bancaria');
             $table->integer('load_orders_id')->unsigned();
             $table->timestamps();
