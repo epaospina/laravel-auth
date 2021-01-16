@@ -11,10 +11,12 @@ use App\OrderCMR;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -301,11 +303,14 @@ class LoadOrdersController extends Controller
      * Remove the specified resource from storage.
      *
      * @param OrderCMR $cmrGenerate
-     * @return Factory|View
+     * @return Factory|Application|RedirectResponse|Redirector|View
      */
     public function cmrGenerate(OrderCMR $cmrGenerate)
     {
         $cars = explode(",", $cmrGenerate->array_cars);
+        if ($cars[0] === ""){
+            return redirect(\route("load-orders.carsPending"));
+        }
         $loadOrders = InformationCar::query()->find($cars[0])->load_orders_id;
         $loadOrders = LoadOrders::query()->find($loadOrders);
 

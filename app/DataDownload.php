@@ -15,13 +15,13 @@ class DataDownload extends Model
 
     static public function validateDataDownload($info){
         $dataDownload = [
-            'contact_download'          => isset($info['data_download']['contact_download']) ? $info['data_download']['contact_download'] : '',
-            'addresses_download'        => isset($info['data_download']['addresses_download']) ? $info['data_download']['addresses_download'] : '',
-            'country_download'          => isset($info['data_download']['city_download']) ? $info['data_download']['countries_id'] : 1,
-            'city_download'             => isset($info['data_download']['city_download']) ? $info['data_download']['city_download'] : '',
-            'postal_cod_download'       => isset($info['data_download']['postal_cod_download']) ? $info['data_download']['postal_cod_download'] : '',
-            'observations'              => isset($info['data_download']['observations']) ? $info['data_download']['observations'] : '',
-            'mobile_download'           => isset($info['data_download']['mobile_download']) ? $info['data_download']['mobile_download'] : '',
+            'signing_download'    => isset($info['data_download']['signing_download']) ? $info['data_download']['signing_download'] : '',
+            'addresses_download'  => isset($info['data_download']['addresses_download']) ? $info['data_download']['addresses_download'] : '',
+            'city_download'       => isset($info['data_download']['city_download']) ? $info['data_download']['city_download'] : '',
+            'postal_cod_download' => isset($info['data_download']['postal_cod_download']) ? $info['data_download']['postal_cod_download'] : 1,
+            'contact_download'    => isset($info['data_download']['contact_download']) ? $info['data_download']['contact_download'] : '',
+            'observations'        => isset($info['data_download']['observations']) ? $info['data_download']['observations'] : '',
+            'mobile_download'     => isset($info['data_download']['mobile_download ']) ? $info['data_download']['mobile_download '] : '',
         ];
 
         if (auth()->id()){
