@@ -61320,7 +61320,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             countries: [],
             selected: [],
             card: null,
-            bgItem: ['mb-2 bg-primary', 'mb-2 bg-secondary', 'mb-2 bg-success', 'mb-2 bg-danger', 'mb-2 bg-warning', 'mb-2 bg-info', 'mb-2 bg-light', 'mb-2 bg-dark', 'mb-2 bg-white']
+            bgItem: ['mb-2 bg-secondary', 'mb-2 bg-success', 'mb-2 bg-danger', 'mb-2 bg-warning', 'mb-2 bg-info', 'mb-2 bg-light', 'mb-2 bg-dark', 'mb-2 bg-white']
         };
     },
 
@@ -61331,7 +61331,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (this.items[index].order_id === this.items[index - 1].order_id) {
                     var random = Math.floor(Math.random() * this.bgItem.length);
                     if (index - 1 === 0) {
-                        return 'bg-primary';
+                        return 'bg-secondary';
                     }
 
                     return this.bgItem[random];
@@ -61339,7 +61339,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return null;
                 }
             } else {
-                return 'bg-primary';
+                return 'bg-secondary';
             }
         },
         onRowSelected: function onRowSelected(items) {
