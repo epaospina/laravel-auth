@@ -219,30 +219,16 @@
 
             <div class="content-order input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.import_company') }}</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{'NUMERO DE IDENTIFICACION FISCAL (CIF/NIF/NIE)' }}</span>
                 </div>
-                <input id="import_company" name="import_company" value="{{old('import_company')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input id="identificacion_fiscal" name="identificacion_fiscal" value="{{old('identificacion_fiscal')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="content-order input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.auto_id') }}</span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ 'DOMICILIO FISCAL' }}</span>
                 </div>
-                <input id="auto_id" name="auto_id" value="{{old('auto_id')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.pick_up') }}</span>
-                </div>
-                <input id="auto_id" name="pick_up" value="{{old('pick_up')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="content-order input-group-sm mb-3 input-client">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ 'empresa importadora (nombre completo, CIF, Direccion)' }}</span>
-                </div>
-                <input id="import_company" name="import_company" value="{{old('import_company')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input id="domicilio_fiscal" name="domicilio_fiscal" value="{{old('domicilio_fiscal')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="content-order input-group-sm mb-3 input-client col-12 d-flex">
@@ -263,6 +249,13 @@
 
             <div class="content-order input-group-sm mb-3 input-client">
                 <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ 'empresa importadora (nombre completo, CIF, Direccion)' }}</span>
+                </div>
+                <input id="import_company" name="import_company" value="{{old('import_company')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Forma de pago</span>
                 </div>
                 <select id="selectTransferencia" class="custom-select" onchange="changeType(this)" name="payment_type">
@@ -278,6 +271,13 @@
                     <span class="input-group-text" id="inputGroup-sizing-sm">{{ __('clients.price') }}</span>
                 </div>
                 <input id="otrosInput" name="price_order" value="{{old('price_order')}}" type="number" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="content-order input-group-sm mb-3 input-client">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">{{ 'AITORIZACION / PICK UP' }}</span>
+                </div>
+                <input id="auto_id" name="pick_up" value="{{old('pick_up')}}" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 {{--
             <div class="content-order input-group-sm mb-3 input-client">

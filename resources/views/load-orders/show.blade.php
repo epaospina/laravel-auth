@@ -9,6 +9,11 @@
         label{
             font-size: 17px !important;
         }
+        @page
+        {
+            font-size: 12px;
+            margin: 0 0 0 40mm;
+        }
     </style>
 @endpush
 @section('content')
@@ -22,12 +27,10 @@
     <div id="contentTable" class="container-order edit-load">
         <div class="header-logo">
             <div>
-                <div>
+                <div style="margin-top: -54px;">
                     <img src="{{asset('images/logoMC.png')}}" alt="Mc Vehiculos">
                 </div>
                 <div class="header-logo-span">
-                    <span>C/. Altagracia, 8 - 13003 CIUDAD REAL - ESPAÑA</span>
-                    <span>Telf.: 926 228 453 - Fax 926 222 588</span>
                 </div>
             </div>
             <div class="transcaliguz">
@@ -141,7 +144,7 @@
                     <td><label>{{$infoArray['load_order']['bill_to']}}</label></td>
                 </tr>
                 <tr>
-                    <td class="subtitle">IDENTIFICACION FISCAL (CIF/NIF/NIE)</td>
+                    <td class="subtitle">NUMERO DE IDENTIFICACION FISCAL (CIF/NIF/NIE)</td>
                     <td><label>{{$infoArray['load_order']['identificacion_fiscal']}}</label></td>
                 </tr>
                 <tr>
