@@ -49,7 +49,7 @@
             <label>
                 {{$loadOrders->customer->signing}}<br>
                 {{$loadOrders->data_load->addresses_load}}<br>
-                {{$loadOrders->data_load->city_load}} // {{$loadOrders->data_load->postal_cod_load}}<br>
+                {{$loadOrders->data_load->city_load}}, {{$loadOrders->data_load->postal_cod_load}}<br>
             </label>
         </div>
 
@@ -72,7 +72,7 @@
         <label class="info-four">
             {{$loadOrders->data_load->date_load}}
             {{$loadOrders->data_load->addresses_load}}<br>
-            {{$loadOrders->data_load->city_load}} // {{$loadOrders->data_load->postal_cod_load}}<br>
+            {{$loadOrders->data_load->city_load}}, {{$loadOrders->data_load->postal_cod_load}}<br>
         </label>
 
         <div class="observation">

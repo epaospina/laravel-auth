@@ -1,5 +1,6 @@
 label, span{
-    font-size: 24px !important;
+    font-size: 15px !important;
+    font-weight: normal !important;
 }
 .page-content{
     background-color: white;
@@ -28,8 +29,8 @@ p{
 }
 label{
     padding: 0 2%;
-    font-size: 22px;
-    line-height: 22px;
+    font-size: 15px;
+    line-height: 18px;
     width: 100%;
     display: inline-block;
     max-width: 100%;
@@ -125,9 +126,11 @@ label{
     padding: 2%;
 }
 .observation{
-    max-width: 30cm;
+    /*max-width: 30cm;*/
+    margin-left: 4cm !important;
+    margin-top: -3cm;
     padding: 0.3cm 0.2cm 0 14cm;
-    position: absolute;
+    /*position: absolute;*/
 }
 .double-border td{
     border: 2px solid black;
@@ -185,12 +188,12 @@ label{
     padding: 3px 2%;
 }
 .info-one{
-    padding-left: 1.9cm;
-    padding-top: 2.2cm;
+    padding-left: 2.5cm;
+    padding-top: 3.5cm;
 }
 .info-two{
     display: flex;
-    padding-left: 1.7cm;
+    padding-left: 3.2cm;
     padding-top: 2cm;
 }
 .info-two label{
@@ -201,21 +204,22 @@ label{
     border: transparent;
 }
 .matricula-camion{
-    margin: 0 0 0 19cm;
+    padding-left: 23cm;
+    padding-top: -100cm;
     font-size: 23px;
     font-weight: bold;
-    position: absolute;
     width: 40%;
+    position: absolute;
 }
 .info-three{
-    padding-left: 1.7cm;
-    padding-top: 1.5cm;
+    padding-left: 2.6cm;
+    padding-top: 1cm;
 }
 .info-four{
     display: flex;
-    padding-left: 1.7cm;
-    padding-top: 1.8cm;
-    padding-bottom: 3.4cm;
+    padding-left: 3.4cm;
+    padding-top: 2.5cm;
+    padding-bottom: 1.8cm;
 }
 .info-four label{
     max-width: 12cm;
@@ -225,7 +229,7 @@ label{
     flex-wrap: wrap;
     flex-direction: column;
     width: 60%;
-    padding-left: 1.6cm;
+    padding-left: 2.6cm;
     height: 10cm;
 }
 .info-cars div{
@@ -237,8 +241,8 @@ label{
     width: 40%;
 }
 .info-five{
-    padding-left: 6cm;
-    margin-top: 8cm;
+    padding-left: 2.8cm;
+    margin-top: 10.4cm;
 }
 .text-xs-p{
     font-size: 6px !important;

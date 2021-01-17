@@ -40,6 +40,7 @@ input {
 .header-logo {
     display: flex;
     flex-flow: row;
+    padding-top: 10px;
     align-items: center;
     justify-content: space-between;
 }

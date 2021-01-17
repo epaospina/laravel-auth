@@ -4,15 +4,15 @@
     <link href="{{ asset('css/print_order.css')}}" media="print" rel="stylesheet" />
     <style>
         td{
-            font-size: 15px !important;
+            font-size: 13px !important;
         }
         label{
-            font-size: 17px !important;
+            font-size: 14px !important;
         }
         @page
         {
-            font-size: 12px;
-            margin: 0 0 0 40mm;
+            font-size: 15px;
+            margin: 30mm 0 0 40mm;
         }
     </style>
 @endpush
@@ -186,6 +186,10 @@
                 <tr>
                     <td><label>FIRMA</label></td>
                     <td>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                         <br>
                         <br>
                     </td>
