@@ -1,2 +1,0 @@
-# Postman - TestUnit: comentar linea ***// \App\Http\Middleware\VerifyCsrfToken::class,*** en
-app/Http/Kernel.php find middlewareGroups

@@ -24,31 +24,17 @@ class InformationCar extends Model
         $saveCars = false;
         foreach ($infoCars as $infoCar) {
             $informationCar = new InformationCar();
-            $valid = true;
             if (isset($infoCar['vin_original'])){
                 $informationCar = self::findBy($infoCar['vin_original']);
-                $valid = false;
             }
 
-            $saveCars = self::infoArray($informationCar, $infoCar, $client, $valid, $loadOrder);
+            $saveCars = self::infoArray($informationCar, $infoCar, $client, $loadOrder);
         }
 
         return $saveCars;
     }
 
-    static function infoArray($informationCar, $infoCar, $client, $valid, $loadOrder){
-        $validator = false;
-
-        if ($valid){
-            $validator = Validator::make($infoCar, [
-                'vin' => [
-                    'required',
-                    'max:255',
-                    Rule::unique('information_car')->where('status', 1),
-                ]
-            ]);
-        }
-
+    static function infoArray($informationCar, $infoCar, $client, $loadOrder){
         $informationCar->color_car = $infoCar['color_car'];
         $informationCar->model_car = $infoCar['model_car'];
         $informationCar->vin = $infoCar['vin'];

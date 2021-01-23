@@ -2,9 +2,14 @@
 
 namespace App;
 
+use App\Http\Requests\OrderRequest;
 use Carbon\Carbon;
 use http\Client;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 /**
  * Class LoadOrders
@@ -18,7 +23,7 @@ class LoadOrders extends Model
     protected $table = 'load_orders';
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function customer()
     {
@@ -26,7 +31,7 @@ class LoadOrders extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
     public function data_download()
     {
@@ -34,7 +39,7 @@ class LoadOrders extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
     public function data_load()
     {
@@ -42,7 +47,7 @@ class LoadOrders extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
     public function bill()
     {
@@ -64,8 +69,22 @@ class LoadOrders extends Model
      * @return LoadOrders|false|mixed
      */
     static function createAllLoadOrder($infoArray, $edit, $hash = null){
-        $loadOrder = self::assignHash($hash);
+        foreach ($infoArray['car'] as $infoCar) {
+            $validator = Validator::make($infoCar, [
+                'vin' => [
+                    'max:255',
+                    Rule::unique('information_car')
+                        ->where('status', 1)
+                        ->whereNotNull("vin"),
+                ]
+            ]);
 
+            if ($validator->fails()) {
+                return $validator->validate();
+            }
+        }
+
+        $loadOrder = self::assignHash($hash);
         if (empty($loadOrder)){
             $loadOrder = new LoadOrders();
         }
@@ -87,8 +106,8 @@ class LoadOrders extends Model
             $loadOrder->import_company = isset($infoArray['identificacion_fiscal']) ? $infoArray['identificacion_fiscal'] : '';
             $loadOrder->identificacion_fiscal = isset($infoArray['identificacion_fiscal']) ? $infoArray['identificacion_fiscal'] : '';
             $loadOrder->domicilio_fiscal = isset($infoArray['domicilio_fiscal']) ? $infoArray['domicilio_fiscal'] : '';
-            $loadOrder->poblacion = $infoArray['poblacion'];
-            $loadOrder->auto_id = $infoArray['auto_id'];
+            $loadOrder->poblacion = isset($infoArray['poblacion']) ? $infoArray['poblacion'] : '';
+            $loadOrder->auto_id = isset($infoArray['auto_id']) ? $infoArray['auto_id'] : '';
             $loadOrder->pick_up = $infoArray['pick_up'];
             $loadOrder->save();
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CarsPending;
 use App\Countries;
 use App\Customer;
+use App\Http\Requests\OrderRequest;
 use App\InformationCar;
 use App\LoadOrders;
 use App\OrderCMR;
@@ -199,7 +200,7 @@ class LoadOrdersController extends Controller
      * @param  Request  $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $loadOrder = LoadOrders::createAllLoadOrder($request->all(), false);
 

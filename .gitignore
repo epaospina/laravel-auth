@@ -14,3 +14,6 @@ yarn-error.log
 .env
 .phpunit.result.cache
 /key-mcv.pem
+/docker/
+/docker-compose.yml
+/Dockerfile
