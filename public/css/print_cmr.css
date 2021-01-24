@@ -204,12 +204,12 @@ label{
     border: transparent;
 }
 .matricula-camion{
-    padding-left: 23cm;
-    padding-top: -100cm;
-    font-size: 23px;
     font-weight: bold;
-    width: 40%;
+    width: 19cm;
     position: absolute;
+    display: flex;
+    flex-direction: row-reverse;
+    top: 7cm;
 }
 .info-three{
     padding-left: 2.6cm;
