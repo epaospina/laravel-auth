@@ -261,6 +261,11 @@ class LoadOrdersController extends Controller
             'data_download' => $loadOrder->data_download->toArray(),
             'data_load' => $loadOrder->data_load->toArray(),
         ]);
+
+        $infoArray['data_download']['country_download'] = $loadOrder->data_download->load('countries')->country;
+        $infoArray['data_load']['country_load'] = $loadOrder->data_download->load('countries')->country;
+        $infoArray['data_load']['date_load'] = $loadOrder->data_load->date_load;
+        $infoArray['data_load']['phone_load'] = $loadOrder->data_load->phone_load;
         return view('load-orders.edit', compact('infoArray'));
     }
 
@@ -386,16 +391,16 @@ class LoadOrdersController extends Controller
                     $cars[$keyLoad]['client']             = $loadOrder->data_download->contact_download;
                     $cars[$keyLoad]['buyer']              = $loadOrder->bill_to;
                     $cars[$keyLoad]['action_do']          = 'DESCARGAR';
-                    $cars[$keyLoad]['car'][$key]          = $infoCar->model_car ."<br>". $infoCar->vin;
-                    $cars[$keyLoad]['addresses_load']     = $loadOrder->data_load->addresses_load."<br>". 'Codigo postal: <b>'
-                                                            .$loadOrder->data_load->postal_cod_load."</b><br>". 'Ciudad: <b>'
-                                                            .$loadOrder->data_load->city_load.'</b>' ;
+                    $cars[$keyLoad]['car'][$key]          = $infoCar->model_car .",". $infoCar->vin;
+                    $cars[$keyLoad]['addresses_load']     = $loadOrder->data_load->addresses_load.",". 'Codigo postal: '
+                                                            .$loadOrder->data_load->postal_cod_load.",". 'Ciudad: '
+                                                            .$loadOrder->data_load->city_load.'' ;
                     $cars[$keyLoad]['scheduler']          = '';
-                    $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download."<br>". 'Codigo postal: <b>'
-                                                            .$loadOrder->data_download->postal_cod_download."</b><br>". 'Ciudad: <b>'
-                                                            .$loadOrder->data_download->city_download.'</b>' ;
-                    $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download."<br>".$loadOrder->data_download->mobile_download;
-                    $cars[$keyLoad]['observation']        = $loadOrder->bill->price;
+                    $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download.",". 'Codigo postal: '
+                                                            .$loadOrder->data_download->postal_cod_download.",". 'Ciudad: '
+                                                            .$loadOrder->data_download->city_download.'' ;
+                    $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download.",".$loadOrder->data_download->mobile_download;
+                    $cars[$keyLoad]['observation']        = $loadOrder->price;
                 }
             }
         }

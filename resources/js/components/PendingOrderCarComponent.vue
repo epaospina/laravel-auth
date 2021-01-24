@@ -1,8 +1,6 @@
 <template>
     <div>
-        <p v-html="car">
-            {{car}}
-        </p>
+        {{car}}
     </div>
 </template>
 

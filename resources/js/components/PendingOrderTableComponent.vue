@@ -31,11 +31,13 @@
             </div>
         </td>
         <td>
-            <pending-order-car-component
-                v-for="car in tr.car"
-                :key="car.id"
-                :car = "car"
-            ></pending-order-car-component>
+            <div style="width: 130px;display: flex;justify-content: center;">
+                <pending-order-car-component
+                    v-for="car in tr.car"
+                    :key="car.id"
+                    :car = "car"
+                ></pending-order-car-component>
+            </div>
         </td>
         <td>
             <div v-if="title">
