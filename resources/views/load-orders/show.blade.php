@@ -180,7 +180,7 @@
                 <tbody>
                 <tr>
                     <td class="subtitle">FECHA</td>
-                    <td class="subtitle observation">AQUI VA LA FECHA</td>
+                    <td class="subtitle observation">{{$infoArray['data_load']['date_load']}}</td>
                     <td class="subtitle-sign">{{__('clients.sign_seal')}}</td>
                 </tr>
                 <tr>
