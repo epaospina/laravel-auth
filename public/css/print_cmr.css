@@ -126,8 +126,8 @@ label{
     padding: 2%;
 }
 .observation{
-    /*max-width: 30cm;*/
-    margin-left: 4cm !important;
+    max-width: 24cm;
+    margin-left: 1cm !important;
     margin-top: -3cm;
     padding: 0.3cm 0.2cm 0 14cm;
     /*position: absolute;*/
@@ -194,7 +194,7 @@ label{
 .info-two{
     display: flex;
     padding-left: 3.2cm;
-    padding-top: 2cm;
+    padding-top: 1.8cm;
 }
 .info-two label{
     max-width: 13.2cm;
@@ -213,7 +213,7 @@ label{
 }
 .info-three{
     padding-left: 2.6cm;
-    padding-top: 1cm;
+    padding-top: 1.6cm;
 }
 .info-four{
     display: flex;
