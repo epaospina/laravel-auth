@@ -57,15 +57,15 @@
             </template>
 
             <template v-slot:cell(collected)="{item, rowSelected}">
-                <b-button  @click="confirmarAccion(item)">Enviar a recogidos</b-button>
-                <b-link :href="'/load-orders/' + item.hash + '/' + item.car_id" class="btn btn-outline-primary m-1">
-                    Ver Orden
+                <b-button class="btn btn-action-pending" @click="confirmarAccion(item)">ENVIAR A RECOGIDOS</b-button>
+                <b-link class="btn btn-action-pending" :href="'/load-orders/' + item.hash + '/' + item.car_id">
+                    VER ORDEN
                 </b-link>
-                <b-link :href="'/load-orders/' + item.hash + '/' + item.car_id + '/edit'" class="btn btn-outline-primary m-1">
-                    Editar Orden
+                <b-link class="btn btn-action-pending" :href="'/load-orders/' + item.hash + '/' + item.car_id + '/edit'">
+                    EDITAR ORDEN
                 </b-link>
-                <b-link :href="'/load-order/' + item.order_id + '/cmr'" class="btn btn-outline-primary">
-                    Ver CMR
+                <b-link class="btn btn-action-pending" :href="'/load-order/' + item.order_id + '/cmr'">
+                    VER CMR
                 </b-link>
             </template>
         </b-table>
@@ -264,5 +264,14 @@
         padding: 1rem;
         border: 2px solid blue;
         margin: 1rem 0;
+    }
+
+    .btn-action-pending{
+        background-color: #000099 !important;
+        font-weight: bolder;
+        padding: 0.5rem;
+        margin: 1rem;
+        color: white;
+        border: 1px solid;
     }
 </style>

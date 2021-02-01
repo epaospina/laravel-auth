@@ -55,6 +55,14 @@ class LoadOrders extends Model
     }
 
     /**
+     * @return HasOne
+     */
+    public function car()
+    {
+        return $this->hasOne('App\InformationCar', "load_orders_id");
+    }
+
+    /**
      * @param $hash
      * @return mixed
      */
@@ -70,17 +78,19 @@ class LoadOrders extends Model
      */
     static function createAllLoadOrder($infoArray, $edit, $hash = null){
         foreach ($infoArray['car'] as $infoCar) {
-            $validator = Validator::make($infoCar, [
-                'vin' => [
-                    'max:255',
-                    Rule::unique('information_car')
-                        ->where('status', 1)
-                        ->whereNotNull("vin"),
-                ]
-            ]);
+            if (!isset($infoCar['vin_original'])){
+                $validator = Validator::make($infoCar, [
+                    'vin' => [
+                        'max:255',
+                        Rule::unique('information_car')
+                            ->where('status', 1)
+                            ->whereNotNull("vin"),
+                    ]
+                ]);
 
-            if ($validator->fails()) {
-                return $validator->validate();
+                if ($validator->fails()) {
+                    return $validator->validate();
+                }
             }
         }
 
@@ -99,8 +109,8 @@ class LoadOrders extends Model
             $loadOrder->contact_person = isset($infoArray['contact_person']) ? $infoArray['contact_person'] : '';
             $loadOrder->date_upload = Carbon::now();
             $loadOrder->bill_to = $infoArray['bill_to'];
-            $loadOrder->price = $infoArray['price_order'];
-            $loadOrder->constancy = $infoArray['constar_client'];
+            $loadOrder->price = isset($infoArray['price_order']) ? $infoArray['price_order'] : 0;
+            $loadOrder->constancy = isset($infoArray['constar_client']) ? $infoArray['constar_client'] : '';
             $loadOrder->payment_type_other = isset($infoArray['otrosInput']) ? $infoArray['otrosInput'] : '';
             $loadOrder->payment_type = isset($infoArray['identificacion_fiscal']) ? $infoArray['identificacion_fiscal'] : '';
             $loadOrder->import_company = isset($infoArray['identificacion_fiscal']) ? $infoArray['identificacion_fiscal'] : '';
@@ -108,7 +118,7 @@ class LoadOrders extends Model
             $loadOrder->domicilio_fiscal = isset($infoArray['domicilio_fiscal']) ? $infoArray['domicilio_fiscal'] : '';
             $loadOrder->poblacion = isset($infoArray['poblacion']) ? $infoArray['poblacion'] : '';
             $loadOrder->auto_id = isset($infoArray['auto_id']) ? $infoArray['auto_id'] : '';
-            $loadOrder->pick_up = $infoArray['pick_up'];
+            $loadOrder->pick_up = isset($infoArray['pick_up']) ? $infoArray['pick_up'] : '';
             $loadOrder->save();
 
             $loadOrder->hash = md5($loadOrder->id);
@@ -118,7 +128,10 @@ class LoadOrders extends Model
                 $dataLoad = $loadOrder->data_load;
             }
 
-            $dataLoad->countries_id = $infoArray['country'];
+            if (isset($infoArray['country']) && !is_null($infoArray['country'])) {
+                $dataLoad->countries_id = $infoArray['country'];
+            }
+
             $dataLoad->addresses_load = isset($infoArray['addresses_load']) ? $infoArray['addresses_load'] : '';
             $dataLoad->city_load = isset($infoArray['city_load']) ? $infoArray['city_load'] : '';
             $dataLoad->date_load = isset($infoArray['date_load']) ? $infoArray['date_load'] : Carbon::now();
@@ -132,7 +145,9 @@ class LoadOrders extends Model
                 $dataDownload = $loadOrder->data_download;
             }
 
-            $dataDownload->countries_id = isset($infoArray['country_download']) ? $infoArray['country_download'] : '';
+            if (isset($infoArray['country_download']) && !is_null($infoArray['country_download'])) {
+                $dataDownload->countries_id = isset($infoArray['country_download']) ? $infoArray['country_download'] : '';
+            }
             $dataDownload->addresses_download = isset($infoArray['addresses_download']) ? $infoArray['addresses_download'] : '';
             $dataDownload->city_download = isset($infoArray['city_download']) ? $infoArray['city_download'] : '';
             $dataDownload->signing_download = isset($infoArray['signing_download']) ? $infoArray['signing_download'] : '';
@@ -145,7 +160,7 @@ class LoadOrders extends Model
             $dataDownload->observations = isset($infoArray['observations']) ? $infoArray['observations'] : '';
             $dataDownload->save();
 
-            InformationCar::findOrCreateInformationCar($client, $infoArray["car"], $loadOrder);
+            InformationCar::findOrCreateInformationCar($client, $infoArray["car"], $loadOrder, $infoArray["car_id"]);
 
             if (!empty($loadOrder) && !empty($dataDownload) && !empty($dataLoad) && !empty($infoArray)){
                 Bills::createBill($loadOrder, $client, $dataDownload, $infoArray['payment_type'], $edit);
@@ -165,6 +180,7 @@ class LoadOrders extends Model
         $infoArray = [];
         $infoArray['information_car'] = [];
         $infoArray['information_car'] = [
+            'marca_car'      => isset($validateInfo['infoCars']['marca']) ? $validateInfo['infoCars']['marca'] : '',
             'model_car'      => isset($validateInfo['infoCars']['model_car']) ? $validateInfo['infoCars']['model_car'] : '',
             'color_car'      => isset($validateInfo['infoCars']['color_car']) ? $validateInfo['infoCars']['color_car'] : '',
             'vin'            => isset($validateInfo['infoCars']['vin']) ? $validateInfo['infoCars']['vin'] : '',

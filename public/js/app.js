@@ -61222,7 +61222,7 @@ exports = module.exports = __webpack_require__(20)(false);
 
 
 // module
-exports.push([module.i, "\n@media (max-width: 800px) {\n.table.b-table.b-table-stacked-md > tbody > tr {\n        display: block;\n        width: 100%;\n        padding: 1rem;\n        border: 2px solid blue;\n        margin: 1rem 0;\n        background-color: white;\n}\n}\n.table-tr-blue{\n    width: 100%;\n    padding: 1rem;\n    border: 2px solid blue;\n    margin: 1rem 0;\n}\n.table-tr-red{\n    width: 100%;\n    padding: 1rem;\n    border: 2px solid blue;\n    margin: 1rem 0;\n}\n.table-tr-red{\n    width: 100%;\n    padding: 1rem;\n    border: 2px solid blue;\n    margin: 1rem 0;\n}\n", ""]);
+exports.push([module.i, "\n@media (max-width: 800px) {\n.table.b-table.b-table-stacked-md > tbody > tr {\n        display: block;\n        width: 100%;\n        padding: 1rem;\n        border: 2px solid blue;\n        margin: 1rem 0;\n        background-color: white;\n}\n}\n.table-tr-blue{\n    width: 100%;\n    padding: 1rem;\n    border: 2px solid blue;\n    margin: 1rem 0;\n}\n.table-tr-red{\n    width: 100%;\n    padding: 1rem;\n    border: 2px solid blue;\n    margin: 1rem 0;\n}\n.table-tr-red{\n    width: 100%;\n    padding: 1rem;\n    border: 2px solid blue;\n    margin: 1rem 0;\n}\n.btn-action-pending{\n    background-color: #000099 !important;\n    font-weight: bolder;\n    padding: 0.5rem;\n    margin: 1rem;\n    color: white;\n    border: 1px solid;\n}\n", ""]);
 
 // exports
 
@@ -61625,30 +61625,31 @@ var render = function() {
                 _c(
                   "b-button",
                   {
+                    staticClass: "btn btn-action-pending",
                     on: {
                       click: function($event) {
                         return _vm.confirmarAccion(item)
                       }
                     }
                   },
-                  [_vm._v("Enviar a recogidos")]
+                  [_vm._v("ENVIAR A RECOGIDOS")]
                 ),
                 _vm._v(" "),
                 _c(
                   "b-link",
                   {
-                    staticClass: "btn btn-outline-primary m-1",
+                    staticClass: "btn btn-action-pending",
                     attrs: {
                       href: "/load-orders/" + item.hash + "/" + item.car_id
                     }
                   },
-                  [_vm._v("\n                Ver Orden\n            ")]
+                  [_vm._v("\n                VER ORDEN\n            ")]
                 ),
                 _vm._v(" "),
                 _c(
                   "b-link",
                   {
-                    staticClass: "btn btn-outline-primary m-1",
+                    staticClass: "btn btn-action-pending",
                     attrs: {
                       href:
                         "/load-orders/" +
@@ -61658,16 +61659,16 @@ var render = function() {
                         "/edit"
                     }
                   },
-                  [_vm._v("\n                Editar Orden\n            ")]
+                  [_vm._v("\n                EDITAR ORDEN\n            ")]
                 ),
                 _vm._v(" "),
                 _c(
                   "b-link",
                   {
-                    staticClass: "btn btn-outline-primary",
+                    staticClass: "btn btn-action-pending",
                     attrs: { href: "/load-order/" + item.order_id + "/cmr" }
                   },
-                  [_vm._v("\n                Ver CMR\n            ")]
+                  [_vm._v("\n                VER CMR\n            ")]
                 )
               ]
             }

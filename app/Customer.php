@@ -32,10 +32,15 @@ class Customer extends Model
     }
 
     static public function findOrCreateClient($infoArray){
-        $name = Str::lower(is_null($infoArray['constar_client'] ) ? $infoArray['constar_client'] : $infoArray['bill_to']);
+        $name = Str::lower($infoArray['signing']);
         $client = Customer::query()
-            ->whereRaw('lower(name) like (?)',["%$name%"])
+            ->whereRaw('lower(signing) like (?)',["%$name%"])
             ->first();
+
+        if (isset($infoArray["car_id"])) {
+            $infoCar = InformationCar::query()->find($infoArray["car_id"]);
+            $client = $infoCar->customer;
+        }
 
         if (!isset($client->id)){
             $client = new Customer();
@@ -54,9 +59,11 @@ class Customer extends Model
         $client->city = $infoArray['city_download'];
         $client->province = '_';
         $client->postal_cod = $infoArray['postal_cod_download'];
-        $client->phone = $infoArray['phone_load'];
+        if (isset($infoArray['mobile_load'])) {
+            $client->phone = $infoArray['mobile_load'];
+        }
         $client->mobile = $infoArray['mobile_download'];
-        $client->email = $infoArray['fax'];
+        $client->email = isset($infoArray['fax']) ? $infoArray['fax'] : "";
         $client->save();
 
         return $client;

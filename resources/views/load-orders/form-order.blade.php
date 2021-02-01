@@ -2,8 +2,7 @@
     <link rel="stylesheet" href="{{ asset('css/clients.css')}} ">
 @endpush
 <div id="contentTable" class="container-order edit-load">
-    <div class="title-client">
-        <h3 class="title-client">EDITAR ORDEN DE CARGA</h3>
+    <h3 class="title-client">EDITAR ORDEN DE CARGA
         @if(isset($edit))
             <button class="btn btn-bitbucket" id="editLoadOrder" onclick="editInputs('collapse')">
                 <i class="fas fa-edit"></i>
@@ -15,186 +14,283 @@
                 Guardar
             </button>
         @endif
-    </div>
-    <input type="hidden" id="country_download" disabled value="{{$infoArray['data_download']['country_download']}}">
-    <input type="hidden" id="country_load" disabled value="{{$infoArray['data_load']['country_load']}}">
-    <table class="table-load-order" style="width: 100%;">
-        <tbody>
-        <tr class="subtitle-car">
-            <td colspan="2">{{ __('clients.data_car') }}</td>
-        </tr>
-        <tr>
-            <td  class="subtitle">{{ __('clients.model_car') }} / {{ __('clients.color_car') }}</td>
-            <td><input class="footer-text-area modelColor" value="{{$infoArray['information_car']['model_car']}} // {{$infoArray['information_car']['color_car']}}" disabled /></td>
-        </tr>
-        <tr>
-            <td  class="subtitle">Fecha de carga</td>
-            <td><input class="footer-text-area date_load" disabled value="{{$infoArray['data_load']['date_load']}}"></td>
-        </tr>
-
-        <tr>
-            <td class="subtitle">{{ __('clients.vin') }}</td>
-            <td>
-                <input class="footer-text-area vin" disabled value="{{$infoArray['information_car']['vin']}}"/>
-                <input type="hidden" class="vin_original" value="{{$infoArray['information_car']['vin']}}" disabled>
-            </td>
-        </tr>
-
-        <tr>
-            <td class="subtitle">{{ __('clients.plate_number') }}</td>
-            <td>
-                <input class="footer-text-area plate_number" disabled value="{{$infoArray['information_car']['plate_number']}}"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td class="subtitle">AUTO ID</td>
-            <td>
-                <input class="footer-text-area auto_id" disabled value="{{$infoArray['load_order']['auto_id']}}"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td class="subtitle">PICK UP NUM</td>
-            <td>
-                <input class="footer-text-area pick_up" disabled value="{{$infoArray['load_order']['pick_up']}}"/>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-
-    <table class="table-load-order" style="width: 100%;">
-        <tbody>
-        <tr class="subtitle-car">
-            <td class="subtitle" colspan="2">{{ __('clients.load_place') }}</td>
-        </tr>
-        <tr>
-            <td class="subtitle">{{ __('clients.signing') }}</td>
-            <td><input class="footer-text-area signing" value="{{$infoArray['client']['signing']}}" disabled>
-            </td>
-        </tr>
-        <tr>
-            <td class="subtitle">{{ __('clients.addresses') }}</td>
-            <td><input class="footer-text-area addresses_load" value="{{$infoArray['data_load']['addresses_load']}} // {{$infoArray['data_load']['city_load']}} // {{$infoArray['data_load']['postal_cod_load']}}" disabled></td>
-        </tr>
-        <tr>
-            <td class="subtitle">{{ __('clients.phone') }}</td>
-            <td><input class="phone_load" value="{{$infoArray['data_load']['phone_load']}}" disabled></td>
-        </tr>
-        <tr>
-            <td class="subtitle">{{ __('clients.mobile') }}</td>
-            <td><input class="mobile_load" value="{{$infoArray['data_load']['mobile_load']}}" disabled></td>
-        </tr>
-        <tr>
-            <td class="subtitle">{{ __('clients.fax') }}</td>
-            <td><input class="fax" value="{{$infoArray['client']['email']}}" disabled></td>
-        </tr>
-        <tr>
-            <td class="subtitle">{{ __('clients.contact_person') }}</td>
-            <td><input class="contact_person" value="{{$infoArray['load_order']['contact_person']}}" disabled></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <table class="table-load-order" style="width: 100%;">
-        <tbody>
-        <tr>
-            <td class="subtitle">{{ __('clients.itv') }}</td>
-            <td>No</td>
-        </tr>
-        <tr>
-            <td class="subtitle">{{ __('clients.documents') }}</td>
-            <td><input class="documents" value="{{$infoArray['information_car']['documents']}}" disabled></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <table class="table-load-order" style="width: 100%;">
-        <tbody>
-        <tr>
-            <td class="subtitle">{!! __('clients.bill_to') !!}</td>
-            <td><input class="bill_to" value="{{$infoArray['load_order']['bill_to']}}" disabled></td>
-        </tr>
-        @if($infoArray['load_order']['constancy'] !== ".")
+        <span class="d-none" id="car_id">{{$infoArray["car_id"]}}</span>
+    </h3>
+    <div id="exportWord">
+        <label>DATOS DEL VEHICULO / FAHRZEUGDATEN</label>
+        <table class="table-load-order" style="width: 100%;">
             <tr>
-                <td class="subtitle">Coche contratado por terceros para:</td>
-                <td><label>{{$infoArray['load_order']['constancy']}}</label></td>
+                <td  class="subtitle">MARCA</td>
+                <td>
+                    <label>
+                        <input id="marca_car" class="footer-text-area modelColor" value="{{$infoArray['information_car']['marca_car']}}" disabled />
+                    </label>
+                </td>
             </tr>
-        @endisset
-        <tr>
-            <td class="subtitle">Identificacion fiscal</td>
-            <td><input class="identificacion_fiscal" value="{{$infoArray['load_order']['identificacion_fiscal']}}" disabled></td>
-        </tr>
-        <tr>
-            <td class="subtitle">Domicilio fiscal</td>
-            <td><input class="domicilio_fiscal" value="{{$infoArray['load_order']['domicilio_fiscal']}}" disabled></td>
-        </tr>
-        <tr>
-            <td class="subtitle">Poblacion</td>
-            <td><input class="poblacion" value="{{$infoArray['load_order']['poblacion']}}" disabled></td>
-        </tr>
-        <tr>
-            <td class="subtitle">{{ __('clients.import_company') }}</td>
-            <td><input class="import_company" value="{{$infoArray['load_order']['import_company']}}" disabled></td>
-        </tr>
+            <tr>
+                <td  class="subtitle">Modelo - MODELL / Color - FARBE</td>
+                <td>
+                    <label>
+                        <span class="d-none">Modelo</span>
+                        <input id="model_car" class="footer-text-area modelColor" value="{{$infoArray['information_car']['model_car']}}" disabled />
+                    </label>
+                    <label>
+                        <span class="d-none">Color</span>
+                        <input id="color_car" class="footer-text-area modelColor" value="{{$infoArray['information_car']['color_car']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">BASTIDOR / CHASSIS NUMBER</td>
+                <td>
+                    <label>
+                        <input id="vin" class="footer-text-area modelColor" value="{{$infoArray['information_car']['vin']}}" disabled />
+                        <label id="vin_original" class="footer-text-area modelColor d-none" >{{$infoArray['information_car']['vin']}}</label>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">MATRICULA / PLATE NUMBER</td>
+                <td>
+                    <label>
+                        <input id="plate_number" class="footer-text-area modelColor" value="{{$infoArray['information_car']['plate_number']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">AUTORIZACIÓN</td>
+                <td>
+                    <label>
+                        <input id="auto_id" class="footer-text-area modelColor" value="{{$infoArray['load_order']['auto_id']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">NUMERO DE PICK UP</td>
+                <td>
+                    <label>
+                        <input id="pick_up" class="footer-text-area modelColor" value="{{$infoArray['load_order']['pick_up']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <b>LUGAR DE CARGA / FAHRZEUGSTANTDORT</b>
+        <table class="table-load-order" style="width: 100%;">
+            <tr>
+                <td class="subtitle">CONCESIONARIO / NOMBRE COMERCIAL</td>
+                <td>
+                    <label>
+                        <input id="signing" class="footer-text-area modelColor" value="{{$infoArray['data_load']['signing']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">DIRECCION / ADRESSE (CALLE, NUMERO)</td>
+                <td>
+                    <label>
+                        <input id="addresses_load" class="footer-text-area modelColor" value="{{$infoArray['data_load']['addresses_load']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">CIUDAD - CITY</td>
+                <td>
+                    <label>
+                        <input id="city_load" class="footer-text-area modelColor" value="{{$infoArray['data_load']['city_load']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">CODIGO POSTAL - POSTAL COD</td>
+                <td>
+                    <label>
+                        <input id="postal_cod_load" class="footer-text-area modelColor" value="{{$infoArray['data_load']['postal_cod_load']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">PERSONA DE CONTACTO / ANSPRECHPARTNER</td>
+                <td>
+                    <label>
+                        <input id="data_load" class="footer-text-area modelColor" value="{{$infoArray['data_load']['data_load']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">TELEFONO DE CONTACTO</td>
+                <td>
+                    <label>
+                        <input id="mobile_load" class="footer-text-area modelColor" value="{{$infoArray['data_load']['mobile_load']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <b>LUGAR DE DESCARGA</b>
+        <table class="table-load-order" style="width: 100%;">
+            <tr>
+                <td class="subtitle">CONCESIONARIO / NOMBRE COMERCIAL</td>
+                <td>
+                    <label>
+                        <input id="signing_download" class="footer-text-area modelColor" value="{{$infoArray['data_download']['signing_download']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">DIRECCION / ADRESSE (CALLE, NUMERO)</td>
+                <td>
+                    <label>
+                        <input id="addresses_download" class="footer-text-area modelColor" value="{{$infoArray['data_download']['addresses_download']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">CIUDAD - CITY</td>
+                <td>
+                    <label>
+                        <input id="city_download" class="footer-text-area modelColor" value="{{$infoArray['data_download']['city_download']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">CODIGO POSTAL - POSTAL COD</td>
+                <td>
+                    <label>
+                        <input id="postal_cod_download" class="footer-text-area modelColor" value="{{$infoArray['data_download']['postal_cod_download']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">PERSONA DE CONTACTO / ANSPRECHPARTNER</td>
+                <td>
+                    <label>
+                        <input id="contact_download" class="footer-text-area modelColor" value="{{$infoArray['data_download']['contact_download']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">TELEFONO DE CONTACTO</td>
+                <td>
+                    <label>
+                        <input id="mobile_download" class="footer-text-area modelColor" value="{{$infoArray['data_download']['mobile_download']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+        </table>
 
-        <tr>
-            <td class="subtitle">Forma de pago</td>
-            <td>
-                <select class="custom-select" onchange="changeType(this)" name="payment_type">
-                    {{--<option value="0"><b>Seleccione una opcion</b></option>--}}
-                    <option value="Transferencia Bancaria"><b>Transferencia Bancaria</b></option>
-                    <option value="Recibo de banco"><b>Recibo de banco</b></option>
-                    <option value="otros"><b>otros</b></option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td class="subtitle">precio</td>
-            <td><input class="price" value="{{$infoArray['load_order']['price']}}" disabled></td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="table-load-order" style="width: 100%;">
+            <tr>
+                <td class="subtitle">Pasar ITV al vehiculo / TÜV</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td class="subtitle">Documentacion del vehiculo / FAHRZEUGDOKUMENTE</td>
+                <td>
+                    <label>
+                        <input id="documents" class="footer-text-area modelColor" value="{{$infoArray['information_car']['documents']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <b>Datos de facturacion</b>
+        <table class="table-load-order" style="width: 100%;">
+            <tbody>
+            <tr>
+                <td class="subtitle">EMPRESA O PERSONA COMPRADORA DEL VEHICULO</td>
+                <td>
+                    <label>
+                        <input id="bill_to" class="footer-text-area modelColor" value="{{$infoArray['load_order']['bill_to']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">NUMERO DE IDENTIFICACION FISCAL (CIF/NIF/NIE)</td>
+                <td>
+                    <label>
+                        <input id="identificacion_fiscal" class="footer-text-area modelColor" value="{{$infoArray['load_order']['identificacion_fiscal']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">DOMICILIO FISCAL</td>
+                <td>
+                    <label>
+                        <input id="domicilio_fiscal" class="footer-text-area modelColor" value="{{$infoArray['load_order']['domicilio_fiscal']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">POBLACION / CODIGO POSTAL</td>
+                <td>
+                    <label>
+                        <input id="poblacion" class="footer-text-area modelColor" value="{{$infoArray['load_order']['poblacion']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            @if($infoArray['load_order']['constancy'] !== ".")
+                <tr>
+                    <td class="subtitle">COCHE CONTRATADO POR TERCEROS:</td>
+                    <td>
+                        <label>
+                            <input id="constancy" class="footer-text-area modelColor" value="{{$infoArray['load_order']['constancy']}}" disabled />
+                        </label>
+                    </td>
+                </tr>
+            @endisset
+            <tr>
+                <td class="subtitle">EMPRESA IMPORTADORA / IMPORT FIRMA</td>
+                <td>
+                    <label>
+                        <input id="import_company" class="footer-text-area modelColor" value="{{$infoArray['load_order']['import_company']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">FORMA DE PAGO</td>
+                <td>
+                    <label>
+                        <input id="payment_type" class="footer-text-area modelColor" value="{{$infoArray['load_order']['payment_type']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitle">PRECIO ACORDADO</td>
+                <td>
+                    <label>
+                        <input id="price" class="footer-text-area modelColor" value="{{$infoArray['load_order']['price']}}" disabled />
+                    </label>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-    <table class="table-load-order" style="width: 100%;">
-        <tbody>
-        <tr>
-            <td class="subtitle">{{ __('clients.download_place') }}</td>
-            <td class="subtitle observation">{{ __('clients.observations') }}</td>
-            <td class="subtitle-sign">{{__('clients.sign_seal')}}</td>
-        </tr>
-        <tr>
-            <td><textarea class="footer-text-area info_download" disabled>{{$infoArray['data_download']['addresses_download']}} // {{$infoArray['data_download']['city_download']}} // {{$infoArray['data_download']['postal_cod_download']}}</textarea></td>
-            <td><textarea class="footer-text-area observations" disabled>{{$infoArray['data_download']['observations']}}</textarea></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="subtitle">{{__('clients.mobile')}}</td>
-            <td><input class="mobile_download" value="{{$infoArray['data_download']['mobile_download']}}" disabled></td>
-            @if(auth()->id() && !empty($infoArray['data_download']['driver_data']))
-                <td><b  class="subtitle">{{__('clients.data_driver')}}:</b> <input class="driver_data" value="{{$infoArray['data_download']['driver_data']}}" disabled></td>
-            @else
-                <td></td>
-            @endif
-        </tr>
-        <tr>
-            <td class="subtitle">{{__('clients.contact_person')}}</td>
-            <td><input class="contact_download" value="{{$infoArray['data_download']['contact_download']}}" disabled></td>
-            @if(auth()->id() && !empty($infoArray['data_download']['driver_data']))
-                <td><b  class="subtitle">{{__('clients.cmr')}}:</b> <input class="cmr" value="{{$infoArray['data_download']['cmr']}}" disabled></td>
-            @else
-                <td></td>
-            @endif
-        </tr>
-        </tbody>
-    </table>
-    <br>
-    <br>
-    <ul>
-        <li>Es imprecindible que envien una autorizacion al proveedor autorizando a la empresa {{env('TITLE_HOME', 'MC Vehiculos')}} a poder retirar el vehiculo.</li>
-        <li>En el casi de necesitar la identidad del conductor y matricula del camion, rogamos nos la pidan previamente.</li>
-    </ul>
+        <table class="table-load-order" style="width: 100%;">
+            <tbody>
+            <tr>
+                <td class="subtitle">FECHA</td>
+                <td class="subtitle observation">{{$infoArray['data_load']['date_load']}}</td>
+                <td class="subtitle-sign">{{__('clients.sign_seal')}}</td>
+            </tr>
+            <tr>
+                <td><label>FIRMA</label></td>
+                <td>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <ul>
+            <li>Es imprecindible que envien una autorizacion al proveedor autorizando a la empresa {{env('TITLE_HOME', 'MC Vehiculos')}} a poder retirar el vehiculo.</li>
+            <li>En el casi de necesitar la identidad del conductor y matricula del camion, rogamos nos la pidan previamente.</li>
+        </ul>
+    </div>
 </div>
 @if(auth()->id())
     <div class="action-div">

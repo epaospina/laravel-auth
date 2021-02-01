@@ -262,6 +262,7 @@ class LoadOrdersController extends Controller
             'data_load' => $loadOrder->data_load->toArray(),
         ]);
 
+        $infoArray['car_id'] = $car;
         $infoArray['data_download']['country_download'] = $loadOrder->data_download->load('countries')->country;
         $infoArray['data_load']['country_load'] = $loadOrder->data_download->load('countries')->country;
         $infoArray['data_load']['date_load'] = $loadOrder->data_load->date_load;
@@ -383,26 +384,24 @@ class LoadOrdersController extends Controller
 
     public function pendingApiCars(CarsPending $carsPending)
     {
-        $loadOrders = LoadOrders::all()->where('status', 1);
+        $showPending = explode(",", $carsPending->array_cars);
         $cars = [];
-        foreach ($loadOrders as $keyLoad => $loadOrder){
-            foreach ($loadOrder->customer->infoCars->where('status', 1) as $key => $infoCar) {
-                if (in_array($infoCar->id, explode(',',$carsPending->array_cars))){
-                    $cars[$keyLoad]['client']             = $loadOrder->data_download->contact_download;
-                    $cars[$keyLoad]['buyer']              = $loadOrder->bill_to;
-                    $cars[$keyLoad]['action_do']          = 'DESCARGAR';
-                    $cars[$keyLoad]['car'][$key]          = $infoCar->model_car .",". $infoCar->vin;
-                    $cars[$keyLoad]['addresses_load']     = $loadOrder->data_load->addresses_load.",". 'Codigo postal: '
-                                                            .$loadOrder->data_load->postal_cod_load.",". 'Ciudad: '
-                                                            .$loadOrder->data_load->city_load.'' ;
-                    $cars[$keyLoad]['scheduler']          = '';
-                    $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download.",". 'Codigo postal: '
-                                                            .$loadOrder->data_download->postal_cod_download.",". 'Ciudad: '
-                                                            .$loadOrder->data_download->city_download.'' ;
-                    $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download.",".$loadOrder->data_download->mobile_download;
-                    $cars[$keyLoad]['observation']        = $loadOrder->price;
-                }
-            }
+        foreach ($showPending as $keyLoad => $car){
+            $car = InformationCar::query()->find($car);
+            $loadOrder = $car->loadOrder;
+            $cars[$keyLoad]['client']             = $loadOrder->data_download->contact_download;
+            $cars[$keyLoad]['buyer']              = $loadOrder->bill_to;
+            $cars[$keyLoad]['action_do']          = 'DESCARGAR';
+            $cars[$keyLoad]['car'][0]               = $car->model_car .",". $car->vin;
+            $cars[$keyLoad]['addresses_load']     = $loadOrder->data_load->addresses_load.",". 'Codigo postal: '
+                .$loadOrder->data_load->postal_cod_load.",". 'Ciudad: '
+                .$loadOrder->data_load->city_load.'' ;
+            $cars[$keyLoad]['scheduler']          = '';
+            $cars[$keyLoad]['addresses_download'] = $loadOrder->data_download->addresses_download.",". 'Codigo postal: '
+                .$loadOrder->data_download->postal_cod_download.",". 'Ciudad: '
+                .$loadOrder->data_download->city_download.'' ;
+            $cars[$keyLoad]['contact']            = $loadOrder->data_download->contact_download.",".$loadOrder->data_download->mobile_download;
+            $cars[$keyLoad]['observation']        = $loadOrder->price;
         }
 
         return $cars;
