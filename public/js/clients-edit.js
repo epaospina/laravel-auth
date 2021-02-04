@@ -27,7 +27,7 @@ function updatePost(id) {
         'addresses_load'        : $(idOrder + ' #addresses_load').val(),
         'city_load'             : $(idOrder + ' #city_load').val(),
         'postal_cod_load'       : $(idOrder + ' #postal_cod_load').val(),
-        'data_load'             : $(idOrder + ' #data_load').val(),
+        'contact_person'        : $(idOrder + ' #contact_person').val(),
         'mobile_load'           : $(idOrder + ' #mobile_load').val(),
         'signing_download'      : $(idOrder + ' #signing_download').val(),
         'addresses_download'    : $(idOrder + ' #addresses_download').val(),

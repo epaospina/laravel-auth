@@ -160,6 +160,7 @@ class LoadOrders extends Model
             $dataDownload->observations = isset($infoArray['observations']) ? $infoArray['observations'] : '';
             $dataDownload->save();
 
+            $infoArray["car_id"] = isset($infoArray["car_id"]) ? $infoArray["car_id"] : null;
             InformationCar::findOrCreateInformationCar($client, $infoArray["car"], $loadOrder, $infoArray["car_id"]);
 
             if (!empty($loadOrder) && !empty($dataDownload) && !empty($dataLoad) && !empty($infoArray)){

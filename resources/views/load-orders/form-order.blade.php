@@ -112,7 +112,7 @@
                 <td class="subtitle">PERSONA DE CONTACTO / ANSPRECHPARTNER</td>
                 <td>
                     <label>
-                        <input id="data_load" class="footer-text-area modelColor" value="{{$infoArray['data_load']['data_load']}}" disabled />
+                        <input id="contact_person" class="footer-text-area modelColor" value="{{$infoArray['data_load']['contact_person']}}" disabled />
                     </label>
                 </td>
             </tr>
