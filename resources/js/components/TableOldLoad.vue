@@ -87,7 +87,7 @@ export default {
             filter: null,
             countries: [],
             selected: [],
-            card: null
+            car: null
         }
     },
     methods:{
@@ -113,11 +113,11 @@ export default {
                 });
         },
         cocheRecogido(){
-            console.log(this.card.card_id);
-            this.items.splice(this.items.indexOf(this.card), 1);
+            console.log(this.car.car_id);
+            this.items.splice(this.items.indexOf(this.car), 1);
             let new_refs = this.$refs.modal;
             let data = {
-                card_id: this.card.card_id
+                car_id: this.car.car_id
             };
             Vue.axios.post('/load-orders/send-collected-finish', data)
                 .then(function (){
@@ -127,7 +127,7 @@ export default {
         confirmarAccion(item, rowSelected){
             this.$refs.modal.open();
             this.removeSelected = rowSelected
-            this.card = item;
+            this.car = item;
         }
     },
     created(){

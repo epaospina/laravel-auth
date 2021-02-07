@@ -40,7 +40,7 @@
                 </div>
             </div>
             <br>
-            <div data-toggle="tooltip" data-placement="top" title="{{__('clients.tooltip_add_coche')}}" id="btnAddCar" class="btn btn-link" data-car="0" onclick="addCarForm()">Para agregar mas vehiculos en esta orden de carga pinchar aqui!</div>
+            <div style="white-space: initial;" data-toggle="tooltip" data-placement="top" title="{{__('clients.tooltip_add_coche')}}" id="btnAddCar" class="btn btn-link" data-car="0" onclick="addCarForm()"><p>Para agregar mas vehiculos en esta orden de carga pinchar aqui!</p></div>
         </div>
 
         <div class="tab">

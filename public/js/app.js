@@ -1239,7 +1239,7 @@ var hasIntersectionObserverSupport = isBrowser && 'IntersectionObserver' in wind
 
 var getEnv = function getEnv(key) {
   var fallback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var env = typeof process !== 'undefined' && process ? Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}) || {} : {};
+  var env = typeof process !== 'undefined' && process ? Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}) || {} : {};
 
   if (!key) {
     /* istanbul ignore next */
@@ -55064,7 +55064,7 @@ var content = __webpack_require__(327);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("1e5605c0", content, false, {});
+var update = __webpack_require__(23)("dbfbe874", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -56215,7 +56215,7 @@ var content = __webpack_require__(341);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("df32e2f0", content, false, {});
+var update = __webpack_require__(23)("145e97bb", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -56418,7 +56418,7 @@ var content = __webpack_require__(346);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("0366c8b4", content, false, {});
+var update = __webpack_require__(23)("5d652013", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -57798,7 +57798,7 @@ var content = __webpack_require__(351);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("20659974", content, false, {});
+var update = __webpack_require__(23)("4db75932", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -57956,7 +57956,7 @@ var content = __webpack_require__(356);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("15df599c", content, false, {});
+var update = __webpack_require__(23)("5b2adba5", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -58246,7 +58246,7 @@ var content = __webpack_require__(361);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("a03c04c8", content, false, {});
+var update = __webpack_require__(23)("3d4c75ee", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -58952,7 +58952,7 @@ var content = __webpack_require__(366);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("7296876b", content, false, {});
+var update = __webpack_require__(23)("5c434618", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -59097,7 +59097,7 @@ var content = __webpack_require__(371);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("0291c7b4", content, false, {});
+var update = __webpack_require__(23)("4974df13", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -59531,7 +59531,7 @@ var content = __webpack_require__(376);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("9a55a592", content, false, {});
+var update = __webpack_require__(23)("18efb5aa", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -60047,7 +60047,7 @@ var content = __webpack_require__(381);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("0588585a", content, false, {});
+var update = __webpack_require__(23)("30c3f287", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -60171,7 +60171,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             filter: null,
             countries: [],
             selected: [],
-            card: null
+            car: null
         };
     },
 
@@ -60199,11 +60199,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         cocheRecogido: function cocheRecogido() {
-            console.log(this.card.card_id);
-            this.items.splice(this.items.indexOf(this.card), 1);
+            console.log(this.car.car_id);
+            this.items.splice(this.items.indexOf(this.car), 1);
             var new_refs = this.$refs.modal;
             var data = {
-                card_id: this.card.card_id
+                car_id: this.car.car_id
             };
             Vue.axios.post('/load-orders/send-collected-finish', data).then(function () {
                 new_refs.close();
@@ -60212,7 +60212,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         confirmarAccion: function confirmarAccion(item, rowSelected) {
             this.$refs.modal.open();
             this.removeSelected = rowSelected;
-            this.card = item;
+            this.car = item;
         }
     },
     created: function created() {
@@ -60577,7 +60577,7 @@ var content = __webpack_require__(386);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("2ae67372", content, false, {});
+var update = __webpack_require__(23)("2359f098", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -61198,7 +61198,7 @@ var content = __webpack_require__(391);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(23)("ef9eec70", content, false, {});
+var update = __webpack_require__(23)("9927b816", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -61324,7 +61324,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             filter: null,
             countries: [],
             selected: [],
-            card: null,
+            car: null,
             bgItem: ['mb-2 bg-secondary', 'mb-2 bg-success', 'mb-2 bg-danger', 'mb-2 bg-warning', 'mb-2 bg-info', 'mb-2 bg-light', 'mb-2 bg-dark', 'mb-2 bg-white']
         };
     },
@@ -61390,11 +61390,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         cocheRecogido: function cocheRecogido() {
-            console.log(this.card.card_id);
-            this.items.splice(this.items.indexOf(this.card), 1);
+            this.items.splice(this.items.indexOf(this.car), 1);
             var new_refs = this.$refs.modal;
             var data = {
-                card_id: this.card.card_id
+                car_id: this.car.car_id
             };
             Vue.axios.post('/load-orders/send-collected', data).then(function () {
                 new_refs.close();
@@ -61403,7 +61402,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         confirmarAccion: function confirmarAccion(item, rowSelected) {
             this.$refs.modal.open();
             this.removeSelected = rowSelected;
-            this.card = item;
+            this.car = item;
         }
     },
     created: function created() {

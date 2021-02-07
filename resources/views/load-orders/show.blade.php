@@ -90,7 +90,7 @@
                 </tr>
                 <tr>
                     <td class="subtitle">PERSONA DE CONTACTO / ANSPRECHPARTNER</td>
-                    <td><label>{{$infoArray['data_load']['data_load']}}</label></td>
+                    <td><label>{{$infoArray['data_load']['contact_person']}}</label></td>
                 </tr>
                 <tr>
                     <td class="subtitle">TELEFONO DE CONTACTO</td>
