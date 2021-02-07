@@ -212,6 +212,22 @@ td,tr{
 }
 
 @media screen and (max-width: 600px) {
+    label, td, input, b{
+        font-size: 0.95rem !important;
+    }
+    input{
+        margin: 0 !important;
+    }
+    .title-client {
+        font-size: 1.2rem;
+        margin: 4% 18%;
+        text-align: center;
+        font-weight: bolder;
+        text-decoration: blink;
+        display: block;
+        justify-content: space-between;
+    }
+
     .edit-load textarea{
         height: 70px;
     }
@@ -221,8 +237,12 @@ td,tr{
         margin: 0 10%;
         border: 1px solid #dbc6bf;
     }
-    .container-order{
-        display: none;
+    .container-order {
+        padding: 0;
+        background-color: white;
+        margin: 0;
+        border: 0;
+        font-size: 0.75em !important;
     }
     .container-order-m{
         display: block;
@@ -250,16 +270,6 @@ td,tr{
         padding: 0;
         width: 95%;
         min-width: 300px;
-    }
-
-    .title-client{
-        font-size: 2.5rem;
-        margin: 4% 20%;
-        text-align: center;
-        font-weight: bolder;
-        text-decoration: blink;
-        display: block;
-        justify-content: space-between;
     }
     .transcaliguz{
         width: 100%;
