@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.4.0",
-        "jspdf": "^1.5.3",
+        "jspdf": "^2.3.1",
         "sweet-modal-vue-evolution": "^2.0.7",
         "vue-axios": "^2.1.5",
         "vue-html-to-paper": "^1.1.1",
