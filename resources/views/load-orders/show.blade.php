@@ -47,7 +47,7 @@
             <table class="table-load-order" style="width: 100%;">
                 <tr>
                     <td  class="subtitle">MARCA</td>
-                    <td><label>{{$infoArray['information_car']['model_car']}} - {{$infoArray['information_car']['color_car']}}</label></td>
+                    <td><label>{{$infoArray['information_car']['model_car']}} - {{$infoArray['information_car']['marca_car']}}</label></td>
                 </tr>
                 <tr>
                     <td  class="subtitle">Modelo - MODELL / Color - FARBE</td>
