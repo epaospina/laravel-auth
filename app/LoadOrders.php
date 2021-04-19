@@ -82,9 +82,9 @@ class LoadOrders extends Model
                 $validator = Validator::make($infoCar, [
                     'vin' => [
                         'max:255',
-                        Rule::unique('information_car')
+                        /*Rule::unique('information_car')
                             ->where('status', 1)
-                            ->whereNotNull("vin"),
+                            ->whereNotNull("vin"),*/
                     ]
                 ]);
 

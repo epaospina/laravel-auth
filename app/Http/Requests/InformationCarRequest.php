@@ -24,7 +24,7 @@ class InformationCarRequest extends FormRequest
     public function rules()
     {
         return [
-            'vin' => 'required|unique:informationCar|max:255',
+            'vin' => 'max:255',
         ];
     }
 }
